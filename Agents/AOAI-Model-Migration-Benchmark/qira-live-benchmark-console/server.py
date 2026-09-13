@@ -435,6 +435,12 @@ def import_runner_history(run_id: str) -> Path | None:
         HISTORY.mkdir(parents=True, exist_ok=True)
         # run_id matched RUN_ID_RE above, so this is a fixed hex vocabulary.
         path = HISTORY / f"run_{stamp}_{run_id}.json"
+        kept = sorted(HISTORY.glob("run_*.json"))
+        if len(kept) >= HISTORY_RETENTION and path.name <= kept[0].name:
+            # Retention prunes oldest-first, so this record would be deleted the
+            # moment it lands and reconciliation would fetch it again every
+            # minute. Leave it on the runner instead of churning.
+            return None
         path.write_text(
             json.dumps(record, ensure_ascii=False, indent=2, default=str) + "\n",
             encoding="utf-8",

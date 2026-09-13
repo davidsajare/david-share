@@ -688,6 +688,28 @@ class RemoteRunner(unittest.TestCase):
         self.assertEqual(server.migrate_history_filenames(), 0)
         self.assertTrue(broken.exists())
 
+    def test_a_run_older_than_retention_is_left_on_the_runner(self):
+        # Writing it would trip oldest-first pruning, and the next reconcile
+        # would fetch and drop it again once a minute, for ever.
+        for i in range(3):
+            (server.HISTORY / f"run_20270101_00000{i}_{'b' * 15}{i}.json").write_text(
+                json.dumps(dict(FakeRunnerHandler.record, run_id=f"{'b' * 15}{i}")),
+                encoding="utf-8")
+        with patch.object(server, "HISTORY_RETENTION", 3):
+            self.assertIsNone(server.import_runner_history("feedface"))
+            self.assertEqual(server.reconcile_runner_history(force=True), 0)
+        self.assertEqual(len(server.history_index()), 3)
+        self.assertIsNone(server.mirrored_run_path("feedface"))
+
+    def test_a_recent_run_is_still_imported_at_retention(self):
+        for i in range(3):
+            (server.HISTORY / f"run_20200101_00000{i}_{'a' * 15}{i}.json").write_text(
+                json.dumps(dict(FakeRunnerHandler.record, run_id=f"{'a' * 15}{i}")),
+                encoding="utf-8")
+        with patch.object(server, "HISTORY_RETENTION", 3):
+            self.assertIsNotNone(server.import_runner_history("feedface"))
+        self.assertIn("feedface", {r["run_id"] for r in server.history_index()})
+
 
 class Export(unittest.TestCase):
     def test_csv_has_a_stable_header_and_ignores_extra_fields(self):
