@@ -81,6 +81,15 @@ run can still be exported to CSV or deleted.
 `history/` is git-ignored: those runs belong to whoever operated the console,
 not to the repository. The recorded study runs ship in `replay/replay_pack.json`.
 
+When the console drives the same-region runner, a run executes in Sweden
+Central while the history the room reads lives on the portal VM. Capturing it
+does not depend on anyone watching: submitting a run starts a background worker
+that polls the runner until the record is mirrored locally, so closing the tab,
+losing Wi-Fi or starting the run from the API all still land in **Past runs**.
+Listing history also backfills any runner run the portal never saw, which
+recovers the history a portal restart would otherwise have missed. Mirroring is
+keyed on the run id, so these paths can race without duplicating a row.
+
 ### What it deliberately does not do
 
 - **No web search and no tools.** Every request carries a system message and

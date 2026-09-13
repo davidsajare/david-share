@@ -495,32 +495,40 @@ class FakeRunnerHandler(BaseHTTPRequestHandler):
         "summaries": [],
         "rows": [{"item_id": "NM01"}],
     }
+    # A second run that is still executing until a test marks it finished.
+    late_record = dict(record, run_id="cafebabe",
+                       totals={"total_tokens": 20, "cost_usd": 0.002})
+    late_ready = False
 
     def log_message(self, *_):
         pass
 
-    def do_GET(self):  # noqa: N802
-        if self.path == "/api/history/feedface":
-            body = json.dumps(self.record).encode()
-            self.send_response(200)
-        else:
-            body = json.dumps({"error": "not found"}).encode()
-            self.send_response(404)
+    def _json(self, status, payload):
+        body = json.dumps(payload).encode()
+        self.send_response(status)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
+
+    def do_GET(self):  # noqa: N802
+        if self.path == "/api/history":
+            runs = [{"run_id": "feedface"}]
+            if type(self).late_ready:
+                runs.append({"run_id": "cafebabe"})
+            self._json(200, {"runs": runs})
+        elif self.path == "/api/history/feedface":
+            self._json(200, self.record)
+        elif self.path == "/api/history/cafebabe" and type(self).late_ready:
+            self._json(200, self.late_record)
+        else:
+            self._json(404, {"error": "not found"})
 
     def do_POST(self):  # noqa: N802
         length = int(self.headers.get("Content-Length") or 0)
         if length:
             self.rfile.read(length)
-        body = json.dumps({"run_id": "feedface"}).encode()
-        self.send_response(200)
-        self.send_header("Content-Type", "application/json")
-        self.send_header("Content-Length", str(len(body)))
-        self.end_headers()
-        self.wfile.write(body)
+        self._json(200, {"run_id": "feedface"})
 
 
 class RemoteRunner(unittest.TestCase):
@@ -542,11 +550,30 @@ class RemoteRunner(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         server.RUNNER_URL = self.url
         server.HISTORY = Path(self.tmp.name)
+        server._reconciled_at = 0.0
+        server._mirroring.clear()
+        FakeRunnerHandler.late_ready = False
 
     def tearDown(self):
+        self._drain_mirrors()
         server.RUNNER_URL = self.original_url
         server.HISTORY = self.original_history
+        server._mirroring.clear()
+        FakeRunnerHandler.late_ready = False
         self.tmp.cleanup()
+
+    def _wait_for(self, run_id, timeout=5.0):
+        deadline = time.monotonic() + timeout
+        while time.monotonic() < deadline:
+            if server.mirrored_run_path(run_id) is not None:
+                return True
+            time.sleep(0.02)
+        return False
+
+    def _drain_mirrors(self, timeout=5.0):
+        deadline = time.monotonic() + timeout
+        while server._mirroring and time.monotonic() < deadline:
+            time.sleep(0.02)
 
     def test_remote_runner_makes_the_portal_live_without_a_local_endpoint(self):
         with patch.dict("os.environ", {"AZURE_OPENAI_ENDPOINT": ""}):
@@ -566,6 +593,61 @@ class RemoteRunner(unittest.TestCase):
     def test_invalid_remote_history_is_not_imported(self):
         self.assertIsNone(server.import_runner_history("deadbeef"))
         self.assertEqual(server.history_index(), [])
+
+    def test_importing_the_same_run_twice_keeps_one_row(self):
+        self.assertIsNotNone(server.import_runner_history("feedface"))
+        self.assertIsNone(server.import_runner_history("feedface"))
+        self.assertEqual([r["run_id"] for r in server.history_index()], ["feedface"])
+
+    def test_a_finished_run_is_mirrored_with_no_browser_attached(self):
+        # The whole point: nothing here opens /api/events.
+        with patch.multiple(server, MIRROR_POLL_SECONDS=0.02,
+                            MIRROR_POLL_MAX_SECONDS=0.05,
+                            MIRROR_DEADLINE_SECONDS=5):
+            self.assertTrue(server.mirror_runner_run("cafebabe"))
+            self.assertFalse(self._wait_for("cafebabe", timeout=0.3))
+            FakeRunnerHandler.late_ready = True
+            self.assertTrue(self._wait_for("cafebabe"))
+            self._drain_mirrors()
+        self.assertEqual(server.history_run("cafebabe")["totals"]["total_tokens"], 20)
+
+    def test_mirroring_is_started_once_per_run(self):
+        with patch.object(server.threading, "Thread") as thread:
+            self.assertTrue(server.mirror_runner_run("cafebabe"))
+            self.assertFalse(server.mirror_runner_run("cafebabe"))
+        self.assertEqual(thread.call_count, 1)
+        server._mirroring.clear()
+
+    def test_mirroring_reports_failure_if_no_worker_could_start(self):
+        with patch.object(server.threading, "Thread", side_effect=RuntimeError):
+            self.assertFalse(server.mirror_runner_run("cafebabe"))
+        # The run id must not stay wedged in the in-flight set.
+        self.assertNotIn("cafebabe", server._mirroring)
+
+    def test_mirroring_rejects_a_run_id_the_runner_did_not_produce(self):
+        self.assertFalse(server.mirror_runner_run(""))
+        self.assertFalse(server.mirror_runner_run("../../etc/passwd"))
+        self.assertFalse(server.mirror_runner_run("feedface\n"))
+        self.assertIsNone(server.mirrored_run_path("feedface\n"))
+
+    def test_reconcile_backfills_runs_the_portal_never_saw(self):
+        FakeRunnerHandler.late_ready = True
+        self.assertEqual(server.reconcile_runner_history(force=True), 2)
+        self.assertEqual({r["run_id"] for r in server.history_index()},
+                         {"feedface", "cafebabe"})
+        # Nothing left to pull, and no duplicate rows.
+        self.assertEqual(server.reconcile_runner_history(force=True), 0)
+        self.assertEqual(len(server.history_index()), 2)
+
+    def test_reconcile_is_throttled_between_history_reads(self):
+        self.assertEqual(server.reconcile_runner_history(force=True), 1)
+        FakeRunnerHandler.late_ready = True
+        self.assertEqual(server.reconcile_runner_history(), 0)
+        self.assertEqual(server.reconcile_runner_history(force=True), 1)
+
+    def test_reconcile_survives_an_offline_runner(self):
+        with patch.object(server, "RUNNER_URL", "http://127.0.0.1:1"):
+            self.assertEqual(server.reconcile_runner_history(force=True), 0)
 
 
 class Export(unittest.TestCase):

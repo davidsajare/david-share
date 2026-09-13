@@ -58,8 +58,21 @@ ALLOWED_ORIGINS = {
     if origin.strip()
 }
 
+# A run executes on the Sweden Central runner, but the history the workshop
+# reads lives here. Mirroring must therefore survive a closed tab, so a
+# background worker polls the runner until the record exists locally.
+MIRROR_POLL_SECONDS = 5
+MIRROR_POLL_MAX_SECONDS = 30
+MIRROR_DEADLINE_SECONDS = int(os.environ.get("QIRA_MIRROR_DEADLINE", "7200"))
+RECONCILE_INTERVAL_SECONDS = 60
+RECONCILE_MAX_IMPORTS = 20
+
 _runs: dict[str, dict] = {}
 _runs_lock = threading.Lock()
+_history_write_lock = threading.Lock()
+_mirror_lock = threading.Lock()
+_mirroring: set[str] = set()
+_reconciled_at = 0.0
 
 
 # --------------------------------------------------------------------------
@@ -224,7 +237,9 @@ def _run_worker(state: dict) -> None:
 # Run history
 # --------------------------------------------------------------------------
 
-RUN_ID_RE = re.compile(r"^[0-9a-f]{8,32}$")
+# \A and \Z, not ^ and $: Python's $ also matches before a trailing newline,
+# and this value reaches filesystem globs.
+RUN_ID_RE = re.compile(r"\A[0-9a-f]{8,32}\Z")
 
 
 def run_totals(summaries: list[dict]) -> dict:
@@ -343,27 +358,114 @@ def delete_history_run(run_id: str) -> bool:
     return removed
 
 
+def mirrored_run_path(run_id: str) -> Path | None:
+    """Cheap check for an already-mirrored run: the id is in the file name."""
+    if not RUN_ID_RE.match(run_id or "") or not HISTORY.is_dir():
+        return None
+    return next(iter(HISTORY.glob(f"run_*_{run_id}.json")), None)
+
+
 def import_runner_history(run_id: str) -> Path | None:
-    """Mirror a completed runner record onto the portal VM."""
+    """Mirror a completed runner record onto the portal VM.
+
+    Three callers race for the same run: the SSE relay, the background mirror
+    worker and reconciliation. Writing under the run id makes a repeat import
+    replace the record instead of adding a duplicate row to Past runs.
+    """
+    if not RUN_ID_RE.match(run_id or ""):
+        return None
+    if mirrored_run_path(run_id) is not None:
+        return None
     status, record = runner_json("GET", f"/api/history/{run_id}")
     if status != 200 or not record or record.get("run_id") != run_id:
         return None
-    HISTORY.mkdir(parents=True, exist_ok=True)
     try:
         started = datetime.fromisoformat(record["started_at"].replace("Z", "+00:00"))
-    except (KeyError, ValueError):
+    except (KeyError, ValueError, AttributeError, TypeError):
         started = datetime.now(timezone.utc)
     stamp = started.astimezone(timezone.utc).strftime("%Y%m%d_%H%M%S")
-    # The remote run id came from an HTTP response. Keep it in the JSON record,
-    # not in a filesystem expression; the random suffix is local.
-    path = HISTORY / f"run_{stamp}_{secrets.token_hex(8)}.json"
-    path.write_text(
-        json.dumps(record, ensure_ascii=False, indent=2, default=str) + "\n",
-        encoding="utf-8",
-        newline="\n",
-    )
-    _prune_history()
+    with _history_write_lock:
+        existing = mirrored_run_path(run_id)
+        if existing is not None:
+            return None
+        HISTORY.mkdir(parents=True, exist_ok=True)
+        # run_id matched RUN_ID_RE above, so this is a fixed hex vocabulary.
+        path = HISTORY / f"run_{stamp}_{run_id}.json"
+        path.write_text(
+            json.dumps(record, ensure_ascii=False, indent=2, default=str) + "\n",
+            encoding="utf-8",
+            newline="\n",
+        )
+        _prune_history()
     return path
+
+
+def _mirror_worker(run_id: str) -> None:
+    deadline = time.monotonic() + MIRROR_DEADLINE_SECONDS
+    delay = MIRROR_POLL_SECONDS
+    try:
+        while time.monotonic() < deadline:
+            time.sleep(delay)
+            delay = min(delay * 2, MIRROR_POLL_MAX_SECONDS)
+            try:
+                if import_runner_history(run_id) is not None:
+                    return
+            except ConsoleError:
+                # Runner briefly unreachable. Keep waiting; the record is
+                # persisted on the runner and stays fetchable.
+                continue
+            except OSError:
+                continue
+            if mirrored_run_path(run_id) is not None:
+                return
+    finally:
+        with _mirror_lock:
+            _mirroring.discard(run_id)
+
+
+def mirror_runner_run(run_id: str) -> bool:
+    """Capture a runner-side run locally even if nobody is watching the stream."""
+    if not RUN_ID_RE.match(run_id or ""):
+        return False
+    with _mirror_lock:
+        if run_id in _mirroring:
+            return False
+        _mirroring.add(run_id)
+    try:
+        threading.Thread(target=_mirror_worker, args=(run_id,), daemon=True).start()
+    except RuntimeError:
+        with _mirror_lock:
+            _mirroring.discard(run_id)
+        return False
+    return True
+
+
+def reconcile_runner_history(force: bool = False) -> int:
+    """Backfill runner runs this portal never saw, e.g. across a restart."""
+    global _reconciled_at
+    now = time.monotonic()
+    if not force and _reconciled_at and now - _reconciled_at < RECONCILE_INTERVAL_SECONDS:
+        return 0
+    _reconciled_at = now
+    try:
+        status, payload = runner_json("GET", "/api/history")
+    except ConsoleError:
+        return 0
+    if status != 200:
+        return 0
+    imported = 0
+    for entry in (payload or {}).get("runs", [])[:HISTORY_RETENTION]:
+        if imported >= RECONCILE_MAX_IMPORTS:
+            break
+        run_id = (entry or {}).get("run_id", "")
+        if not RUN_ID_RE.match(run_id or "") or mirrored_run_path(run_id) is not None:
+            continue
+        try:
+            if import_runner_history(run_id) is not None:
+                imported += 1
+        except (ConsoleError, OSError):
+            break
+    return imported
 
 
 # --------------------------------------------------------------------------
@@ -513,6 +615,8 @@ class Handler(BaseHTTPRequestHandler):
             elif route == "/api/replay":
                 self._send_json(load_replay())
             elif route == "/api/history":
+                if runner_configured():
+                    reconcile_runner_history()
                 self._send_json({"runs": history_index()})
             elif route.startswith("/api/history/"):
                 run = history_run(route[len("/api/history/"):])
@@ -539,6 +643,8 @@ class Handler(BaseHTTPRequestHandler):
                 self._require_same_site()
                 if runner_configured():
                     status, response = runner_json("POST", "/api/run", payload)
+                    if status == 200:
+                        mirror_runner_run((response or {}).get("run_id", ""))
                     self._send_json(response, status)
                 else:
                     run_id = start_run(payload)
@@ -654,7 +760,12 @@ class Handler(BaseHTTPRequestHandler):
                     if event.get("type") == "done":
                         # The runner writes history before emitting done. Mirror
                         # it before the browser refreshes its Past runs list.
-                        import_runner_history(run_id)
+                        # A blip here must not corrupt a stream whose 200 is
+                        # already sent; the mirror worker retries either way.
+                        try:
+                            import_runner_history(run_id)
+                        except (ConsoleError, OSError):
+                            pass
                 self.wfile.write(line)
                 self.wfile.flush()
         except (BrokenPipeError, ConnectionResetError):
