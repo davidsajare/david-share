@@ -329,11 +329,19 @@ def save_history(state: dict) -> Path | None:
 
 
 def _prune_history() -> None:
-    # A record written by an import that raced a delete converges here: the
-    # marker outlives it and the measurements go.
-    for marker in HISTORY.glob("run_*.deleted"):
-        marker.with_suffix(".json").unlink(missing_ok=True)
+    # A record written by an import that raced a delete converges here. Match
+    # on the run id, not the stamp: a re-import whose started_at was
+    # unparseable files under a different stamp and must still go.
+    deleted = {p.stem.rsplit("_", 1)[-1] for p in HISTORY.glob("run_*.deleted")}
     files = sorted(HISTORY.glob("run_*.json"))
+    if deleted:
+        surviving = []
+        for path in files:
+            if path.stem.rsplit("_", 1)[-1] in deleted:
+                path.unlink(missing_ok=True)
+            else:
+                surviving.append(path)
+        files = surviving
     for path in files[:max(0, len(files) - HISTORY_RETENTION)]:
         path.unlink(missing_ok=True)
     markers = sorted(HISTORY.glob("run_*.deleted"))
@@ -609,9 +617,14 @@ def reconcile_runner_history(force: bool = False) -> int:
                     f"run_{run_stamp((entry or {}).get('started_at'))}_{run_id}.json")):
             continue
         attempts += 1
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            break
         try:
             if import_runner_history(
-                    run_id, timeout=RECONCILE_TIMEOUT_SECONDS) is not None:
+                    run_id,
+                    timeout=max(1, int(min(RECONCILE_TIMEOUT_SECONDS, remaining)))
+            ) is not None:
                 imported += 1
         except (ConsoleError, OSError):
             break

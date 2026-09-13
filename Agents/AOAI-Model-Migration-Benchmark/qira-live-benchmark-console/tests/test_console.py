@@ -501,6 +501,7 @@ class FakeRunnerHandler(BaseHTTPRequestHandler):
     late_record = dict(record, run_id="cafebabe",
                        totals={"total_tokens": 20, "cost_usd": 0.002})
     late_ready = False
+    slow_detail = 0.0
     posts: list[tuple[str, bytes]] = []
 
     def log_message(self, *_):
@@ -543,6 +544,8 @@ class FakeRunnerHandler(BaseHTTPRequestHandler):
                 runs.append({"run_id": "cafebabe"})
             self._json(200, {"runs": runs})
         elif self.path == "/api/history/feedface":
+            if type(self).slow_detail:
+                time.sleep(type(self).slow_detail)
             self._json(200, self.record)
         elif self.path == "/api/history/cafebabe" and type(self).late_ready:
             self._json(200, self.late_record)
@@ -849,11 +852,67 @@ class RemoteRunner(unittest.TestCase):
 
     def test_a_record_written_beside_a_marker_does_not_survive(self):
         server.import_runner_history("feedface")
-        marker = next(iter(server.HISTORY.glob("run_*_feedface.json")))
+        landed = next(iter(server.HISTORY.glob("run_*_feedface.json")))
         server.delete_history_run("feedface")
         # Simulate the racing writer that slipped in before the lock existed.
-        marker.write_text(json.dumps(FakeRunnerHandler.record), encoding="utf-8")
+        landed.write_text(json.dumps(FakeRunnerHandler.record), encoding="utf-8")
         server._prune_history()
+        self.assertEqual(server.history_index(), [])
+        self.assertTrue(server.run_is_deleted("feedface"))
+
+    def test_convergence_matches_the_run_not_the_stamp(self):
+        # A racing import whose started_at was unparseable files under today's
+        # stamp, so the marker written at the record's own stamp has a
+        # different stem and matching on the stem alone would miss it.
+        server.import_runner_history("feedface")
+        server.delete_history_run("feedface")
+        marker = next(iter(server.HISTORY.glob("run_*_feedface.deleted")))
+        stray = server.HISTORY / "run_20991231_235959_feedface.json"
+        stray.write_text(json.dumps(FakeRunnerHandler.record), encoding="utf-8")
+        self.assertNotEqual(marker.stem, stray.stem)
+        server._prune_history()
+        self.assertFalse(stray.exists())
+        self.assertEqual(server.history_index(), [])
+
+    def test_reconcile_stops_inside_its_wall_clock_budget(self):
+        FakeRunnerHandler.late_ready = True
+        with patch.object(server, "RECONCILE_BUDGET_SECONDS", 0), \
+                patch.object(server, "RECONCILE_TIMEOUT_SECONDS", 5):
+            started = time.monotonic()
+            self.assertEqual(server.reconcile_runner_history(force=True), 0)
+            self.assertLess(time.monotonic() - started, 5)
+        self.assertEqual(server.history_index(), [])
+
+    def test_a_request_started_near_the_deadline_cannot_overrun_it(self):
+        # The budget is only real if each request is clamped to what is left.
+        FakeRunnerHandler.slow_detail = 4.0
+        try:
+            with patch.object(server, "RECONCILE_BUDGET_SECONDS", 0.2), \
+                    patch.object(server, "RECONCILE_TIMEOUT_SECONDS", 5):
+                started = time.monotonic()
+                server.reconcile_runner_history(force=True)
+                elapsed = time.monotonic() - started
+        finally:
+            FakeRunnerHandler.slow_detail = 0.0
+        self.assertLess(elapsed, 3.0, f"reconcile overran its budget: {elapsed:.2f}s")
+
+    def test_a_delete_landing_mid_import_still_wins(self):
+        # The real race: another importer stores the record and the operator
+        # deletes it while this import's fetch is still in flight. Only a
+        # re-check under the write lock can keep it from being written back.
+        real = server.runner_json
+
+        def race(method, path, payload=None, timeout=30):
+            result = real(method, path, payload, timeout)
+            if path.startswith("/api/history/"):
+                (server.HISTORY / "run_20260911_120000_feedface.json").write_text(
+                    json.dumps(FakeRunnerHandler.record), encoding="utf-8")
+                server.delete_history_run("feedface")
+            return result
+
+        with patch.object(server, "runner_json", race):
+            self.assertIsNone(server.import_runner_history("feedface"),
+                              "a deleted run must not report itself as stored")
         self.assertEqual(server.history_index(), [])
         self.assertTrue(server.run_is_deleted("feedface"))
 

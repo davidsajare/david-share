@@ -726,6 +726,7 @@ async function startRun() {
     if (!response.ok) throw new Error(data.error || 'Run rejected');
     state.runId = data.run_id;
     state.source = 'live run';
+    rememberActiveRun(data.run_id);
     $('cancelBtn').classList.remove('hidden');
     $('exportBtn').disabled = true;
     updateEstimate();
@@ -735,21 +736,74 @@ async function startRun() {
   }
 }
 
-function openStream(runId) {
+const ACTIVE_RUN_KEY = 'qira.activeRun';
+
+function rememberActiveRun(runId) {
+  try {
+    if (runId) window.sessionStorage.setItem(ACTIVE_RUN_KEY, runId);
+    else window.sessionStorage.removeItem(ACTIVE_RUN_KEY);
+  } catch (err) {
+    // Private modes can refuse storage; reattaching is a convenience.
+  }
+}
+
+function rememberedRun() {
+  try {
+    return window.sessionStorage.getItem(ACTIVE_RUN_KEY);
+  } catch (err) {
+    return null;
+  }
+}
+
+async function runHasLanded(runId) {
+  try {
+    const response = await fetch(apiUrl(`/api/history/${encodeURIComponent(runId)}`));
+    return response.ok;
+  } catch (err) {
+    return false;
+  }
+}
+
+function openStream(runId, attempt) {
+  const tries = attempt || 0;
   const stream = new EventSource(apiUrl(`/api/events?run_id=${encodeURIComponent(runId)}`));
   stream.onmessage = (event) => {
     const payload = JSON.parse(event.data);
     handleEvent(payload, stream);
   };
-  stream.onerror = () => {
-    // The server closes the connection after 'done'; only treat this as a
-    // failure if the run never reported that it finished.
-    if (state.runId === runId) {
-      stream.close();
+  stream.onerror = async () => {
+    stream.close();
+    // The server closes the connection after 'done', which clears runId.
+    if (state.runId !== runId) return;
+    // Losing the stream no longer stops the measurement, so do not pretend the
+    // run ended: find out whether it did, and otherwise keep Stop available.
+    if (await runHasLanded(runId)) {
       finishRun();
-      notice('<b>The event stream closed unexpectedly.</b> Any results above are partial.', 'warn');
+      await loadRunIndex();
+      notice('<b>The run finished while the stream was down.</b> '
+        + 'It is in Past runs.', 'warn');
+      return;
     }
+    const wait = Math.min(2000 * (tries + 1), 15000);
+    notice('<b>Lost the live stream.</b> The run is still measuring on the '
+      + 'benchmark VM; reconnecting. Stop ends it.', 'warn');
+    window.setTimeout(() => {
+      if (state.runId === runId) openStream(runId, tries + 1);
+    }, wait);
   };
+}
+
+async function reattachActiveRun() {
+  const runId = rememberedRun();
+  if (!runId || state.catalog.mode !== 'live') return;
+  if (await runHasLanded(runId)) { rememberActiveRun(null); return; }
+  state.runId = runId;
+  state.source = 'live run';
+  state.startedAt = Date.now();
+  $('cancelBtn').classList.remove('hidden');
+  notice('<b>Reattached to a run still in progress.</b> '
+    + 'It kept measuring while this page was away.', 'warn');
+  openStream(runId);
 }
 
 function handleEvent(payload, stream) {
@@ -823,6 +877,7 @@ function handleEvent(payload, stream) {
 function finishRun() {
   state.lastRunId = state.runId;
   state.runId = null;
+  rememberActiveRun(null);
   clearInterval(state.timer);
   paintCounters();
   $('cancelBtn').classList.add('hidden');
@@ -1073,6 +1128,7 @@ async function init() {
 
   applyPreset('quick');
   await loadRunIndex();
+  await reattachActiveRun();
 
   if (state.catalog.mode !== 'live') {
     notice('<b>Replay mode.</b> <span class="mono">AZURE_OPENAI_ENDPOINT</span> is not set, '
