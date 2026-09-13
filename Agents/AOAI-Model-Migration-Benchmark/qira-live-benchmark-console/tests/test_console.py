@@ -551,6 +551,7 @@ class RemoteRunner(unittest.TestCase):
         server.RUNNER_URL = self.url
         server.HISTORY = Path(self.tmp.name)
         server._reconciled_at = 0.0
+        server._migrated = False
         server._mirroring.clear()
         FakeRunnerHandler.late_ready = False
 
@@ -648,6 +649,44 @@ class RemoteRunner(unittest.TestCase):
     def test_reconcile_survives_an_offline_runner(self):
         with patch.object(server, "RUNNER_URL", "http://127.0.0.1:1"):
             self.assertEqual(server.reconcile_runner_history(force=True), 0)
+
+    def _legacy_file(self, run_id, suffix, **extra):
+        # How mirrors were named before the run id went into the file name.
+        path = server.HISTORY / f"run_20260911_120000_{suffix}.json"
+        path.write_text(json.dumps(dict(FakeRunnerHandler.record,
+                                        run_id=run_id, **extra)),
+                        encoding="utf-8")
+        return path
+
+    def test_a_legacy_mirror_is_renamed_instead_of_imported_twice(self):
+        legacy = self._legacy_file("feedface", "0a1206eee27a8bc5")
+        self.assertEqual(server.reconcile_runner_history(force=True), 0)
+        self.assertFalse(legacy.exists())
+        self.assertEqual([r["run_id"] for r in server.history_index()], ["feedface"])
+        self.assertEqual(server.history_run("feedface")["totals"]["total_tokens"], 10)
+
+    def test_migration_drops_a_legacy_duplicate_of_a_stored_run(self):
+        server.import_runner_history("feedface")
+        self._legacy_file("feedface", "0a1206eee27a8bc5", totals={"total_tokens": 99})
+        self.assertEqual(len(server.history_index()), 2)
+        self.assertEqual(server.migrate_history_filenames(), 1)
+        self.assertEqual([r["run_id"] for r in server.history_index()], ["feedface"])
+        # The correctly named record is the one that survives.
+        self.assertEqual(server.history_run("feedface")["totals"]["total_tokens"], 10)
+
+    def test_migration_is_idempotent_and_leaves_good_names_alone(self):
+        server.import_runner_history("feedface")
+        before = sorted(p.name for p in server.HISTORY.glob("run_*.json"))
+        self.assertEqual(server.migrate_history_filenames(), 0)
+        self.assertEqual(server.migrate_history_filenames(), 0)
+        self.assertEqual(sorted(p.name for p in server.HISTORY.glob("run_*.json")),
+                         before)
+
+    def test_migration_ignores_files_it_cannot_parse(self):
+        broken = server.HISTORY / "run_20260101_000000_eeeeeeee.json"
+        broken.write_text("{not json", encoding="utf-8")
+        self.assertEqual(server.migrate_history_filenames(), 0)
+        self.assertTrue(broken.exists())
 
 
 class Export(unittest.TestCase):

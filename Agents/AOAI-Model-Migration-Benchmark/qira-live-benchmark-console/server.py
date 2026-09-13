@@ -73,6 +73,7 @@ _history_write_lock = threading.Lock()
 _mirror_lock = threading.Lock()
 _mirroring: set[str] = set()
 _reconciled_at = 0.0
+_migrated = False
 
 
 # --------------------------------------------------------------------------
@@ -365,6 +366,49 @@ def mirrored_run_path(run_id: str) -> Path | None:
     return next(iter(HISTORY.glob(f"run_*_{run_id}.json")), None)
 
 
+def migrate_history_filenames() -> int:
+    """Name every saved run after its run id.
+
+    Mirrors used to carry a random suffix, so the id was not in the name and
+    the check above could not see them. Left alone they would be imported a
+    second time and show up twice in Past runs. One idempotent pass fixes the
+    names, and drops a legacy file whose run is already stored correctly.
+    """
+    if not HISTORY.is_dir():
+        return 0
+    changed = 0
+    for path in sorted(HISTORY.glob("run_*.json")):
+        try:
+            run_id = json.loads(path.read_text(encoding="utf-8")).get("run_id", "")
+        except (json.JSONDecodeError, OSError, AttributeError):
+            continue
+        if not RUN_ID_RE.match(run_id or "") or path.stem.endswith(f"_{run_id}"):
+            continue
+        parts = path.stem.split("_")
+        if len(parts) < 4:
+            continue
+        target = HISTORY / ("_".join(parts[:3]) + f"_{run_id}.json")
+        try:
+            if target.exists():
+                path.unlink()
+            else:
+                path.rename(target)
+        except OSError:
+            continue
+        changed += 1
+    return changed
+
+
+def ensure_history_migrated() -> None:
+    """Run the rename pass once per process, before anything trusts a name."""
+    global _migrated
+    with _history_write_lock:
+        if _migrated:
+            return
+        _migrated = True
+    migrate_history_filenames()
+
+
 def import_runner_history(run_id: str) -> Path | None:
     """Mirror a completed runner record onto the portal VM.
 
@@ -447,6 +491,7 @@ def reconcile_runner_history(force: bool = False) -> int:
     if not force and _reconciled_at and now - _reconciled_at < RECONCILE_INTERVAL_SECONDS:
         return 0
     _reconciled_at = now
+    ensure_history_migrated()
     try:
         status, payload = runner_json("GET", "/api/history")
     except ConsoleError:
@@ -792,6 +837,7 @@ def main() -> int:
 
     mode = server_mode()
     print(f"Qira live benchmark console - mode: {mode}")
+    ensure_history_migrated()
     if mode == "live":
         print(f"  endpoint: {endpoint_label()}")
         try:
