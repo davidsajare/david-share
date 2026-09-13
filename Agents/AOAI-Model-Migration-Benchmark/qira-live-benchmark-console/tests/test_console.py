@@ -2,6 +2,7 @@
 
 import http.client
 import json
+import queue
 import socket
 import subprocess
 import sys
@@ -528,6 +529,14 @@ class FakeRunnerHandler(BaseHTTPRequestHandler):
     def do_GET(self):  # noqa: N802
         if self.path.startswith("/api/events"):
             self._stream()
+        elif self.path == "/api/truncated-error":
+            # Error headers, then a body that stops short of Content-Length.
+            self.send_response(502)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", "100")
+            self.end_headers()
+            self.wfile.write(b"{}")
+            self.close_connection = True
         elif self.path == "/api/history":
             runs = [{"run_id": "feedface"}]
             if type(self).late_ready:
@@ -792,23 +801,104 @@ class RemoteRunner(unittest.TestCase):
             stalled.close()
 
     def test_closing_the_tab_does_not_cancel_the_run(self):
-        # The run belongs to the room, not to one browser window. A closed tab,
-        # a sleeping laptop or a dropped link must leave it measuring.
-        console = ThreadingHTTPServer(("127.0.0.1", 0), server.Handler)
-        console.daemon_threads = True
-        threading.Thread(target=console.serve_forever, daemon=True).start()
+        # Two real consoles, as deployed: a portal relaying a runner's stream.
+        # The fake runner cannot show this - the cancel lived in the runner's
+        # own disconnect handler, reached by the relay closing its upstream.
+        state = {"cancel": threading.Event(), "events": queue.Queue(),
+                 "records": [], "summaries": [], "started_at": time.time(),
+                 "finished_at": None, "error": None, "run_id": "feedface"}
+        runner = ThreadingHTTPServer(("127.0.0.1", 0), server.Handler)
+        runner.daemon_threads = True
+        threading.Thread(target=runner.serve_forever, daemon=True).start()
+        portal = ThreadingHTTPServer(("127.0.0.1", 0), server.Handler)
+        portal.daemon_threads = True
+        threading.Thread(target=portal.serve_forever, daemon=True).start()
+        feeder = threading.Event()
+
+        def keep_streaming():
+            while not feeder.is_set():
+                state["events"].put({"type": "record", "ttft_ms": 1.0})
+                time.sleep(0.05)
+
+        threading.Thread(target=keep_streaming, daemon=True).start()
         try:
-            client = socket.create_connection(("127.0.0.1", console.server_address[1]),
-                                              timeout=5)
-            client.sendall(b"GET /api/events?run_id=feedface HTTP/1.1\r\n"
-                           b"Host: 127.0.0.1\r\n\r\n")
-            self.assertTrue(client.recv(64))
-            client.close()  # the tab goes away mid-stream
-            time.sleep(1.0)
+            with patch.dict(server._runs, {"feedface": state}), \
+                    patch.object(server, "RUNNER_URL",
+                                 f"http://127.0.0.1:{runner.server_address[1]}"):
+                client = socket.create_connection(
+                    ("127.0.0.1", portal.server_address[1]), timeout=5)
+                client.sendall(b"GET /api/events?run_id=feedface HTTP/1.1\r\n"
+                               b"Host: 127.0.0.1\r\n\r\n")
+                self.assertTrue(client.recv(64))
+                client.close()  # the tab goes away mid-stream
+                time.sleep(1.5)
         finally:
-            console.shutdown()
-            console.server_close()
+            feeder.set()
+            portal.shutdown(); portal.server_close()
+            runner.shutdown(); runner.server_close()
+        self.assertFalse(state["cancel"].is_set(),
+                         "losing the browser must not cancel the measurement")
         self.assertEqual([p for p, _ in FakeRunnerHandler.posts if "cancel" in p], [])
+
+    def test_a_delete_that_races_an_import_still_wins(self):
+        # The import is in flight when the operator deletes the run.
+        server.import_runner_history("feedface")
+        self.assertTrue(server.delete_history_run("feedface"))
+        self.assertIsNone(server.import_runner_history("feedface"))
+        self.assertEqual(server.history_index(), [])
+
+    def test_a_record_written_beside_a_marker_does_not_survive(self):
+        server.import_runner_history("feedface")
+        marker = next(iter(server.HISTORY.glob("run_*_feedface.json")))
+        server.delete_history_run("feedface")
+        # Simulate the racing writer that slipped in before the lock existed.
+        marker.write_text(json.dumps(FakeRunnerHandler.record), encoding="utf-8")
+        server._prune_history()
+        self.assertEqual(server.history_index(), [])
+        self.assertTrue(server.run_is_deleted("feedface"))
+
+    def test_a_delete_that_cannot_be_recorded_is_reported_as_failed(self):
+        server.import_runner_history("feedface")
+        with patch.object(server.Path, "touch", side_effect=OSError):
+            self.assertFalse(server.delete_history_run("feedface"))
+        # The measurements are still there rather than silently gone.
+        self.assertEqual([r["run_id"] for r in server.history_index()], ["feedface"])
+
+    def test_reconcile_gives_every_request_the_short_timeout(self):
+        seen = []
+        real = server.runner_json
+
+        def spy(method, path, payload=None, timeout=30):
+            seen.append((path, timeout))
+            return real(method, path, payload, timeout)
+
+        with patch.object(server, "runner_json", spy):
+            server.reconcile_runner_history(force=True)
+        self.assertTrue(seen)
+        self.assertEqual({t for _, t in seen}, {server.RECONCILE_TIMEOUT_SECONDS})
+
+    def test_reconcile_does_not_refetch_records_retention_would_drop(self):
+        FakeRunnerHandler.late_ready = True
+        for i in range(3):
+            (server.HISTORY / f"run_20270101_00000{i}_{'b' * 15}{i}.json").write_text(
+                json.dumps(dict(FakeRunnerHandler.record, run_id=f"{'b' * 15}{i}")),
+                encoding="utf-8")
+        seen = []
+        real = server.runner_json
+
+        def spy(method, path, payload=None, timeout=30):
+            seen.append(path)
+            return real(method, path, payload, timeout)
+
+        with patch.object(server, "HISTORY_RETENTION", 3), \
+                patch.object(server, "runner_json", spy):
+            self.assertEqual(server.reconcile_runner_history(force=True), 0)
+        self.assertEqual([p for p in seen if p.startswith("/api/history/")], [])
+
+    def test_a_truncated_error_body_does_not_fail_the_caller(self):
+        status, payload = server.runner_json("GET", "/api/truncated-error")
+        self.assertEqual(status, 502)
+        self.assertIn("error", payload)
 
 
 class Export(unittest.TestCase):

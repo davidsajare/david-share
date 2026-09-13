@@ -69,6 +69,7 @@ MIRROR_DEADLINE_SECONDS = int(os.environ.get("QIRA_MIRROR_DEADLINE", "3700"))
 MAX_MIRROR_WORKERS = 16
 RECONCILE_INTERVAL_SECONDS = 60
 RECONCILE_TIMEOUT_SECONDS = 5
+RECONCILE_BUDGET_SECONDS = 15
 RECONCILE_MAX_IMPORTS = 20
 
 _runs: dict[str, dict] = {}
@@ -123,7 +124,12 @@ def runner_json(method: str, path: str, payload: dict | None = None,
         with urlopen(request, timeout=timeout) as response:
             return response.status, json.loads(response.read().decode("utf-8"))
     except HTTPError as exc:
-        raw = exc.read().decode("utf-8", errors="replace")
+        try:
+            raw = exc.read().decode("utf-8", errors="replace")
+        except (OSError, http.client.HTTPException):
+            # A truncated error body is still an error, not a reason to fail
+            # the caller with an exception raised inside an except block.
+            raw = ""
         try:
             return exc.code, json.loads(raw)
         except json.JSONDecodeError:
@@ -323,6 +329,10 @@ def save_history(state: dict) -> Path | None:
 
 
 def _prune_history() -> None:
+    # A record written by an import that raced a delete converges here: the
+    # marker outlives it and the measurements go.
+    for marker in HISTORY.glob("run_*.deleted"):
+        marker.with_suffix(".json").unlink(missing_ok=True)
     files = sorted(HISTORY.glob("run_*.json"))
     for path in files[:max(0, len(files) - HISTORY_RETENTION)]:
         path.unlink(missing_ok=True)
@@ -372,20 +382,26 @@ def delete_history_run(run_id: str) -> bool:
     if not RUN_ID_RE.match(run_id or ""):
         return False
     removed = False
-    for path in HISTORY.glob("run_*.json"):
-        try:
-            record = json.loads(path.read_text(encoding="utf-8"))
-        except (json.JSONDecodeError, OSError):
-            continue
-        if record.get("run_id") == run_id:
-            path.unlink(missing_ok=True)
-            # The run still exists on the runner, so without a marker the next
-            # reconciliation would simply mirror it again and Delete would do
-            # nothing. The marker holds no measurements.
+    with _history_write_lock:
+        for path in sorted(HISTORY.glob("run_*.json")):
             try:
-                path.with_suffix(".deleted").touch()
+                record = json.loads(path.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
+                continue
+            if record.get("run_id") != run_id:
+                continue
+            # The run still exists on the runner, so without a marker the next
+            # reconciliation would mirror it again and Delete would do nothing.
+            # Write the marker first: a delete that cannot be recorded has to
+            # fail rather than quietly come back later. The marker is empty.
+            marker = history_path(f"{path.stem}.deleted")
+            if marker is None:
+                return False
+            try:
+                marker.touch()
             except OSError:
-                pass
+                return False
+            path.unlink(missing_ok=True)
             removed = True
     return removed
 
@@ -456,7 +472,29 @@ def ensure_history_migrated() -> None:
     migrate_history_filenames()
 
 
-def import_runner_history(run_id: str) -> Path | None:
+def run_stamp(started_at: str | None) -> str:
+    """The UTC stamp a mirrored record is filed under."""
+    try:
+        started = datetime.fromisoformat((started_at or "").replace("Z", "+00:00"))
+    except (ValueError, AttributeError, TypeError):
+        started = datetime.now(timezone.utc)
+    return started.astimezone(timezone.utc).strftime("%Y%m%d_%H%M%S")
+
+
+def retention_would_drop(name: str) -> bool:
+    """True when a record filed under this name would be pruned on arrival.
+
+    Retention deletes oldest-first, so importing such a record writes a file
+    that is removed in the same breath. Answering before the fetch keeps
+    reconciliation from asking the runner for it once a minute for ever.
+    """
+    if not HISTORY.is_dir():
+        return False
+    kept = sorted(HISTORY.glob("run_*.json"))
+    return len(kept) >= HISTORY_RETENTION and name <= kept[0].name
+
+
+def import_runner_history(run_id: str, timeout: int = 30) -> Path | None:
     """Mirror a completed runner record onto the portal VM.
 
     Three callers race for the same run: the SSE relay, the background mirror
@@ -467,28 +505,19 @@ def import_runner_history(run_id: str) -> Path | None:
         return None
     if mirrored_run_path(run_id) is not None or run_is_deleted(run_id):
         return None
-    status, record = runner_json("GET", f"/api/history/{run_id}")
+    status, record = runner_json("GET", f"/api/history/{run_id}", timeout=timeout)
     if status != 200 or not record or record.get("run_id") != run_id:
         return None
-    try:
-        started = datetime.fromisoformat(record["started_at"].replace("Z", "+00:00"))
-    except (KeyError, ValueError, AttributeError, TypeError):
-        started = datetime.now(timezone.utc)
-    stamp = started.astimezone(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    stamp = run_stamp(record.get("started_at"))
     with _history_write_lock:
-        existing = mirrored_run_path(run_id)
-        if existing is not None:
+        # Re-checked under the lock: a delete may have landed while the record
+        # was in flight, and it must win.
+        if mirrored_run_path(run_id) is not None or run_is_deleted(run_id):
             return None
         HISTORY.mkdir(parents=True, exist_ok=True)
         # run_id matched RUN_ID_RE above; history_path re-checks containment.
         path = history_path(f"run_{stamp}_{run_id}.json")
-        if path is None:
-            return None
-        kept = sorted(HISTORY.glob("run_*.json"))
-        if len(kept) >= HISTORY_RETENTION and path.name <= kept[0].name:
-            # Retention prunes oldest-first, so this record would be deleted the
-            # moment it lands and reconciliation would fetch it again every
-            # minute. Leave it on the runner instead of churning.
+        if path is None or retention_would_drop(path.name):
             return None
         path.write_text(
             json.dumps(record, ensure_ascii=False, indent=2, default=str) + "\n",
@@ -548,14 +577,15 @@ def reconcile_runner_history(force: bool = False) -> int:
     """Backfill runner runs this portal never saw, e.g. across a restart.
 
     Best effort by definition: it must never be the reason a reader cannot see
-    the local history, and it must not keep a reader waiting on a wedged
-    tunnel, so it uses a short timeout and swallows transport failures.
+    the local history, and it must not keep a reader waiting, so the whole
+    pass shares one wall-clock budget and transport failures are swallowed.
     """
     global _reconciled_at
     now = time.monotonic()
     if not force and _reconciled_at and now - _reconciled_at < RECONCILE_INTERVAL_SECONDS:
         return 0
     _reconciled_at = now
+    deadline = now + RECONCILE_BUDGET_SECONDS
     try:
         ensure_history_migrated()
         status, payload = runner_json(
@@ -565,16 +595,23 @@ def reconcile_runner_history(force: bool = False) -> int:
     if status != 200:
         return 0
     imported = 0
+    attempts = 0
     for entry in (payload or {}).get("runs", [])[:HISTORY_RETENTION]:
-        if imported >= RECONCILE_MAX_IMPORTS:
+        # Attempts, not successes: a record the portal declines still costs a
+        # round trip, and the reader is waiting for all of them.
+        if attempts >= RECONCILE_MAX_IMPORTS or time.monotonic() >= deadline:
             break
         run_id = (entry or {}).get("run_id", "")
         if (not RUN_ID_RE.match(run_id or "")
                 or mirrored_run_path(run_id) is not None
-                or run_is_deleted(run_id)):
+                or run_is_deleted(run_id)
+                or retention_would_drop(
+                    f"run_{run_stamp((entry or {}).get('started_at'))}_{run_id}.json")):
             continue
+        attempts += 1
         try:
-            if import_runner_history(run_id) is not None:
+            if import_runner_history(
+                    run_id, timeout=RECONCILE_TIMEOUT_SECONDS) is not None:
                 imported += 1
         except (ConsoleError, OSError):
             break
@@ -837,7 +874,11 @@ class Handler(BaseHTTPRequestHandler):
                 self.wfile.write(f"data: {payload}\n\n".encode("utf-8"))
                 self.wfile.flush()
         except (BrokenPipeError, ConnectionResetError):
-            state["cancel"].set()
+            # Losing the reader must not destroy the measurement. When this
+            # console is the same-region runner the reader is the portal relay,
+            # which drops as soon as a browser tab closes. /api/cancel is the
+            # only way a run ends early.
+            pass
         finally:
             self.close_connection = True
 
