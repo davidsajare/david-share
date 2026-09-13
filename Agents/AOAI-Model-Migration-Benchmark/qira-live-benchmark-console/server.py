@@ -397,6 +397,20 @@ def mirrored_run_path(run_id: str) -> Path | None:
     return next(iter(HISTORY.glob(f"run_*_{run_id}.json")), None)
 
 
+def history_path(name: str) -> Path | None:
+    """Resolve a history file name, refusing anything that leaves the folder.
+
+    Every id reaching this point already matched RUN_ID_RE, so this is defence
+    in depth rather than the control itself: it keeps the guarantee local to
+    the one place a name becomes a path.
+    """
+    root = HISTORY.resolve()
+    candidate = (HISTORY / name).resolve()
+    if candidate.parent != root or not candidate.name:
+        return None
+    return candidate
+
+
 def migrate_history_filenames() -> int:
     """Name every saved run after its run id.
 
@@ -418,7 +432,9 @@ def migrate_history_filenames() -> int:
         parts = path.stem.split("_")
         if len(parts) < 4:
             continue
-        target = HISTORY / ("_".join(parts[:3]) + f"_{run_id}.json")
+        target = history_path("_".join(parts[:3]) + f"_{run_id}.json")
+        if target is None:
+            continue
         try:
             if target.exists():
                 path.unlink()
@@ -464,8 +480,10 @@ def import_runner_history(run_id: str) -> Path | None:
         if existing is not None:
             return None
         HISTORY.mkdir(parents=True, exist_ok=True)
-        # run_id matched RUN_ID_RE above, so this is a fixed hex vocabulary.
-        path = HISTORY / f"run_{stamp}_{run_id}.json"
+        # run_id matched RUN_ID_RE above; history_path re-checks containment.
+        path = history_path(f"run_{stamp}_{run_id}.json")
+        if path is None:
+            return None
         kept = sorted(HISTORY.glob("run_*.json"))
         if len(kept) >= HISTORY_RETENTION and path.name <= kept[0].name:
             # Retention prunes oldest-first, so this record would be deleted the

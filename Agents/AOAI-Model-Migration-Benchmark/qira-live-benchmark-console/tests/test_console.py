@@ -773,6 +773,12 @@ class RemoteRunner(unittest.TestCase):
         # The point of the test: local records are still readable.
         self.assertEqual([r["run_id"] for r in server.history_index()], ["feedface"])
 
+    def test_history_paths_cannot_leave_the_history_folder(self):
+        self.assertIsNotNone(server.history_path("run_20260101_000000_feedface.json"))
+        for escape in ("../evil.json", "../../evil.json", "sub/evil.json",
+                       "..", "", "."):
+            self.assertIsNone(server.history_path(escape), escape)
+
     def test_a_stalled_runner_is_reported_as_a_console_error(self):
         stalled = socket.socket()
         stalled.bind(("127.0.0.1", 0))
