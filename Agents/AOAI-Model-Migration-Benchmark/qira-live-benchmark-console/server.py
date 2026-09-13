@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import http.client
 import io
 import json
 import os
@@ -63,8 +64,11 @@ ALLOWED_ORIGINS = {
 # background worker polls the runner until the record exists locally.
 MIRROR_POLL_SECONDS = 5
 MIRROR_POLL_MAX_SECONDS = 30
-MIRROR_DEADLINE_SECONDS = int(os.environ.get("QIRA_MIRROR_DEADLINE", "7200"))
+# The SSE relay already assumes an hour is the longest a run can take.
+MIRROR_DEADLINE_SECONDS = int(os.environ.get("QIRA_MIRROR_DEADLINE", "3700"))
+MAX_MIRROR_WORKERS = 16
 RECONCILE_INTERVAL_SECONDS = 60
+RECONCILE_TIMEOUT_SECONDS = 5
 RECONCILE_MAX_IMPORTS = 20
 
 _runs: dict[str, dict] = {}
@@ -105,7 +109,8 @@ def endpoint_label() -> str | None:
     return host
 
 
-def runner_json(method: str, path: str, payload: dict | None = None) -> tuple[int, dict]:
+def runner_json(method: str, path: str, payload: dict | None = None,
+                timeout: int = 30) -> tuple[int, dict]:
     """Call the same-region runner through the local SSH tunnel."""
     body = None if payload is None else json.dumps(payload).encode("utf-8")
     request = Request(
@@ -115,7 +120,7 @@ def runner_json(method: str, path: str, payload: dict | None = None) -> tuple[in
         headers={"Content-Type": "application/json"} if body is not None else {},
     )
     try:
-        with urlopen(request, timeout=30) as response:
+        with urlopen(request, timeout=timeout) as response:
             return response.status, json.loads(response.read().decode("utf-8"))
     except HTTPError as exc:
         raw = exc.read().decode("utf-8", errors="replace")
@@ -127,6 +132,15 @@ def runner_json(method: str, path: str, payload: dict | None = None) -> tuple[in
         raise ConsoleError(
             "The Sweden Central benchmark runner is offline. Start qira-bench-vm "
             "and verify qira-benchmark-reverse-tunnel.service on the runner VM."
+        ) from exc
+    except (OSError, http.client.HTTPException, json.JSONDecodeError,
+            UnicodeDecodeError) as exc:
+        # A wedged tunnel answers the connect and then stalls or drops, so the
+        # failure surfaces during the read as TimeoutError or a reset rather
+        # than as URLError. Those must not reach the handler as a 500.
+        raise ConsoleError(
+            "The Sweden Central benchmark runner did not answer. Check "
+            "qira-benchmark-reverse-tunnel.service on the runner VM."
         ) from exc
 
 
@@ -312,6 +326,16 @@ def _prune_history() -> None:
     files = sorted(HISTORY.glob("run_*.json"))
     for path in files[:max(0, len(files) - HISTORY_RETENTION)]:
         path.unlink(missing_ok=True)
+    markers = sorted(HISTORY.glob("run_*.deleted"))
+    for path in markers[:max(0, len(markers) - HISTORY_RETENTION)]:
+        path.unlink(missing_ok=True)
+
+
+def run_is_deleted(run_id: str) -> bool:
+    """A run the operator removed here must not come back on the next sync."""
+    if not RUN_ID_RE.match(run_id or "") or not HISTORY.is_dir():
+        return False
+    return next(iter(HISTORY.glob(f"run_*_{run_id}.deleted")), None) is not None
 
 
 def history_index() -> list[dict]:
@@ -355,6 +379,13 @@ def delete_history_run(run_id: str) -> bool:
             continue
         if record.get("run_id") == run_id:
             path.unlink(missing_ok=True)
+            # The run still exists on the runner, so without a marker the next
+            # reconciliation would simply mirror it again and Delete would do
+            # nothing. The marker holds no measurements.
+            try:
+                path.with_suffix(".deleted").touch()
+            except OSError:
+                pass
             removed = True
     return removed
 
@@ -418,7 +449,7 @@ def import_runner_history(run_id: str) -> Path | None:
     """
     if not RUN_ID_RE.match(run_id or ""):
         return None
-    if mirrored_run_path(run_id) is not None:
+    if mirrored_run_path(run_id) is not None or run_is_deleted(run_id):
         return None
     status, record = runner_json("GET", f"/api/history/{run_id}")
     if status != 200 or not record or record.get("run_id") != run_id:
@@ -457,6 +488,8 @@ def _mirror_worker(run_id: str) -> None:
         while time.monotonic() < deadline:
             time.sleep(delay)
             delay = min(delay * 2, MIRROR_POLL_MAX_SECONDS)
+            if run_is_deleted(run_id):
+                return
             try:
                 if import_runner_history(run_id) is not None:
                     return
@@ -475,10 +508,13 @@ def _mirror_worker(run_id: str) -> None:
 
 def mirror_runner_run(run_id: str) -> bool:
     """Capture a runner-side run locally even if nobody is watching the stream."""
-    if not RUN_ID_RE.match(run_id or ""):
+    if not RUN_ID_RE.match(run_id or "") or run_is_deleted(run_id):
         return False
     with _mirror_lock:
-        if run_id in _mirroring:
+        # A run that errors never reaches the runner's history, so its worker
+        # polls until the deadline. Cap them rather than let repeated failed
+        # submissions accumulate threads; reconciliation still backfills.
+        if run_id in _mirroring or len(_mirroring) >= MAX_MIRROR_WORKERS:
             return False
         _mirroring.add(run_id)
     try:
@@ -491,16 +527,22 @@ def mirror_runner_run(run_id: str) -> bool:
 
 
 def reconcile_runner_history(force: bool = False) -> int:
-    """Backfill runner runs this portal never saw, e.g. across a restart."""
+    """Backfill runner runs this portal never saw, e.g. across a restart.
+
+    Best effort by definition: it must never be the reason a reader cannot see
+    the local history, and it must not keep a reader waiting on a wedged
+    tunnel, so it uses a short timeout and swallows transport failures.
+    """
     global _reconciled_at
     now = time.monotonic()
     if not force and _reconciled_at and now - _reconciled_at < RECONCILE_INTERVAL_SECONDS:
         return 0
     _reconciled_at = now
-    ensure_history_migrated()
     try:
-        status, payload = runner_json("GET", "/api/history")
-    except ConsoleError:
+        ensure_history_migrated()
+        status, payload = runner_json(
+            "GET", "/api/history", timeout=RECONCILE_TIMEOUT_SECONDS)
+    except (ConsoleError, OSError):
         return 0
     if status != 200:
         return 0
@@ -509,7 +551,9 @@ def reconcile_runner_history(force: bool = False) -> int:
         if imported >= RECONCILE_MAX_IMPORTS:
             break
         run_id = (entry or {}).get("run_id", "")
-        if not RUN_ID_RE.match(run_id or "") or mirrored_run_path(run_id) is not None:
+        if (not RUN_ID_RE.match(run_id or "")
+                or mirrored_run_path(run_id) is not None
+                or run_is_deleted(run_id)):
             continue
         try:
             if import_runner_history(run_id) is not None:
@@ -820,10 +864,11 @@ class Handler(BaseHTTPRequestHandler):
                 self.wfile.write(line)
                 self.wfile.flush()
         except (BrokenPipeError, ConnectionResetError):
-            try:
-                runner_json("POST", "/api/cancel", {"run_id": run_id})
-            except ConsoleError:
-                pass
+            # Deliberately not a cancel. A closed tab, a sleeping laptop or a
+            # dropped Wi-Fi link must not destroy a measurement the room is
+            # waiting for; the mirror worker still stores it. Stopping a run is
+            # an explicit action, and the UI has a Stop button for it.
+            pass
         finally:
             remote.close()
             self.close_connection = True

@@ -2,6 +2,7 @@
 
 import http.client
 import json
+import socket
 import subprocess
 import sys
 import tempfile
@@ -499,6 +500,7 @@ class FakeRunnerHandler(BaseHTTPRequestHandler):
     late_record = dict(record, run_id="cafebabe",
                        totals={"total_tokens": 20, "cost_usd": 0.002})
     late_ready = False
+    posts: list[tuple[str, bytes]] = []
 
     def log_message(self, *_):
         pass
@@ -511,8 +513,22 @@ class FakeRunnerHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def _stream(self):
+        self.send_response(200)
+        self.send_header("Content-Type", "text/event-stream; charset=utf-8")
+        self.end_headers()
+        for _ in range(40):
+            try:
+                self.wfile.write(b'data: {"type": "record"}\n\n')
+                self.wfile.flush()
+            except (BrokenPipeError, ConnectionResetError, OSError):
+                return
+            time.sleep(0.05)
+
     def do_GET(self):  # noqa: N802
-        if self.path == "/api/history":
+        if self.path.startswith("/api/events"):
+            self._stream()
+        elif self.path == "/api/history":
             runs = [{"run_id": "feedface"}]
             if type(self).late_ready:
                 runs.append({"run_id": "cafebabe"})
@@ -526,8 +542,8 @@ class FakeRunnerHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):  # noqa: N802
         length = int(self.headers.get("Content-Length") or 0)
-        if length:
-            self.rfile.read(length)
+        body = self.rfile.read(length) if length else b""
+        type(self).posts.append((self.path, body))
         self._json(200, {"run_id": "feedface"})
 
 
@@ -554,6 +570,7 @@ class RemoteRunner(unittest.TestCase):
         server._migrated = False
         server._mirroring.clear()
         FakeRunnerHandler.late_ready = False
+        FakeRunnerHandler.posts.clear()
 
     def tearDown(self):
         self._drain_mirrors()
@@ -709,6 +726,83 @@ class RemoteRunner(unittest.TestCase):
         with patch.object(server, "HISTORY_RETENTION", 3):
             self.assertIsNotNone(server.import_runner_history("feedface"))
         self.assertIn("feedface", {r["run_id"] for r in server.history_index()})
+
+    def test_a_deleted_run_is_not_resurrected_by_the_next_sync(self):
+        self.assertEqual(server.reconcile_runner_history(force=True), 1)
+        self.assertTrue(server.delete_history_run("feedface"))
+        self.assertEqual(server.history_index(), [])
+        self.assertEqual(server.reconcile_runner_history(force=True), 0)
+        self.assertEqual(server.history_index(), [])
+        self.assertIsNone(server.import_runner_history("feedface"))
+
+    def test_a_deleted_run_is_not_mirrored_again(self):
+        server.import_runner_history("feedface")
+        server.delete_history_run("feedface")
+        self.assertTrue(server.run_is_deleted("feedface"))
+        self.assertFalse(server.mirror_runner_run("feedface"))
+
+    def test_deleting_leaves_no_measurements_behind(self):
+        server.import_runner_history("feedface")
+        server.delete_history_run("feedface")
+        leftovers = list(server.HISTORY.glob("run_*"))
+        self.assertEqual([p.suffix for p in leftovers], [".deleted"])
+        self.assertEqual(leftovers[0].read_bytes(), b"")
+
+    def test_worker_count_is_capped(self):
+        with patch.object(server.threading, "Thread") as thread:
+            started = sum(1 for i in range(server.MAX_MIRROR_WORKERS + 5)
+                          if server.mirror_runner_run(f"{i:016x}"))
+        self.assertEqual(started, server.MAX_MIRROR_WORKERS)
+        self.assertEqual(thread.call_count, server.MAX_MIRROR_WORKERS)
+        server._mirroring.clear()
+
+    def test_history_is_served_when_the_runner_stalls_mid_response(self):
+        # A wedged tunnel accepts the connection and then never answers, so the
+        # failure lands in the read as TimeoutError, not URLError.
+        server.import_runner_history("feedface")
+        stalled = socket.socket()
+        stalled.bind(("127.0.0.1", 0))
+        stalled.listen(1)
+        try:
+            with patch.object(server, "RUNNER_URL",
+                              f"http://127.0.0.1:{stalled.getsockname()[1]}"), \
+                    patch.object(server, "RECONCILE_TIMEOUT_SECONDS", 1):
+                self.assertEqual(server.reconcile_runner_history(force=True), 0)
+        finally:
+            stalled.close()
+        # The point of the test: local records are still readable.
+        self.assertEqual([r["run_id"] for r in server.history_index()], ["feedface"])
+
+    def test_a_stalled_runner_is_reported_as_a_console_error(self):
+        stalled = socket.socket()
+        stalled.bind(("127.0.0.1", 0))
+        stalled.listen(1)
+        try:
+            with patch.object(server, "RUNNER_URL",
+                              f"http://127.0.0.1:{stalled.getsockname()[1]}"):
+                with self.assertRaises(ConsoleError):
+                    server.runner_json("GET", "/api/history", timeout=1)
+        finally:
+            stalled.close()
+
+    def test_closing_the_tab_does_not_cancel_the_run(self):
+        # The run belongs to the room, not to one browser window. A closed tab,
+        # a sleeping laptop or a dropped link must leave it measuring.
+        console = ThreadingHTTPServer(("127.0.0.1", 0), server.Handler)
+        console.daemon_threads = True
+        threading.Thread(target=console.serve_forever, daemon=True).start()
+        try:
+            client = socket.create_connection(("127.0.0.1", console.server_address[1]),
+                                              timeout=5)
+            client.sendall(b"GET /api/events?run_id=feedface HTTP/1.1\r\n"
+                           b"Host: 127.0.0.1\r\n\r\n")
+            self.assertTrue(client.recv(64))
+            client.close()  # the tab goes away mid-stream
+            time.sleep(1.0)
+        finally:
+            console.shutdown()
+            console.server_close()
+        self.assertEqual([p for p, _ in FakeRunnerHandler.posts if "cancel" in p], [])
 
 
 class Export(unittest.TestCase):

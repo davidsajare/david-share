@@ -86,9 +86,13 @@ Central while the history the room reads lives on the portal VM. Capturing it
 does not depend on anyone watching: submitting a run starts a background worker
 that polls the runner until the record is mirrored locally, so closing the tab,
 losing Wi-Fi or starting the run from the API all still land in **Past runs**.
-Listing history also backfills any runner run the portal never saw, which
-recovers the history a portal restart would otherwise have missed. Mirroring is
-keyed on the run id, so these paths can race without duplicating a row.
+A lost browser does not stop the measurement either — the run belongs to the
+room, and **Stop** is how you end one. Listing history also backfills any runner
+run the portal never saw, which recovers the history a portal restart would
+otherwise have missed, and it is best effort: an unreachable runner never stops
+the local history from being served. Mirroring is keyed on the run id, so these
+paths can race without duplicating a row, and deleting a run leaves a marker so
+the next sync does not bring it back.
 
 ### What it deliberately does not do
 
