@@ -4,6 +4,7 @@ import http.client
 import importlib.util
 import os
 import subprocess
+import sys
 import tempfile
 import threading
 import unittest
@@ -293,7 +294,7 @@ class HttpSurface(unittest.TestCase):
 class Packaging(unittest.TestCase):
     def test_gate_compiles(self):
         result = subprocess.run(
-            ["python", "-m", "py_compile", str(GATE_PATH)],
+            [sys.executable, "-m", "py_compile", str(GATE_PATH)],
             capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)
 

@@ -1111,9 +1111,10 @@ class HttpSurface(unittest.TestCase):
         self.assertIn("replay mode", body["error"])
 
     def test_an_invalid_plan_is_rejected_before_any_request_is_made(self):
-        status, body = self.post("/api/run", {
-            "arms": [{"deployment": "gpt-5.6-luna-dz"}], "items": [],
-            "iterations": 1, "warmup": False})
+        with patch.object(server, "server_mode", return_value="live"):
+            status, body = self.post("/api/run", {
+                "arms": [{"deployment": "gpt-5.6-luna-dz"}], "items": [],
+                "iterations": 1, "warmup": False})
         self.assertEqual(status, 400)
         self.assertIn("at least one prompt", body["error"])
 
@@ -1143,7 +1144,8 @@ class HttpSurface(unittest.TestCase):
         self.assertIn("Origin", body["error"])
 
     def test_explicit_https_portal_origin_is_accepted(self):
-        with patch.object(server, "ALLOWED_ORIGINS", {"https://portal.example"}):
+        with patch.object(server, "ALLOWED_ORIGINS", {"https://portal.example"}), \
+                patch.object(server, "server_mode", return_value="live"):
             status, body = self.post(
                 "/api/run",
                 {"arms": [{"deployment": "gpt-5.6-luna-dz"}], "items": []},

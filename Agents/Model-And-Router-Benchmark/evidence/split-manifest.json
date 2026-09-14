@@ -18,8 +18,8 @@
   },
   "byte_identity": {
     "verified": true,
-    "unchanged_file_count": 184,
-    "logical_tree_sha256": "9d14ca54da11912edf3d423bdbe06398637457487e5ff489e38632578af6c025"
+    "unchanged_file_count": 183,
+    "logical_tree_sha256": "68ee6858a85236da6816edf56a56b5fb16967365637f54a8598e29c98a02e044"
   },
   "scientific_artifacts": {
     "verified_byte_identical": true,
@@ -61,7 +61,13 @@
       "path": "qira-live-benchmark-console/tests/test_console.py",
       "reason": "A regression test pins the mobile layout contract.",
       "source_blob": "fbf3401bfb0d776b69cf484ef25aabc9d47258a6",
-      "destination_blob": "9c5c83d3098b763701ba6c883a77ae398b99e478"
+      "destination_blob": "2fa25c2d866688cf0d95f6737836bc3f8106c9f7"
+    },
+    {
+      "path": "qira-live-benchmark-console/tests/test_portal_gate.py",
+      "reason": "Packaging uses the active interpreter so clean venv tests are portable.",
+      "source_blob": "cffe9b91feda0fd51c18c36d3bf156d4f2581d3d",
+      "destination_blob": "45b6818cba68d55d8c2e008fbf4e458d7617ca64"
     },
     {
       "path": "qira-model-router-validation/README-CN.md",

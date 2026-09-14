@@ -43,6 +43,8 @@ CONTENT_CHANGES = {
         "The L5 UI gate removed desktop intrinsic-width overflow on mobile.",
     "qira-live-benchmark-console/tests/test_console.py":
         "A regression test pins the mobile layout contract.",
+    "qira-live-benchmark-console/tests/test_portal_gate.py":
+        "Packaging uses the active interpreter so clean venv tests are portable.",
     "qira-model-router-validation/README.md":
         "Generated reproduction command points to the independent repository.",
     "qira-model-router-validation/README-CN.md":
