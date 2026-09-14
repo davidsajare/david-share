@@ -1,0 +1,15 @@
+# Evidence files are hashed byte-for-byte (see outputs/provenance_*.json);
+# never let core.autocrlf rewrite their line endings on checkout.
+*.jsonl -text
+*.xz -text
+
+# These public build inputs have byte-level provenance from the executed VM.
+# Keep CRLF bytes on Linux and Windows instead of normalizing by checkout OS.
+harness.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analyze.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Shell scripts run on the Linux benchmark VM and must stay LF.
+*.sh text eol=lf
+
+# The builder regenerates this report with LF so a rebuild is byte-identical.
+outputs/Qira-*.md text eol=lf

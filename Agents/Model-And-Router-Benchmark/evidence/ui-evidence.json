@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "captured_at_utc": "2026-09-14T11:35:41Z",
+  "url": "http://linuxworkvm1-work.eastasia.cloudapp.azure.com/qira-benchmark/?clawpilotTheme=light",
+  "page_title": "Qira live model benchmark console",
+  "authentication": {
+    "type": "in-page sign-in",
+    "session_hours": 12,
+    "credential_class": "shared demo login; not an Azure credential"
+  },
+  "observed": {
+    "mode": "LIVE",
+    "runner_label": "Sweden Central runner",
+    "request_boundary_label": "no web search · no tools",
+    "portal_service": "active",
+    "login_gate_service": "active",
+    "reverse_tunnel": "up"
+  },
+  "source_sync": {
+    "file": "qira-live-benchmark-console/static/styles.css",
+    "local_sha256": "85f6ce8e08d0dd22957ea89cef1983d08d774bd377cbfeda198bc66f9f9700ea",
+    "deployed_sha256": "85f6ce8e08d0dd22957ea89cef1983d08d774bd377cbfeda198bc66f9f9700ea"
+  },
+  "captures": [
+    {
+      "path": "images/qira-live-console-desktop.png",
+      "sha256": "7bc2026cf65853d5b61364565592b89cf7b174e99e7e8dcae93c58d978140cfb",
+      "requested_viewport_css_px": [1440, 1000],
+      "observed_layout_css_px": {
+        "inner_width": 1440,
+        "client_width": 1425,
+        "body_scroll_width": 1425,
+        "horizontal_overflow": 0
+      },
+      "png_pixel_size": [2772, 1925]
+    },
+    {
+      "path": "images/qira-live-console-mobile.png",
+      "sha256": "25255dc00d6520286eb6d8a41480ececc8c0d979601fadaeb151e13b057dd5c7",
+      "requested_viewport_css_px": [390, 844],
+      "observed_layout_css_px": {
+        "inner_width": 390,
+        "client_width": 390,
+        "body_scroll_width": 390,
+        "horizontal_overflow": 0
+      },
+      "png_pixel_size": [751, 1625]
+    }
+  ],
+  "runtime_differential": {
+    "before_mobile_body_scroll_width": 1093,
+    "after_mobile_body_scroll_width": 390,
+    "viewport_width": 390,
+    "after_horizontal_overflow": 0,
+    "change": "Remove desktop intrinsic-width expansion from the mobile chart grid."
+  },
+  "proves": [
+    "The deployed portal uses an in-page sign-in rather than browser Basic Auth.",
+    "The signed-in page rendered in LIVE mode and identified the Sweden Central runner.",
+    "The visible request boundary says no web search and no tools.",
+    "Desktop and mobile layout probes had no body-level horizontal overflow after the CSS change."
+  ],
+  "does_not_prove": [
+    "A screenshot does not prove the benchmark numbers or Azure service availability.",
+    "The Sweden Central label does not prove the physical GPU execution region of Global or DataZone serving.",
+    "The portal being LIVE does not prove that every future paid run will complete."
+  ],
+  "redactions": []
+}
