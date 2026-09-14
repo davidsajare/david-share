@@ -1,0 +1,269 @@
+{
+  "schema_version": 2,
+  "rules": [
+    {
+      "id": "RUN-001",
+      "applicable": true,
+      "status": "PASS",
+      "assertion": "ACTUAL_INPUT_VISIBLE",
+      "checks": [
+        {
+          "id": "complete-request-trace",
+          "passed": true,
+          "actual": "NM01 -> completed output",
+          "expected": "NM01 -> completed output"
+        }
+      ],
+      "evidence": [
+        "README.md",
+        "qira-scenario-model-benchmark/datasets/qira_scenarios.jsonl",
+        "qira-scenario-model-benchmark/outputs/raw_fulltext/direct_20260909_120534.jsonl"
+      ]
+    },
+    {
+      "id": "RUN-002",
+      "applicable": true,
+      "status": "PASS",
+      "assertion": "OWNED_PRIMARY_WORKLOAD",
+      "checks": [
+        {
+          "id": "owned-input-code-output",
+          "passed": true,
+          "actual": 3,
+          "expected": 3
+        }
+      ],
+      "evidence": [
+        "qira-scenario-model-benchmark/harness.py",
+        "qira-scenario-model-benchmark/datasets/qira_scenarios.jsonl",
+        "qira-scenario-model-benchmark/outputs/raw_fulltext/direct_20260909_120534.jsonl"
+      ]
+    },
+    {
+      "id": "RUN-003",
+      "applicable": true,
+      "status": "PASS",
+      "assertion": "WIRING_SOURCE_SYNC",
+      "checks": [
+        {
+          "id": "scientific-byte-identity",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        },
+        {
+          "id": "destination-file-count",
+          "passed": true,
+          "actual": 198,
+          "expected": 198
+        }
+      ],
+      "evidence": [
+        "evidence/split-manifest.json",
+        "qira-live-benchmark-console/bench_core.py"
+      ]
+    },
+    {
+      "id": "RUN-004",
+      "applicable": true,
+      "status": "PASS",
+      "assertion": "TRANSITION_PROVEN",
+      "checks": [
+        {
+          "id": "reactive-fallback-success",
+          "passed": true,
+          "actual": 1.0,
+          "expected": 1.0
+        },
+        {
+          "id": "proactive-fallback-success",
+          "passed": true,
+          "actual": 1.0,
+          "expected": 1.0
+        }
+      ],
+      "evidence": [
+        "qira-production-readiness/outputs/resilience_20260911_024156.summary.json",
+        "qira-production-readiness/outputs/raw_fulltext/resilience_20260911_024156.jsonl"
+      ]
+    },
+    {
+      "id": "RUN-005",
+      "applicable": false,
+      "status": "N/A",
+      "assertion": "TAKEOVER_IDENTITY",
+      "checks": [],
+      "evidence": [],
+      "reason": "No process/container takeover is claimed. Browser reconnect is an observer reattach to the same Runner-owned run."
+    },
+    {
+      "id": "RUN-006",
+      "applicable": false,
+      "status": "N/A",
+      "assertion": "CHECKPOINT_CONTINUITY",
+      "checks": [],
+      "evidence": [],
+      "reason": "The benchmark does not claim checkpoint-based process recovery."
+    },
+    {
+      "id": "RUN-007",
+      "applicable": true,
+      "status": "PASS",
+      "assertion": "TERMINAL_BUSINESS_OUTPUT",
+      "checks": [
+        {
+          "id": "full-text-hash-gate",
+          "passed": true,
+          "actual": "command exit 0",
+          "expected": "command exit 0"
+        }
+      ],
+      "evidence": [
+        "qira-scenario-model-benchmark/outputs/raw_fulltext/direct_20260909_120534.jsonl",
+        "qira-scenario-model-benchmark/scripts/verify_fulltext.py"
+      ]
+    },
+    {
+      "id": "RUN-008",
+      "applicable": false,
+      "status": "N/A",
+      "assertion": "READER_LOG_SOURCE_SYNC",
+      "checks": [],
+      "evidence": [],
+      "reason": "The primary benchmark claim is a request matrix, not a crash/recovery temporal story."
+    },
+    {
+      "id": "RUN-009",
+      "applicable": false,
+      "status": "N/A",
+      "assertion": "TEMPORAL_STORYBOARD",
+      "checks": [],
+      "evidence": [],
+      "reason": "No process replacement or checkpoint handoff is claimed; the live console screenshot is covered by RUN-011."
+    },
+    {
+      "id": "RUN-010",
+      "applicable": true,
+      "status": "PASS",
+      "assertion": "MEASUREMENT_BOUNDARY",
+      "checks": [
+        {
+          "id": "protocol-boundary-row-count",
+          "passed": true,
+          "actual": 6,
+          "expected": 6
+        }
+      ],
+      "evidence": [
+        "README.md",
+        "qira-scenario-model-benchmark/analyze.py"
+      ]
+    },
+    {
+      "id": "RUN-011",
+      "applicable": true,
+      "status": "PASS",
+      "assertion": "UI_BEHAVIOR_DUAL_PROOF",
+      "checks": [
+        {
+          "id": "live-mode",
+          "passed": true,
+          "actual": "LIVE",
+          "expected": "LIVE"
+        },
+        {
+          "id": "same-region-runner-label",
+          "passed": true,
+          "actual": "Sweden Central runner",
+          "expected": "Sweden Central runner"
+        },
+        {
+          "id": "desktop-mobile-captures",
+          "passed": true,
+          "actual": 2,
+          "expected": 2
+        }
+      ],
+      "evidence": [
+        "evidence/ui-evidence.json",
+        "images/qira-live-console-desktop.png",
+        "images/qira-live-console-mobile.png",
+        "qira-live-benchmark-console/tests/test_console.py"
+      ]
+    },
+    {
+      "id": "RUN-012",
+      "applicable": true,
+      "status": "PASS",
+      "assertion": "SCENARIO_TRUTH_MATRIX",
+      "checks": [
+        {
+          "id": "retained-study-run-count",
+          "passed": true,
+          "actual": 4,
+          "expected": 4
+        }
+      ],
+      "evidence": [
+        "README.md",
+        "qira-scenario-model-benchmark/outputs/provenance_20260909_120534.json",
+        "qira-model-router-validation/outputs/provenance_router_20260909_223737.json",
+        "qira-production-readiness/outputs/provenance_readiness.json"
+      ]
+    },
+    {
+      "id": "RUN-013",
+      "applicable": false,
+      "status": "N/A",
+      "assertion": "SAFE_POST_TEST_STATE",
+      "checks": [],
+      "evidence": [],
+      "reason": "No destructive or fault-enabled deployment was created by this benchmark. The current LIVE health is recorded under RUN-011."
+    },
+    {
+      "id": "RUN-014",
+      "applicable": true,
+      "status": "PASS",
+      "assertion": "BILINGUAL_SEMANTIC_PARITY",
+      "checks": [
+        {
+          "id": "deterministic-bilingual-gate",
+          "passed": true,
+          "actual": "command exit 0",
+          "expected": "command exit 0"
+        },
+        {
+          "id": "numeric-drift",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        }
+      ],
+      "evidence": [
+        "README.md",
+        "README-CN.md",
+        "evidence/bilingual-audit.md",
+        "tests/test_repository_gate.py"
+      ]
+    },
+    {
+      "id": "RUN-015",
+      "applicable": true,
+      "status": "PASS",
+      "assertion": "NEGATIVE_AND_MUTATION_GATES",
+      "checks": [
+        {
+          "id": "all-configured-test-suites",
+          "passed": true,
+          "actual": "command exit 0",
+          "expected": "command exit 0"
+        }
+      ],
+      "evidence": [
+        "tests/test_repository_gate.py",
+        "qira-model-router-validation/scripts/validate_router_readme.py",
+        "qira-live-benchmark-console/tests/test_console.py"
+      ]
+    }
+  ]
+}

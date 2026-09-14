@@ -1496,19 +1496,9 @@ Section 3.5 的知识型直连运行（`outputs/benchmark_luna_knowledge_qa_2026
 
 ---
 
-## 10. 配套研究：Qira 场景集
-
-五个子目录把本 Benchmark 延伸到第二个客户场景集，测试条件比第 3–9 节更严格：**所有实验组位于同一 Azure 区域，并从该区域内的一台 Linux VM 发起，不带联网搜索、不挂任何工具。** 这样隔离出的是模型原生能力，几个候选模型是在同一条件下比较，而不是比谁更会搜索。harness 以 `max_retries=0` 运行，并拒绝任何没有带回 usage 的流式响应，因此不会有失败被平均掉。
-
-| 目录 | 回答什么问题 |
-|--------|-----------------|
-| [`qira-scenario-model-benchmark/`](qira-scenario-model-benchmark/README-CN.md) | 候选模型在客户自身场景面上的时延、token、成本与盲评质量 |
-| [`qira-model-router-validation/`](qira-model-router-validation/README-CN.md) | Model Router 的三种模式到底选便宜的还是强的模型，相对直连基线这个选择值多少钱 |
-| [`qira-followup-throughput-recalibration/`](qira-followup-throughput-recalibration/README-CN.md) | 整段一次到达是否是 API 路径造成的、4/8/16 并发下的表现，以及评分规则改动会让分数移动多少 |
-| [`qira-production-readiness/`](qira-production-readiness/README-CN.md) | 多轮会话成本、持续吞吐、触及 PAYGO 限流时有无回退的表现，以及模型生命周期 |
-| [`qira-live-benchmark-console/`](qira-live-benchmark-console/README-CN.md) | 一个浏览器控制台：当场跑同样的测量并出图，面向不会读书面报告的工作坊现场 |
-
-每个研究目录都从自己保留的证据重新生成 README，一旦对不上就报错退出；在 `scripts/` 下用 `--check` 运行构建器即可校验。两道场景题（`PA01`、`PA03`）复刻了一段内部会议记录，在本公开版中已撤下——这两行的所有数值字段、评分与响应哈希均未改动，因此各项聚合与校验仍然覆盖它们。详见各目录的 `outputs/public_redaction.json`。
+联想 Qira 芝加哥 Workshop 的模型性能与 Model Router 工作现已独立归档至
+[Model-And-Router-Benchmark](../Model-And-Router-Benchmark/README-CN.md)。
+研究报告、留存证据、可执行门禁与在线控制台不再混放在本迁移 Benchmark 中。
 
 ---
 

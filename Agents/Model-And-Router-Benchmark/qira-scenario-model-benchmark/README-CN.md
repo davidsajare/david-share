@@ -38,7 +38,7 @@
 
 ## 1. 背景
 
-Qira 是联想的跨设备 AI 助手（ThinkPad、平板、Motorola 手机）。其六个面向用户的功能——**Next Move、Write For Me、Catch Me Up、Pay Attention、Live Interaction、Creator Zone**——都是对延迟敏感、以非推理为主的文本任务。上层的[模型迁移 Benchmark](../README-CN.md)用多种 grounding 路径对比 gpt-4o-mini 后继模型；本配套研究把问题收窄为一次公平的模型原生能力对比：
+Qira 是联想的跨设备 AI 助手（ThinkPad、平板、Motorola 手机）。其六个面向用户的功能——**Next Move、Write For Me、Catch Me Up、Pay Attention、Live Interaction、Creator Zone**——都是对延迟敏感、以非推理为主的文本任务。本[芝加哥 Benchmark 项目](../README-CN.md)把问题收窄为一次公平的模型原生能力对比：
 
 1. 只测 **GPT-5.6 Luna、GPT-5 mini、GPT-4o mini**。
 2. 提示词按 **Qira 六个场景**构造，而不是通用问答。

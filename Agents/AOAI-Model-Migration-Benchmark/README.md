@@ -1497,19 +1497,10 @@ The Section 3.5 knowledge-only runs (`outputs/benchmark_luna_knowledge_qa_202609
 
 ---
 
-## 10. Companion Studies: the Qira Scenario Set
-
-Five subfolders extend this benchmark to a second customer scenario set, measured under a stricter protocol than Sections 3–9: **every arm in the same Azure region, driven from a Linux VM inside that region, with no web search and no tools attached.** That isolates native model capability, so the candidates are compared on the same footing instead of on how well each one searches. The harness runs with `max_retries=0` and refuses any stream that arrives without usage, so no failure is averaged away.
-
-| Folder | What it answers |
-|--------|-----------------|
-| [`qira-scenario-model-benchmark/`](qira-scenario-model-benchmark/README.md) | Latency, tokens, cost and blind-judged quality for the candidate models across the customer's own scenario surfaces |
-| [`qira-model-router-validation/`](qira-model-router-validation/README.md) | Whether Model Router's three modes pick the cheap or the strong model, and what that choice costs against direct baselines |
-| [`qira-followup-throughput-recalibration/`](qira-followup-throughput-recalibration/README.md) | Whether whole-answer bursts were an API-path artefact, behaviour at 4/8/16 concurrency, and how much the judge's rubric moves its scores |
-| [`qira-production-readiness/`](qira-production-readiness/README.md) | Multi-turn session cost, sustained throughput, behaviour at the PAYGO rate limit with and without a fallback, and model lifecycle |
-| [`qira-live-benchmark-console/`](qira-live-benchmark-console/README.md) | A browser console that runs the same measurements live and plots them, for a workshop room that will not read a written report |
-
-Each study folder regenerates its own README from its retained evidence and fails closed on any mismatch; run the builder in `scripts/` with `--check` to verify. Two scenario prompts (`PA01`, `PA03`) reproduced an internal meeting transcript and are withheld in this public copy — every numeric field, score and response hash for those rows is unchanged, so the aggregates and verifiers still cover them. See each folder's `outputs/public_redaction.json`.
+The Lenovo Qira Chicago model-performance and Model Router work now has one
+independent home: [Model-And-Router-Benchmark](../Model-And-Router-Benchmark/README.md).
+Its studies, retained evidence, executable gates and live console are no longer
+mixed with this migration benchmark.
 
 ---
 

@@ -191,6 +191,17 @@ main {
   }
 }
 
+@media (max-width: 700px) {
+  header {
+    padding: 10px 12px;
+  }
+
+  main {
+    padding: 12px;
+  }
+
+}
+
 .panel,
 .chart {
   background: var(--cp-surface);
@@ -705,6 +716,7 @@ tbody tr:hover {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  min-width: 0;
 }
 
 .muted {
@@ -721,4 +733,10 @@ footer {
   padding: 0 24px 28px;
   color: var(--cp-text-muted);
   font-size: 10px;
+}
+
+@media (max-width: 700px) {
+  .charts {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

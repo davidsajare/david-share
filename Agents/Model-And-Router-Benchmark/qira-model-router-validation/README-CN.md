@@ -121,7 +121,7 @@ Given a function that deduplicates a list of records by a composite key but prod
 离线路径只需 **Python 3.10+ 及标准库**，无需 pip 包、Azure 凭据或 GPU。以下命令为 Linux Bash，不是 PowerShell；参考 VM 使用 Python 3.12.3。
 ```bash
 git clone https://github.com/david-xinyuwei/david-share.git
-cd david-share/Agents/AOAI-Model-Migration-Benchmark/qira-model-router-validation
+cd david-share/Agents/Model-And-Router-Benchmark/qira-model-router-validation
 python3 -m venv --without-pip .venv-offline
 source .venv-offline/bin/activate
 ```

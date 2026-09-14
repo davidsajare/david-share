@@ -72,7 +72,11 @@ def validate_links(text: str, root: Path, documents: dict[str, str]) -> None:
         path = unquote(url.path)
         if path:
             resolved = (root / path).resolve()
-            require(resolved.is_relative_to(root.resolve()), f"Link escapes the project: {target}")
+            project_root = root.parent.resolve()
+            require(
+                resolved.is_relative_to(project_root),
+                f"Link escapes the independent benchmark project: {target}",
+            )
             require(path in documents or resolved.is_file(), f"Broken local link: {target}")
         if url.fragment:
             linked_text = documents.get(path) if path else text
@@ -80,6 +84,14 @@ def validate_links(text: str, root: Path, documents: dict[str, str]) -> None:
                 linked_text = (root / path).read_text(encoding="utf-8")
             require(linked_text is not None and f'id="{url.fragment}"' in linked_text,
                     f"Missing explicit local anchor: {target}")
+
+
+def normalized_link_counter(text: str) -> Counter[str]:
+    """Compare bilingual destinations while treating README-CN as its peer."""
+    return Counter(
+        target.replace("README-CN.md", "README.md")
+        for target in LINK.findall(text)
+    )
 
 
 def validate_source_contract(root: Path) -> None:
@@ -163,7 +175,10 @@ def validate_documents(documents: dict[str, str], root: Path = ROOT,
     require(re.findall(r"^(#+) ", en, re.MULTILINE) == re.findall(r"^(#+) ", cn, re.MULTILINE),
             "Bilingual heading hierarchy drift")
     require(blocks(en) == blocks(cn), "Bilingual code, prompt or diagram drift")
-    require(Counter(LINK.findall(en)) == Counter(LINK.findall(cn)), "Bilingual evidence/link drift")
+    require(
+        normalized_link_counter(en) == normalized_link_counter(cn),
+        "Bilingual evidence/link drift",
+    )
     require([[len(row) for row in ts] for ts in tables(en)] == [[len(row) for row in ts] for ts in tables(cn)],
             "Bilingual table shape drift")
     require(re.findall(r"!\[[^\]]*\]\(([^)]+)\)", en) == re.findall(r"!\[[^\]]*\]\(([^)]+)\)", cn),
@@ -180,6 +195,23 @@ class DocumentationGateTests(unittest.TestCase):
     def test_current_generated_contract(self) -> None:
         validate_documents(self.expected, expected=self.expected)
         validate_source_contract(ROOT)
+
+    def test_links_may_reach_a_sibling_but_not_leave_the_project(self) -> None:
+        validate_links(
+            "[scenario](../qira-scenario-model-benchmark/README.md)",
+            ROOT,
+            {},
+        )
+        with self.assertRaisesRegex(ValueError, "escapes the independent benchmark"):
+            validate_links("[escape](../../README.md)", ROOT, {})
+
+    def test_bilingual_readme_counterparts_normalize_to_one_link(self) -> None:
+        english = "[study](../study/README.md)"
+        chinese = "[研究](../study/README-CN.md)"
+        self.assertEqual(
+            normalized_link_counter(english),
+            normalized_link_counter(chinese),
+        )
 
     def test_direct_isolated_entry_points_from_unrelated_directory(self) -> None:
         import tempfile

@@ -112,7 +112,7 @@ the next sync does not bring it back.
 
 ```bash
 git clone https://github.com/david-xinyuwei/david-share.git
-cd david-share/Agents/AOAI-Model-Migration-Benchmark/qira-live-benchmark-console
+cd david-share/Agents/Model-And-Router-Benchmark/qira-live-benchmark-console
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 cp .env.example .env      # fill in your endpoint; leave the key empty to use Entra ID
 ./run_on_vm.sh 8080

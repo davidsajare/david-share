@@ -3,6 +3,7 @@
 import http.client
 import json
 import queue
+import re
 import socket
 import subprocess
 import sys
@@ -145,6 +146,20 @@ class Assets(unittest.TestCase):
             path = Path(tmp) / "models.json"
             path.write_text('{"models": {"x": {}}}', encoding="utf-8")
             self.assertEqual(bench_core.read_json_asset(path), {"models": {"x": {}}})
+
+    def test_mobile_layout_drops_desktop_chart_minimums(self):
+        css = (ROOT / "static" / "styles.css").read_text(encoding="utf-8")
+        self.assertIn("@media (max-width: 700px)", css)
+        self.assertIn("grid-template-columns: minmax(0, 1fr)", css)
+        self.assertGreater(
+            css.rfind("@media (max-width: 700px)"),
+            css.find(".charts {"),
+            "the mobile override must follow the desktop chart rule in the cascade",
+        )
+        self.assertRegex(
+            css,
+            re.compile(r"\.stack\s*\{[^}]*min-width:\s*0", re.DOTALL),
+        )
 
 
 class Catalog(unittest.TestCase):

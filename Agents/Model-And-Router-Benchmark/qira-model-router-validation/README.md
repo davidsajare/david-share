@@ -121,7 +121,7 @@ Run chain: shared system message + dataset C06 user message → streaming reques
 The offline path needs **Python 3.10+ and the standard library only**; no pip packages, Azure credentials or GPU. Commands below are Linux Bash, not PowerShell; the reference VM used Python 3.12.3.
 ```bash
 git clone https://github.com/david-xinyuwei/david-share.git
-cd david-share/Agents/AOAI-Model-Migration-Benchmark/qira-model-router-validation
+cd david-share/Agents/Model-And-Router-Benchmark/qira-model-router-validation
 python3 -m venv --without-pip .venv-offline
 source .venv-offline/bin/activate
 ```

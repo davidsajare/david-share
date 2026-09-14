@@ -1,0 +1,7 @@
+README*.md text eol=lf
+evidence/*.json !filter !diff !merge text eol=lf
+*.py text eol=lf
+*.sh text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf

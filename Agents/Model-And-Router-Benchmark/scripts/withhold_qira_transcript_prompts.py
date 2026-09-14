@@ -16,7 +16,7 @@ metadata was sanitized before publication; its original/public digests remain
 in the existing manifests, but this public script does not contain the source
 strings that were removed.
 
-Usage (from Agents/AOAI-Model-Migration-Benchmark):
+Usage (from Agents/Model-And-Router-Benchmark):
     python scripts/withhold_qira_transcript_prompts.py
 
 Author: Xinyu Wei (魏新宇)

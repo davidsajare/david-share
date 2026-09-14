@@ -38,7 +38,7 @@ Reproducing the numbers needs no model calls: `python scripts/build_results_repo
 
 ## 1. Background
 
-Qira is Lenovo's cross-device AI assistant (ThinkPad, tablets, Motorola phones). Its six user-facing features — **Next Move, Write For Me, Catch Me Up, Pay Attention, Live Interaction, Creator Zone** — are latency-sensitive, mostly non-reasoning text tasks. The broader [model-migration benchmark](../README.md) benchmarks gpt-4o-mini successors with multiple grounding paths. This companion study narrows the question to a fair native-capability comparison:
+Qira is Lenovo's cross-device AI assistant (ThinkPad, tablets, Motorola phones). Its six user-facing features — **Next Move, Write For Me, Catch Me Up, Pay Attention, Live Interaction, Creator Zone** — are latency-sensitive, mostly non-reasoning text tasks. This [Chicago benchmark project](../README.md) narrows the question to a fair native-capability comparison:
 
 1. Only **GPT-5.6 Luna, GPT-5 mini and GPT-4o mini**.
 2. Prompts modelled on the **six Qira scenarios**, not generic Q&A.

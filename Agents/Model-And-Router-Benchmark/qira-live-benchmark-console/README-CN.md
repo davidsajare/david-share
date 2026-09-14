@@ -96,7 +96,7 @@ Portal 重启期间本会丢失的记录也能找回；补齐是尽力而为的�
 
 ```bash
 git clone https://github.com/david-xinyuwei/david-share.git
-cd david-share/Agents/AOAI-Model-Migration-Benchmark/qira-live-benchmark-console
+cd david-share/Agents/Model-And-Router-Benchmark/qira-live-benchmark-console
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 cp .env.example .env      # 填入 endpoint；key 留空即使用 Entra ID
 ./run_on_vm.sh 8080
