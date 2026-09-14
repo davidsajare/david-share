@@ -90,7 +90,44 @@ def adaptation_table(summary, chinese):
     sections.append(
         "吞吐列依次为不开推测 / 发布版 / 再训；接受长度列为发布版 / 再训。接受长度由日志累计 accepted/drafted 推导，含预热与两档并发，不是同一个测量分母。服务性能不作显著性声明；答案质量未评分。" if chinese else
         "Throughput cells list no speculation / released / adapted; acceptance cells list released / adapted. Acceptance is derived from cumulative logged accepted/drafted counts, including warmup and both concurrency levels, so its denominator differs. No serving-significance claim is made; answer quality was not graded.")
+    sections.extend(round5_section(summary["round5"], chinese))
     return "\n\n".join(sections)
+
+
+def round5_section(r5, chinese):
+    """Repeated serving runs of setting B: four observations per cell, reported as raw ranges."""
+    routes = r5["vllm"]["routes"]
+    comparison = r5["vllm"]["adapted_vs_released"]
+    identity = r5["text_identity"]
+    sections = ["#### 设置 B 服务复测（Round 5）" if chinese else "#### Setting B Serving Re-test (Round 5)"]
+    sections.append(
+        "2026-09-13 在新的 VM 会话与新的 vLLM 安装上重跑设置 B 的三条服务路线：同一份权重、同一 40 条提示、同一 seed 与引擎参数。每条路线启动两次 server（A 轮顺序不开推测→发布版→再训，B 轮反序），每次 server 内跑两遍客户端，每格共 4 个吞吐观测。下表给出均值与原始极差，不假设分布。" if chinese else
+        "On 2026-09-13 the three serving routes of setting B were re-run in a fresh VM session with a fresh vLLM install: same weights, same 40 prompts, same seed and engine flags. Each route started the server twice (pass A ordered no speculation → released → adapted, pass B reversed) and ran the client twice per server, giving four throughput observations per cell. The table reports means with raw ranges and makes no distributional assumption.")
+    headers = (["并发", "不开推测", "发布版", "再训", "再训 / 发布版", "极差重叠"] if chinese else
+               ["Concurrency", "No speculation", "Released", "Adapted", "Adapted / released", "Ranges overlap"])
+    rows = []
+    for concurrency in sorted(comparison, key=int):
+        cells = [f"{routes[route]['levels'][concurrency]['mean']:.1f} [{routes[route]['levels'][concurrency]['min']:.1f}–{routes[route]['levels'][concurrency]['max']:.1f}]"
+                 for route in ("baseline", "dflash_released", "dflash_ours")]
+        gain = comparison[concurrency]["adapted_over_released_mean_pct"]
+        overlap = comparison[concurrency]["ranges_overlap"]
+        rows.append([concurrency, *cells, f"{'+' if gain >= 0 else ''}{gain:.1f}%", ("是" if overlap else "否") if chinese else ("yes" if overlap else "no")])
+    sections.append(markdown_table(headers, rows))
+    c1 = identity["1"]
+    rel_vs_ours = min(c1["released_vs_adapted"].values())
+    base_vs_rel = c1["baseline_vs_released"]
+    same_route = c1["same_route_across_server_starts"]
+    span = lambda values: str(min(values)) if min(values) == max(values) else f"{min(values)}–{max(values)}"
+    sections.append(
+        (f"吞吐单位 tok/s，每格格式为均值 [最小–最大]，4 次观测。这些观测是同一确定性 greedy 解码的计时重复，极差表示测量抖动，不表示提示集抽样方差。同一 40 条提示仍是单一样本。"
+         f"并发 1 的逐字一致性（按 `text_sha256`）：发布版与再训 draft model 的输出在 4 次运行中均为 {rel_vs_ours}/{c1['prompts']} 相同；不开推测与发布版推测解码的输出为 {span(base_vs_rel.values())}/{c1['prompts']} 相同；同一路线在两次 server 启动间为 "
+         + "、".join(f"{same_route[route]}/{c1['prompts']}" for route in ("baseline", "dflash_released", "dflash_ours")) +
+         " 相同。并发 4 与 8 的对应计数在 [汇总文件](experiments/20260909-drafter-adaptation/data/summary.json) 的 `round5.text_identity` 中。") if chinese else
+        (f"Throughput in tok/s; each cell is mean [min–max] over 4 observations. The observations are timing repeats of the same deterministic greedy decode, so the ranges bound measurement jitter, not prompt-set sampling variance; the 40 prompts remain a single sample. "
+         f"Byte identity at concurrency 1 (by `text_sha256`): released and adapted draft models produce {rel_vs_ours}/{c1['prompts']} identical outputs in every run; no-speculation and released speculative decoding agree on {span(base_vs_rel.values())}/{c1['prompts']}; the same route across the two server starts agrees on "
+         + ", ".join(f"{same_route[route]}/{c1['prompts']}" for route in ("baseline", "dflash_released", "dflash_ours")) +
+         ". Concurrency 4 and 8 counts are in `round5.text_identity` of the [summary](experiments/20260909-drafter-adaptation/data/summary.json)."))
+    return sections
 
 
 def training_loss_table(summary, chinese):
@@ -166,7 +203,7 @@ def verify_manifest(root):
 
 def verify_provenance(root):
     provenance = read_json(root / "evidence/provenance.json")
-    for round_name in ("round3", "round4"):
+    for round_name in ("round3", "round4", "round5"):
         record = provenance[round_name]
         for public, entry in record["results"].items():
             require((root / "results" / round_name / public).is_file(), "PROVENANCE_RESULT_MISSING:" + public)
@@ -238,6 +275,7 @@ def validate(root=ROOT, *, refresh=False):
         ("paired-bootstrap-only-on-identical-target-text", ["results/round4/agreement/", "results/round3/agreement/"]),
         ("published-prompts-hash-to-recorded-inputs", ["inputs/", "results/round4/acceptance/", "results/round3/acceptance/"]),
         ("training-history-and-readable-log-integrity", ["results/round3/training/", "results/round4/training/", "logs/"]),
+        ("round5-repeated-serving-observations-and-text-identity", ["results/round5/vllm/", "logs/round5/"]),
         ("provenance-hashes-and-private-marker-scan", ["evidence/provenance.json"]),
         ("generated-bilingual-adaptation-table", ["../../README.md", "../../README_CN.md"]),
         ("published-file-integrity", [MANIFEST]),

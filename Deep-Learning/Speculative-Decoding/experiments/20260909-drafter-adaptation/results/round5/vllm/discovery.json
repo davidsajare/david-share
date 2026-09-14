@@ -1,0 +1,6 @@
+{
+  "draft_released": "draft",
+  "prompts": "eval_prompts.jsonl",
+  "prompts_sha256": "ee8381e8c3767d583f753688141554c37377475a56b42d5e446f8f46991ace9f",
+  "target": "target"
+}

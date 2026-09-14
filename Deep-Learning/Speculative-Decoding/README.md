@@ -20,9 +20,9 @@ This repository answers all three on one H100 NVL with offline replay: inference
 
 [Choosing a Route](#choosing-between-mtp-and-dflash-2) · [Measured Comparison](#measured-comparison-mtp-and-dflash-2) · [After Fine-Tuning](#after-fine-tuning-adapting-the-draft-model) · [Quick Start](#quick-start) · [Tests](#tests-and-offline-replay)
 
-Inference comparison: 2026-09-06, `qwen38-quality-20260906`; draft model adaptation: 2026-09-09 through 2026-09-10. The Qwen3.6 experiment remains separate from both.
+Inference comparison: 2026-09-06, `qwen38-quality-20260906`; draft model adaptation: 2026-09-09 through 2026-09-10, with the setting B serving throughput re-tested on 2026-09-13. The Qwen3.6 experiment remains separate from both.
 
-**Scope:** These are author-run experiments on one H100 NVL, not general quality or production guarantees. The selector objective is the author's implementation, not an official training recipe. Training starts from released draft weights; **from-scratch training has not been demonstrated**. The full-dataset inference stage was not run, and answer quality was not graded in the adaptation experiment.
+**Scope:** These are author-run experiments on one H100 NVL, not general quality or production guarantees. The selector objective is the author's implementation, not an official training recipe. Training starts from released draft weights; **from-scratch training has not been demonstrated**. The full-dataset inference stage was not run, and answer quality was not graded in the adaptation experiment. Setting B's serving throughput was re-measured four times on the same 40 prompts; the ranges bound timing jitter, not prompt-set sampling variance. On vLLM 0.28.0 in bf16, greedy speculative output is not byte-identical to greedy autoregressive output: 21 of 40 responses match, and the divergence reproduces deterministically. The publisher's model card states that "greedy output matches the target model exactly"; that was not observed on this engine, and whether the cause is the algorithm or the engine's numeric path was not isolated.
 
 ---
 
@@ -80,7 +80,7 @@ A draft model is trained against the target's hidden features, so fine-tuning th
 |---|---|---|
 | Any fine-tuning | **Test the released draft model first; do not retrain by default** | In setting A all three seeds lowered training loss, yet paired agreement did not improve |
 | Light LoRA (attention projections only, low rank) | The released draft model is likely reusable | Setting A: rank 16, attention only, 1 epoch; retraining produced no measurable gain |
-| Heavy LoRA (all projections, high rank, different language) | A single adaptation pass is worth trying | Setting B: rank 128, 7 projection modules, Chinese corpus; retraining raised first-offset agreement and serving throughput |
+| Heavy LoRA (all projections, high rank, different language) | A single adaptation pass is worth trying | Setting B: rank 128, 7 projection modules, Chinese corpus; retraining raised first-offset agreement and serving throughput; the serving gain re-measured four times at concurrency 1/4/8 is 7.8%–9.1% over the released draft model with non-overlapping ranges |
 | Either way | Accept on your own held-out set and answer-quality criteria | This experiment measured agreement and throughput only, and did not grade answer quality |
 
 **These two settings are not a clean intensity control.** Setting A is an English attention LoRA and setting B is a Chinese all-module LoRA, so language and parameters differ at the same time. The table is a starting point for selection, not evidence that heavier fine-tuning always requires adaptation.
@@ -416,11 +416,23 @@ Each fine-tuned target is served without speculation, with the released draft mo
 | Server acceptance length | 4.19 / 4.06 | 2.39 / 2.61 |
 
 Throughput cells list no speculation / released / adapted; acceptance cells list released / adapted. Acceptance is derived from cumulative logged accepted/drafted counts, including warmup and both concurrency levels, so its denominator differs. No serving-significance claim is made; answer quality was not graded.
+
+#### Setting B Serving Re-test (Round 5)
+
+On 2026-09-13 the three serving routes of setting B were re-run in a fresh VM session with a fresh vLLM install: same weights, same 40 prompts, same seed and engine flags. Each route started the server twice (pass A ordered no speculation → released → adapted, pass B reversed) and ran the client twice per server, giving four throughput observations per cell. The table reports means with raw ranges and makes no distributional assumption.
+
+| Concurrency | No speculation | Released | Adapted | Adapted / released | Ranges overlap |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 53.2 [53.0–53.6] | 96.6 [96.3–97.0] | 105.4 [105.1–105.8] | +9.1% | no |
+| 4 | 194.4 [194.2–194.7] | 323.9 [323.5–324.4] | 349.1 [348.7–349.4] | +7.8% | no |
+| 8 | 336.3 [335.5–337.5] | 531.9 [529.9–533.5] | 577.1 [575.3–578.5] | +8.5% | no |
+
+Throughput in tok/s; each cell is mean [min–max] over 4 observations. The observations are timing repeats of the same deterministic greedy decode, so the ranges bound measurement jitter, not prompt-set sampling variance; the 40 prompts remain a single sample. Byte identity at concurrency 1 (by `text_sha256`): released and adapted draft models produce 40/40 identical outputs in every run; no-speculation and released speculative decoding agree on 21/40; the same route across the two server starts agrees on 40/40, 40/40, 40/40. Concurrency 4 and 8 counts are in `round5.text_identity` of the [summary](experiments/20260909-drafter-adaptation/data/summary.json).
 <!-- END ADAPTATION_TABLE -->
 
 **Setting A:** paired measurements show no draft-agreement improvement across the three training seeds. Only seed 20260908 was compared in vLLM, with no observed throughput gain. There is no matching base-target measurement on these English prompts, so whether fine-tuning harmed the released draft model is not established.
 
-**Setting B:** same-text pairing shows higher draft agreement and joint-prefix acceptance, alongside higher vLLM server counters and throughput. This is a joint-training result; the selector training contribution was not isolated.
+**Setting B:** same-text pairing shows higher draft agreement and joint-prefix acceptance, alongside higher vLLM server counters and throughput. This is a joint-training result; the selector training contribution was not isolated. Round 5 re-ran the three serving routes four times each in a fresh session: the adapted draft model exceeds the released one by 9.1% / 7.8% / 8.5% at concurrency 1/4/8 with non-overlapping ranges at every level, within 0.25 percentage points of the single Round 4 measurements (+9.2% / +8.0%). The two sessions share weights, prompts, seed and engine flags, and deterministic greedy decoding forces them to agree, so this is cross-session reproducibility rather than independent replication. At concurrency 1 the two draft models produce byte-identical output on 40/40 prompts: every accepted token is the target model's own argmax, so the draft model changes the number of verification steps, not the output. Swapping draft models should not be expected to change answers.
 
 The base-target comparison is a separate cross-text diagnostic. The released draft model scores 0.720 first-offset agreement and 3.24 joint-prefix length on base-target outputs. Those outputs differ from the fine-tuned target's, so this comparison does not define a paired recovery fraction. In the 40-output screen, base answers average 252 tokens with 39 reaching the 256-token cap; fine-tuned answers average 119. Token-level repeated 4-gram fractions are 0.054 and 0.021 respectively. These are confounders, not demonstrated causes of the agreement difference.
 
@@ -430,7 +442,7 @@ There is also a cross-engine acceptance gap between HF and vLLM. Batching, preci
 
 **Scope:** one target family, one dataset family and one GPU. The author selected these settings; they are not calibrated retraining thresholds.
 
-The Chinese fine-tuned target failed the token-repetition screen: 11 of 40 responses contain a 4-gram at least three times, against a two-response limit. After the pipeline stopped, the author found 38 repetition failures and 39 length stops on the base target, then continued with a quality warning. Both failing does not establish that the screen is invalid or either target's answers are acceptable.
+The Chinese fine-tuned target failed the token-repetition screen: 11 of 40 responses contain a 4-gram at least three times, against a two-response limit. After the pipeline stopped, the author found 38 repetition failures and 39 length stops on the base target, then continued with a quality warning. Both failing does not establish that the screen is invalid or either target's answers are acceptable. A later review of the per-response records ([gates/target_zh.json](experiments/20260909-drafter-adaptation/results/round4/gates/target_zh.json)) found the largest `max_4gram_count` among the 11 flagged responses is 4, the `repeat_4gram` median across 40 responses is 0.009 with a maximum of 0.088, against a maximum of 0.541 on the English target that Rounds 1–2 confirmed as degenerate; the repeated units are Chinese medical stock phrases and parallel clauses such as "according to the patient's" and "the most likely". The `>= 3` limit is a bare constant introduced during the English experiments with no calibration record, and four tokens cover roughly 2–4 Chinese characters, so the rule does not transfer across languages. The author's judgement is that this failure was a screen false positive; that is a judgement about the repetition metric, still not an answer grade.
 
 [Inputs and split manifests](experiments/20260909-drafter-adaptation/inputs/) are published and checked against run hashes. The dataset revision was not pinned; a new download must pass the hash checks. Round 3 regenerated target text per run and stored only marginal agreement, so no paired intervals are reported for it. Weights are not distributed; their hashes remain in [provenance.json](experiments/20260909-drafter-adaptation/evidence/provenance.json).
 

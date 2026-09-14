@@ -36,6 +36,14 @@
     },
     {
       "evidence": [
+        "results/round5/vllm/",
+        "logs/round5/"
+      ],
+      "id": "round5-repeated-serving-observations-and-text-identity",
+      "status": "PASS"
+    },
+    {
+      "evidence": [
         "evidence/provenance.json"
       ],
       "id": "provenance-hashes-and-private-marker-scan",
@@ -57,6 +65,6 @@
       "status": "PASS"
     }
   ],
-  "manifest_sha256": "5c099ece2df38e635957d961859f17cff91785920131e50d1bc8c948a315aba1",
+  "manifest_sha256": "303f05cb2a24bf42b46fdb752c60ecbb73cbb174b127caa471fbdfe0b1ddae5b",
   "scope": "Offline verification of exported evidence; not fresh GPU execution, regrading or a quality certification."
 }

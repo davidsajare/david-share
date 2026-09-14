@@ -284,6 +284,9 @@
         "drafted_tokens": 13972,
         "last_logged_interval_value": 4.12,
         "logged_intervals": 4,
+        "server_logs": [
+          "vllm_dflash_released"
+        ],
         "verification_steps": 1996
       },
       "dflash_v3": {
@@ -292,6 +295,9 @@
         "drafted_tokens": 11445,
         "last_logged_interval_value": 3.97,
         "logged_intervals": 4,
+        "server_logs": [
+          "vllm_dflash_v3"
+        ],
         "verification_steps": 1635
       }
     }
@@ -899,6 +905,9 @@
         "drafted_tokens": 23667,
         "last_logged_interval_value": 2.59,
         "logged_intervals": 6,
+        "server_logs": [
+          "vllm_dflash_ours"
+        ],
         "verification_steps": 3381
       },
       "dflash_released": {
@@ -907,12 +916,403 @@
         "drafted_tokens": 27650,
         "last_logged_interval_value": 2.46,
         "logged_intervals": 7,
+        "server_logs": [
+          "vllm_dflash_released"
+        ],
         "verification_steps": 3950
       }
     }
   },
-  "scope": "Continuation training of the released DFlash 2 drafter against LoRA-fine-tuned Qwen3.8-27B targets. Not training from scratch. Two drift regimes.",
-  "statistics_boundary": "PAIRED agreement comparisons share byte-identical target text and use a prompt-level bootstrap. Acceptance and vLLM figures are single executions on different generated texts; no significance claim.",
+  "round5": {
+    "boundary": "Observations are timing repeats of deterministic greedy runs on the same 40 prompts; they bound measurement jitter, not prompt-set sampling variance. No answer grading.",
+    "eval_prompts_sha256": "ee8381e8c3767d583f753688141554c37377475a56b42d5e446f8f46991ace9f",
+    "order": {
+      "repA": "baseline, released, adapted",
+      "repB": "adapted, released, baseline"
+    },
+    "scope": "Serving re-test of Round 4 setting B (Chinese target, released vs adapted draft model) on 2026-09-13: fresh VM session and vLLM install, same weights, prompts, seed and engine flags; three concurrency levels; four observations per cell.",
+    "text_identity": {
+      "1": {
+        "baseline_vs_released": {
+          "repAp1": 21,
+          "repAp2": 21,
+          "repBp1": 21,
+          "repBp2": 21
+        },
+        "prompts": 40,
+        "released_vs_adapted": {
+          "repAp1": 40,
+          "repAp2": 40,
+          "repBp1": 40,
+          "repBp2": 40
+        },
+        "same_route_across_server_starts": {
+          "baseline": 40,
+          "dflash_ours": 40,
+          "dflash_released": 40
+        }
+      },
+      "4": {
+        "baseline_vs_released": {
+          "repAp1": 29,
+          "repAp2": 29,
+          "repBp1": 29,
+          "repBp2": 29
+        },
+        "prompts": 40,
+        "released_vs_adapted": {
+          "repAp1": 35,
+          "repAp2": 35,
+          "repBp1": 35,
+          "repBp2": 35
+        },
+        "same_route_across_server_starts": {
+          "baseline": 40,
+          "dflash_ours": 40,
+          "dflash_released": 40
+        }
+      },
+      "8": {
+        "baseline_vs_released": {
+          "repAp1": 22,
+          "repAp2": 23,
+          "repBp1": 22,
+          "repBp2": 23
+        },
+        "prompts": 40,
+        "released_vs_adapted": {
+          "repAp1": 32,
+          "repAp2": 30,
+          "repBp1": 31,
+          "repBp2": 31
+        },
+        "same_route_across_server_starts": {
+          "baseline": 40,
+          "dflash_ours": 40,
+          "dflash_released": 37
+        }
+      }
+    },
+    "vllm": {
+      "adapted_vs_released": {
+        "1": {
+          "adapted_over_released_mean_pct": 9.1,
+          "adapted_range": [
+            105.08,
+            105.82
+          ],
+          "ranges_overlap": false,
+          "released_range": [
+            96.33,
+            96.96
+          ]
+        },
+        "4": {
+          "adapted_over_released_mean_pct": 7.76,
+          "adapted_range": [
+            348.68,
+            349.42
+          ],
+          "ranges_overlap": false,
+          "released_range": [
+            323.47,
+            324.37
+          ]
+        },
+        "8": {
+          "adapted_over_released_mean_pct": 8.51,
+          "adapted_range": [
+            575.26,
+            578.48
+          ],
+          "ranges_overlap": false,
+          "released_range": [
+            529.88,
+            533.49
+          ]
+        }
+      },
+      "routes": {
+        "baseline": {
+          "levels": {
+            "1": {
+              "completion_tokens": {
+                "repAp1": 4776,
+                "repAp2": 4776,
+                "repBp1": 4776,
+                "repBp2": 4776
+              },
+              "length_stops": {
+                "repAp1": 2,
+                "repAp2": 2,
+                "repBp1": 2,
+                "repBp2": 2
+              },
+              "max": 53.57,
+              "mean": 53.2,
+              "min": 53.05,
+              "n": 4,
+              "observations": {
+                "repAp1": 53.57,
+                "repAp2": 53.05,
+                "repBp1": 53.13,
+                "repBp2": 53.07
+              },
+              "stdev": 0.25
+            },
+            "4": {
+              "completion_tokens": {
+                "repAp1": 4758,
+                "repAp2": 4758,
+                "repBp1": 4758,
+                "repBp2": 4758
+              },
+              "length_stops": {
+                "repAp1": 1,
+                "repAp2": 1,
+                "repBp1": 1,
+                "repBp2": 1
+              },
+              "max": 194.69,
+              "mean": 194.42,
+              "min": 194.2,
+              "n": 4,
+              "observations": {
+                "repAp1": 194.54,
+                "repAp2": 194.25,
+                "repBp1": 194.2,
+                "repBp2": 194.69
+              },
+              "stdev": 0.23
+            },
+            "8": {
+              "completion_tokens": {
+                "repAp1": 4812,
+                "repAp2": 4812,
+                "repBp1": 4812,
+                "repBp2": 4812
+              },
+              "length_stops": {
+                "repAp1": 2,
+                "repAp2": 2,
+                "repBp1": 2,
+                "repBp2": 2
+              },
+              "max": 337.46,
+              "mean": 336.26,
+              "min": 335.54,
+              "n": 4,
+              "observations": {
+                "repAp1": 336.05,
+                "repAp2": 335.98,
+                "repBp1": 335.54,
+                "repBp2": 337.46
+              },
+              "stdev": 0.83
+            }
+          },
+          "max_tokens": 256,
+          "prompts": 40
+        },
+        "dflash_ours": {
+          "levels": {
+            "1": {
+              "completion_tokens": {
+                "repAp1": 4697,
+                "repAp2": 4697,
+                "repBp1": 4697,
+                "repBp2": 4697
+              },
+              "length_stops": {
+                "repAp1": 1,
+                "repAp2": 1,
+                "repBp1": 1,
+                "repBp2": 1
+              },
+              "max": 105.82,
+              "mean": 105.42,
+              "min": 105.08,
+              "n": 4,
+              "observations": {
+                "repAp1": 105.82,
+                "repAp2": 105.22,
+                "repBp1": 105.57,
+                "repBp2": 105.08
+              },
+              "speedup_vs_baseline_mean": 1.982,
+              "stdev": 0.34
+            },
+            "4": {
+              "completion_tokens": {
+                "repAp1": 4643,
+                "repAp2": 4643,
+                "repBp1": 4643,
+                "repBp2": 4643
+              },
+              "length_stops": {
+                "repAp1": 1,
+                "repAp2": 1,
+                "repBp1": 1,
+                "repBp2": 1
+              },
+              "max": 349.42,
+              "mean": 349.06,
+              "min": 348.68,
+              "n": 4,
+              "observations": {
+                "repAp1": 348.91,
+                "repAp2": 348.68,
+                "repBp1": 349.42,
+                "repBp2": 349.25
+              },
+              "speedup_vs_baseline_mean": 1.795,
+              "stdev": 0.33
+            },
+            "8": {
+              "completion_tokens": {
+                "repAp1": 4758,
+                "repAp2": 4752,
+                "repBp1": 4752,
+                "repBp2": 4758
+              },
+              "length_stops": {
+                "repAp1": 2,
+                "repAp2": 2,
+                "repBp1": 2,
+                "repBp2": 2
+              },
+              "max": 578.48,
+              "mean": 577.14,
+              "min": 575.26,
+              "n": 4,
+              "observations": {
+                "repAp1": 578.48,
+                "repAp2": 576.77,
+                "repBp1": 575.26,
+                "repBp2": 578.04
+              },
+              "speedup_vs_baseline_mean": 1.716,
+              "stdev": 1.45
+            }
+          },
+          "max_tokens": 256,
+          "prompts": 40
+        },
+        "dflash_released": {
+          "levels": {
+            "1": {
+              "completion_tokens": {
+                "repAp1": 4697,
+                "repAp2": 4697,
+                "repBp1": 4697,
+                "repBp2": 4697
+              },
+              "length_stops": {
+                "repAp1": 1,
+                "repAp2": 1,
+                "repBp1": 1,
+                "repBp2": 1
+              },
+              "max": 96.96,
+              "mean": 96.63,
+              "min": 96.33,
+              "n": 4,
+              "observations": {
+                "repAp1": 96.96,
+                "repAp2": 96.46,
+                "repBp1": 96.77,
+                "repBp2": 96.33
+              },
+              "speedup_vs_baseline_mean": 1.816,
+              "stdev": 0.29
+            },
+            "4": {
+              "completion_tokens": {
+                "repAp1": 4699,
+                "repAp2": 4699,
+                "repBp1": 4699,
+                "repBp2": 4699
+              },
+              "length_stops": {
+                "repAp1": 1,
+                "repAp2": 1,
+                "repBp1": 1,
+                "repBp2": 1
+              },
+              "max": 324.37,
+              "mean": 323.93,
+              "min": 323.47,
+              "n": 4,
+              "observations": {
+                "repAp1": 324.36,
+                "repAp2": 324.37,
+                "repBp1": 323.47,
+                "repBp2": 323.52
+              },
+              "speedup_vs_baseline_mean": 1.666,
+              "stdev": 0.5
+            },
+            "8": {
+              "completion_tokens": {
+                "repAp1": 4661,
+                "repAp2": 4643,
+                "repBp1": 4661,
+                "repBp2": 4643
+              },
+              "length_stops": {
+                "repAp1": 1,
+                "repAp2": 1,
+                "repBp1": 1,
+                "repBp2": 1
+              },
+              "max": 533.49,
+              "mean": 531.89,
+              "min": 529.88,
+              "n": 4,
+              "observations": {
+                "repAp1": 531.75,
+                "repAp2": 533.49,
+                "repBp1": 529.88,
+                "repBp2": 532.45
+              },
+              "speedup_vs_baseline_mean": 1.582,
+              "stdev": 1.52
+            }
+          },
+          "max_tokens": 256,
+          "prompts": 40
+        }
+      }
+    },
+    "vllm_server_acceptance": {
+      "dflash_ours": {
+        "accepted_tokens": 31218,
+        "derived_mean_acceptance_length": 2.6227,
+        "drafted_tokens": 134666,
+        "last_logged_interval_value": 2.61,
+        "logged_intervals": 26,
+        "server_logs": [
+          "vllm_dflash_ours_repA",
+          "vllm_dflash_ours_repB"
+        ],
+        "verification_steps": 19238
+      },
+      "dflash_released": {
+        "accepted_tokens": 30355,
+        "derived_mean_acceptance_length": 2.3941,
+        "drafted_tokens": 152418,
+        "last_logged_interval_value": 2.41,
+        "logged_intervals": 29,
+        "server_logs": [
+          "vllm_dflash_released_repA",
+          "vllm_dflash_released_repB"
+        ],
+        "verification_steps": 21774
+      }
+    }
+  },
+  "scope": "Continuation training of the released DFlash 2 drafter against LoRA-fine-tuned Qwen3.8-27B targets. Not training from scratch. Two drift regimes; the Chinese serving comparison was repeated in a later session.",
+  "statistics_boundary": "PAIRED agreement comparisons share byte-identical target text and use a prompt-level bootstrap. Round 3/4 acceptance and vLLM figures are single executions on different generated texts. Round 5 repeats the Round 4 serving runs four times per cell and reports raw ranges; no significance claim.",
   "training": {
     "chinese_seed20260908": {
       "args": {

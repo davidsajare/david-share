@@ -230,19 +230,116 @@ def vllm_server_acceptance(provenance_round, routes, speculative_tokens=7):
     """
     result = {}
     for route in routes:
-        activation = provenance_round["logs"]["vllm_" + route]["activation"]
-        accepted, drafted = activation["accepted_tokens_logged"], activation["drafted_tokens_logged"]
+        # Round 5 started each route twice; ``logs`` may hold one or several server logs per route.
+        keys = [key for key in provenance_round["logs"] if key == "vllm_" + route or key.startswith("vllm_" + route + "_rep")]
+        require(bool(keys), "SERVER_LOG_MISSING:" + route)
+        accepted = sum(provenance_round["logs"][key]["activation"]["accepted_tokens_logged"] for key in keys)
+        drafted = sum(provenance_round["logs"][key]["activation"]["drafted_tokens_logged"] for key in keys)
         require(drafted % speculative_tokens == 0 and drafted > 0, "SERVER_DRAFT_COUNT_NOT_MULTIPLE_OF_BLOCK:" + route)
         steps = drafted // speculative_tokens
+        last = provenance_round["logs"][sorted(keys)[-1]]["activation"]
         result[route] = {
             "accepted_tokens": accepted,
             "drafted_tokens": drafted,
             "verification_steps": steps,
             "derived_mean_acceptance_length": round(1.0 + accepted / steps, 4),
-            "last_logged_interval_value": activation["last_logged_mean_acceptance_length"],
-            "logged_intervals": activation["server_metric_intervals"],
+            "last_logged_interval_value": last["last_logged_mean_acceptance_length"],
+            "logged_intervals": sum(provenance_round["logs"][key]["activation"]["server_metric_intervals"] for key in keys),
+            "server_logs": sorted(keys),
         }
     return result
+
+
+ROUND5_RUNS = tuple(f"rep{rep}p{pas}" for rep in "AB" for pas in (1, 2))
+
+
+def repeated_vllm_summary(records, routes, runs):
+    """Four throughput observations per route and concurrency, kept as observations.
+
+    The runs share weights, prompts, seed and engine flags, so greedy decoding makes the
+    token sequences deterministic; the spread below is timing jitter of the same work, not
+    sampling variance of the effect. ``ranges_overlap`` compares the raw min/max of the
+    adapted and released routes without any distributional assumption.
+    """
+    per_route = {}
+    for route in routes:
+        levels = {}
+        for run in runs:
+            record = records[(route, run)]
+            for level in record["levels"]:
+                rows = level["per_request"]
+                tokens = sum(row["completion_tokens"] for row in rows)
+                require(tokens == level["completion_tokens"], f"VLLM_TOKEN_MISMATCH:{route}:{run}")
+                rounding_error = tokens * 0.005 / level["wall_seconds"] ** 2 + 0.005
+                require(abs(tokens / level["wall_seconds"] - level["tokens_per_second"]) <= rounding_error,
+                        f"VLLM_THROUGHPUT_MISMATCH:{route}:{run}")
+                cell = levels.setdefault(str(level["concurrency"]), {"observations": {}, "completion_tokens": {}, "length_stops": {}})
+                cell["observations"][run] = level["tokens_per_second"]
+                cell["completion_tokens"][run] = tokens
+                cell["length_stops"][run] = level["finish_length"]
+        for cell in levels.values():
+            values = list(cell["observations"].values())
+            require(len(values) == len(runs), "ROUND5_RUN_MISSING:" + route)
+            cell.update(n=len(values), mean=round(statistics.mean(values), 2), min=min(values), max=max(values),
+                        stdev=round(statistics.stdev(values), 2))
+        per_route[route] = {"max_tokens": records[(route, runs[0])]["max_tokens"],
+                            "prompts": records[(route, runs[0])]["num_prompts"], "levels": levels}
+    baseline = per_route[routes[0]]["levels"]
+    for route in routes[1:]:
+        for concurrency, cell in per_route[route]["levels"].items():
+            cell["speedup_vs_baseline_mean"] = round(cell["mean"] / baseline[concurrency]["mean"], 3)
+    released, adapted = per_route[routes[1]]["levels"], per_route[routes[2]]["levels"]
+    comparison = {}
+    for concurrency in released:
+        r, o = released[concurrency], adapted[concurrency]
+        comparison[concurrency] = {
+            "adapted_over_released_mean_pct": round((o["mean"] / r["mean"] - 1) * 100, 2),
+            "released_range": [r["min"], r["max"]], "adapted_range": [o["min"], o["max"]],
+            "ranges_overlap": not (o["min"] > r["max"] or r["min"] > o["max"]),
+        }
+    return {"routes": per_route, "adapted_vs_released": comparison}
+
+
+def text_identity(records, routes, runs):
+    """How many of the 40 prompts produce byte-identical text, by ``text_sha256``.
+
+    Three comparisons: released vs adapted draft model in the same run (does the drafter
+    change the output?), no-speculation vs released in the same run (is greedy speculative
+    decoding byte-identical to greedy autoregressive decoding on this engine?), and the
+    same route across the two server starts (is the divergence deterministic?).
+    """
+    def hashes(route, run, concurrency):
+        level = next(level for level in records[(route, run)]["levels"] if str(level["concurrency"]) == concurrency)
+        return [row["text_sha256"] for row in level["per_request"]]
+
+    concurrencies = [str(level["concurrency"]) for level in records[(routes[0], runs[0])]["levels"]]
+    result = {}
+    for concurrency in concurrencies:
+        entry = {"prompts": len(hashes(routes[0], runs[0], concurrency))}
+        entry["released_vs_adapted"] = {run: sum(a == b for a, b in zip(hashes(routes[1], run, concurrency), hashes(routes[2], run, concurrency))) for run in runs}
+        entry["baseline_vs_released"] = {run: sum(a == b for a, b in zip(hashes(routes[0], run, concurrency), hashes(routes[1], run, concurrency))) for run in runs}
+        entry["same_route_across_server_starts"] = {route: sum(a == b for a, b in zip(hashes(route, runs[0], concurrency), hashes(route, runs[-1], concurrency))) for route in routes}
+        result[concurrency] = entry
+    return result
+
+
+def summarize_round5(results, root, provenance, round4_prompts_sha256):
+    routes = ("baseline", "dflash_released", "dflash_ours")
+    discovery = read_json(results / "vllm" / "discovery.json")
+    require(discovery["prompts_sha256"] == round4_prompts_sha256, "ROUND5_PROMPTS_DIFFER_FROM_ROUND4")
+    records = {(route, run): read_json(results / "vllm" / f"{route}_{run}.json") for route in routes for run in ROUND5_RUNS}
+    for (route, run), record in records.items():
+        require(record["label"] == f"{route}_{run}", f"ROUND5_LABEL_MISMATCH:{route}:{run}")
+        require(record["num_prompts"] == 40 and record["max_tokens"] == 256, f"ROUND5_CONTRACT_MISMATCH:{route}:{run}")
+    return {
+        "scope": "Serving re-test of Round 4 setting B (Chinese target, released vs adapted draft model) on 2026-09-13: fresh VM session and vLLM install, same weights, prompts, seed and engine flags; three concurrency levels; four observations per cell.",
+        "eval_prompts_sha256": discovery["prompts_sha256"],
+        "order": {"repA": "baseline, released, adapted", "repB": "adapted, released, baseline"},
+        "vllm": repeated_vllm_summary(records, routes, ROUND5_RUNS),
+        "text_identity": text_identity(records, routes, ROUND5_RUNS),
+        "vllm_server_acceptance": vllm_server_acceptance(provenance["round5"], routes[1:]),
+        "boundary": "Observations are timing repeats of deterministic greedy runs on the same 40 prompts; they bound measurement jitter, not prompt-set sampling variance. No answer grading.",
+    }
 
 
 def verify_inputs(root, round_name, expected):
@@ -377,13 +474,15 @@ def training_summary(root, provenance):
 def summarize(root):
     results = root / "results"
     provenance = read_json(root / "evidence" / "provenance.json")
+    round4 = summarize_round4(results / "round4", root, provenance)
     return {
-        "scope": "Continuation training of the released DFlash 2 drafter against LoRA-fine-tuned Qwen3.8-27B targets. Not training from scratch. Two drift regimes.",
+        "scope": "Continuation training of the released DFlash 2 drafter against LoRA-fine-tuned Qwen3.8-27B targets. Not training from scratch. Two drift regimes; the Chinese serving comparison was repeated in a later session.",
         "round3": summarize_round3(results / "round3", root, provenance),
-        "round4": summarize_round4(results / "round4", root, provenance),
+        "round4": round4,
+        "round5": summarize_round5(results / "round5", root, provenance, round4["eval_prompts_sha256"]["zh200"]),
         "training": training_summary(root, provenance),
         "answer_quality": "NOT_MEASURED: no grader was run on these medical prompt sets; agreement and acceptance describe drafting, not answer correctness.",
-        "statistics_boundary": "PAIRED agreement comparisons share byte-identical target text and use a prompt-level bootstrap. Acceptance and vLLM figures are single executions on different generated texts; no significance claim.",
+        "statistics_boundary": "PAIRED agreement comparisons share byte-identical target text and use a prompt-level bootstrap. Round 3/4 acceptance and vLLM figures are single executions on different generated texts. Round 5 repeats the Round 4 serving runs four times per cell and reports raw ranges; no significance claim.",
     }
 
 

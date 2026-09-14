@@ -1,0 +1,1003 @@
+{
+  "decoding": "temperature 0.0 via OpenAI chat completions, enable_thinking=false",
+  "label": "dflash_released_repAp1",
+  "levels": [
+    {
+      "completion_tokens": 4697,
+      "concurrency": 1,
+      "finish_length": 1,
+      "median_request_seconds": 0.946,
+      "per_request": [
+        {
+          "completion_tokens": 120,
+          "finish_reason": "stop",
+          "prompt_tokens": 61,
+          "seconds": 1.3058,
+          "text_head": "根据患者的症状表现，疟疾发作多日不愈，伴有寒热交替、倦怠乏力、食欲不振、形体消瘦，以及舌质淡、苔白、脉细无力，这些症状提示患者可能存在气血两虚的情况。因此，在选",
+          "text_sha256": "66cf4d398fad13ab7228cecb640c88f872f249a4c502f0fabcdc745114759254"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 31,
+          "seconds": 2.5165,
+          "text_head": "在医学实践中，医生应遵循一系列伦理原则来保护患者的合法权益。这些原则主要包括：\n\n1. **尊重自主权**：医生应尊重患者的自主决策能力，确保患者在充分了解病情",
+          "text_sha256": "04f9916b3ef048fbc0c4e22b66b2eec246f1d5510743df871bbe4e51c9833b7b"
+        },
+        {
+          "completion_tokens": 62,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "seconds": 0.8297,
+          "text_head": "在决定治疗方案之前，建议进行醛固酮和肾素活性测定。这些检查可以帮助判断患者是否存在原发性醛固酮增多症，这是一种可能导致高血压和低钾血症的内分泌疾病。通过检测这些",
+          "text_sha256": "17c1a587472f3e1bdb8f69fd3954a14758d573ab73eed4ba80f4cc4133f216e8"
+        },
+        {
+          "completion_tokens": 98,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "seconds": 0.8966,
+          "text_head": "根据患者的症状和病史，最可能的诊断是髋关节结核。患者为19岁女性，出现左髋疼痛、活动受限和跛行症状已持续6个月，并且经过抗结核治疗后症状有所缓解，这提示结核感染",
+          "text_sha256": "285218261b217147a87d065a79dba81557b171623814c64d95ab17a4f4a3907f"
+        },
+        {
+          "completion_tokens": 177,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "seconds": 2.1812,
+          "text_head": "根据提供的信息，这位74岁女性突然大量呕血，最可能的原因是服用止痛药导致的急性胃黏膜损伤。许多非甾体抗炎药（NSAIDs）会抑制胃黏膜的保护机制，从而增加胃酸对",
+          "text_sha256": "9916c337854cbcf7acdca1ef6cc521116404d48f6d1c02b1c7e51d43e3075cc1"
+        },
+        {
+          "completion_tokens": 112,
+          "finish_reason": "stop",
+          "prompt_tokens": 85,
+          "seconds": 1.0624,
+          "text_head": "根据患者的症状描述，王某在服用阿莫西林后出现了全身泛发的鲜红色丘疹和斑丘疹，并伴有瘙痒、发热及口唇焦燥等症状。这些症状与药疹中的“猩红热型药疹”非常吻合。猩红热",
+          "text_sha256": "1c2eb6931e24d111e4b69e2c86cee61f521f5c1933ee8333172423f71a39383b"
+        },
+        {
+          "completion_tokens": 113,
+          "finish_reason": "stop",
+          "prompt_tokens": 92,
+          "seconds": 0.9431,
+          "text_head": "根据提供的信息，患者的24小时尿量为1000ml，尿蛋白定量为1.1g/24h，并且肾脏大小正常。这些特征与慢性肾炎综合征的表现较为一致。慢性肾炎综合征通常表现",
+          "text_sha256": "b5f4cb86bcaafa0d3b459ba074acb39741d50f4d5494c959623e3504ed2d13a2"
+        },
+        {
+          "completion_tokens": 246,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "seconds": 2.7092,
+          "text_head": "根据患者的症状和病史，她可能面临宫外孕或流产的风险，这两种情况都需要紧急处理。首先，建议立即进行以下检查：\n\n1. **超声检查**：通过超声检查可以确认子宫内",
+          "text_sha256": "88a0c3d78d8730971b67579d80c67456e779ffa353d001429a60f1cc1730d574"
+        },
+        {
+          "completion_tokens": 67,
+          "finish_reason": "stop",
+          "prompt_tokens": 97,
+          "seconds": 0.7209,
+          "text_head": "在这种情况下，患者最容易发生的并发症是胎盘早剥。根据患者的症状和体征，包括高血压、持续性腹痛、阴道流血、子宫张力大、宫底前壁压痛以及尿蛋白阳性，这些都提示胎盘早",
+          "text_sha256": "241fe7c2778786d5a03f203d625ee2ec266826063a24fcd4f26850e5c1523f84"
+        },
+        {
+          "completion_tokens": 84,
+          "finish_reason": "stop",
+          "prompt_tokens": 38,
+          "seconds": 0.8997,
+          "text_head": "根据患者的症状和影像学检查结果，最可能的诊断是脊柱结核。患者出现的高热、寒战和背痛持续超过半个月，这些症状与脊柱结核的表现相符。影像学检查如果显示椎体破坏、椎间",
+          "text_sha256": "36bff77c8312e9f1cf111f505a0c8fe9d7723ed888c98331f8a25e30f54a708b"
+        },
+        {
+          "completion_tokens": 62,
+          "finish_reason": "stop",
+          "prompt_tokens": 102,
+          "seconds": 0.4896,
+          "text_head": "根据提供的信息，该铸工的X线胸片显示有超过四个肺区的密集度1级的圆形小阴影。根据尘肺病的分级标准，这种情况通常被诊断为“零期尘肺”。因此，该铸工的尘肺病分级诊断",
+          "text_sha256": "c73b62f57e94c2253b1b11d5272908c5ed22fabaf87042a65248d131ae6f2830"
+        },
+        {
+          "completion_tokens": 190,
+          "finish_reason": "stop",
+          "prompt_tokens": 64,
+          "seconds": 2.214,
+          "text_head": "针对这位怀孕四个月的孕妇，她的症状表现为典型的肾阴虚，包括腰膝酸软、头晕耳鸣、手足心热、两颧潮红、大便秘结、舌红少苔、脉细数等。此外，她还有三次堕胎史，这可能导",
+          "text_sha256": "c1e7aa9c5f7ed2bdb4238504a8afc70731c16beb57acf319b3e4abe0bf33b008"
+        },
+        {
+          "completion_tokens": 169,
+          "finish_reason": "stop",
+          "prompt_tokens": 95,
+          "seconds": 2.0787,
+          "text_head": "根据患者的情况，她目前处于妊娠晚期，并且出现了高血压和尿蛋白，这提示可能存在子痫前期的风险。虽然入院治疗后症状有所改善，但血压和尿蛋白仍然偏高，因此需要谨慎处理",
+          "text_sha256": "f58ee1202fa4813a8cd838645668172ed9174d530e2b76a8c49dc34bcdce909b"
+        },
+        {
+          "completion_tokens": 91,
+          "finish_reason": "stop",
+          "prompt_tokens": 79,
+          "seconds": 0.9486,
+          "text_head": "在这种情况下，最有利于判断病情活动性的指标是C反应蛋白（CRP）。CRP是一种急性期反应蛋白，在炎症活动时会显著升高，因此能够灵敏地反映类风湿性关节炎的活动性。",
+          "text_sha256": "55a63813cec342d14b60edb6c1aec9466bbbab16994d9b81c9d44fc09fe27be9"
+        },
+        {
+          "completion_tokens": 185,
+          "finish_reason": "stop",
+          "prompt_tokens": 50,
+          "seconds": 1.9617,
+          "text_head": "对于这位42岁男性患者，他有胃溃疡病史，并且最近被确诊为类风湿性关节炎。在选择治疗药物时，我们需要特别注意避免使用可能加重胃溃疡的非甾体抗炎药（NSAIDs）。",
+          "text_sha256": "ebaa2bafe9f56e4c054895e278b524a17e52d5f5f0c52f7551a047f9914f3526"
+        },
+        {
+          "completion_tokens": 101,
+          "finish_reason": "stop",
+          "prompt_tokens": 112,
+          "seconds": 0.8562,
+          "text_head": "根据患者的症状和实验室检查结果，26岁男性，双下肢水肿，尿蛋白定量4.0g，尿中红细胞10～20个/HP，血浆白蛋白27g/L，血肌酐正常，这些特征提示肾病综合",
+          "text_sha256": "1c22ef9f962dd59f70813f2989dd349a38465dc46c707e67987305aff3421e38"
+        },
+        {
+          "completion_tokens": 58,
+          "finish_reason": "stop",
+          "prompt_tokens": 106,
+          "seconds": 0.5836,
+          "text_head": "根据描述的症状和检查结果，这名3个月大的女婴左眼溢泪，无分泌物，冲洗时有阻力，且冲洗液从另一泪点反流，这些特征最符合鼻泪管狭窄的情况。因此，可能的诊断为：\n\nC",
+          "text_sha256": "ec90a7ae295b563d3330a9e2a35599c60410218a9adcc2ebfe4f9a3b3060d91f"
+        },
+        {
+          "completion_tokens": 231,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "seconds": 1.7582,
+          "text_head": "在体外放射分析中，设计实验以检测标记物的免疫活性时，可以通过比较两组试管中的反应来理解剂量-反应曲线的关系。\n\n第一组试管中，加入固定量的抗体和标记抗原，同时加",
+          "text_sha256": "14fc779bb991ebdadc26ebb0d96c543a1709274b0beb823c265ddb8de52a6668"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 111,
+          "seconds": 0.79,
+          "text_head": "根据患者的临床表现和病史，最可能的心脏瓣膜病变是二尖瓣狭窄。患者有风湿热的病史，这常常导致二尖瓣狭窄。她的症状，如劳力性气促、水肿、咳嗽，以及心尖区舒张期杂音，",
+          "text_sha256": "7f3b14c7ae49b665497a2126c675a5bd2c11849847aa86b2315074e212313c42"
+        },
+        {
+          "completion_tokens": 149,
+          "finish_reason": "stop",
+          "prompt_tokens": 62,
+          "seconds": 1.9907,
+          "text_head": "在这种情况下，患者很可能患有感染性心内膜炎，这是一种需要紧急处理的严重感染。首选的治疗方法是使用抗生素进行静脉注射，以尽快控制感染。通常，青霉素或头孢菌素是常用",
+          "text_sha256": "f83ceae630b264a3684465bcd6a77b0b338bf1400486e56be271eeadd2daf4b1"
+        },
+        {
+          "completion_tokens": 143,
+          "finish_reason": "stop",
+          "prompt_tokens": 61,
+          "seconds": 1.5723,
+          "text_head": "根据您提供的临床症状和检查结果，这位44岁女性最可能的诊断是牙周-牙髓联合病变。虽然牙髓活力正常，但考虑到瘘管的存在、探诊深度达7mm以及叩诊阳性，这些都提示可",
+          "text_sha256": "0b41897441118e51f7442b6fce5e059aa69036d17df16efa1ae180192810162f"
+        },
+        {
+          "completion_tokens": 103,
+          "finish_reason": "stop",
+          "prompt_tokens": 91,
+          "seconds": 1.1641,
+          "text_head": "根据患者的临床表现，她最可能患有糖尿病性周围神经病变。这种并发症通常会导致感觉异常，如麻木和刺痛，并可能影响自主神经功能，导致尿失禁和无汗等症状。此外，患者双手",
+          "text_sha256": "9973a600c3fc6819bed765ae7d54b25f0c5a6ec952e090593518ef65837c0882"
+        },
+        {
+          "completion_tokens": 78,
+          "finish_reason": "stop",
+          "prompt_tokens": 63,
+          "seconds": 1.024,
+          "text_head": "根据刘某的症状表现，他可能患有流行性腮腺炎，并且伴随明显的热毒症状。针对这种情况，普济消毒饮是一个适合的中药方剂选择。普济消毒饮具有清热解毒、疏风散邪的作用，尤",
+          "text_sha256": "68bb646342ee347490ff930692aece9369e053a53fe62673dcebded41c3b4513"
+        },
+        {
+          "completion_tokens": 91,
+          "finish_reason": "stop",
+          "prompt_tokens": 106,
+          "seconds": 1.2096,
+          "text_head": "根据患者的症状和体征，最有可能的诊断是右侧肺炎，尤其是右下叶肺炎。患者的持续高热、白细胞计数升高和中性粒细胞比例增高，提示存在细菌感染。右上腹的疼痛和向右肩的放",
+          "text_sha256": "f676de0ede22058aac226e9339f0645d8464d733d1ba2868ea6ed6a31fd5f162"
+        },
+        {
+          "completion_tokens": 60,
+          "finish_reason": "stop",
+          "prompt_tokens": 48,
+          "seconds": 0.7892,
+          "text_head": "这种实验类型被称为“双盲随机对照试验”。在这种试验中，研究对象和研究者都不知道谁接受了疫苗，谁接受了安慰剂，这样可以最大限度地减少偏见对实验结果的影响。通过随机",
+          "text_sha256": "b4f4af5b5636670fdee4faad2baf249529bc5c576b493c16dbb9606ae3fc442a"
+        },
+        {
+          "completion_tokens": 156,
+          "finish_reason": "stop",
+          "prompt_tokens": 94,
+          "seconds": 1.6468,
+          "text_head": "根据您提供的信息，这位初产妇的分娩情况确实存在胎位异常的问题。从检查结果来看，宫底部为臀，腹部前方可触及胎儿小部分，未触及胎头，而肛查显示胎头已达棘下2cm，矢",
+          "text_sha256": "28349bb7ce6729fe5e41e1fdb44bb92380549349f315905d025ce0c1890722d9"
+        },
+        {
+          "completion_tokens": 62,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "seconds": 0.8399,
+          "text_head": "在决定治疗方案之前，建议进行醛固酮和肾素活性测定。这些检查可以帮助判断患者是否存在原发性醛固酮增多症，这是一种可能导致高血压和低钾血症的内分泌疾病。通过检测这些",
+          "text_sha256": "17c1a587472f3e1bdb8f69fd3954a14758d573ab73eed4ba80f4cc4133f216e8"
+        },
+        {
+          "completion_tokens": 210,
+          "finish_reason": "stop",
+          "prompt_tokens": 44,
+          "seconds": 1.9971,
+          "text_head": "根据赵某的症状和体征，我们可以推测他可能经历了较为严重的失血。黑便提示消化道出血，而眩晕、心率加快和血压降低则表明身体可能处于休克状态。\n\n在评估失血量时，通常",
+          "text_sha256": "527fc0c473a5d97b4fd6a11c5b2689c7d4299eb20855be56ffe5663e3a7bf0de"
+        },
+        {
+          "completion_tokens": 157,
+          "finish_reason": "stop",
+          "prompt_tokens": 62,
+          "seconds": 0.8841,
+          "text_head": "根据国内通用的烧伤补液公式，即Evans公式，计算一个40岁、体重74公斤的男性，头颈部、背部及臀部有部分深Ⅱ度和部分Ⅲ度烧伤，在最初的24小时内需要输液的总量",
+          "text_sha256": "1755c0dc208a44ce1f1571219cb5438bf906c162f758a561c26efeeae9d83397"
+        },
+        {
+          "completion_tokens": 77,
+          "finish_reason": "stop",
+          "prompt_tokens": 73,
+          "seconds": 0.6756,
+          "text_head": "在“阴中之阴中者,一生九死;阳中之阳中者,九生一死”这句话中，“一”与“九”并不是具体的数字，而是用来表达一种极端的对比。它们在这里表示的是“很少”和“很多”的",
+          "text_sha256": "76f1bbc8ca7916ccd9d211bab6857abeb7e82327863c47cae51ea008e5f19bc7"
+        },
+        {
+          "completion_tokens": 68,
+          "finish_reason": "stop",
+          "prompt_tokens": 28,
+          "seconds": 0.8597,
+          "text_head": "在胎儿缺氧的最早期阶段，通常首先发生的胎儿心率变化现象是胎动增加。这是因为胎动增加是胎儿对缺氧环境的一种早期反应，胎儿通过增加活动来应对氧气不足的情况。这种变化",
+          "text_sha256": "6602f32d6c6dc4aa7d823cf53c467691c4b824bacd07fb31c54c1b9469160e34"
+        },
+        {
+          "completion_tokens": 86,
+          "finish_reason": "stop",
+          "prompt_tokens": 95,
+          "seconds": 0.9102,
+          "text_head": "对于这位50岁男性患者，他的空腹血糖控制得相当不错，但餐后血糖仍然偏高。为了改善餐后血糖，可以考虑加用阿卡波糖。阿卡波糖是一种α-葡萄糖苷酶抑制剂，能够延缓碳水",
+          "text_sha256": "49f6baa36a883468f527665331a7636c98d3731c849765767a9a726aa2b4a8b5"
+        },
+        {
+          "completion_tokens": 90,
+          "finish_reason": "stop",
+          "prompt_tokens": 71,
+          "seconds": 0.7936,
+          "text_head": "根据患者的症状和检查结果，最可能的诊断是间质性膀胱炎。间质性膀胱炎是一种慢性膀胱炎症性疾病，其特点包括尿频、尿急、尿痛，以及尿常规检查中可能出现的红细胞和白细胞",
+          "text_sha256": "111fcbf5788f8a92107a26aa96ecb1f88524f03aa013e4a90429fac54b0aeb65"
+        },
+        {
+          "completion_tokens": 146,
+          "finish_reason": "stop",
+          "prompt_tokens": 116,
+          "seconds": 1.4695,
+          "text_head": "根据李女士的情况，她目前处于第一产程的潜伏期，宫缩不够强且频率较低，而胎心正常，羊水清澈，胎位为LOP（左枕后位），这些因素都提示胎儿暂时没有缺氧或脐带脱垂的紧",
+          "text_sha256": "344ecc309636136f8884f8bcf06eb97a144f390efe33547d991eb83ba3d90bf5"
+        },
+        {
+          "completion_tokens": 53,
+          "finish_reason": "stop",
+          "prompt_tokens": 75,
+          "seconds": 0.4208,
+          "text_head": "根据患者的症状和超声结果，最可能的诊断是C. 肝炎。患者有右上腹部轻度触痛和肝功能异常，超声显示肝大且回声稍减低，胆囊壁增厚呈“双边”征，这些特征与肝炎的表现相",
+          "text_sha256": "a45f9529deb14e775838f5a2e44d8469356241f2d9d3c1deea9fecf5d1848eb7"
+        },
+        {
+          "completion_tokens": 123,
+          "finish_reason": "stop",
+          "prompt_tokens": 88,
+          "seconds": 1.2354,
+          "text_head": "根据您描述的症状，这名23岁的女性患者最可能的诊断是重症肌无力（Myasthenia Gravis）。重症肌无力是一种自身免疫性疾病，其特征是神经肌肉接头传递功",
+          "text_sha256": "0ea1684694188b13f0555ef7fc4cc3ae6585557fe42cfc9ae82978848722db1c"
+        },
+        {
+          "completion_tokens": 65,
+          "finish_reason": "stop",
+          "prompt_tokens": 62,
+          "seconds": 0.6978,
+          "text_head": "对于确诊为盘状红斑狼疮且皮疹在日晒后加重的40岁女性患者，首选的治疗药物通常是外用糖皮质激素。这类药物能够有效减轻皮肤的炎症反应，是治疗盘状红斑狼疮局部症状的常",
+          "text_sha256": "8c7039427a93597cace41fee8a10180cfa68d5e71cabdc42ca5ed0bf32488466"
+        },
+        {
+          "completion_tokens": 101,
+          "finish_reason": "stop",
+          "prompt_tokens": 46,
+          "seconds": 0.8818,
+          "text_head": "在妊娠早期，出现恶心呕吐，食入即吐等症状，并伴有头晕体倦、舌淡苔白、脉缓滑无力，这些表现符合中医理论中的“胃虚”证候。胃虚证候通常表现为脾胃虚弱，导致胃的受纳和",
+          "text_sha256": "cc52a316abb6399f1a2936a921d0d9b9970bb4135c291224d54c57621e17ced1"
+        },
+        {
+          "completion_tokens": 111,
+          "finish_reason": "stop",
+          "prompt_tokens": 108,
+          "seconds": 1.0278,
+          "text_head": "根据提供的信息，这名6岁男孩的化验结果显示HBsAg（+）、HBeAg（+）、抗HBc（+），而抗HBs（-）、抗HBe（-），并且肝功能正常，没有任何症状和体",
+          "text_sha256": "213543294572bd3fae93bf98e37e067f73ad31aef0dd621e7f904481b11510df"
+        },
+        {
+          "completion_tokens": 51,
+          "finish_reason": "stop",
+          "prompt_tokens": 135,
+          "seconds": 0.5995,
+          "text_head": "根据患者的症状和体检结果，他很可能患有肺炎链球菌引起的肺炎。对于这种情况，经验性抗菌治疗通常选择青霉素，因为肺炎链球菌对青霉素通常敏感。因此，最佳的选择是：\n\n",
+          "text_sha256": "3ea8590c016ff677de437711b56043c59d72e5e5e62cd8e0453d0cf5bd4259c4"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 96.96,
+      "wall_seconds": 48.44
+    },
+    {
+      "completion_tokens": 4699,
+      "concurrency": 4,
+      "finish_length": 1,
+      "median_request_seconds": 1.112,
+      "per_request": [
+        {
+          "completion_tokens": 120,
+          "finish_reason": "stop",
+          "prompt_tokens": 61,
+          "seconds": 1.5034,
+          "text_head": "根据患者的症状表现，疟疾发作多日不愈，伴有寒热交替、倦怠乏力、食欲不振、形体消瘦，以及舌质淡、苔白、脉细无力，这些症状提示患者可能存在气血两虚的情况。因此，在选",
+          "text_sha256": "66cf4d398fad13ab7228cecb640c88f872f249a4c502f0fabcdc745114759254"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 31,
+          "seconds": 2.9585,
+          "text_head": "在医学实践中，医生应遵循一系列伦理原则来保护患者的合法权益。这些原则主要包括：\n\n1. **尊重自主权**：医生应尊重患者的自主决策能力，确保患者在充分了解病情",
+          "text_sha256": "3d20e4cf4d8eb74c3191f1b7e84f93b3fc4179bd1fbe17e9718cfc50fcdb5991"
+        },
+        {
+          "completion_tokens": 62,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "seconds": 0.9218,
+          "text_head": "在决定治疗方案之前，建议进行醛固酮和肾素活性测定。这些检查可以帮助判断患者是否存在原发性醛固酮增多症，这是一种可能导致高血压和低钾血症的内分泌疾病。通过检测这些",
+          "text_sha256": "17c1a587472f3e1bdb8f69fd3954a14758d573ab73eed4ba80f4cc4133f216e8"
+        },
+        {
+          "completion_tokens": 98,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "seconds": 1.0281,
+          "text_head": "根据患者的症状和病史，最可能的诊断是髋关节结核。患者为19岁女性，出现左髋疼痛、活动受限和跛行症状已持续6个月，并且经过抗结核治疗后症状有所缓解，这提示结核感染",
+          "text_sha256": "285218261b217147a87d065a79dba81557b171623814c64d95ab17a4f4a3907f"
+        },
+        {
+          "completion_tokens": 177,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "seconds": 2.5684,
+          "text_head": "根据提供的信息，这位74岁女性突然大量呕血，最可能的原因是服用止痛药导致的急性胃黏膜损伤。许多非甾体抗炎药（NSAIDs）会抑制胃黏膜的保护机制，从而增加胃酸对",
+          "text_sha256": "9916c337854cbcf7acdca1ef6cc521116404d48f6d1c02b1c7e51d43e3075cc1"
+        },
+        {
+          "completion_tokens": 112,
+          "finish_reason": "stop",
+          "prompt_tokens": 85,
+          "seconds": 1.2194,
+          "text_head": "根据患者的症状描述，王某在服用阿莫西林后出现了全身泛发的鲜红色丘疹和斑丘疹，并伴有瘙痒、发热及口唇焦燥等症状。这些症状与药疹中的“猩红热型药疹”非常吻合。猩红热",
+          "text_sha256": "1c2eb6931e24d111e4b69e2c86cee61f521f5c1933ee8333172423f71a39383b"
+        },
+        {
+          "completion_tokens": 113,
+          "finish_reason": "stop",
+          "prompt_tokens": 92,
+          "seconds": 1.0993,
+          "text_head": "根据提供的信息，患者的24小时尿量为1000ml，尿蛋白定量为1.1g/24h，并且肾脏大小正常。这些特征与慢性肾炎综合征的表现较为一致。慢性肾炎综合征通常表现",
+          "text_sha256": "b5f4cb86bcaafa0d3b459ba074acb39741d50f4d5494c959623e3504ed2d13a2"
+        },
+        {
+          "completion_tokens": 246,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "seconds": 3.2246,
+          "text_head": "根据患者的症状和病史，她可能面临宫外孕或流产的风险，这两种情况都需要紧急处理。首先，建议立即进行以下检查：\n\n1. **超声检查**：通过超声检查可以确认子宫内",
+          "text_sha256": "88a0c3d78d8730971b67579d80c67456e779ffa353d001429a60f1cc1730d574"
+        },
+        {
+          "completion_tokens": 69,
+          "finish_reason": "stop",
+          "prompt_tokens": 97,
+          "seconds": 0.863,
+          "text_head": "在这种情况下，患者最容易发生的并发症是胎盘早剥。根据患者的症状和体征，包括持续性腹痛、阴道流血、子宫张力大、宫底前壁压痛、胎心率偏低以及尿蛋白阳性，这些都提示胎",
+          "text_sha256": "2d73f5a2b192839456f9c85163693c2459ae46e541cb43008fa7937d2bfc5101"
+        },
+        {
+          "completion_tokens": 84,
+          "finish_reason": "stop",
+          "prompt_tokens": 38,
+          "seconds": 1.0863,
+          "text_head": "根据患者的症状和影像学检查结果，最可能的诊断是脊柱结核。患者出现的高热、寒战和背痛持续超过半个月，这些症状与脊柱结核的表现相符。影像学检查如果显示椎体破坏、椎间",
+          "text_sha256": "36bff77c8312e9f1cf111f505a0c8fe9d7723ed888c98331f8a25e30f54a708b"
+        },
+        {
+          "completion_tokens": 62,
+          "finish_reason": "stop",
+          "prompt_tokens": 102,
+          "seconds": 0.6043,
+          "text_head": "根据提供的信息，该铸工的X线胸片显示有超过四个肺区的密集度1级的圆形小阴影。根据尘肺病的分级标准，这种情况通常被诊断为“零期尘肺”。因此，该铸工的尘肺病分级诊断",
+          "text_sha256": "c73b62f57e94c2253b1b11d5272908c5ed22fabaf87042a65248d131ae6f2830"
+        },
+        {
+          "completion_tokens": 190,
+          "finish_reason": "stop",
+          "prompt_tokens": 64,
+          "seconds": 2.6448,
+          "text_head": "针对这位怀孕四个月的孕妇，她的症状表现为典型的肾阴虚，包括腰膝酸软、头晕耳鸣、手足心热、两颧潮红、大便秘结、舌红少苔、脉细数等。此外，她还有三次堕胎史，这可能导",
+          "text_sha256": "c1e7aa9c5f7ed2bdb4238504a8afc70731c16beb57acf319b3e4abe0bf33b008"
+        },
+        {
+          "completion_tokens": 169,
+          "finish_reason": "stop",
+          "prompt_tokens": 95,
+          "seconds": 2.4487,
+          "text_head": "根据患者的情况，她目前处于妊娠晚期，并且出现了高血压和尿蛋白，这提示可能存在子痫前期的风险。虽然入院治疗后症状有所改善，但血压和尿蛋白仍然偏高，因此需要谨慎处理",
+          "text_sha256": "f58ee1202fa4813a8cd838645668172ed9174d530e2b76a8c49dc34bcdce909b"
+        },
+        {
+          "completion_tokens": 91,
+          "finish_reason": "stop",
+          "prompt_tokens": 79,
+          "seconds": 1.1251,
+          "text_head": "在这种情况下，最有利于判断病情活动性的指标是C反应蛋白（CRP）。CRP是一种急性期反应蛋白，在炎症活动时会显著升高，因此能够灵敏地反映类风湿性关节炎的活动性。",
+          "text_sha256": "55a63813cec342d14b60edb6c1aec9466bbbab16994d9b81c9d44fc09fe27be9"
+        },
+        {
+          "completion_tokens": 185,
+          "finish_reason": "stop",
+          "prompt_tokens": 50,
+          "seconds": 2.3641,
+          "text_head": "对于这位42岁男性患者，他有胃溃疡病史，并且最近被确诊为类风湿性关节炎。在选择治疗药物时，我们需要特别注意避免使用可能加重胃溃疡的非甾体抗炎药（NSAIDs）。",
+          "text_sha256": "ebaa2bafe9f56e4c054895e278b524a17e52d5f5f0c52f7551a047f9914f3526"
+        },
+        {
+          "completion_tokens": 101,
+          "finish_reason": "stop",
+          "prompt_tokens": 112,
+          "seconds": 0.9946,
+          "text_head": "根据患者的症状和实验室检查结果，26岁男性，双下肢水肿，尿蛋白定量4.0g，尿中红细胞10～20个/HP，血浆白蛋白27g/L，血肌酐正常，这些特征提示肾病综合",
+          "text_sha256": "1c22ef9f962dd59f70813f2989dd349a38465dc46c707e67987305aff3421e38"
+        },
+        {
+          "completion_tokens": 58,
+          "finish_reason": "stop",
+          "prompt_tokens": 106,
+          "seconds": 0.7339,
+          "text_head": "根据描述的症状和检查结果，这名3个月大的女婴左眼溢泪，无分泌物，冲洗时有阻力，且冲洗液从另一泪点反流，这些特征最符合鼻泪管狭窄的情况。因此，可能的诊断为：\n\nC",
+          "text_sha256": "ec90a7ae295b563d3330a9e2a35599c60410218a9adcc2ebfe4f9a3b3060d91f"
+        },
+        {
+          "completion_tokens": 231,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "seconds": 2.0848,
+          "text_head": "在体外放射分析中，设计实验以检测标记物的免疫活性时，可以通过比较两组试管中的反应来理解剂量-反应曲线的关系。\n\n第一组试管中，加入固定量的抗体和标记抗原，同时加",
+          "text_sha256": "14fc779bb991ebdadc26ebb0d96c543a1709274b0beb823c265ddb8de52a6668"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 111,
+          "seconds": 0.9572,
+          "text_head": "根据患者的临床表现和病史，最可能的心脏瓣膜病变是二尖瓣狭窄。患者有风湿热的病史，这常常导致二尖瓣狭窄。她的症状，如劳力性气促、水肿、咳嗽，以及心尖区舒张期杂音，",
+          "text_sha256": "7f3b14c7ae49b665497a2126c675a5bd2c11849847aa86b2315074e212313c42"
+        },
+        {
+          "completion_tokens": 149,
+          "finish_reason": "stop",
+          "prompt_tokens": 62,
+          "seconds": 2.3158,
+          "text_head": "在这种情况下，患者很可能患有感染性心内膜炎，这是一种需要紧急处理的严重感染。首选的治疗方法是使用抗生素进行静脉注射，以尽快控制感染。通常，青霉素或头孢菌素是常用",
+          "text_sha256": "f83ceae630b264a3684465bcd6a77b0b338bf1400486e56be271eeadd2daf4b1"
+        },
+        {
+          "completion_tokens": 143,
+          "finish_reason": "stop",
+          "prompt_tokens": 61,
+          "seconds": 1.8605,
+          "text_head": "根据您提供的临床症状和检查结果，这位44岁女性最可能的诊断是牙周-牙髓联合病变。虽然牙髓活力正常，但考虑到瘘管的存在、探诊深度达7mm以及叩诊阳性，这些都提示可",
+          "text_sha256": "0b41897441118e51f7442b6fce5e059aa69036d17df16efa1ae180192810162f"
+        },
+        {
+          "completion_tokens": 103,
+          "finish_reason": "stop",
+          "prompt_tokens": 91,
+          "seconds": 1.3239,
+          "text_head": "根据患者的临床表现，她最可能患有糖尿病性周围神经病变。这种并发症通常会导致感觉异常，如麻木和刺痛，并可能影响自主神经功能，导致尿失禁和无汗等症状。此外，患者双手",
+          "text_sha256": "9973a600c3fc6819bed765ae7d54b25f0c5a6ec952e090593518ef65837c0882"
+        },
+        {
+          "completion_tokens": 78,
+          "finish_reason": "stop",
+          "prompt_tokens": 63,
+          "seconds": 1.2176,
+          "text_head": "根据刘某的症状表现，他可能患有流行性腮腺炎，并且伴随明显的热毒症状。针对这种情况，普济消毒饮是一个适合的中药方剂选择。普济消毒饮具有清热解毒、疏风散邪的作用，尤",
+          "text_sha256": "68bb646342ee347490ff930692aece9369e053a53fe62673dcebded41c3b4513"
+        },
+        {
+          "completion_tokens": 91,
+          "finish_reason": "stop",
+          "prompt_tokens": 106,
+          "seconds": 1.4411,
+          "text_head": "根据患者的症状和体征，最有可能的诊断是右侧肺炎，尤其是右下叶肺炎。患者的持续高热、白细胞计数升高和中性粒细胞比例增高，提示存在细菌感染。右上腹的疼痛和向右肩的放",
+          "text_sha256": "f676de0ede22058aac226e9339f0645d8464d733d1ba2868ea6ed6a31fd5f162"
+        },
+        {
+          "completion_tokens": 60,
+          "finish_reason": "stop",
+          "prompt_tokens": 48,
+          "seconds": 0.9371,
+          "text_head": "这种实验类型被称为“双盲随机对照试验”。在这种试验中，研究对象和研究者都不知道谁接受了疫苗，谁接受了安慰剂，这样可以最大限度地减少偏见对实验结果的影响。通过随机",
+          "text_sha256": "b4f4af5b5636670fdee4faad2baf249529bc5c576b493c16dbb9606ae3fc442a"
+        },
+        {
+          "completion_tokens": 156,
+          "finish_reason": "stop",
+          "prompt_tokens": 94,
+          "seconds": 1.9291,
+          "text_head": "根据您提供的信息，这位初产妇的分娩情况确实存在胎位异常的问题。从检查结果来看，宫底部为臀，腹部前方可触及胎儿小部分，未触及胎头，而肛查显示胎头已达棘下2cm，矢",
+          "text_sha256": "28349bb7ce6729fe5e41e1fdb44bb92380549349f315905d025ce0c1890722d9"
+        },
+        {
+          "completion_tokens": 62,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "seconds": 0.9856,
+          "text_head": "在决定治疗方案之前，建议进行醛固酮和肾素活性测定。这些检查可以帮助判断患者是否存在原发性醛固酮增多症，这是一种可能导致高血压和低钾血症的内分泌疾病。通过检测这些",
+          "text_sha256": "17c1a587472f3e1bdb8f69fd3954a14758d573ab73eed4ba80f4cc4133f216e8"
+        },
+        {
+          "completion_tokens": 210,
+          "finish_reason": "stop",
+          "prompt_tokens": 44,
+          "seconds": 2.414,
+          "text_head": "根据赵某的症状和体征，我们可以推测他可能经历了较为严重的失血。黑便提示消化道出血，而眩晕、心率加快和血压降低则表明身体可能处于休克状态。\n\n在评估失血量时，通常",
+          "text_sha256": "527fc0c473a5d97b4fd6a11c5b2689c7d4299eb20855be56ffe5663e3a7bf0de"
+        },
+        {
+          "completion_tokens": 157,
+          "finish_reason": "stop",
+          "prompt_tokens": 62,
+          "seconds": 1.0425,
+          "text_head": "根据国内通用的烧伤补液公式，即Evans公式，计算一个40岁、体重74公斤的男性，头颈部、背部及臀部有部分深Ⅱ度和部分Ⅲ度烧伤，在最初的24小时内需要输液的总量",
+          "text_sha256": "1755c0dc208a44ce1f1571219cb5438bf906c162f758a561c26efeeae9d83397"
+        },
+        {
+          "completion_tokens": 77,
+          "finish_reason": "stop",
+          "prompt_tokens": 73,
+          "seconds": 0.8106,
+          "text_head": "在“阴中之阴中者,一生九死;阳中之阳中者,九生一死”这句话中，“一”与“九”并不是具体的数字，而是用来表达一种极端的对比。它们在这里表示的是“很少”和“很多”的",
+          "text_sha256": "76f1bbc8ca7916ccd9d211bab6857abeb7e82327863c47cae51ea008e5f19bc7"
+        },
+        {
+          "completion_tokens": 68,
+          "finish_reason": "stop",
+          "prompt_tokens": 28,
+          "seconds": 1.0149,
+          "text_head": "在胎儿缺氧的最早期阶段，通常首先发生的胎儿心率变化现象是胎动增加。这是因为胎动增加是胎儿对缺氧环境的一种早期反应，胎儿通过增加活动来应对氧气不足的情况。这种变化",
+          "text_sha256": "6602f32d6c6dc4aa7d823cf53c467691c4b824bacd07fb31c54c1b9469160e34"
+        },
+        {
+          "completion_tokens": 86,
+          "finish_reason": "stop",
+          "prompt_tokens": 95,
+          "seconds": 1.0673,
+          "text_head": "对于这位50岁男性患者，他的空腹血糖控制得相当不错，但餐后血糖仍然偏高。为了改善餐后血糖，可以考虑加用阿卡波糖。阿卡波糖是一种α-葡萄糖苷酶抑制剂，能够延缓碳水",
+          "text_sha256": "49f6baa36a883468f527665331a7636c98d3731c849765767a9a726aa2b4a8b5"
+        },
+        {
+          "completion_tokens": 90,
+          "finish_reason": "stop",
+          "prompt_tokens": 71,
+          "seconds": 0.9702,
+          "text_head": "根据患者的症状和检查结果，最可能的诊断是间质性膀胱炎。间质性膀胱炎是一种慢性膀胱炎症性疾病，其特点包括尿频、尿急、尿痛，以及尿常规检查中可能出现的红细胞和白细胞",
+          "text_sha256": "111fcbf5788f8a92107a26aa96ecb1f88524f03aa013e4a90429fac54b0aeb65"
+        },
+        {
+          "completion_tokens": 146,
+          "finish_reason": "stop",
+          "prompt_tokens": 116,
+          "seconds": 1.722,
+          "text_head": "根据李女士的情况，她目前处于第一产程的潜伏期，宫缩不够强且频率较低，而胎心正常，羊水清澈，胎位为LOP（左枕后位），这些因素都提示胎儿暂时没有缺氧或脐带脱垂的紧",
+          "text_sha256": "344ecc309636136f8884f8bcf06eb97a144f390efe33547d991eb83ba3d90bf5"
+        },
+        {
+          "completion_tokens": 53,
+          "finish_reason": "stop",
+          "prompt_tokens": 75,
+          "seconds": 0.4954,
+          "text_head": "根据患者的症状和超声结果，最可能的诊断是C. 肝炎。患者有右上腹部轻度触痛和肝功能异常，超声显示肝大且回声稍减低，胆囊壁增厚呈“双边”征，这些特征与肝炎的表现相",
+          "text_sha256": "a45f9529deb14e775838f5a2e44d8469356241f2d9d3c1deea9fecf5d1848eb7"
+        },
+        {
+          "completion_tokens": 123,
+          "finish_reason": "stop",
+          "prompt_tokens": 88,
+          "seconds": 1.4164,
+          "text_head": "根据您描述的症状，这名23岁的女性患者最可能的诊断是重症肌无力（Myasthenia Gravis）。重症肌无力是一种自身免疫性疾病，其特征是神经肌肉接头传递功",
+          "text_sha256": "0ea1684694188b13f0555ef7fc4cc3ae6585557fe42cfc9ae82978848722db1c"
+        },
+        {
+          "completion_tokens": 65,
+          "finish_reason": "stop",
+          "prompt_tokens": 62,
+          "seconds": 0.8021,
+          "text_head": "对于确诊为盘状红斑狼疮且皮疹在日晒后加重的40岁女性患者，首选的治疗药物通常是外用糖皮质激素。这类药物能够有效减轻皮肤的炎症反应，是治疗盘状红斑狼疮局部症状的常",
+          "text_sha256": "8c7039427a93597cace41fee8a10180cfa68d5e71cabdc42ca5ed0bf32488466"
+        },
+        {
+          "completion_tokens": 101,
+          "finish_reason": "stop",
+          "prompt_tokens": 46,
+          "seconds": 1.0236,
+          "text_head": "在妊娠早期，出现恶心呕吐，食入即吐等症状，并伴有头晕体倦、舌淡苔白、脉缓滑无力，这些表现符合中医理论中的“胃虚”证候。胃虚证候通常表现为脾胃虚弱，导致胃的受纳和",
+          "text_sha256": "cc52a316abb6399f1a2936a921d0d9b9970bb4135c291224d54c57621e17ced1"
+        },
+        {
+          "completion_tokens": 111,
+          "finish_reason": "stop",
+          "prompt_tokens": 108,
+          "seconds": 1.1467,
+          "text_head": "根据提供的信息，这名6岁男孩的化验结果显示HBsAg（+）、HBeAg（+）、抗HBc（+），而抗HBs（-）、抗HBe（-），并且肝功能正常，没有任何症状和体",
+          "text_sha256": "213543294572bd3fae93bf98e37e067f73ad31aef0dd621e7f904481b11510df"
+        },
+        {
+          "completion_tokens": 51,
+          "finish_reason": "stop",
+          "prompt_tokens": 135,
+          "seconds": 0.5087,
+          "text_head": "根据患者的症状和体检结果，他很可能患有肺炎链球菌引起的肺炎。对于这种情况，经验性抗菌治疗通常选择青霉素，因为肺炎链球菌对青霉素通常敏感。因此，最佳的选择是：\n\n",
+          "text_sha256": "3ea8590c016ff677de437711b56043c59d72e5e5e62cd8e0453d0cf5bd4259c4"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 324.36,
+      "wall_seconds": 14.49
+    },
+    {
+      "completion_tokens": 4661,
+      "concurrency": 8,
+      "finish_length": 1,
+      "median_request_seconds": 1.304,
+      "per_request": [
+        {
+          "completion_tokens": 120,
+          "finish_reason": "stop",
+          "prompt_tokens": 61,
+          "seconds": 1.8333,
+          "text_head": "根据患者的症状表现，疟疾发作多日不愈，伴有寒热交替、倦怠乏力、食欲不振、形体消瘦，以及舌质淡、苔白、脉细无力，这些症状提示患者可能存在气血两虚的情况。因此，在选",
+          "text_sha256": "66cf4d398fad13ab7228cecb640c88f872f249a4c502f0fabcdc745114759254"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 31,
+          "seconds": 3.5796,
+          "text_head": "在医学实践中，医生应遵循一系列伦理原则来保护患者的合法权益。这些原则主要包括：\n\n1. **尊重自主权**：医生应尊重患者的自主决策能力，确保患者在充分了解病情",
+          "text_sha256": "3d20e4cf4d8eb74c3191f1b7e84f93b3fc4179bd1fbe17e9718cfc50fcdb5991"
+        },
+        {
+          "completion_tokens": 62,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "seconds": 1.1127,
+          "text_head": "在决定治疗方案之前，建议进行醛固酮和肾素活性测定。这些检查可以帮助判断患者是否存在原发性醛固酮增多症，这是一种可能导致高血压和低钾血症的内分泌疾病。通过检测这些",
+          "text_sha256": "17c1a587472f3e1bdb8f69fd3954a14758d573ab73eed4ba80f4cc4133f216e8"
+        },
+        {
+          "completion_tokens": 98,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "seconds": 1.2269,
+          "text_head": "根据患者的症状和病史，最可能的诊断是髋关节结核。患者为19岁女性，出现左髋疼痛、活动受限和跛行症状已持续6个月，并且经过抗结核治疗后症状有所缓解，这提示结核感染",
+          "text_sha256": "285218261b217147a87d065a79dba81557b171623814c64d95ab17a4f4a3907f"
+        },
+        {
+          "completion_tokens": 177,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "seconds": 3.1221,
+          "text_head": "根据提供的信息，这位74岁女性突然大量呕血，最可能的原因是服用止痛药导致的急性胃黏膜损伤。许多非甾体抗炎药（NSAIDs）会抑制胃黏膜的保护机制，从而增加胃酸对",
+          "text_sha256": "9916c337854cbcf7acdca1ef6cc521116404d48f6d1c02b1c7e51d43e3075cc1"
+        },
+        {
+          "completion_tokens": 113,
+          "finish_reason": "stop",
+          "prompt_tokens": 85,
+          "seconds": 1.5777,
+          "text_head": "根据患者的症状描述，王某在服用阿莫西林后出现了全身泛发的鲜红色丘疹和斑丘疹，伴有瘙痒、发热及口唇焦燥等症状。这些症状与药疹中的“猩红热型药疹”非常吻合。猩红热型",
+          "text_sha256": "194d4d4676cccd1b9a027e4ea458014d7795f41a6a23ed7ef82a57a13bf23df0"
+        },
+        {
+          "completion_tokens": 113,
+          "finish_reason": "stop",
+          "prompt_tokens": 92,
+          "seconds": 1.2508,
+          "text_head": "根据提供的信息，患者的24小时尿量为1000ml，尿蛋白定量为1.1g/24h，并且肾脏大小正常。这些特征与慢性肾炎综合征的表现较为一致。慢性肾炎综合征通常表现",
+          "text_sha256": "b5f4cb86bcaafa0d3b459ba074acb39741d50f4d5494c959623e3504ed2d13a2"
+        },
+        {
+          "completion_tokens": 202,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "seconds": 3.0133,
+          "text_head": "根据患者的症状和病史，她可能面临宫外孕或流产的风险，这两种情况都需要紧急处理。首先，建议立即进行以下检查：\n\n1. **超声检查**：通过超声检查可以确认子宫内",
+          "text_sha256": "a249ae1933159d6fd854b7f610caf9f7b3756dcdb93aa214cd228656c015b025"
+        },
+        {
+          "completion_tokens": 67,
+          "finish_reason": "stop",
+          "prompt_tokens": 97,
+          "seconds": 1.052,
+          "text_head": "在这种情况下，患者最容易发生的并发症是胎盘早剥。根据患者的症状和体征，包括高血压、持续性腹痛、阴道流血、子宫张力大、宫底前壁压痛以及尿蛋白阳性，这些都提示胎盘早",
+          "text_sha256": "241fe7c2778786d5a03f203d625ee2ec266826063a24fcd4f26850e5c1523f84"
+        },
+        {
+          "completion_tokens": 84,
+          "finish_reason": "stop",
+          "prompt_tokens": 38,
+          "seconds": 1.2896,
+          "text_head": "根据患者的症状和影像学检查结果，最可能的诊断是脊柱结核。患者出现的高热、寒战和背痛持续超过半个月，这些症状与脊柱结核的表现相符。影像学检查如果显示椎体破坏、椎间",
+          "text_sha256": "36bff77c8312e9f1cf111f505a0c8fe9d7723ed888c98331f8a25e30f54a708b"
+        },
+        {
+          "completion_tokens": 62,
+          "finish_reason": "stop",
+          "prompt_tokens": 102,
+          "seconds": 0.7177,
+          "text_head": "根据提供的信息，该铸工的X线胸片显示有超过四个肺区的密集度1级的圆形小阴影。根据尘肺病的分级标准，这种情况通常被诊断为“零期尘肺”。因此，该铸工的尘肺病分级诊断",
+          "text_sha256": "c73b62f57e94c2253b1b11d5272908c5ed22fabaf87042a65248d131ae6f2830"
+        },
+        {
+          "completion_tokens": 190,
+          "finish_reason": "stop",
+          "prompt_tokens": 64,
+          "seconds": 3.0339,
+          "text_head": "针对这位怀孕四个月的孕妇，她的症状表现为典型的肾阴虚，包括腰膝酸软、头晕耳鸣、手足心热、两颧潮红、大便秘结、舌红少苔、脉细数等。此外，她还有三次堕胎史，这可能导",
+          "text_sha256": "c1e7aa9c5f7ed2bdb4238504a8afc70731c16beb57acf319b3e4abe0bf33b008"
+        },
+        {
+          "completion_tokens": 169,
+          "finish_reason": "stop",
+          "prompt_tokens": 95,
+          "seconds": 2.9479,
+          "text_head": "根据患者的情况，她目前处于妊娠晚期，并且出现了高血压和尿蛋白，这提示可能存在子痫前期的风险。虽然入院治疗后症状有所改善，但血压和尿蛋白仍然偏高，因此需要谨慎处理",
+          "text_sha256": "f58ee1202fa4813a8cd838645668172ed9174d530e2b76a8c49dc34bcdce909b"
+        },
+        {
+          "completion_tokens": 91,
+          "finish_reason": "stop",
+          "prompt_tokens": 79,
+          "seconds": 1.3193,
+          "text_head": "在这种情况下，最有利于判断病情活动性的指标是C反应蛋白（CRP）。CRP是一种急性期反应蛋白，在炎症活动时会显著升高，因此能够灵敏地反映类风湿性关节炎的活动性。",
+          "text_sha256": "55a63813cec342d14b60edb6c1aec9466bbbab16994d9b81c9d44fc09fe27be9"
+        },
+        {
+          "completion_tokens": 191,
+          "finish_reason": "stop",
+          "prompt_tokens": 50,
+          "seconds": 2.8693,
+          "text_head": "对于这位42岁男性患者，他有胃溃疡病史，并且最近被确诊为类风湿性关节炎。在选择治疗药物时，我们需要特别注意避免使用可能加重胃溃疡的非甾体抗炎药（NSAIDs）。",
+          "text_sha256": "e7492dc4f8935d85585893fbbda985521e05476cd6ed54c7dedd25761738650d"
+        },
+        {
+          "completion_tokens": 101,
+          "finish_reason": "stop",
+          "prompt_tokens": 112,
+          "seconds": 1.1974,
+          "text_head": "根据患者的症状和实验室检查结果，26岁男性，双下肢水肿，尿蛋白定量4.0g，尿中红细胞10～20个/HP，血浆白蛋白27g/L，血肌酐正常，这些特征提示肾病综合",
+          "text_sha256": "1c22ef9f962dd59f70813f2989dd349a38465dc46c707e67987305aff3421e38"
+        },
+        {
+          "completion_tokens": 58,
+          "finish_reason": "stop",
+          "prompt_tokens": 106,
+          "seconds": 0.8336,
+          "text_head": "根据描述的症状和检查结果，这名3个月大的女婴左眼溢泪，无分泌物，冲洗时有阻力，且冲洗液从另一泪点反流，这些特征最符合鼻泪管狭窄的情况。因此，可能的诊断为：\n\nC",
+          "text_sha256": "ec90a7ae295b563d3330a9e2a35599c60410218a9adcc2ebfe4f9a3b3060d91f"
+        },
+        {
+          "completion_tokens": 231,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "seconds": 2.4602,
+          "text_head": "在体外放射分析中，设计实验以检测标记物的免疫活性时，可以通过比较两组试管中的反应来理解剂量-反应曲线的关系。\n\n第一组试管中，加入固定量的抗体和标记抗原，同时加",
+          "text_sha256": "14fc779bb991ebdadc26ebb0d96c543a1709274b0beb823c265ddb8de52a6668"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 111,
+          "seconds": 1.095,
+          "text_head": "根据患者的临床表现和病史，最可能的心脏瓣膜病变是二尖瓣狭窄。患者有风湿热的病史，这常常导致二尖瓣狭窄。她的症状，如劳力性气促、水肿、咳嗽，以及心尖区舒张期杂音，",
+          "text_sha256": "7f3b14c7ae49b665497a2126c675a5bd2c11849847aa86b2315074e212313c42"
+        },
+        {
+          "completion_tokens": 149,
+          "finish_reason": "stop",
+          "prompt_tokens": 62,
+          "seconds": 2.7662,
+          "text_head": "在这种情况下，患者很可能患有感染性心内膜炎，这是一种需要紧急处理的严重感染。首选的治疗方法是使用抗生素进行静脉注射，以尽快控制感染。通常，青霉素或头孢菌素是常用",
+          "text_sha256": "f83ceae630b264a3684465bcd6a77b0b338bf1400486e56be271eeadd2daf4b1"
+        },
+        {
+          "completion_tokens": 143,
+          "finish_reason": "stop",
+          "prompt_tokens": 61,
+          "seconds": 2.2056,
+          "text_head": "根据您提供的临床症状和检查结果，这位44岁女性最可能的诊断是牙周-牙髓联合病变。虽然牙髓活力正常，但考虑到瘘管的存在、探诊深度达7mm以及叩诊阳性，这些都提示可",
+          "text_sha256": "0b41897441118e51f7442b6fce5e059aa69036d17df16efa1ae180192810162f"
+        },
+        {
+          "completion_tokens": 103,
+          "finish_reason": "stop",
+          "prompt_tokens": 91,
+          "seconds": 1.5969,
+          "text_head": "根据患者的临床表现，她最可能患有糖尿病性周围神经病变。这种并发症通常会导致感觉异常，如麻木和刺痛，并可能影响自主神经功能，导致尿失禁和无汗等症状。此外，患者双手",
+          "text_sha256": "9973a600c3fc6819bed765ae7d54b25f0c5a6ec952e090593518ef65837c0882"
+        },
+        {
+          "completion_tokens": 78,
+          "finish_reason": "stop",
+          "prompt_tokens": 63,
+          "seconds": 1.424,
+          "text_head": "根据刘某的症状表现，他可能患有流行性腮腺炎，并且伴随明显的热毒症状。针对这种情况，普济消毒饮是一个适合的中药方剂选择。普济消毒饮具有清热解毒、疏风散邪的作用，尤",
+          "text_sha256": "68bb646342ee347490ff930692aece9369e053a53fe62673dcebded41c3b4513"
+        },
+        {
+          "completion_tokens": 91,
+          "finish_reason": "stop",
+          "prompt_tokens": 106,
+          "seconds": 1.7022,
+          "text_head": "根据患者的症状和体征，最有可能的诊断是右侧肺炎，尤其是右下叶肺炎。患者的持续高热、白细胞计数升高和中性粒细胞比例增高，提示存在细菌感染。右上腹的疼痛和向右肩的放",
+          "text_sha256": "f676de0ede22058aac226e9339f0645d8464d733d1ba2868ea6ed6a31fd5f162"
+        },
+        {
+          "completion_tokens": 60,
+          "finish_reason": "stop",
+          "prompt_tokens": 48,
+          "seconds": 1.1345,
+          "text_head": "这种实验类型被称为“双盲随机对照试验”。在这种试验中，研究对象和研究者都不知道谁接受了疫苗，谁接受了安慰剂，这样可以最大限度地减少偏见对实验结果的影响。通过随机",
+          "text_sha256": "b4f4af5b5636670fdee4faad2baf249529bc5c576b493c16dbb9606ae3fc442a"
+        },
+        {
+          "completion_tokens": 156,
+          "finish_reason": "stop",
+          "prompt_tokens": 94,
+          "seconds": 2.343,
+          "text_head": "根据您提供的信息，这位初产妇的分娩情况确实存在胎位异常的问题。从检查结果来看，宫底部为臀，腹部前方可触及胎儿小部分，未触及胎头，而肛查显示胎头已达棘下2cm，矢",
+          "text_sha256": "28349bb7ce6729fe5e41e1fdb44bb92380549349f315905d025ce0c1890722d9"
+        },
+        {
+          "completion_tokens": 62,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "seconds": 1.197,
+          "text_head": "在决定治疗方案之前，建议进行醛固酮和肾素活性测定。这些检查可以帮助判断患者是否存在原发性醛固酮增多症，这是一种可能导致高血压和低钾血症的内分泌疾病。通过检测这些",
+          "text_sha256": "17c1a587472f3e1bdb8f69fd3954a14758d573ab73eed4ba80f4cc4133f216e8"
+        },
+        {
+          "completion_tokens": 210,
+          "finish_reason": "stop",
+          "prompt_tokens": 44,
+          "seconds": 2.7986,
+          "text_head": "根据赵某的症状和体征，我们可以推测他可能经历了较为严重的失血。黑便提示消化道出血，而眩晕、心率加快和血压降低则表明身体可能处于休克状态。\n\n在评估失血量时，通常",
+          "text_sha256": "527fc0c473a5d97b4fd6a11c5b2689c7d4299eb20855be56ffe5663e3a7bf0de"
+        },
+        {
+          "completion_tokens": 157,
+          "finish_reason": "stop",
+          "prompt_tokens": 62,
+          "seconds": 1.2607,
+          "text_head": "根据国内通用的烧伤补液公式，即Evans公式，计算一个40岁、体重74公斤的男性，头颈部、背部及臀部有部分深Ⅱ度和部分Ⅲ度烧伤，在最初的24小时内需要输液的总量",
+          "text_sha256": "1755c0dc208a44ce1f1571219cb5438bf906c162f758a561c26efeeae9d83397"
+        },
+        {
+          "completion_tokens": 77,
+          "finish_reason": "stop",
+          "prompt_tokens": 73,
+          "seconds": 0.9579,
+          "text_head": "在“阴中之阴中者,一生九死;阳中之阳中者,九生一死”这句话中，“一”与“九”并不是具体的数字，而是用来表达一种极端的对比。它们在这里表示的是“很少”和“很多”的",
+          "text_sha256": "76f1bbc8ca7916ccd9d211bab6857abeb7e82327863c47cae51ea008e5f19bc7"
+        },
+        {
+          "completion_tokens": 68,
+          "finish_reason": "stop",
+          "prompt_tokens": 28,
+          "seconds": 1.254,
+          "text_head": "在胎儿缺氧的最早期阶段，通常首先发生的胎儿心率变化现象是胎动增加。这是因为胎动增加是胎儿对缺氧环境的一种早期反应，胎儿通过增加活动来应对氧气不足的情况。这种变化",
+          "text_sha256": "6602f32d6c6dc4aa7d823cf53c467691c4b824bacd07fb31c54c1b9469160e34"
+        },
+        {
+          "completion_tokens": 86,
+          "finish_reason": "stop",
+          "prompt_tokens": 95,
+          "seconds": 1.3836,
+          "text_head": "对于这位50岁男性患者，他的空腹血糖控制得相当不错，但餐后血糖仍然偏高。为了改善餐后血糖，可以考虑加用阿卡波糖。阿卡波糖是一种α-葡萄糖苷酶抑制剂，能够延缓碳水",
+          "text_sha256": "49f6baa36a883468f527665331a7636c98d3731c849765767a9a726aa2b4a8b5"
+        },
+        {
+          "completion_tokens": 90,
+          "finish_reason": "stop",
+          "prompt_tokens": 71,
+          "seconds": 1.1692,
+          "text_head": "根据患者的症状和检查结果，最可能的诊断是间质性膀胱炎。间质性膀胱炎是一种慢性膀胱炎症性疾病，其特点包括尿频、尿急、尿痛，以及尿常规检查中可能出现的红细胞和白细胞",
+          "text_sha256": "111fcbf5788f8a92107a26aa96ecb1f88524f03aa013e4a90429fac54b0aeb65"
+        },
+        {
+          "completion_tokens": 147,
+          "finish_reason": "stop",
+          "prompt_tokens": 116,
+          "seconds": 1.977,
+          "text_head": "根据李女士的情况，她目前处于第一产程的潜伏期，宫缩不够强且频率较低，而胎心正常，羊水清澈，胎位为LOP（左枕后位），这些因素都提示胎儿暂时没有缺氧或脐带脱垂的紧",
+          "text_sha256": "dc2233b4c57f40400266f09d08829aca74866da19f7b11e56a3d55488e727d61"
+        },
+        {
+          "completion_tokens": 53,
+          "finish_reason": "stop",
+          "prompt_tokens": 75,
+          "seconds": 0.6178,
+          "text_head": "根据患者的症状和超声结果，最可能的诊断是C. 肝炎。患者有右上腹部轻度触痛和肝功能异常，超声显示肝大且回声稍减低，胆囊壁增厚呈“双边”征，这些特征与肝炎的表现相",
+          "text_sha256": "a45f9529deb14e775838f5a2e44d8469356241f2d9d3c1deea9fecf5d1848eb7"
+        },
+        {
+          "completion_tokens": 123,
+          "finish_reason": "stop",
+          "prompt_tokens": 88,
+          "seconds": 1.6476,
+          "text_head": "根据您描述的症状，这名23岁的女性患者最可能的诊断是重症肌无力（Myasthenia Gravis）。重症肌无力是一种自身免疫性疾病，其特征是神经肌肉接头传递功",
+          "text_sha256": "0ea1684694188b13f0555ef7fc4cc3ae6585557fe42cfc9ae82978848722db1c"
+        },
+        {
+          "completion_tokens": 65,
+          "finish_reason": "stop",
+          "prompt_tokens": 62,
+          "seconds": 0.9266,
+          "text_head": "对于确诊为盘状红斑狼疮且皮疹在日晒后加重的40岁女性患者，首选的治疗药物通常是外用糖皮质激素。这类药物能够有效减轻皮肤的炎症反应，是治疗盘状红斑狼疮局部症状的常",
+          "text_sha256": "8c7039427a93597cace41fee8a10180cfa68d5e71cabdc42ca5ed0bf32488466"
+        },
+        {
+          "completion_tokens": 101,
+          "finish_reason": "stop",
+          "prompt_tokens": 46,
+          "seconds": 1.1642,
+          "text_head": "在妊娠早期，出现恶心呕吐，食入即吐等症状，并伴有头晕体倦、舌淡苔白、脉缓滑无力，这些表现符合中医理论中的“胃虚”证候。胃虚证候通常表现为脾胃虚弱，导致胃的受纳和",
+          "text_sha256": "cc52a316abb6399f1a2936a921d0d9b9970bb4135c291224d54c57621e17ced1"
+        },
+        {
+          "completion_tokens": 111,
+          "finish_reason": "stop",
+          "prompt_tokens": 108,
+          "seconds": 1.2728,
+          "text_head": "根据提供的信息，这名6岁男孩的化验结果显示HBsAg（+）、HBeAg（+）、抗HBc（+），而抗HBs（-）、抗HBe（-），并且肝功能正常，没有任何症状和体",
+          "text_sha256": "213543294572bd3fae93bf98e37e067f73ad31aef0dd621e7f904481b11510df"
+        },
+        {
+          "completion_tokens": 51,
+          "finish_reason": "stop",
+          "prompt_tokens": 135,
+          "seconds": 0.644,
+          "text_head": "根据患者的症状和体检结果，他很可能患有肺炎链球菌引起的肺炎。对于这种情况，经验性抗菌治疗通常选择青霉素，因为肺炎链球菌对青霉素通常敏感。因此，最佳的选择是：\n\n",
+          "text_sha256": "3ea8590c016ff677de437711b56043c59d72e5e5e62cd8e0453d0cf5bd4259c4"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 531.75,
+      "wall_seconds": 8.77
+    }
+  ],
+  "max_tokens": 256,
+  "model": "Qwen/Qwen3.8-27B",
+  "num_prompts": 40,
+  "prompts": "eval_prompts.jsonl"
+}

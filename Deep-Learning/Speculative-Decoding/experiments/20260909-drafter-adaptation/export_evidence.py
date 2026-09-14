@@ -125,6 +125,17 @@ ROUND4_LOG_FILES = {
     "vllm_dflash_released": "logs/r4_vllm_dflash_released_server.log",
     "vllm_dflash_ours": "logs/r4_vllm_dflash_ours_server.log",
 }
+# Round 5 (2026-09-13) re-served the Round 4 Chinese target and both draft models on a fresh VM
+# session: two server starts per route (A: baseline->released->ours, B: reversed) and two client
+# passes per server, so every route/concurrency cell has four throughput observations.
+ROUND5_ROUTES = ("baseline", "dflash_released", "dflash_ours")
+ROUND5_RESULT_FILES = {
+    f"vllm/{route}_rep{rep}p{pas}.json": f"results/r5_vllm_{route}_rep{rep}p{pas}.json"
+    for route in ROUND5_ROUTES for rep in "AB" for pas in (1, 2)
+}
+ROUND5_RESULT_FILES["vllm/discovery.json"] = "state/discovery.json"
+ROUND5_LOG_FILES = {f"vllm_{route}_rep{rep}": f"logs/r5_server_{route}_rep{rep}.log"
+                    for route in ROUND5_ROUTES for rep in "AB"}
 ARTIFACT_FILES = {
     "adapter-v2/adapter_model.safetensors": "checkpoints/adapter-v2/adapter_model.safetensors",
     "adapter-v2/adapter_config.json": "checkpoints/adapter-v2/adapter_config.json",
@@ -260,9 +271,11 @@ def server_activation(text):
     architectures = [{"log_clock": clock, "architecture": name} for clock, name in ARCHITECTURE_LINE.findall(text)]
     spec = SPEC_LINE.search(text)
     metrics = SPEC_METRICS.findall(text)
+    # Round 5 launched vLLM with an absolute draft path; keep only the directory name.
+    config = re.sub(r"model='([^']*)'", lambda match: f"model='{Path(match.group(1)).name}'", spec.group(1)) if spec else None
     return {
         "resolved_architectures": architectures,
-        "speculative_config": spec.group(1) if spec else None,
+        "speculative_config": config,
         "server_metric_intervals": len(metrics),
         "accepted_tokens_logged": sum(int(item[1]) for item in metrics),
         "drafted_tokens_logged": sum(int(item[2]) for item in metrics),
@@ -373,6 +386,30 @@ def export_training(source, round4_source, destination):
     print("TRAINING_EXPORT=PASS histories=4 logs=" + str(len(LOG_FILES) + len(ROUND4_LOG_FILES)))
 
 
+def export_round5(round5_source, destination):
+    """Append the Round 5 serving re-test to an existing export without touching Rounds 3-4."""
+    provenance_path = destination / "evidence/provenance.json"
+    require(provenance_path.is_file(), "FULL_EXPORT_REQUIRED_FIRST")
+    provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+    markers = private_markers()
+    round5 = export_round("round5", round5_source.resolve(), destination.resolve(), ROUND5_RESULT_FILES, {}, {}, {},
+                          ROUND5_LOG_FILES, lambda name: "server", markers)
+    # The client that produced these files is byte-identical to the Round 4 snapshot already
+    # published under source/round4/; it is recorded by hash rather than duplicated.
+    client = provenance["round4"]["source"]["vllm_client_bench.py"]
+    round5["source"] = {
+        "vllm_client_bench.py": {"published": False, "same_as": "source/round4/vllm_client_bench.py",
+                                 "sha256": client["sha256"], "bytes": client["bytes"]},
+        "round5.sh": {"published": False,
+                      "reason": "orchestration shell with private host paths; the engine flags are identical to round4.sh and transcribed in the README"},
+    }
+    provenance["round5"] = round5
+    dump_json(provenance_path, provenance)
+    for path in sorted((destination / "results" / "round5").rglob("*.json")):
+        require(find_private(path.read_text(encoding="utf-8"), markers) is None, "PRIVATE_MARKER_IN_PUBLIC_RESULT:" + path.name)
+    print("ROUND5_EXPORT=PASS results=" + str(len(round5["results"])) + " logs=" + str(len(round5["logs"])))
+
+
 def export(source, round4_source, destination):
     source = source.resolve()
     round4_source = round4_source.resolve()
@@ -419,12 +456,20 @@ def export(source, round4_source, destination):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source", required=True, type=Path, help="private archive root (gpu-run-20260908)")
-    parser.add_argument("--round4-source", required=True, type=Path, help="Round 4 raw workspace copy")
+    parser.add_argument("--source", type=Path, help="private archive root (gpu-run-20260908)")
+    parser.add_argument("--round4-source", type=Path, help="Round 4 raw workspace copy")
+    parser.add_argument("--round5-source", type=Path, help="Round 5 raw workspace copy (gpu-run-R5-20260913/raw-workspace)")
     parser.add_argument("--destination", type=Path, default=ROOT)
     parser.add_argument("--training-only", action="store_true",
                         help="Add training histories, source and readable logs to an existing export without rereading weights")
+    parser.add_argument("--round5-only", action="store_true",
+                        help="Add the Round 5 serving re-test to an existing export")
     args = parser.parse_args()
+    if args.round5_only:
+        require(args.round5_source is not None, "ROUND5_SOURCE_REQUIRED")
+        export_round5(args.round5_source, args.destination)
+        return
+    require(args.source is not None and args.round4_source is not None, "SOURCE_AND_ROUND4_SOURCE_REQUIRED")
     if args.training_only:
         export_training(args.source, args.round4_source, args.destination)
     else:

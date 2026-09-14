@@ -134,12 +134,65 @@ class AdaptationEvidenceTests(unittest.TestCase):
 
     def test_server_acceptance_is_derived_from_logged_totals(self):
         summary = json.loads((self.root / "data/summary.json").read_text(encoding="utf-8"))
-        for round_name in ("round3", "round4"):
+        for round_name in ("round3", "round4", "round5"):
             for route, entry in summary[round_name]["vllm_server_acceptance"].items():
                 with self.subTest(round=round_name, route=route):
                     self.assertEqual(entry["drafted_tokens"], entry["verification_steps"] * 7)
                     self.assertAlmostEqual(entry["derived_mean_acceptance_length"],
                                            1.0 + entry["accepted_tokens"] / entry["verification_steps"], places=4)
+
+    def test_round5_cells_hold_four_observations_and_raw_ranges(self):
+        summary = json.loads((self.root / "data/summary.json").read_text(encoding="utf-8"))
+        routes = summary["round5"]["vllm"]["routes"]
+        for route, entry in routes.items():
+            for concurrency, cell in entry["levels"].items():
+                with self.subTest(route=route, concurrency=concurrency):
+                    values = list(cell["observations"].values())
+                    self.assertEqual(cell["n"], 4)
+                    self.assertEqual(len(values), 4)
+                    self.assertEqual(cell["min"], min(values))
+                    self.assertEqual(cell["max"], max(values))
+                    self.assertAlmostEqual(cell["mean"], sum(values) / 4, places=2)
+        comparison = summary["round5"]["vllm"]["adapted_vs_released"]
+        for concurrency, entry in comparison.items():
+            with self.subTest(concurrency=concurrency):
+                released, adapted = routes["dflash_released"]["levels"][concurrency], routes["dflash_ours"]["levels"][concurrency]
+                self.assertEqual(entry["released_range"], [released["min"], released["max"]])
+                self.assertEqual(entry["adapted_range"], [adapted["min"], adapted["max"]])
+                self.assertEqual(entry["ranges_overlap"], not (adapted["min"] > released["max"] or released["min"] > adapted["max"]))
+
+    def test_round5_changed_observation_is_rejected(self):
+        self.mutate_json("results/round5/vllm/dflash_ours_repAp1.json",
+                         lambda value: value["levels"][0].update(tokens_per_second=value["levels"][0]["tokens_per_second"] + 5.0))
+        with self.assertRaisesRegex(ValueError, "VLLM_THROUGHPUT_MISMATCH:dflash_ours:repAp1"):
+            analyze_results.summarize(self.root)
+
+    def test_round5_prompts_must_match_round4_chinese_set(self):
+        self.mutate_json("results/round5/vllm/discovery.json", lambda value: value.update(prompts_sha256="0" * 64))
+        with self.assertRaisesRegex(ValueError, "ROUND5_PROMPTS_DIFFER_FROM_ROUND4"):
+            analyze_results.summarize(self.root)
+
+    def test_round5_text_identity_is_recomputed_from_hashes(self):
+        summary = json.loads((self.root / "data/summary.json").read_text(encoding="utf-8"))
+        identity = summary["round5"]["text_identity"]["1"]
+        released = json.loads((self.root / "results/round5/vllm/dflash_released_repAp1.json").read_text(encoding="utf-8"))
+        adapted = json.loads((self.root / "results/round5/vllm/dflash_ours_repAp1.json").read_text(encoding="utf-8"))
+        level = lambda record: next(item for item in record["levels"] if item["concurrency"] == 1)["per_request"]
+        expected = sum(a["text_sha256"] == b["text_sha256"] for a, b in zip(level(released), level(adapted)))
+        self.assertEqual(identity["released_vs_adapted"]["repAp1"], expected)
+        self.assertEqual(identity["prompts"], 40)
+
+    def test_round5_readme_section_drift_is_rejected(self):
+        for filename in validate_report.READMES:
+            with self.subTest(filename=filename):
+                path = self.topic / filename
+                original = path.read_text(encoding="utf-8")
+                marker = "#### 设置 B 服务复测（Round 5）" if validate_report.READMES[filename] else "#### Setting B Serving Re-test (Round 5)"
+                self.assertIn(marker, original)
+                path.write_text(original.replace(marker, marker + " edited", 1), encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "REPORT_DATA_DRIFT:ADAPTATION_TABLE"):
+                    validate_report.validate(self.root)
+                path.write_text(original, encoding="utf-8")
 
     def test_forged_rule_record_is_rejected(self):
         self.mutate_json(validate_report.RULES, lambda value: value["checks"].append({"id": "extra", "status": "PASS", "evidence": []}))

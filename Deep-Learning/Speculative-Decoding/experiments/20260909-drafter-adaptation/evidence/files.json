@@ -1,20 +1,20 @@
 {
   "files": {
     "analyze_results.py": {
-      "bytes": 22216,
-      "sha256": "eebb116ed4b655b9c4114c1d9e213349352993782a805680cf625e897ee69aa7"
+      "bytes": 28936,
+      "sha256": "b38dfe4cabca72df19160b3716dbe2c8abec47b639f5128c9397f0394a9c7e46"
     },
     "data/summary.json": {
-      "bytes": 30369,
-      "sha256": "ffad20fdbd62e0c6a36a22a994c7ddcc252ede4deb6a73e997c2cdf299eca3d4"
+      "bytes": 41526,
+      "sha256": "15601e0071c8398470ee35835a30101f1dd779ee76ef9b4f36bd5afb32e59970"
     },
     "evidence/provenance.json": {
-      "bytes": 42989,
-      "sha256": "1b387d46dcd71d747118f5191c063ad00ab85d9d5e067615462ebfb56c85f4cc"
+      "bytes": 55836,
+      "sha256": "b29e3f17334d6bbf4fc7d126c83e37bc537a0137c0eecbf6e8150410a8665241"
     },
     "export_evidence.py": {
-      "bytes": 22277,
-      "sha256": "934b1532abcb1c7e76a3bdef0199cfbf9d003fdc4e02eb993c0b621416b81e66"
+      "bytes": 25363,
+      "sha256": "4af22545c1af0fd49181ae7c5019344250d913e7f1917243f76f6fe1ed394fb9"
     },
     "images/loss-figures.json": {
       "bytes": 2245,
@@ -107,6 +107,30 @@
     "logs/round4/vllm_dflash_released.log": {
       "bytes": 2588,
       "sha256": "993ad4ab472d1e0acd27860853d2e57eccf6d79327dc22238ed2e8a4db48ecd6"
+    },
+    "logs/round5/vllm_baseline_repA.log": {
+      "bytes": 98,
+      "sha256": "cb190e363d8fabec8954509f45c762980bd4d0689bb438c3d75f59cb019b58e3"
+    },
+    "logs/round5/vllm_baseline_repB.log": {
+      "bytes": 99,
+      "sha256": "4fd03c921982845800df16f05d122fe4143ef27a8a788d2ab4645ec7b4e03640"
+    },
+    "logs/round5/vllm_dflash_ours_repA.log": {
+      "bytes": 4627,
+      "sha256": "edc8f8b05f91849c0a147cf45f14b5a890fb6e4c7cc7cb3ff95703d53287ab96"
+    },
+    "logs/round5/vllm_dflash_ours_repB.log": {
+      "bytes": 4631,
+      "sha256": "8cb80bc48100f17d752445ca4d01927d98b5a1578e633abd452d8a301f11abd7"
+    },
+    "logs/round5/vllm_dflash_released_repA.log": {
+      "bytes": 4967,
+      "sha256": "5d404417f2f236b6ea5c545c97471ff6ee6e9b2d9e1f72bf73b4598bca2ef55b"
+    },
+    "logs/round5/vllm_dflash_released_repB.log": {
+      "bytes": 5330,
+      "sha256": "672293da6a2d34b15faa22e1a69297cb3f8ce1267e8e30c0ee9b44021ad9e097"
     },
     "results/round3/acceptance/released_argmax.json": {
       "bytes": 29084,
@@ -252,6 +276,58 @@
       "bytes": 40942,
       "sha256": "e2aff825c61e751c98bc060ccd29bf27699a45d9c1ad5213823682e4c53fb0e5"
     },
+    "results/round5/vllm/baseline_repAp1.json": {
+      "bytes": 61257,
+      "sha256": "03c56267178859acfed681fd91e0b6a5992aa580c85a2f3ce46f142f31ef5c45"
+    },
+    "results/round5/vllm/baseline_repAp2.json": {
+      "bytes": 61263,
+      "sha256": "0ae7645d8e3f40e11ec56d036b3ea685424fb1c897143c95dfcb5a00641bcaf7"
+    },
+    "results/round5/vllm/baseline_repBp1.json": {
+      "bytes": 61259,
+      "sha256": "7498cdd53f58c7cb8d37259f8e7366702a27cc6d4bd8cc77c1ecf700c682a2f6"
+    },
+    "results/round5/vllm/baseline_repBp2.json": {
+      "bytes": 61269,
+      "sha256": "e3a39b886e6de8f4fc8af78b6fc510084092a48b822d55eb6afffcc2537397ea"
+    },
+    "results/round5/vllm/dflash_ours_repAp1.json": {
+      "bytes": 61300,
+      "sha256": "8686439bc6034fac0d6cb3334e67bf2b2417db228fe85260f2316614791053b3"
+    },
+    "results/round5/vllm/dflash_ours_repAp2.json": {
+      "bytes": 61301,
+      "sha256": "ce9f658fac5cd88ec18f117c1e8b76caf1d53063654bf52f487648b05bbe4358"
+    },
+    "results/round5/vllm/dflash_ours_repBp1.json": {
+      "bytes": 61298,
+      "sha256": "89f7ec3d6a56ba648fb699d477ebab8fb77795ed184067c6a492ea1e34daf2f2"
+    },
+    "results/round5/vllm/dflash_ours_repBp2.json": {
+      "bytes": 61294,
+      "sha256": "a5b711f0bd91aa9d498d39577822c4fb314f7418e9709c9ee32f4e7ec0decd07"
+    },
+    "results/round5/vllm/dflash_released_repAp1.json": {
+      "bytes": 61298,
+      "sha256": "59b7c513eaa784047101e078b9477266cd7009c4f23588d705c99fe460d04ebb"
+    },
+    "results/round5/vllm/dflash_released_repAp2.json": {
+      "bytes": 61299,
+      "sha256": "41dcadf6a07cb966afff53ce2f925b1eff8509b01b65eb7736f940a4ed56e842"
+    },
+    "results/round5/vllm/dflash_released_repBp1.json": {
+      "bytes": 61299,
+      "sha256": "2faa33e671c5881c34fcecd442e52f7231e4425d2ebfa3fdc03038ca45845b4c"
+    },
+    "results/round5/vllm/dflash_released_repBp2.json": {
+      "bytes": 61299,
+      "sha256": "0f46b864c77230d087cdb6e3c21ef4840929075871b52cbb47a038a48a5f5185"
+    },
+    "results/round5/vllm/discovery.json": {
+      "bytes": 177,
+      "sha256": "6ed84dbe9d2dbc8704399f4e8e21965aa30969fbb90684c028f0563aa4bcf8e7"
+    },
     "source/round3/analyze_predictability.py": {
       "bytes": 11625,
       "sha256": "120f7e158f3bb9b21e1b7810644af495022db0798f000ce84be7b6fd2ae11f63"
@@ -341,12 +417,12 @@
       "sha256": "0e43ba79eef993ff2df54ed595d87d95595dd8c4c1f1be3986319214e47c76cd"
     },
     "test_adaptation.py": {
-      "bytes": 11420,
-      "sha256": "ac32901a59efddec4a7d2d71e8b37a8a0f17001b9b3e613550d67256b55bf612"
+      "bytes": 15147,
+      "sha256": "45217bda7a64171d0fd413b16b8e939e03b5b3b4c6ca2706054e4b632b4d93e2"
     },
     "validate_report.py": {
-      "bytes": 15607,
-      "sha256": "d34185b2ef610943a29e0df334ee72a659e29d3faa6fe06d62feba1879758254"
+      "bytes": 20022,
+      "sha256": "4a0cc57d556dabeb83864ff5c250218c064936ffa46f1934a9ff5dc58ed64b47"
     }
   },
   "scope": "Published experiment files; generated rule results and this manifest excluded."

@@ -1331,5 +1331,341 @@
       }
     }
   },
+  "round5": {
+    "artifacts": {},
+    "inputs": {},
+    "logs": {
+      "vllm_baseline_repA": {
+        "activation": {
+          "accepted_tokens_logged": 0,
+          "drafted_tokens_logged": 0,
+          "last_logged_mean_acceptance_length": null,
+          "resolved_architectures": [
+            {
+              "architecture": "Qwen3_5ForCausalLM",
+              "log_clock": "09-13 04:18:11"
+            }
+          ],
+          "server_metric_intervals": 0,
+          "speculative_config": null
+        },
+        "bytes": 47570,
+        "projection": "Training metric records, stage/terminal markers and server counters; JSON formatting and path fields normalized, other lines retained only in the private raw log.",
+        "published": true,
+        "published_bytes": 98,
+        "published_sha256": "cb190e363d8fabec8954509f45c762980bd4d0689bb438c3d75f59cb019b58e3",
+        "sha256": "cd389b789eb8c35bfab7ebf30e3019932e1bed70971765a45a4bef2ec6428188",
+        "source": "logs/r5_server_baseline_repA.log",
+        "source_line_numbers": [
+          8
+        ]
+      },
+      "vllm_baseline_repB": {
+        "activation": {
+          "accepted_tokens_logged": 0,
+          "drafted_tokens_logged": 0,
+          "last_logged_mean_acceptance_length": null,
+          "resolved_architectures": [
+            {
+              "architecture": "Qwen3_5ForCausalLM",
+              "log_clock": "09-13 04:38:55"
+            }
+          ],
+          "server_metric_intervals": 0,
+          "speculative_config": null
+        },
+        "bytes": 47618,
+        "projection": "Training metric records, stage/terminal markers and server counters; JSON formatting and path fields normalized, other lines retained only in the private raw log.",
+        "published": true,
+        "published_bytes": 99,
+        "published_sha256": "4fd03c921982845800df16f05d122fe4143ef27a8a788d2ab4645ec7b4e03640",
+        "sha256": "507d5d661acf317300a8f3a13abdb3f6c014f15347312042475520cb460edae2",
+        "source": "logs/r5_server_baseline_repB.log",
+        "source_line_numbers": [
+          8
+        ]
+      },
+      "vllm_dflash_ours_repA": {
+        "activation": {
+          "accepted_tokens_logged": 15069,
+          "drafted_tokens_logged": 64813,
+          "last_logged_mean_acceptance_length": 2.66,
+          "resolved_architectures": [
+            {
+              "architecture": "Qwen3_5ForCausalLM",
+              "log_clock": "09-13 04:28:46"
+            },
+            {
+              "architecture": "DFlash2DraftModel",
+              "log_clock": "09-13 04:28:46"
+            }
+          ],
+          "server_metric_intervals": 13,
+          "speculative_config": "method='dflash', model='draft-zh', num_spec_tokens=7"
+        },
+        "bytes": 57928,
+        "projection": "Training metric records, stage/terminal markers and server counters; JSON formatting and path fields normalized, other lines retained only in the private raw log.",
+        "published": true,
+        "published_bytes": 4627,
+        "published_sha256": "edc8f8b05f91849c0a147cf45f14b5a890fb6e4c7cc7cb3ff95703d53287ab96",
+        "sha256": "42bf7c569310c3f5f0ea6b6cfb36c722c8f22010680b572eded02c21ab2c70b5",
+        "source": "logs/r5_server_dflash_ours_repA.log",
+        "source_line_numbers": [
+          8,
+          10,
+          207,
+          217,
+          227,
+          238,
+          254,
+          286,
+          334,
+          346,
+          355,
+          366,
+          378,
+          398,
+          432
+        ]
+      },
+      "vllm_dflash_ours_repB": {
+        "activation": {
+          "accepted_tokens_logged": 16149,
+          "drafted_tokens_logged": 69853,
+          "last_logged_mean_acceptance_length": 2.61,
+          "resolved_architectures": [
+            {
+              "architecture": "Qwen3_5ForCausalLM",
+              "log_clock": "09-13 04:32:40"
+            },
+            {
+              "architecture": "DFlash2DraftModel",
+              "log_clock": "09-13 04:32:40"
+            }
+          ],
+          "server_metric_intervals": 13,
+          "speculative_config": "method='dflash', model='draft-zh', num_spec_tokens=7"
+        },
+        "bytes": 56520,
+        "projection": "Training metric records, stage/terminal markers and server counters; JSON formatting and path fields normalized, other lines retained only in the private raw log.",
+        "published": true,
+        "published_bytes": 4631,
+        "published_sha256": "8cb80bc48100f17d752445ca4d01927d98b5a1578e633abd452d8a301f11abd7",
+        "sha256": "557a6cea29d3de2d6e03dcf911cb099146a9fccccefe5ef0014b2a8f562fe571",
+        "source": "logs/r5_server_dflash_ours_repB.log",
+        "source_line_numbers": [
+          8,
+          10,
+          198,
+          207,
+          218,
+          230,
+          250,
+          284,
+          326,
+          336,
+          346,
+          357,
+          370,
+          395,
+          434
+        ]
+      },
+      "vllm_dflash_released_repA": {
+        "activation": {
+          "accepted_tokens_logged": 13933,
+          "drafted_tokens_logged": 69909,
+          "last_logged_mean_acceptance_length": 2.44,
+          "resolved_architectures": [
+            {
+              "architecture": "Qwen3_5ForCausalLM",
+              "log_clock": "09-13 04:24:39"
+            },
+            {
+              "architecture": "DFlash2DraftModel",
+              "log_clock": "09-13 04:24:39"
+            }
+          ],
+          "server_metric_intervals": 14,
+          "speculative_config": "method='dflash', model='draft-released', num_spec_tokens=7"
+        },
+        "bytes": 58516,
+        "projection": "Training metric records, stage/terminal markers and server counters; JSON formatting and path fields normalized, other lines retained only in the private raw log.",
+        "published": true,
+        "published_bytes": 4967,
+        "published_sha256": "5d404417f2f236b6ea5c545c97471ff6ee6e9b2d9e1f72bf73b4598bca2ef55b",
+        "sha256": "14238072a661b81db45c4d008f07480d9cb125910adfe46198593acd657e866b",
+        "source": "logs/r5_server_dflash_released_repA.log",
+        "source_line_numbers": [
+          8,
+          10,
+          207,
+          216,
+          226,
+          236,
+          248,
+          271,
+          305,
+          340,
+          350,
+          360,
+          369,
+          380,
+          399,
+          431
+        ]
+      },
+      "vllm_dflash_released_repB": {
+        "activation": {
+          "accepted_tokens_logged": 16422,
+          "drafted_tokens_logged": 82509,
+          "last_logged_mean_acceptance_length": 2.41,
+          "resolved_architectures": [
+            {
+              "architecture": "Qwen3_5ForCausalLM",
+              "log_clock": "09-13 04:35:40"
+            },
+            {
+              "architecture": "DFlash2DraftModel",
+              "log_clock": "09-13 04:35:40"
+            }
+          ],
+          "server_metric_intervals": 15,
+          "speculative_config": "method='dflash', model='draft-released', num_spec_tokens=7"
+        },
+        "bytes": 58209,
+        "projection": "Training metric records, stage/terminal markers and server counters; JSON formatting and path fields normalized, other lines retained only in the private raw log.",
+        "published": true,
+        "published_bytes": 5330,
+        "published_sha256": "672293da6a2d34b15faa22e1a69297cb3f8ce1267e8e30c0ee9b44021ad9e097",
+        "sha256": "fdb818cbb33668048985c71c6bb853a24d57c30cf7b05204135d96245e9e70bd",
+        "source": "logs/r5_server_dflash_released_repB.log",
+        "source_line_numbers": [
+          8,
+          10,
+          194,
+          204,
+          213,
+          223,
+          235,
+          254,
+          287,
+          329,
+          337,
+          346,
+          357,
+          368,
+          384,
+          414,
+          461
+        ]
+      }
+    },
+    "results": {
+      "vllm/baseline_repAp1.json": {
+        "bytes": 73652,
+        "published_bytes": 61257,
+        "published_sha256": "03c56267178859acfed681fd91e0b6a5992aa580c85a2f3ce46f142f31ef5c45",
+        "sha256": "40b5ec36f117d15708a13d22f060187727fdc5d82b4538f5dd234247eec5fcd7",
+        "source": "results/r5_vllm_baseline_repAp1.json"
+      },
+      "vllm/baseline_repAp2.json": {
+        "bytes": 73658,
+        "published_bytes": 61263,
+        "published_sha256": "0ae7645d8e3f40e11ec56d036b3ea685424fb1c897143c95dfcb5a00641bcaf7",
+        "sha256": "0216199c9122a1c84aae86eabf5133a3c4a29869afd91c14c35bbbb3c5ca23c9",
+        "source": "results/r5_vllm_baseline_repAp2.json"
+      },
+      "vllm/baseline_repBp1.json": {
+        "bytes": 73654,
+        "published_bytes": 61259,
+        "published_sha256": "7498cdd53f58c7cb8d37259f8e7366702a27cc6d4bd8cc77c1ecf700c682a2f6",
+        "sha256": "90285c437f6c80b106124dc35713c8548aab29285fc79b0fcf1aaa052a83c083",
+        "source": "results/r5_vllm_baseline_repBp1.json"
+      },
+      "vllm/baseline_repBp2.json": {
+        "bytes": 73664,
+        "published_bytes": 61269,
+        "published_sha256": "e3a39b886e6de8f4fc8af78b6fc510084092a48b822d55eb6afffcc2537397ea",
+        "sha256": "545d81b5d805609ce737559eef554302d90934dcdc11d52a3d7dec8bf04f4345",
+        "source": "results/r5_vllm_baseline_repBp2.json"
+      },
+      "vllm/dflash_ours_repAp1.json": {
+        "bytes": 73985,
+        "published_bytes": 61300,
+        "published_sha256": "8686439bc6034fac0d6cb3334e67bf2b2417db228fe85260f2316614791053b3",
+        "sha256": "ddcb460e32e2bffa1f5b5ca2f9048a1866b97bceaa0cd03fde7335df980a5ad1",
+        "source": "results/r5_vllm_dflash_ours_repAp1.json"
+      },
+      "vllm/dflash_ours_repAp2.json": {
+        "bytes": 73986,
+        "published_bytes": 61301,
+        "published_sha256": "ce9f658fac5cd88ec18f117c1e8b76caf1d53063654bf52f487648b05bbe4358",
+        "sha256": "4b9ae1c5ad14bd5afb150b44554fc6ee4ffeefcc9a960275d60c9313826bd0bc",
+        "source": "results/r5_vllm_dflash_ours_repAp2.json"
+      },
+      "vllm/dflash_ours_repBp1.json": {
+        "bytes": 73983,
+        "published_bytes": 61298,
+        "published_sha256": "89f7ec3d6a56ba648fb699d477ebab8fb77795ed184067c6a492ea1e34daf2f2",
+        "sha256": "fb35dddbdc467e87314acdc70ad6ba5cd253fbcd953e1ed7e968443923e20728",
+        "source": "results/r5_vllm_dflash_ours_repBp1.json"
+      },
+      "vllm/dflash_ours_repBp2.json": {
+        "bytes": 73979,
+        "published_bytes": 61294,
+        "published_sha256": "a5b711f0bd91aa9d498d39577822c4fb314f7418e9709c9ee32f4e7ec0decd07",
+        "sha256": "851e2d630c1b5852fadec4ec6380640eae25854694ff5dc04db274ac0b441a41",
+        "source": "results/r5_vllm_dflash_ours_repBp2.json"
+      },
+      "vllm/dflash_released_repAp1.json": {
+        "bytes": 74019,
+        "published_bytes": 61298,
+        "published_sha256": "59b7c513eaa784047101e078b9477266cd7009c4f23588d705c99fe460d04ebb",
+        "sha256": "8651ed499e582b5f507e2154e377efd950e2218bfb3e874bbefd9f62a4c8e5c0",
+        "source": "results/r5_vllm_dflash_released_repAp1.json"
+      },
+      "vllm/dflash_released_repAp2.json": {
+        "bytes": 74022,
+        "published_bytes": 61299,
+        "published_sha256": "41dcadf6a07cb966afff53ce2f925b1eff8509b01b65eb7736f940a4ed56e842",
+        "sha256": "dd64f6f80a2538ab59bf5d7ddc91dff14e3975310e06ab0fae45928eeffed4bc",
+        "source": "results/r5_vllm_dflash_released_repAp2.json"
+      },
+      "vllm/dflash_released_repBp1.json": {
+        "bytes": 74020,
+        "published_bytes": 61299,
+        "published_sha256": "2faa33e671c5881c34fcecd442e52f7231e4425d2ebfa3fdc03038ca45845b4c",
+        "sha256": "2f7ed82473dec05f1378378e2ef4aded32affa286f2571797ce9a6ef6dad1dbb",
+        "source": "results/r5_vllm_dflash_released_repBp1.json"
+      },
+      "vllm/dflash_released_repBp2.json": {
+        "bytes": 74022,
+        "published_bytes": 61299,
+        "published_sha256": "0f46b864c77230d087cdb6e3c21ef4840929075871b52cbb47a038a48a5f5185",
+        "sha256": "0f0087e5543453b41a658311ee0b510857c8afd2ece965cc1549134c06bc6afc",
+        "source": "results/r5_vllm_dflash_released_repBp2.json"
+      },
+      "vllm/discovery.json": {
+        "bytes": 294,
+        "published_bytes": 177,
+        "published_sha256": "6ed84dbe9d2dbc8704399f4e8e21965aa30969fbb90684c028f0563aa4bcf8e7",
+        "sha256": "b76d35163c65f8ca6f83e460db1a9dfc1cc22d29e4a9e6526de76365aec5a873",
+        "source": "state/discovery.json"
+      }
+    },
+    "source": {
+      "round5.sh": {
+        "published": false,
+        "reason": "orchestration shell with private host paths; the engine flags are identical to round4.sh and transcribed in the README"
+      },
+      "vllm_client_bench.py": {
+        "bytes": 4572,
+        "published": false,
+        "same_as": "source/round4/vllm_client_bench.py",
+        "sha256": "0e43ba79eef993ff2df54ed595d87d95595dd8c4c1f1be3986319214e47c76cd"
+      }
+    }
+  },
   "scope": "Allowlisted projection of the author's private archive; hashes trace each public file to its private source."
 }
