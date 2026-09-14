@@ -18,8 +18,8 @@
   },
   "byte_identity": {
     "verified": true,
-    "unchanged_file_count": 187,
-    "logical_tree_sha256": "3586da17b15e12e0caeaac039b184cc1926b841c4bfc9100f09c697581694dd1"
+    "unchanged_file_count": 184,
+    "logical_tree_sha256": "9d14ca54da11912edf3d423bdbe06398637457487e5ff489e38632578af6c025"
   },
   "scientific_artifacts": {
     "verified_byte_identical": true,
@@ -88,6 +88,12 @@
       "destination_blob": "56b4ea91f07b4b97e1b655ad7f15cec1122f5157"
     },
     {
+      "path": "qira-scenario-model-benchmark/.gitattributes",
+      "reason": "Executed source files retain pinned CRLF bytes on every checkout OS.",
+      "source_blob": "11c4a9ae634e8fff8579c1052b8e35d786995e58",
+      "destination_blob": "7ce11b0b43791a610da9b2d976baa53ae896ee22"
+    },
+    {
       "path": "qira-scenario-model-benchmark/README-CN.md",
       "reason": "The Chinese parent overview link now describes this independent project.",
       "source_blob": "d99c7abadf6998cf33cbb5ca7e35409f4ed54327",
@@ -98,6 +104,18 @@
       "reason": "The parent overview link now describes this independent project.",
       "source_blob": "ba7adae8635902e5b9bcf0f386c84583f0610ec5",
       "destination_blob": "9cc9c93e31a294eb5f8dc0f91d38c77a8a085a50"
+    },
+    {
+      "path": "qira-scenario-model-benchmark/analyze.py",
+      "reason": "Attribute renormalization restores the pinned public build-input byte hash.",
+      "source_blob": "a88887ee0a081f024071b561ba858be4d2cb6d26",
+      "destination_blob": "863750883d687b391b5d3191ae7de88241d13009"
+    },
+    {
+      "path": "qira-scenario-model-benchmark/harness.py",
+      "reason": "Attribute renormalization restores the pinned public VM-source byte hash.",
+      "source_blob": "bc832cf2cb0642783d7ab849409b4deb0cb36a27",
+      "destination_blob": "b773db6b5ffc0fa900a04ba2cd00bda28535471f"
     }
   ],
   "moved_helper": {

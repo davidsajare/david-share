@@ -55,6 +55,12 @@ CONTENT_CHANGES = {
         "The parent overview link now describes this independent project.",
     "qira-scenario-model-benchmark/README-CN.md":
         "The Chinese parent overview link now describes this independent project.",
+    "qira-scenario-model-benchmark/.gitattributes":
+        "Executed source files retain pinned CRLF bytes on every checkout OS.",
+    "qira-scenario-model-benchmark/harness.py":
+        "Attribute renormalization restores the pinned public VM-source byte hash.",
+    "qira-scenario-model-benchmark/analyze.py":
+        "Attribute renormalization restores the pinned public build-input byte hash.",
 }
 SCIENTIFIC_PARTS = {"config", "datasets", "outputs", "replay"}
 
