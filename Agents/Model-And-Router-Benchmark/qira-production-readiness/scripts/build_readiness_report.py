@@ -37,6 +37,7 @@ SESSION_ARMS = ("gpt-4o-mini-bench", "gpt-5-mini@minimal", "gpt-5.6-luna@none", 
 LOAD_ARMS = ("gpt-4o-mini-bench", "gpt-5-mini@minimal", "gpt-5.6-luna@none", "router-sol-luna-balanced")
 LEVELS = (4, 8, 16)
 POLICIES = ("none", "reactive", "proactive")
+CHECK_ONLY = False
 SESSIONS, ITERATIONS, TURNS = 6, 3, 4
 
 
@@ -49,6 +50,8 @@ def load_jsonl(path: Path):
 
 
 def write_csv(path, rows):
+    if CHECK_ONLY:
+        return
     with path.open("w", encoding="utf-8-sig", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
         writer.writeheader()
@@ -490,14 +493,22 @@ def build_readmes(run_s, by_turn, by_arm, sequences, run_l, load_rows, load_summ
         t(f"- Full answers with `response_sha256`: `outputs/raw_fulltext/sessions_{run_s}.jsonl` and `resilience_{run_r}.jsonl`. The sustained run is retained **numerically** (`sustained_{run_l}.numeric.jsonl`: every field except `response_text`, whose SHA256 is kept per record); its 3,770 answers to the same 17 prompts remain on the deallocated VM disk (`sustained_fulltext_retained_on_vm_only.sha256` in the provenance) and were not moved through the management-plane transfer channel. Live summaries written by the runners are cross-checked by the builder and kept beside the records. First fallback attempt (request-time-only client) kept under `outputs/resilience_v1_request_time_only/`. Hashes in [provenance_readiness.json](outputs/provenance_readiness.json); resource state after the run in [resource_closeout_readiness.json](outputs/resource_closeout_readiness.json).\n- Synthetic English prompts and scripted conversations, not customer traffic; one client VM; TTFT/E2E are client-observed and include network and delivery; costs are Global list-price estimates by served model (DataZone premium and router fee excluded), not invoices.\n- Not measured: conversations long enough to trigger prompt caching; concurrency beyond 16 or durations beyond 90 s; the 429 onset of the capacity-1000 deployments; whether the in-stream rate-limit shape also applies to GlobalStandard deployments or to Chat Completions on a direct model (the router deployment on Chat returned HTTP 429); Model Router behaviour when an underlying model is unavailable; cross-model fallback quality; API Management itself (the reference policy was neither deployed nor executed — the in-process client reproduces its intent with the two extensions described in §3).",
           f"- 带 `response_sha256` 的全文回答：`outputs/raw_fulltext/sessions_{run_s}.jsonl` 与 `resilience_{run_r}.jsonl`。持续负载运行以**数值形式**保留（`sustained_{run_l}.numeric.jsonl`：除 `response_text` 外的全部字段，每条记录保留其 SHA256）；对同样 17 道题的 3,770 条回答仍留在已释放的 VM 磁盘上（其哈希见来源文件的 `sustained_fulltext_retained_on_vm_only.sha256`），未经管理平面传输通道搬运。运行器实时写出的汇总由生成器交叉校验并一并保留。第一次回退尝试（只看请求时状态的客户端）保留在 `outputs/resilience_v1_request_time_only/`。哈希见 [provenance_readiness.json](outputs/provenance_readiness.json)；运行后的资源状态见 [resource_closeout_readiness.json](outputs/resource_closeout_readiness.json)。\n- 合成英文提示词与脚本化会话，不是客户流量；单台客户端 VM；TTFT/E2E 为客户端观测值，包含网络与交付；成本为按实际服务模型的 Global 牌价估算（不含 DataZone 溢价与路由费），不是账单。\n- 未测：长到足以触发提示缓存的会话；超过 16 的并发或超过 90 s 的时长；capacity 1000 部署的 429 出现点；流内限流形态是否同样出现在 GlobalStandard 部署或直连模型的 Chat Completions 上（Chat 上的 Router 部署返回的是 HTTP 429）；底层模型不可用时 Model Router 的表现；跨模型回退的质量；API Management 本身（参考策略既未部署也未执行——进程内客户端按第 3 节所述的两点扩展重现了它的意图）。"),
     ]
-    (ROOT / "README.md").write_text(render("en", blocks), encoding="utf-8", newline="\n")
-    (ROOT / "README-CN.md").write_text(render("zh", blocks), encoding="utf-8", newline="\n")
+    documents = {
+        "README.md": render("en", blocks),
+        "README-CN.md": render("zh", blocks),
+    }
+    if not CHECK_ONLY:
+        for name, text in documents.items():
+            (ROOT / name).write_text(text, encoding="utf-8", newline="\n")
+    return documents
 
 
 def main():
+    global CHECK_ONLY
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("--check", action="store_true", help="fail if the READMEs would change")
     args = parser.parse_args()
+    CHECK_ONLY = args.check
     before = {n: (ROOT / n).read_text(encoding="utf-8") if (ROOT / n).exists() else None for n in ("README.md", "README-CN.md")}
     run_s, s_rows, by_turn, by_arm, sequences = sessions_report()
     run_l, l_rows, l_summary, load_rows = sustained_report()
@@ -521,14 +532,21 @@ def main():
         "redaction": "endpoint_host replaced by YOUR-ENDPOINT.cognitiveservices.azure.com after transfer; response_sha256 hashes response_text only.",
         "sha256": {str(p.relative_to(ROOT)).replace("\\", "/"): sha(p) for p in sorted(OUTPUT.rglob("*")) if p.is_file() and p.name != "provenance_readiness.json"},
     }
-    (OUTPUT / "provenance_readiness.json").write_text(json.dumps(provenance, indent=2) + "\n", encoding="utf-8", newline="\n")
-    build_readmes(run_s, by_turn, by_arm, sequences, run_l, load_rows, l_summary, run_r, res_rows, r_summary, lifecycle)
-    after = {n: (ROOT / n).read_text(encoding="utf-8") for n in before}
-    if args.check and any(before[n] != after[n] for n in before):
+    if not CHECK_ONLY:
+        (OUTPUT / "provenance_readiness.json").write_text(
+            json.dumps(provenance, indent=2) + "\n",
+            encoding="utf-8",
+            newline="\n",
+        )
+    generated = build_readmes(
+        run_s, by_turn, by_arm, sequences, run_l, load_rows, l_summary,
+        run_r, res_rows, r_summary, lifecycle,
+    )
+    if args.check and any(before[n] != generated[n] for n in before):
         raise SystemExit("README drift: regenerate and commit.")
     print(f"VERIFIED: sessions {len(s_rows)} turns, sustained {len(l_rows)} records ({sum(r['counted'] for r in load_rows)} counted), "
           f"resilience {len(r_rows)} records ({sum(r['counted'] for r in res_rows)} counted), lifecycle {len(lifecycle['models'])} models; "
-          f"{len(by_turn) + len(by_arm) + len(load_rows) + len(res_rows)} summary rows written.")
+          f"{len(by_turn) + len(by_arm) + len(load_rows) + len(res_rows)} summary rows validated.")
 
 
 if __name__ == "__main__":

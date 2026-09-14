@@ -42,6 +42,7 @@ LOAD_ARMS = ("gpt-4o-mini-bench", "gpt-5-mini@minimal", "gpt-5.6-luna@none", "ro
 LEVELS = (1, 4, 8, 16)
 REQUESTS_PER_LEVEL = 48
 ACTION_QUESTIONS = {"S03", "S04"}  # tool-less action requests that exposed the v1 rubric drift
+CHECK_ONLY = False
 
 
 def pct(values, q):
@@ -53,6 +54,8 @@ def load_jsonl(path: Path):
 
 
 def write_csv(path, rows):
+    if CHECK_ONLY:
+        return
     with path.open("w", encoding="utf-8-sig", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
         writer.writeheader()
@@ -418,14 +421,22 @@ def build_readmes(run_direct, direct_rows, run_load, load_rows, arm_rows, per_ta
           f"- 全文回答：`outputs/raw_fulltext/direct_{run_direct}.jsonl`（752 条）、`outputs/raw_fulltext/loadtest_{run_load}.jsonl`；每条记录保留 `response_sha256`。\n- `outputs/loadtest_{run_load}.summary.json` 由 `loadtest.py` 实时写出；生成器从原始记录重算全部聚合值，不一致即拒绝生成。\n- `outputs/quality_v2_{RUN_B}.jsonl`、`outputs/quality_v2_{RUN_A}.jsonl`；v1 输入与历史 Chat 路径直连记录位于 `outputs/inputs/`，见 [manifest.json](outputs/inputs/manifest.json)。\n- 成本为按实际服务模型的 Global 牌价估算（不含 DataZone 溢价与路由费），不是账单。运行后的资源状态见 [resource_closeout_followup.json](outputs/resource_closeout_followup.json)。"),
         "",
     ]
-    (ROOT / "README.md").write_text(render("en", blocks), encoding="utf-8", newline="\n")
-    (ROOT / "README-CN.md").write_text(render("zh", blocks), encoding="utf-8", newline="\n")
+    documents = {
+        "README.md": render("en", blocks),
+        "README-CN.md": render("zh", blocks),
+    }
+    if not CHECK_ONLY:
+        for name, text in documents.items():
+            (ROOT / name).write_text(text, encoding="utf-8", newline="\n")
+    return documents
 
 
 def main():
+    global CHECK_ONLY
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("--check", action="store_true", help="fail if the READMEs would change")
     args = parser.parse_args()
+    CHECK_ONLY = args.check
     validate_input_manifest()
     registry = analyze.load_registry(ROOT / "config" / "models.json")
     pricing = analyze.load_pricing(ROOT / "config" / "pricing.json")
@@ -446,13 +457,19 @@ def main():
         "redaction": "endpoint_host replaced by YOUR-ENDPOINT.cognitiveservices.azure.com in the raw records, summary and VM logs after transfer; response_sha256 hashes response_text only and is unaffected.",
         "sha256": {str(p.relative_to(ROOT)).replace("\\", "/"): sha(p) for p in sorted(OUTPUT.rglob("*")) if p.is_file() and p.name != "provenance_followup.json"},
     }
-    (OUTPUT / "provenance_followup.json").write_text(json.dumps(provenance, indent=2) + "\n", encoding="utf-8", newline="\n")
-    build_readmes(run_direct, direct_rows, run_load, load_rows, arm_rows, per_task, provenance)
-    after = {n: (ROOT / n).read_text(encoding="utf-8") for n in before}
-    if args.check and any(before[n] != after[n] for n in before):
+    if not CHECK_ONLY:
+        (OUTPUT / "provenance_followup.json").write_text(
+            json.dumps(provenance, indent=2) + "\n",
+            encoding="utf-8",
+            newline="\n",
+        )
+    generated = build_readmes(
+        run_direct, direct_rows, run_load, load_rows, arm_rows, per_task, provenance
+    )
+    if args.check and any(before[n] != generated[n] for n in before):
         raise SystemExit("README drift: regenerate and commit.")
     print(f"VERIFIED: direct re-measure {len(direct_records)} rows, load test {len(load_records)} records, "
-          f"judge v2 {sum(1 for r in question_rows)} cells; {len(direct_rows) + len(load_rows) + len(arm_rows)} summary rows written.")
+          f"judge v2 {sum(1 for r in question_rows)} cells; {len(direct_rows) + len(load_rows) + len(arm_rows)} summary rows validated.")
 
 
 if __name__ == "__main__":

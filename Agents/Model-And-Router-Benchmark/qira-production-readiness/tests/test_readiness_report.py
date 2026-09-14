@@ -88,10 +88,22 @@ class ReadinessBuilderTests(unittest.TestCase):
     def test_readmes_generated_and_stable_without_private_values(self):
         import re
         import subprocess
+        targets = [
+            ROOT / "README.md",
+            ROOT / "README-CN.md",
+            RB.OUTPUT / "sessions_by_turn.csv",
+            RB.OUTPUT / "sessions_by_arm.csv",
+            RB.OUTPUT / "sessions_router_sequences.csv",
+            RB.OUTPUT / "sustained_levels.csv",
+            RB.OUTPUT / "resilience_policies.csv",
+            RB.OUTPUT / "provenance_readiness.json",
+        ]
+        before = {path: path.read_bytes() for path in targets}
         result = subprocess.run([sys.executable, str(ROOT / "scripts" / "build_readiness_report.py"), "--check"],
                                 capture_output=True, text=True, cwd=ROOT, timeout=300)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertIn("VERIFIED:", result.stdout)
+        self.assertEqual(before, {path: path.read_bytes() for path in targets})
         for name in ("README.md", "README-CN.md"):
             text = (ROOT / name).read_text(encoding="utf-8")
             self.assertNotIn("cognitiveservices.azure.com", text.replace("YOUR-ENDPOINT.cognitiveservices.azure.com", ""))

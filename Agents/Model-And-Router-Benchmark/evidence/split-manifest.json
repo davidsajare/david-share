@@ -18,8 +18,8 @@
   },
   "byte_identity": {
     "verified": true,
-    "unchanged_file_count": 183,
-    "logical_tree_sha256": "68ee6858a85236da6816edf56a56b5fb16967365637f54a8598e29c98a02e044"
+    "unchanged_file_count": 179,
+    "logical_tree_sha256": "0a47a593674949d1efb35491c6d77519782d770e54dca6bd0d1aebfcf07a8941"
   },
   "scientific_artifacts": {
     "verified_byte_identical": true,
@@ -33,6 +33,18 @@
     "logical_tree_sha256": "194d9f12565c55b460bf3d947713d99f1fd17d3b1546849ea2d96fad1d1296cf"
   },
   "intentional_content_changes": [
+    {
+      "path": "qira-followup-throughput-recalibration/scripts/build_followup_report.py",
+      "reason": "Check mode validates generated content without rewriting tracked artifacts.",
+      "source_blob": "8a7c35aa0e8a2c1a8ec8d47d6059a08687bcd18a",
+      "destination_blob": "1cc19bf2435c91947a3f3965b925564e20abaa35"
+    },
+    {
+      "path": "qira-followup-throughput-recalibration/tests/test_followup_report.py",
+      "reason": "A regression test proves check mode leaves every generated artifact unchanged.",
+      "source_blob": "77c7190f6c9dc52ee9679a934ce67abb91d28a28",
+      "destination_blob": "6f9d382df3d22f7f8d08bb804a9422daaa52e3ca"
+    },
     {
       "path": "qira-live-benchmark-console/README-CN.md",
       "reason": "Chinese reproduction command points to the independent repository.",
@@ -92,6 +104,18 @@
       "reason": "The link boundary is the new independent project root, with a traversal test.",
       "source_blob": "dfc0e9e696c21a1006d1c50395f4eb9a2cb1d717",
       "destination_blob": "56b4ea91f07b4b97e1b655ad7f15cec1122f5157"
+    },
+    {
+      "path": "qira-production-readiness/scripts/build_readiness_report.py",
+      "reason": "Check mode validates generated content without rewriting tracked artifacts.",
+      "source_blob": "b492e25991dcee01a9094f62c0a3941463d35db2",
+      "destination_blob": "e5ce62a139a1fa0fa386b2dff49d231ab9aaff9c"
+    },
+    {
+      "path": "qira-production-readiness/tests/test_readiness_report.py",
+      "reason": "A regression test proves check mode leaves every generated artifact unchanged.",
+      "source_blob": "64857683d6b87026b1dff42c26d7ec56c2dab0c9",
+      "destination_blob": "0737b2e3dea15d0a6adb954eba2bc177ff61214b"
     },
     {
       "path": "qira-scenario-model-benchmark/.gitattributes",

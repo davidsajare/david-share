@@ -45,6 +45,14 @@ CONTENT_CHANGES = {
         "A regression test pins the mobile layout contract.",
     "qira-live-benchmark-console/tests/test_portal_gate.py":
         "Packaging uses the active interpreter so clean venv tests are portable.",
+    "qira-followup-throughput-recalibration/scripts/build_followup_report.py":
+        "Check mode validates generated content without rewriting tracked artifacts.",
+    "qira-followup-throughput-recalibration/tests/test_followup_report.py":
+        "A regression test proves check mode leaves every generated artifact unchanged.",
+    "qira-production-readiness/scripts/build_readiness_report.py":
+        "Check mode validates generated content without rewriting tracked artifacts.",
+    "qira-production-readiness/tests/test_readiness_report.py":
+        "A regression test proves check mode leaves every generated artifact unchanged.",
     "qira-model-router-validation/README.md":
         "Generated reproduction command points to the independent repository.",
     "qira-model-router-validation/README-CN.md":

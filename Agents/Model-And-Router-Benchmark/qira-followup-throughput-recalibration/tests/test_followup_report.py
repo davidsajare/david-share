@@ -95,10 +95,21 @@ class FollowupBuilderTests(unittest.TestCase):
 
     def test_readmes_are_generated_and_stable(self):
         import subprocess
+        targets = [
+            ROOT / "README.md",
+            ROOT / "README-CN.md",
+            FU.OUTPUT / "direct_api_path_comparison.csv",
+            FU.OUTPUT / "loadtest_levels.csv",
+            FU.OUTPUT / "judge_rubric_comparison_arms.csv",
+            FU.OUTPUT / "judge_rubric_comparison_questions.csv",
+            FU.OUTPUT / "provenance_followup.json",
+        ]
+        before = {path: path.read_bytes() for path in targets}
         result = subprocess.run([sys.executable, str(ROOT / "scripts" / "build_followup_report.py"), "--check"],
                                 capture_output=True, text=True, cwd=ROOT, timeout=300)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertIn("VERIFIED:", result.stdout)
+        self.assertEqual(before, {path: path.read_bytes() for path in targets})
         for name in ("README.md", "README-CN.md"):
             text = (ROOT / name).read_text(encoding="utf-8")
             self.assertIn(self.run_direct, text)
