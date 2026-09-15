@@ -371,6 +371,26 @@ is a comparison basis and not a bill.
 | Cost of routing for quality | `quality` mode at 7.533 USD / 1k versus `cost` mode at 0.496 |
 | Cost per conversation | 0.44 to 11.43 USD per 1,000 four-turn sessions depending on the arm |
 
+**How a request is priced.** Every request carries the token counts the service returned
+in its `usage` block — prompt, cached prompt, completion and reasoning — and is priced as
+(prompt − cached) × input price + cached × cached-input price + completion × output price,
+with reasoning tokens inside completion. The 3 prices per model are in
+[`config/pricing.json`](scenario-model-benchmark/config/pricing.json), checked against the
+Azure pricing page on 2026-09-09.
+
+**Cache writes.** Models before the GPT-5.6 family do not charge for writing to the prompt
+cache; GPT-5.6 models add a 4th price for cache writes (Luna 0.25 and Sol 6.25 USD per
+1M tokens, recorded in the same file). The formula above does not include it, and that
+changes nothing in the single-turn studies: the longest prompt was 250 tokens, below the
+1,024-token minimum a cacheable prefix needs, and every request reported 0 cached tokens.
+In the 4-turn session study, 8 requests at turn 4 served by Luna (2 direct, 6 through the
+router) carried 1,031 to 1,329 prompt tokens and could have written to the cache; the
+harness did not capture cache-write usage, so any such charge is not in the numbers. The
+upper bound, pricing the whole prompt of each of those requests as a write, is 0.029 USD
+per 1,000 sessions on Luna `none` (0.910 reported), 0.048 on `balanced` (1.128) and 0.049
+on `quality` (11.433). For a production estimate with a long system prompt on a GPT-5.6
+model, the cache-write price does apply and should be added.
+
 <a id="configuration"></a>
 ## 5. Configuration
 
