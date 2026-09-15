@@ -59,7 +59,7 @@ answers on these tasks.**
 |---|---|---|
 | API path | Responses API with streaming | Chat Completions delivered 497/564 answers as a single burst, which makes TTFT and per-token pace unmeasurable |
 | Reasoning effort | Lowest supported value per model | `high` cost 7.6× more and 27× the TTFT on GPT-5 mini for no quality gain in this sample |
-| Router mode | `cost` or `balanced`, not `quality` | `quality` selected the expensive model on 48.9% of requests and changed model inside 18 of 18 conversations |
+| Router mode | `cost` or `balanced`, not `quality` | `quality` routed 48.9% of requests to GPT-5.6 Sol and changed model inside 18 of 18 conversations |
 | Rate-limit handling | Stream-aware fallback, not status-code retry | Every rejection arrived inside an HTTP 200 stream; a status-code-only retry never fired |
 | Client placement | Same region as the deployment | Cross-region calls add network time that is then misread as model latency |
 
@@ -152,52 +152,98 @@ detail are in [the scenario study](scenario-model-benchmark/README.md).
 
 ### 3.2 Model Router selection
 
-1,410 measured requests over 10 arms (6 router arms and 4 direct baselines), 470
+**What was built.** 3 Model Router deployments on the same resource, one per routing
+mode — `cost`, `balanced` and `quality` — each `model-router 2025-11-18`, GlobalStandard,
+capacity 300, and each with exactly 2 models behind it: `gpt-5.6-sol 2026-07-09` and
+`gpt-5.6-luna 2026-07-09` ([deployment record](model-router-validation/outputs/deployment_verification_router.json)).
+Every request was sent to the router, never to a model directly; the model that actually
+answered was read from `model_selection_details.model_router_details` in the response and
+recorded per request.
+
+**What was sent.** The 47 prompts of [2.1 Test set](#methodology), each 3 measured times
+plus 1 warm-up per router, once with no `reasoning_effort` and once with `low`. With the 4
+direct Sol and Luna baselines that makes 10 arms, 1,410 measured requests and 470
 blind-judged answers.
 
-The router had exactly 2 candidates, GPT-5.6 Sol (expensive) and GPT-5.6 Luna (cheaper),
-so every request went to one or the other: a request not sent to the expensive model went
-to the cheaper one, and the two counts in any row below add up to that row's requests.
+**Selection was repeatable on this sample.** All 282 router cells (6 router arms × 47
+prompts) returned the same model on all 3 repetitions; 0 switched. The `low` arms routed
+every prompt exactly as the no-effort arms did, so each mode is one column below.
 
-**Selection was repeatable on this sample.** Every one of the 282 router cells (6 router
-arms × 47 prompts; the 4 direct-baseline arms make no routing decision) returned the same
-model on all 3 measured repetitions; 0 cells switched. The
-[per-question CSV](model-router-validation/outputs/router_question_hits.csv) keeps each
-served sequence.
+**Which model answered each prompt**
+([per-question CSV](model-router-validation/outputs/router_question_hits.csv); prompt
+texts are in the dataset file, 2 of them withheld in the public copy):
 
-| Mode | Expensive-model share, effort not sent | Effort `low` | Reading for this sample |
-|---|---:|---:|---|
-| `balanced` | 4.3% | 4.3% | Almost always the cheaper model; the expensive one appeared on 2 controlled complex prompts |
-| `cost` | 0.0% | 0.0% | The cheaper model on every measured request |
-| `quality` | 48.9% | 48.9% | Mixed; author-assigned complexity labels did not define a routing threshold |
+| Tier | Prompt | Category | `cost` | `balanced` | `quality` |
+|---|---|---|---|---|---|
+| simple | CZ02 | `edit_intent_parsing` | Luna | Luna | Luna |
+| simple | CMU03 | `executive_condense` | Luna | Luna | Luna |
+| simple | S01 | `factual_lookup` | Luna | Luna | Sol |
+| simple | S02 | `factual_lookup` | Luna | Luna | Sol |
+| simple | S09 | `faq` | Luna | Luna | Sol |
+| simple | S10 | `faq` | Luna | Luna | Sol |
+| simple | S07 | `formatting` | Luna | Luna | Luna |
+| simple | S08 | `formatting` | Luna | Luna | Sol |
+| simple | LI02 | `grounded_followup` | Luna | Luna | Sol |
+| simple | PA03 | `instant_recall` | Luna | Luna | Sol |
+| simple | S03 | `intent_classification` | Luna | Luna | Luna |
+| simple | S04 | `intent_classification` | Luna | Luna | Luna |
+| simple | S05 | `short_form` | Luna | Luna | Sol |
+| simple | S06 | `short_form` | Luna | Luna | Luna |
+| simple | NM03 | `short_suggestion` | Luna | Luna | Sol |
+| moderate | M07 | `classification_reasoning` | Luna | Luna | Luna |
+| moderate | M08 | `code_snippet` | Luna | Luna | Sol |
+| moderate | M04 | `comparison` | Luna | Luna | Sol |
+| moderate | LI01 | `conversational_turn` | Luna | Luna | Luna |
+| moderate | NM02 | `cross_device_continuity` | Luna | Luna | Sol |
+| moderate | CMU02 | `decision_extraction` | Luna | Luna | Luna |
+| moderate | M02 | `drafting` | Luna | Luna | Sol |
+| moderate | M09 | `planning` | Luna | Luna | Luna |
+| moderate | CZ01 | `prompt_expansion` | Luna | Luna | Sol |
+| moderate | M06 | `rewriting` | Luna | Luna | Luna |
+| moderate | WFM04 | `short_draft` | Luna | Luna | Sol |
+| moderate | M03 | `structured_extraction` | Luna | Luna | Luna |
+| moderate | M01 | `summarization` | Luna | Luna | Luna |
+| moderate | M10 | `summarization` | Luna | Luna | Luna |
+| moderate | WFM02 | `tone_continuation` | Luna | Luna | Luna |
+| moderate | WFM03 | `tone_shift_rewrite` | Luna | Luna | Luna |
+| moderate | PA02 | `translate_and_summarize` | Luna | Luna | Luna |
+| moderate | M05 | `troubleshooting` | Luna | Luna | Sol |
+| complex | C09 | `ambiguity_resolution` | Luna | Luna | Sol |
+| complex | C03 | `architecture_reasoning` | Luna | Luna | Luna |
+| complex | CMU01 | `backlog_digest` | Luna | Luna | Luna |
+| complex | C06 | `code_reasoning` | Luna | Sol | Sol |
+| complex | C04 | `constrained_reasoning` | Luna | Sol | Sol |
+| complex | PA01 | `keypoint_capture` | Luna | Luna | Luna |
+| complex | WFM01 | `long_form_draft` | Luna | Luna | Sol |
+| complex | C08 | `long_form_synthesis` | Luna | Luna | Luna |
+| complex | C10 | `multi_constraint_planning` | Luna | Luna | Sol |
+| complex | C01 | `multi_step_math` | Luna | Luna | Sol |
+| complex | C02 | `multi_step_math` | Luna | Luna | Sol |
+| complex | NM01 | `proactive_suggestion` | Luna | Luna | Luna |
+| complex | C05 | `root_cause_analysis` | Luna | Luna | Luna |
+| complex | C07 | `tradeoff_analysis` | Luna | Luna | Luna |
 
-Difficulty did not drive the choice. Read each row on its own: the percentage is the
-expensive-model share **of that tier's requests**, not a share of all requests, so the
-column is not meant to add up to 100%. `quality` mode sent a **larger share** of simple
-prompts to the expensive model than of complex ones
-([per-tier CSV](model-router-validation/outputs/router_routing_by_tier.csv)):
+**Counts per tier.** Read across a row: Sol + Luna equals that row's requests. The
+percentage is Sol's share of that tier only, so the column is not meant to sum to 100%.
 
-| Author-assigned tier | Prompts | Requests | `cost`: expensive / cheaper | `balanced`: expensive / cheaper | `quality`: expensive / cheaper |
+| Author-assigned tier | Prompts | Requests | `cost`: Sol / Luna | `balanced`: Sol / Luna | `quality`: Sol / Luna |
 |---|---:|---:|---:|---:|---:|
 | simple | 15 | 45 | 0 / 45 (0.0%) | 0 / 45 (0.0%) | 27 / 18 (60.0%) |
 | moderate | 18 | 54 | 0 / 54 (0.0%) | 0 / 54 (0.0%) | 21 / 33 (38.9%) |
 | complex | 14 | 42 | 0 / 42 (0.0%) | 6 / 36 (14.3%) | 21 / 21 (50.0%) |
 | all tiers | 47 | 141 | 0 / 141 (0.0%) | 6 / 135 (4.3%) | 69 / 72 (48.9%) |
 
-Counts are for the arms with effort not sent; the `low` arms produced the same per-tier
-counts.
+`cost` never chose Sol. `balanced` chose Sol for 2 prompts only, both complex:
+`code_reasoning` and `constrained_reasoning`. `quality` chose Sol for 23 of 47 prompts and
+its choice did not follow the author-assigned tier — a larger share of simple prompts went to
+Sol than of complex ones. What did track the choice was the kind of work requested: Sol
+answered prompts that generate content or answer from model knowledge (`factual_lookup`,
+`faq`, `code_snippet`, `drafting`, `multi_step_math`, `code_reasoning`) and Luna answered
+prompts that transform text already supplied (`summarization`, `structured_extraction`,
+`rewriting`, `tone_shift_rewrite`, `keypoint_capture`).
 
-What did track the choice was the kind of work requested. Across the 40 measured
-categories ([per-category CSV](model-router-validation/outputs/router_routing_by_category.csv)),
-`quality` gave the expensive model the prompts that generate content or answer from model
-knowledge — `factual_lookup`, `faq`, `code_snippet`, `drafting`, `multi_step_math`,
-`code_reasoning` — and kept the cheaper model for prompts that transform text already
-supplied: `summarization`, `structured_extraction`, `rewriting`, `tone_shift_rewrite`,
-`keypoint_capture`. `balanced` reached for the expensive model in 2 categories only, both
-complex: `code_reasoning` and `constrained_reasoning`.
-
-These are observed counts from repeated synthetic prompts, and the task-type split is this
-author's reading of those 40 categories rather than a published rule. They are not a
+These are observed counts from repeated synthetic prompts, and the task-type reading is
+this author's grouping of the 40 categories rather than a published rule. They are not a
 production routing probability and not a reconstruction of the internal routing rule.
 
 ### 3.3 Sessions, sustained load and the rate limit
