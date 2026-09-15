@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live model benchmark console</title>
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("clawpilotTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+
+<header>
+  <div class="brand-mark" aria-hidden="true">Q</div>
+  <div class="brand-copy">
+    <div class="eyebrow">Microsoft Foundry · native model evaluation</div>
+    <h1>Live model benchmark console</h1>
+    <div class="sub">TTFT / TPOT / tokens per second / cost, measured live on the deployments themselves</div>
+  </div>
+  <div class="spacer"></div>
+  <span class="badge guard" title="No tools and no web search are attached to any request. Native model capability only.">no web search &middot; no tools</span>
+  <span class="badge" id="endpointBadge"></span>
+  <span class="badge" id="modeBadge">loading</span>
+</header>
+
+<main>
+  <!-- ---------------- setup ---------------- -->
+  <section class="panel setup">
+    <h2>1 &middot; Models</h2>
+    <div id="armList"></div>
+
+    <h2 style="margin-top:18px">2 &middot; Prompts</h2>
+    <div class="tabs" id="datasetTabs">
+      <button class="tab on" data-dataset="scenarios" type="button">assistant scenarios</button>
+      <button class="tab" data-dataset="router" type="button">Router difficulty tiers</button>
+    </div>
+    <div id="itemList"></div>
+
+    <h2 style="margin-top:18px">3 &middot; Run</h2>
+    <div class="actions" style="margin-bottom:8px">
+      <button class="ghost" id="presetStudy" type="button" title="The exact shape of the written study: the three candidate models across every supported reasoning effort, over all assistant prompts.">README matrix</button>
+      <button class="ghost" id="presetQuick" type="button" title="Three models at their default effort over one prompt per scenario.">Quick demo</button>
+      <button class="ghost" id="presetClear" type="button">Clear</button>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="iterations">Measured iterations</label>
+        <input type="number" id="iterations" min="1" max="20" value="3">
+      </div>
+      <div class="field">
+        <label for="concurrency">Concurrency</label>
+        <input type="number" id="concurrency" min="1" max="16" value="1">
+      </div>
+    </div>
+    <div class="field">
+      <label for="headroom">Reasoning headroom (tokens)</label>
+      <input type="number" id="headroom" min="0" max="32768" step="256" value="8192">
+      <div class="hint">Each request is capped at that prompt's own answer budget (80&ndash;900 tokens) <b>plus</b> this headroom, which is how the written study runs it: a reasoning model gets room to think without being truncated.</div>
+    </div>
+    <div class="field">
+      <label class="check-inline"><input type="checkbox" id="warmup" checked> Discard a warm-up pass per prompt</label>
+    </div>
+
+    <div class="estimate" id="estimate"></div>
+    <div class="actions">
+      <button class="primary" id="runBtn" type="button">Run benchmark</button>
+      <button class="danger hidden" id="cancelBtn" type="button">Stop</button>
+    </div>
+
+    <h2 style="margin-top:18px">4 &middot; Past runs</h2>
+    <div class="field" id="replayField">
+      <label for="replaySelect">Saved and recorded runs</label>
+      <select id="replaySelect"></select>
+    </div>
+    <div class="actions">
+      <button class="ghost" id="replayBtn" type="button">Open</button>
+      <button class="ghost" id="exportBtn" type="button" disabled>Export CSV</button>
+      <button class="ghost" id="deleteBtn" type="button" disabled>Delete</button>
+    </div>
+  </section>
+
+  <!-- ---------------- results ---------------- -->
+  <section class="stack">
+    <div class="notice hidden" id="notice"></div>
+
+    <div class="panel" id="progressWrapPanel">
+      <h2>Progress</h2>
+      <div id="progressWrap">
+        <div class="bar"><i id="progressBar"></i></div>
+        <div class="counters">
+          <span>requests <b id="cDone">0</b> / <b id="cTotal">0</b></span>
+          <span>ok <b id="cOk">0</b></span>
+          <span>errors <b id="cErr">0</b></span>
+          <span>truncated <b id="cTrunc">0</b></span>
+          <span>elapsed <b id="cElapsed">0s</b></span>
+          <span id="cSource" class="muted"></span>
+        </div>
+        <div class="counters totals" id="totalsStrip">
+          <span>prompt tokens <b id="tPrompt">—</b></span>
+          <span>output tokens <b id="tOutput">—</b></span>
+          <span>of which reasoning <b id="tReason">—</b></span>
+          <span>total tokens <b id="tTotal">—</b></span>
+          <span>this session cost <b id="tCost">—</b></span>
+        </div>
+      </div>
+      <div class="log" id="log"></div>
+    </div>
+
+    <div class="charts" id="charts">
+      <div class="chart"><h3>Time to first token</h3><p class="why">How long the user stares at nothing. p50 is the typical wait, p90 is the one they complain about.</p><div id="chartTtft"></div></div>
+      <div class="chart"><h3>Decode speed</h3><p class="why">Output tokens per second once text starts flowing, over answers that actually streamed. An answer delivered in one burst has no per-token pace and is excluded.</p><div id="chartTps"></div></div>
+      <div class="chart"><h3>Cost per 1,000 requests</h3><p class="why">List-price estimate from the measured tokens of this run. Not an invoice.</p><div id="chartCost"></div></div>
+      <div class="chart"><h3>Cost against latency</h3><p class="why">Bottom-left is the bargain corner: cheap and quick. Bubble size is mean output length.</p><div id="chartScatter"></div></div>
+      <div class="chart"><h3>Where the tokens go</h3><p class="why">Mean tokens per request. Reasoning tokens are billed as output but never shown to the user.</p><div id="chartTokens"></div></div>
+      <div class="chart hidden" id="routerCard"><h3>What the router actually picked</h3><p class="why">Share of requests each underlying model served, per router mode.</p><div id="chartRouter"></div></div>
+    </div>
+
+    <div class="panel">
+      <h2>Summary</h2>
+      <div class="table-wrap"><table id="summaryTable"><thead></thead><tbody></tbody></table></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Measurements come from the same <span class="mono">harness.py</span> that produced the written studies in the sibling folders: one streamed request per call,
+  <span class="mono">max_retries=0</span>, usage required, no tools, no web search. Run the console from a VM in the same region as the deployments so network latency is not measured as model latency.
+</footer>
+
+<script src="static/app.js"></script>
+</body>
+</html>

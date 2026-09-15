@@ -1,0 +1,30 @@
+{
+  "schema_version": 2,
+  "purpose": "Prove that removing a customer identity, a demo endpoint and a shared login from the public copy did not alter any measurement.",
+  "baseline_commit": "ea2616be13e7034125526ce3132e7deda78f8537",
+  "removed_from_public_copy": {
+    "a UI-evidence file recording that deployment's endpoint": 1,
+    "a portal card carrying a demo URL and a shared login": 1,
+    "console screenshots of a private demo deployment": 2,
+    "the superseded split manifest and its builder": 2
+  },
+  "files": {
+    "pinned": 208,
+    "byte_identical": 99,
+    "de_identified": 109
+  },
+  "numeric_identity": {
+    "verified": true,
+    "scope": "Every numeric leaf of every changed measurement, dataset, config and replay file. Path-indexed ledgers are excluded because a rename moves their keys and they hold no measured value.",
+    "excluded_ledgers": [
+      "manifest.json",
+      "public_redaction.json",
+      "provenance*",
+      "resource_closeout*",
+      "deployment_verification*"
+    ],
+    "evidence_files_compared": 17,
+    "numeric_values_compared": 60808,
+    "mismatches": 0
+  }
+}

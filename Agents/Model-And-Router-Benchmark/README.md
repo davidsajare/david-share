@@ -1,53 +1,180 @@
-# Lenovo Qira Model & Model Router Benchmark: Chicago Workshop
+# Azure OpenAI Model and Model Router Benchmark
 
 [![CI](https://github.com/david-xinyuwei/david-share/actions/workflows/model-and-router-benchmark-ci.yml/badge.svg)](https://github.com/david-xinyuwei/david-share/actions/workflows/model-and-router-benchmark-ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab)](requirements.txt)
-[![Matrix](https://img.shields.io/badge/direct_matrix-11_arms-b11f4b)](qira-scenario-model-benchmark/README.md)
-[![Region](https://img.shields.io/badge/client%2Fresource-Sweden_Central-16a34a)](#protocol-and-fairness-boundary)
+[![Direct matrix](https://img.shields.io/badge/direct_matrix-11_arms-b11f4b)](scenario-model-benchmark/README.md)
+[![Region](https://img.shields.io/badge/client%2Fresource-same_region-16a34a)](#methodology)
 [![License](https://img.shields.io/badge/license-MIT-5c5c5c)](../../LICENSE)
 
-Azure provides direct model deployments and Model Router; this repository
-brings 17 synthetic Qira prompts, the measurement harness and the retained
-evidence. The 4 studies compare 11 direct model/effort arms, 3 Router modes,
-multi-turn sessions and sustained load. In the primary direct matrix,
-GPT-4o mini reached 0.367 s TTFT P50 while GPT-5.6 Luna `none` reached the
-highest low-effort blind score, 4.92/5.
+Choosing a model for a latency-sensitive assistant is not a leaderboard lookup: the
+answer depends on the prompts, the reasoning effort, the API path and the deployment
+capacity. This project measures three candidate models across every supported
+`reasoning_effort`, compares three Model Router modes against their own direct
+baselines, and then tests the two things a pilot usually discovers in production —
+multi-turn session cost and behaviour at the rate limit. All 4 studies ran from a
+Linux VM in the same Azure region as the deployments, with no web search and no
+tools, so what is compared is native model capability. Across 561 measured requests
+the median first token arrived between **0.367 s and 15.47 s** and cost ranged from
+0.094 to 4.564 USD per 1,000 requests — a 42× latency and 49× cost spread driven by
+configuration rather than by model name.
 
 > Author: **Xinyu Wei (魏新宇)**
 
 [English](README.md) | [中文](README-CN.md)
 
-[Use it now](#use-it-now) · [Measured results](#measured-results) ·
-[Protocol deep dive](#protocol-and-fairness-boundary) ·
-[Evidence](#evidence-and-executable-assets) ·
-[Official Model Router guide](https://learn.microsoft.com/azure/foundry/openai/how-to/model-router)
+[Executive summary](#executive-summary) · [Methodology](#methodology) · [Results](#results) · [Reproduce](#reproducing) · [Model Router guide](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/model-router)
 
 ---
 
-<a id="use-it-now"></a>
-## Use it now
+<a id="executive-summary"></a>
+## Executive Summary
 
-| Goal | Go here | Subscription / side effects |
+**No single model wins. Pick per surface against an absolute quality bar, a TTFT
+budget and real request volume — "higher reasoning effort" did not buy better
+answers on these tasks.**
+
+| Candidate | TTFT P50 | E2E P50 | Tokens / turn | USD / 1k requests | Blind judge / 5 | Test conditions |
+|---|---:|---:|---:|---:|---:|---|
+| GPT-4o mini | **0.367 s** | 2.26 s | 243 | **0.094** | 4.53 | Responses API, `stream=True`, no reasoning parameter, no tools |
+| GPT-5 mini `minimal` | 0.567 s | 2.20 s | 402 | 0.603 | 4.55 | Same, `reasoning_effort=minimal` |
+| GPT-5.6 Luna `none` | 1.074 s | **1.95 s** | 366 | 0.324 | **4.92** | Same, `reasoning_effort=none` |
+| GPT-5.6 Luna `high` | 1.918 s | 3.08 s | 468 | 0.447 | 4.95 | Same, `reasoning_effort=high` |
+| GPT-5 mini `high` | 15.47 s | 17.5 s | 2 383 | 4.564 | 4.79 | Same, `reasoning_effort=high` |
+
+> 51 measured requests per arm (17 prompts × 3 iterations, 1 warm-up discarded), 561
+> measured requests over 11 arms. TTFT and E2E are client-observed medians; tokens and
+> cost are per-request means at published list prices. Quality is a blind LLM judge over
+> 5 dimensions (187 evaluations). Full 11-arm table in
+> [the scenario study](scenario-model-benchmark/README.md).
+
+**Configuration this evidence supports**
+
+| Setting | Value | Why |
 |---|---|---|
-| Read the decision | [Measured results](#measured-results) | None |
-| Rebuild every historical claim | Run the offline acceptance path below | Local files only; no model calls |
-| Re-run or present the benchmark | [Live portal](http://linuxworkvm1-work.eastasia.cloudapp.azure.com/qira-benchmark/) or [self-hosted console](qira-live-benchmark-console/README.md#2-quick-start) | Viewing saved runs makes no model call; a new live run uses Azure PAYGO |
+| API path | Responses API with streaming | Chat Completions delivered 497/564 answers as a single burst, which makes TTFT and per-token pace unmeasurable |
+| Reasoning effort | Lowest supported value per model | `high` cost 7.6× more and 27× the TTFT on GPT-5 mini for no quality gain in this sample |
+| Router mode | `cost` or `balanced`, not `quality` | `quality` selected the expensive model on 48.9% of requests and changed model inside 18 of 18 conversations |
+| Rate-limit handling | Stream-aware fallback, not status-code retry | Every rejection arrived inside an HTTP 200 stream; a status-code-only retry never fired |
+| Client placement | Same region as the deployment | Cross-region calls add network time that is then misread as model latency |
 
-### Live portal
+<a id="background"></a>
+## 1. Background
 
-| Field | Value |
+The workload is a cross-device consumer assistant with six user-facing task families:
+Next Move, Write For Me, Catch Me Up, Pay Attention, Live Interaction and Creator Zone.
+They are latency-sensitive and mostly non-reasoning text tasks, which is why the study
+optimises for time-to-first-token and cost per turn rather than for benchmark scores.
+
+| Input | Value | Source |
+|---|---|---|
+| Candidate models | GPT-4o mini, GPT-5 mini, GPT-5.6 Luna | [`config/models.json`](scenario-model-benchmark/config/models.json) |
+| Router deployment | `model-router`, modes `cost` / `balanced` / `quality` | [`model-router-validation`](model-router-validation/README.md) |
+| List prices | Per 1M input / cached / output tokens | [`config/pricing.json`](scenario-model-benchmark/config/pricing.json) |
+| Model lifecycle | Retirement dates queried from the Models API | [`model_lifecycle_swedencentral.json`](production-readiness/outputs/model_lifecycle_swedencentral.json) |
+
+Lifecycle matters as much as latency: on the day of the query, GPT-5 mini `2025-08-07`
+was scheduled to retire on 2027-02-09 and GPT-4o mini `2024-07-18` was already
+deprecated for new customers, while the GPT-5.6 family ran to 2028-01-11.
+
+<a id="methodology"></a>
+## 2. Methodology
+
+| Control | Implementation | What it does **not** prove |
+|---|---|---|
+| Native capability only | No web search and no tools on any compared arm | Nothing about search or tool quality |
+| Same region | Benchmark VM and Azure AI resource in one region; VM location re-read from IMDS at export time | Global and DataZone serving do not expose the physical GPU region |
+| Identical prompts | The same 17 synthetic prompts in every matrix cell | Customer production traffic or multilingual quality |
+| Streaming timing | TTFT at the first non-empty text delta, E2E at stream completion | Server compute, prefill or GPU decode time |
+| Failure accounting | `max_retries=0`; a stream without usage fails closed | Availability outside the measured windows |
+| Cost | Measured usage × published list price, by the model actually served | An Azure invoice; router fees, VM and judge are excluded |
+
+Sample sizes, SDK versions and the per-study matrices are in each study README. The
+harness is one file per study and is the same code the live console calls, so a replayed
+chart and a freshly measured chart mean the same thing.
+
+**Why the API path is part of the method.** On Chat Completions, 497 of 564 measured
+answers arrived with their first and last text chunk less than 50 ms apart. A TTFT
+measured that way is delivery, not generation. Re-running the identical prompts on the
+Responses API reduced that to 32 of 564 and made per-token pace measurable. Every
+latency conclusion in this repository therefore states its API path.
+
+<a id="results"></a>
+## 3. Results
+
+### 3.1 Direct model matrix
+
+11 model × effort arms, 561 measured requests, 0 API errors and 0 truncated answers.
+The headline rows are in the [Executive Summary](#executive-summary); the full matrix,
+per-scenario breakdown and blind-judge detail are in
+[the scenario study](scenario-model-benchmark/README.md).
+
+### 3.2 Model Router selection
+
+1,410 measured requests over 10 arms, 470 blind-judged answers.
+
+| Mode | Expensive-model share, effort not sent | Effort `low` | Reading for this sample |
+|---|---:|---:|---|
+| `balanced` | 4.3% | 4.3% | Almost always the cheaper model; the expensive one appeared on 2 controlled complex prompts |
+| `cost` | 0.0% | 0.0% | The cheaper model on every measured request |
+| `quality` | 48.9% | 48.9% | Mixed; author-assigned complexity labels did not define a routing threshold |
+
+These are observed counts from repeated synthetic prompts. They are not a production
+routing probability and not a reconstruction of the internal routing rule.
+
+### 3.3 Sessions, sustained load and the rate limit
+
+- A 4-turn conversation cost 0.90–1.14× the cost of 4 first turns. Prompt caching
+  contributed nothing: no request re-sent a prefix long enough to qualify.
+- `quality` mode changed the served model inside 18 of 18 conversations; `balanced`
+  inside 0 of 18. Tone and per-turn cost therefore move within one conversation.
+- Under continuously refilled load the three direct candidates completed every request
+  at 4, 8 and 16 in flight. The router deployment at capacity 300 returned 237 in-stream
+  rate-limit failures at 16 in flight. **Capacity, not the model, set the ceiling.**
+- Every rate-limit rejection observed in the fallback experiment arrived **after an
+  HTTP 200, inside the stream**. A client that only retried on request-time status
+  never fired and matched the no-fallback result (2.7% success). A stream-aware
+  reactive client reached 100%, adding 411 ms P50 to rescued requests.
+
+Details, per-level tables and the fallback client are in
+[the production-readiness study](production-readiness/README.md).
+
+<a id="cost-analysis"></a>
+## 4. Cost Analysis
+
+Cost is computed per request from measured usage and the published list price of the
+model that actually served the request, then reported per 1,000 requests. It excludes
+DataZone premiums, any router fee, the judge, the benchmark VM and probe traffic, so it
+is a comparison basis and not a bill.
+
+| Question | Answer from this evidence |
 |---|---|
-| URL | http://linuxworkvm1-work.eastasia.cloudapp.azure.com/qira-benchmark/ |
-| Username | `lenovo-qira` |
-| Password | `qira2026` |
-| Measurement runner | Linux VM in Sweden Central |
+| Cheapest per request | GPT-4o mini at 0.094 USD / 1k requests |
+| Cost of the best low-effort quality | GPT-5.6 Luna `none` at 0.324 USD / 1k, 3.5× GPT-4o mini |
+| Cost of raising effort | GPT-5 mini `high` at 4.564 USD / 1k, 7.6× its own `minimal` |
+| Cost of routing for quality | `quality` mode at 7.533 USD / 1k versus `cost` mode at 0.496 |
+| Cost per conversation | 0.44 to 11.43 USD per 1,000 four-turn sessions depending on the arm |
 
-This is a shared demo login, not an Azure credential. The UI and durable
-history run on the East Asia Work VM; request timing runs on the Sweden Central
-VM beside the Azure AI resource. If the runner has been deallocated, saved runs
-remain readable but a new live run cannot start.
+<a id="configuration"></a>
+## 5. Configuration
 
-### Offline acceptance — Linux Bash
+The settings the evidence supports are listed in the
+[Executive Summary](#executive-summary). Two of them are easy to get wrong:
+
+1. **Reasoning effort is not a quality dial on these tasks.** Every effort value that a
+   model accepts was measured. Raising it increased tokens, latency and cost; the blind
+   judge did not separate the results.
+2. **A rate-limit fallback must watch the stream.** The reference policy that retries on
+   HTTP 429 never triggered here, because the service answered 200 and then failed
+   inside the stream. The working client switches backend on an error seen before any
+   content is delivered.
+
+<a id="reproducing"></a>
+## 6. Reproducing
+
+The offline path rebuilds every published number from the retained evidence and makes
+no model call.
+
+### Linux
 
 ```bash
 git lfs version
@@ -61,7 +188,7 @@ python -m pip install --no-input -r requirements.txt
 python scripts/validate_repo.py
 ```
 
-### Offline acceptance — Windows PowerShell
+### Windows PowerShell
 
 ```powershell
 git lfs version
@@ -74,227 +201,48 @@ python -m venv .venv
 .\.venv\Scripts\python.exe scripts\validate_repo.py
 ```
 
-**Done-When:** the final line is
-`PASS: 15/15 repository rules and all executable gates`. This path performs no
-Azure/model call. To clean up the offline path, deactivate and delete `.venv`;
-it creates no cloud resource.
+**Done when** the last line reads
+`PASS: 15/15 repository rules and all executable gates`. The command creates no cloud
+resource; delete `.venv` to clean up.
 
-### State and configuration contract
+**Running new measurements** costs money and needs your own Azure deployments. Each
+study README carries its own live command. Put the benchmark VM in the same region as
+the deployment, or the numbers will describe your network. The live console is
+documented in [`live-benchmark-console`](live-benchmark-console/README.md); it binds to
+loopback and expects authentication and a reverse proxy in front of it. This repository
+publishes no hosted instance, endpoint or credential.
 
-| State | Owner and persistence | Operator action |
-|---|---|---|
-| Recorded study evidence | Committed per-study `outputs/`; immutable under the split manifest | Rebuild with the offline gate |
-| Active live run | Same-region Runner owns execution; browser retains the run ID and reconnects; Portal mirrors completion | Use **Stop** to cancel explicitly; a lost tab does not cancel |
-| Past runs | One JSON record per run in the Portal history store | Open/export/delete in the UI; a deleted run is tombstoned and does not reappear |
+<a id="evidence"></a>
+## 7. Evidence and boundaries
 
-For a new deployment, copy
-[`qira-live-benchmark-console/.env.example`](qira-live-benchmark-console/.env.example).
-Set either `AZURE_OPENAI_ENDPOINT` for a same-region local runner or
-`QIRA_RUNNER_URL` for a remote same-region Runner. Do not expose the console
-directly; bind loopback and place authentication/reverse proxying in front.
-
-## What Azure provides, and what this repository owns
-
-| Azure / Model Router provides | This repository and its operator provide |
+| Path | What it holds |
 |---|---|
-| Direct model and Router inference endpoints | Identical prompts, model/effort matrix and request collector |
-| Streaming response events and usage | TTFT/E2E/TPOT definitions, failure accounting and token/cost arithmetic |
-| Router-selected served-model metadata | Request-level traces, direct baselines and offline aggregation |
-| Azure identity, quota and deployment capacity | Same-region Runner, explicit configuration and PAYGO authorization |
-| Service lifecycle and model versions | Retained evidence, public redaction, tests, report builders and CI |
+| [`scenario-model-benchmark/`](scenario-model-benchmark/) | Direct model × effort matrix, raw and full-text records, blind judge, report builder |
+| [`model-router-validation/`](model-router-validation/) | Router modes, direct baselines, served-model traces, documentation gate |
+| [`throughput-recalibration/`](throughput-recalibration/) | API-path comparison, stepped concurrency, judge rubric v2 |
+| [`production-readiness/`](production-readiness/) | Multi-turn sessions, sustained load, rate-limit fallback, model lifecycle |
+| [`live-benchmark-console/`](live-benchmark-console/) | Replay and live console, durable run history, same-region runner |
+| [`scripts/`](scripts/) | Public-boundary redaction and the repository gate |
+| [`evidence/`](evidence/) | De-identification manifest and executable rule results |
 
-The benefit is repeatability: the same retained rows feed the written reports
-and the console replay. The cost is that the operator still owns capacity,
-identity, pricing updates and whether synthetic prompts represent production
-traffic.
-
-## What was validated — and what is demo
-
-| Capability | What was actually validated | Evidence | Does not prove |
-|---|---|---|---|
-| Direct model matrix | 11 model/effort arms on the same 17 prompts | [Scenario evidence](qira-scenario-model-benchmark/outputs/) | A universal model winner |
-| Model Router behavior | 3 modes against direct Sol/Luna baselines, with served-model traces | [Router report](qira-model-router-validation/README.md#results) | A stable internal routing rule |
-| Production paths | Multi-turn sessions, sustained 4/8/16 concurrency, rate-limit fallback and lifecycle | [Readiness report](qira-production-readiness/README.md) | An Azure SLA or every capacity setting |
-| Recorded console replay | Charts rebuilt from retained rows with the live summarizer | [Replay pack](qira-live-benchmark-console/replay/replay_pack.json) | A request executed at viewing time |
-| Live portal | Real in-page login, deployed UI, Runner label, history and live execution when the Runner is online | [UI evidence](evidence/ui-evidence.json) | Numerical correctness by screenshot alone |
-
-Recorded runs are measured evidence, not fixtures pretending to be live. The
-prompts are synthetic and the portal is a presentation/control plane. A green
-`LIVE` badge proves that the portal reached the Runner; report correctness is
-proved separately by raw records, hashes, builders and tests.
-
-## Live console walkthrough
-
-![Qira live benchmark console in LIVE mode, showing the Sweden Central Runner and model matrix](images/qira-live-console-desktop.png)
-
-The top bar answers the two workshop questions before a run starts: the
-measurement path is the **Sweden Central Runner**, and requests have
-**no web search · no tools**. The left pane selects direct models, Router modes,
-prompts and run parameters; the right pane plots progress, TTFT, TPOT,
-tokens/sec and cost. The screenshot proves the deployed product surface, not
-the benchmark numbers. Desktop and mobile captures, hashes and non-claims are
-recorded in [UI evidence](evidence/ui-evidence.json).
-
-<a id="evidence-and-executable-assets"></a>
-## Evidence and executable assets
-
-| Path | Contract |
-|---|---|
-| [`qira-scenario-model-benchmark/`](qira-scenario-model-benchmark/) | Direct matrix, raw/full-text evidence, blind judge and deterministic result builder |
-| [`qira-model-router-validation/`](qira-model-router-validation/) | Router dataset, served-model traces, direct baselines and bilingual documentation gate |
-| [`qira-followup-throughput-recalibration/`](qira-followup-throughput-recalibration/) | API-path comparison, closed-batch concurrency and judge-v2 evidence |
-| [`qira-production-readiness/`](qira-production-readiness/) | Session, sustained-load, fallback and lifecycle evidence |
-| [`qira-live-benchmark-console/`](qira-live-benchmark-console/) | Replay/live UI, durable history, login gate, remote Runner and 8513/8514/8515 loopback services |
-| [`scripts/build_split_manifest.py`](scripts/build_split_manifest.py) | Compares the immutable source tree with the new index; undeclared byte drift fails |
-| [`scripts/validate_repo.py`](scripts/validate_repo.py) | One offline gate for layout, links, bilingual facts, public boundary, reports and tests |
-| [`evidence/`](evidence/) | Split manifest, executable rule results, UI evidence and SOP-68 structure mapping |
-
-<a id="measured-results"></a>
-## Measured results
-
-### Run inventory
-
-| Study | Actual run IDs | Measured scope / terminal evidence |
-|---|---|---|
-| Direct scenario matrix | `20260909_120534` | 561 measured requests; 748/748 including warm-ups completed; whole-run wall time not retained |
-| Model Router | `20260909_223737` | 1,410 measured requests and 470 blind scores; complete request-level evidence |
-| Follow-up | `direct_20260910_074346`, `loadtest_20260910_085128` | 564 direct and 768 stepped-load measured requests; 0 errors in the reported load matrix |
-| Production readiness | `sessions_20260911_015218`, `sustained_20260911_020626`, `resilience_20260911_024156` | 360 session turns and 3,770 sustained numeric records; terminal summaries retained per run |
-
-### One complete request trace
-
-| Field | Retained value |
-|---|---|
-| Work identity | Run `20260909_120534`, prompt `NM01`, arm `gpt-4o-mini-bench`, measured iteration 2 |
-| Request path | Sweden Central Linux VM → direct Responses API stream; tools `false`; effort not sent |
-| Terminal state | `completed`; not truncated; full business output retained |
-| Metrics | TTFT 358.8 ms; E2E 2811.0 ms; TPOT 22.81 ms; 43.84 visible tokens/s |
-| Usage / cost | 121 prompt + 108 completion + 0 reasoning tokens; USD 0.00008295 at recorded list rates |
-| Source | [Dataset row](qira-scenario-model-benchmark/datasets/qira_scenarios.jsonl) · [full-text run](qira-scenario-model-benchmark/outputs/raw_fulltext/direct_20260909_120534.jsonl) |
-
-Actual input:
-
-```text
-Current activity context: the user has a spreadsheet named Q3-Forecast.xlsx open with unsaved edits to the revenue tab, an unread email from the finance lead titled 'Forecast sign-off needed by Thursday', and a calendar block tomorrow at 10am called 'Q3 Planning'. Propose the three most useful next actions, ordered by urgency. For each, give a one-line rationale. Do not ask questions.
-```
-
-Complete retained output:
-
-```text
-1. **Save edits to the Q3-Forecast.xlsx spreadsheet.**
-   This ensures that all your current work is preserved before making further changes or addressing other tasks.
-
-2. **Respond to the unread email from the finance lead.**
-   Since it requests a sign-off by Thursday, addressing it promptly is crucial to meet the deadline.
-
-3. **Prepare for the Q3 Planning meeting tomorrow at 10am.**
-   Reviewing relevant materials and planning discussion points will enhance your contribution during the meeting.
-```
-
-The trace connects owned input, current harness path, request identity, terminal
-output and client-observed metrics. It is one measured cell, not a replacement
-for the 561-request aggregate.
-
-### Direct candidates on Qira prompts
-
-| Candidate | TTFT P50 | E2E P50 | Tokens / turn | USD / 1,000 requests | Blind judge / 5 |
-|---|---:|---:|---:|---:|---:|
-| GPT-4o mini | **0.367 s** | 2.26 s | 243 | **0.094** | 4.53 |
-| GPT-5 mini, `minimal` | 0.567 s | 2.20 s | 402 | 0.603 | 4.55 |
-| GPT-5.6 Luna, `none` | 1.074 s | **1.95 s** | 366 | 0.324 | **4.92** |
-
-Source: [scenario benchmark, Executive Summary](qira-scenario-model-benchmark/README.md#executive-summary).
-The full matrix covers Luna `none` through `max`, GPT-5 mini `minimal`
-through `high`, and GPT-4o mini with no reasoning parameter.
-
-### Model Router observations
-
-| Router mode | Sol share, effort not sent | Sol share, `low` | Interpretation for this sample |
-|---|---:|---:|---|
-| `balanced` | 4.3% | 4.3% | Mostly Luna; Sol appeared on 2 controlled complex prompts |
-| `cost` | 0.0% | 0.0% | Luna on every measured request |
-| `quality` | 48.9% | 48.9% | Mixed Sol/Luna; complexity labels did not define a threshold |
-
-Source: [Model Router decision brief](qira-model-router-validation/README.md#findings).
-These are observed counts from repeated synthetic prompts, not production
-routing probabilities or a reverse-engineered routing rule.
-
-### Production findings
-
-- Under continuously refilled load, the 3 direct candidates completed all
-  requests at 4/8/16 in flight. The balanced Router at capacity 300 returned
-  237 in-stream rate-limit failures at 16 in flight.
-- Every observed rate-limit rejection in the fallback experiment arrived
-  inside an HTTP 200 stream, not as HTTP 429. A status-code-only retry did not
-  activate; stream-aware reactive and proactive fallback both reached 100%
-  success in the measured windows.
-- Router `quality` changed served model inside 18/18 measured 4-turn
-  conversations; `balanced` changed inside 0/18.
-
-Source: [production-readiness decision summary](qira-production-readiness/README.md#decision-summary).
-
-<a id="protocol-and-fairness-boundary"></a>
-## Protocol and fairness boundary
-
-| Control | What was done | What it does **not** prove |
-|---|---|---|
-| Native capability | No web search and no tools on any compared arm | Search/tool quality was not tested |
-| Client location | Linux Benchmark VM and Azure AI resource in Sweden Central | Global/DataZone serving does not expose the physical GPU region |
-| Comparable prompts | Identical synthetic English prompts per matrix cell | Customer production or multilingual quality |
-| Streaming timing | TTFT at first non-empty text delta; E2E at stream completion | Pure server compute, Prefill or GPU Decode time |
-| Failure accounting | `max_retries=0`; missing usage and stream errors fail closed | Availability outside the measured windows |
-| Cost | Usage multiplied by documented model list rates | Azure invoice, Router fees, VM, Judge or regional premiums |
-
-The 6 Qira product surfaces are Next Move, Write For Me, Catch Me Up,
-Pay Attention, Live Interaction and Creator Zone. The retained dataset contains
-17 prompt cases across those surfaces. Live Interaction and Creator Zone are
-text proxies; speech, video and image-generation quality are outside scope.
-
-## Tests and refusal paths
-
-The single acceptance command in [Use it now](#use-it-now) runs these gates:
-
-| Gate | Happy path | Rejected mutation / failure |
-|---|---|---|
-| Split provenance | 198 source files map to 198 destination files | Missing/extra file or undeclared byte change |
-| Scientific payload | 93 `config/datasets/outputs/replay` files are byte-identical | Modified evidence blob or stale manifest |
-| Reports | Raw rows regenerate Router/follow-up/readiness reports and console replay | Hash mismatch, missing row, duplicate cell or stale README |
-| Public boundary | `PA01`/`PA03` redaction contracts and safe placeholders remain | Missing redaction record or obvious real credential |
-| Console | Live/replay, auth, history, reconnect and responsive layout | Cross-site mutation, path escape, duplicate history, stream loss or desktop-only chart minimum |
-| Bilingual/docs | Heading/table/code/numeric parity and every local link | Numeric drift, missing link, stale old-root path or broken evidence target |
-
-The project gate also parses every Python source and emits exactly one
-result for each `RUN-001` through `RUN-015`. The negative tests mutate
-the contract rather than merely rerunning the happy path.
-
-## Compatibility, public boundary and evidence
-
-| Surface | Validated | Boundary |
-|---|---|---|
-| Offline gate | Python 3.10+; pinned `openai==3.10.0`, `azure-identity==1.25.3` | Clean Linux CI and Windows validation; live Windows inference is not claimed |
-| Browser UI | Current Chromium desktop and 390×844 mobile viewport | Screenshot does not prove request correctness |
-| Azure auth | Entra ID on the measured VM; API-key field remains optional | Offline verification needs no Azure identity |
-| Public data | Synthetic prompts; 2 internal-meeting-transcript cells withheld with hashes retained | Not customer production traffic |
-| License | Repository-level [MIT License](../../LICENSE) | Azure services, model terms and customer data remain separately governed |
-
-The split source is immutable commit
-`af65768bf2ddc88f7c45432598848cd233fc4aa3`. The
-[split manifest](evidence/split-manifest.json) proves the complete move and
-byte identity. [Rule results](evidence/rule-results.json) map each gate to its
-evidence. 2 cells (`PA01`, `PA03`) are withheld; all numerical fields, scores
-and `response_sha256` values remain in the aggregates.
+**What the evidence does not cover.** The prompts are synthetic and are not customer
+production traffic. Quality is a blind model judge near the top of its scale, not a
+human verdict. Concurrency beyond 16, windows beyond 90 s, and the rate-limit onset of
+the large-capacity deployments were not measured. Two prompt cells and one dependent
+session carried identifiers and are withheld from this public copy; their numeric
+fields, scores and response hashes are unchanged, so every aggregate still covers them.
+Each study records the transformation in its `outputs/public_redaction.json`.
 
 ## Repository layout
 
 ```text
 Model-And-Router-Benchmark/
-├── qira-scenario-model-benchmark/
-├── qira-model-router-validation/
-├── qira-followup-throughput-recalibration/
-├── qira-production-readiness/
-├── qira-live-benchmark-console/
+├── scenario-model-benchmark/
+├── model-router-validation/
+├── throughput-recalibration/
+├── production-readiness/
+├── live-benchmark-console/
 ├── scripts/
 ├── tests/
-├── evidence/
-└── images/
+└── evidence/
 ```

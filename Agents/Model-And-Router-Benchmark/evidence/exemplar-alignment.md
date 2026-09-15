@@ -1,38 +1,37 @@
-# SOP-68 exemplar alignment
+# Layout exemplar alignment
 
 | Field | Value |
 |---|---|
-| Repository type | Public, executable, bilingual Azure benchmark with a live web UI and remote measurement worker |
+| Repository type | Public, executable, bilingual Azure benchmark with retained evidence and a self-hosted console |
 | Immutable exemplar | [`AI-Foundry-Custom-Code-Training@3ffd2b1`](https://github.com/david-xinyuwei/david-share/tree/3ffd2b1fffa19ce1315851e07b7ae854ffd340e3/Deep-Learning/AI-Foundry-Custom-Code-Training) |
 | Exemplar version read | `README.md` at `3ffd2b1fffa19ce1315851e07b7ae854ffd340e3`, 620 lines |
-| Adaptation rule | Preserve reader functions S0–S10; do not copy training-specific headings, screenshots, commands or depth |
+| Report chapter standard | Executive Summary with a test-condition column, then Background, Methodology, Results, Cost, Configuration, Reproducing, Evidence |
+| Adaptation rule | Take the reader path and the evidence discipline; take no domain content, no screenshot count and no chapter numbering that this project does not need |
 
-## Four-column extraction
+## Slot extraction
 
-| Slot | Target content in this repository | Evidence entry | Native gate |
+| Slot | Content here | Evidence entry | Native gate |
 |---|---|---|---|
-| S0 first screen | Accurate Qira/Chicago H1, 5 fact badges, measured positioning paragraph, confirmed author, language switch and 5-item navigation | Root `README.md` / `README-CN.md` lines 1–24 | `validate_exemplar_contract`: badge count, ordering, author, language links and anchor sequence |
-| S0.5 use entry | Goal routing with side effects, live portal access, Linux/Windows offline paths, one Done-When and state/config contract | `#use-it-now` | Required heading/table/tokens and bilingual command-block parity |
-| S1 responsibility boundary | Azure/Router responsibilities versus repository/operator responsibilities; benefit and cost | `What Azure provides…` | Required first post-entry responsibility table and heading order |
-| S2 validation matrix | Direct matrix, Router behavior, production paths, replay and live portal; evidence plus non-claim per row | `What was validated…` | Required 4-column table and evidence-link checks |
-| S3 product walkthrough | One desktop product screenshot answering where measurement runs and what is disabled; mobile capture stays in UI evidence | `Live console walkthrough`, `ui-evidence.json` | Image/link existence, image hashes, UI-evidence fields and browser smoke |
-| S4 executable assets | Paths and contracts for all 5 components, builders, root validator and evidence | `#evidence-and-executable-assets` | Required asset links resolve; ghost paths fail |
-| S5 measured matrix | Actual run IDs, N/terminal boundary, direct performance, Router selection and production findings | `#measured-results` | Numeric bilingual parity plus component report/test builders |
-| S6 deep dive | Same-region boundary, no-search/no-tools control, timing/failure/cost definitions and explicit non-claims | `#protocol-and-fairness-boundary` | Required boundary tokens and report evidence gates |
-| S7 Quick Start | Side effects increase from clone/install to offline validation; paid live path is separate | S0.5 Linux/Windows blocks and route table | Exact command tokens, code-fence parity and clean-environment CI |
-| S8 tests | Happy paths and explicit rejected mutations for provenance, evidence, reports, public boundary, console and bilingual docs | `Tests and refusal paths`, root/component tests | `tests/test_repository_gate.py` plus all component suites |
-| S9 tail | Compatibility, public boundary, license, provenance and evidence lineage | `Compatibility, public boundary and evidence` | Secret scan, redaction contract, split manifest and rule-result evidence existence |
-| S10 directory | Only real directories with distinct responsibilities | `Repository layout` | Expected directory set; missing component fails |
+| S0 first screen | Accurate project H1, 5 fact badges, a positioning paragraph ending in a measured spread, confirmed author, language switch, 5-item navigation | Root `README.md` / `README-CN.md` | `validate_reader_contract`: badge count, element order, H2 sequence, navigation anchors |
+| S0.5 use entry | `6. Reproducing` gives one offline acceptance command per platform with a single Done-When and an explicit "no cloud resource" statement | `#reproducing` | Required command tokens and bilingual code-fence equality |
+| S1 responsibility boundary | `2. Methodology` opens with a control table whose second column states what each control does **not** prove | `#methodology` | Required boundary tokens; 6 declared control rows |
+| S2 validation matrix | `3. Results` separates the direct matrix, router selection and production behaviour, each with its sample size | `#results` | Component report builders and full-text verifiers |
+| S3 product walkthrough | Deliberately absent. This repository publishes no hosted instance, so a console screenshot would prove nothing about a measurement | — | `RUN-011` records the N/A with its reason |
+| S4 executable assets | `7. Evidence and boundaries` maps every directory to what it holds | `#evidence` | Local link resolution |
+| S5 measured matrix | Executive Summary table plus per-study run IDs and terminal counts | `#executive-summary` | Bilingual numeric parity and builder `--check` |
+| S6 deep dive | API-path effect, reasoning-effort effect and the in-stream rate-limit shape, each stated with its boundary | `#methodology`, `#results` | Report builders regenerate these from retained rows |
+| S7 Quick Start | Offline path has no side effects; the paid path is separated and never carries access details | `#reproducing` | Code-fence equality between languages |
+| S8 tests | Component suites plus repository-gate mutation tests that remove one guarantee at a time | `tests/`, per-study `tests/` | `validate_repo.py` runs all of them |
+| S9 tail | Public-data boundary, withheld cells, and what the evidence does not cover | `#evidence` | Redaction contract and public-boundary gate |
+| S10 directory | Only directories that exist and carry distinct responsibility | `Repository layout` | Layout gate |
 
-## Principles adopted, not copied
+## Principles taken, not copied
 
-1. The first screen compresses a decision, not the complete study archive.
-2. The only onboarding path appears immediately after S0 and separates
-   no-side-effect verification from PAYGO execution.
-3. Every result points to retained rows or an executable builder; a screenshot
-   never substitutes for behavior evidence.
-4. `scripts/`, `tests/` and `evidence/` are load-bearing surfaces. The split
-   manifest proves their preservation against the immutable source commit.
-5. Boundaries are adjacent to claims: Global/DataZone physical execution,
-   synthetic prompts, list-price cost and text-proxy scope are not hidden in a
-   terminal disclaimer.
+1. The first screen compresses a decision, not the archive.
+2. The only onboarding path sits immediately after the first screen and separates
+   the no-side-effect path from the paid one.
+3. Every result points at retained rows or an executable builder.
+4. `scripts/`, `tests/` and `evidence/` are load-bearing and are never traded for prose.
+5. Boundaries sit next to the claims they limit, not in a closing disclaimer.
+6. A public repository carries no customer identity, no endpoint and no credential;
+   that rule is enforced by a gate rather than by review habit.

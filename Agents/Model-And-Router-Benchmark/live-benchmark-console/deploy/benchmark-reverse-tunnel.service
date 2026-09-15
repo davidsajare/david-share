@@ -1,0 +1,30 @@
+[Unit]
+Description=Runner reverse tunnel to the Linux Work VM portal
+After=network-online.target benchmark-runner.service
+Wants=network-online.target benchmark-runner.service
+
+[Service]
+Type=simple
+User=benchmark
+Group=benchmark
+EnvironmentFile=/etc/benchmark/reverse-tunnel.env
+ExecStart=/usr/bin/ssh -NT \
+  -i /etc/benchmark/portal-tunnel-ed25519 \
+  -p ${BENCH_PORTAL_SSH_PORT} \
+  -o BatchMode=yes \
+  -o ExitOnForwardFailure=yes \
+  -o ServerAliveInterval=30 \
+  -o ServerAliveCountMax=3 \
+  -o StrictHostKeyChecking=yes \
+  -o UserKnownHostsFile=/etc/benchmark/portal_known_hosts \
+  -R 127.0.0.1:8514:127.0.0.1:8513 \
+  ${BENCH_PORTAL_TARGET}
+Restart=always
+RestartSec=10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target

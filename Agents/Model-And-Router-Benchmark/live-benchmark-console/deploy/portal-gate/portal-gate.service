@@ -1,0 +1,19 @@
+[Unit]
+Description=Demo Portal in-page sign-in gate
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/portal-gate
+Environment=PYTHONDONTWRITEBYTECODE=1
+EnvironmentFile=-/etc/benchmark/portal-gate.env
+ExecStart=/usr/bin/python3 gate.py --host 127.0.0.1 --port 8515
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
