@@ -56,7 +56,7 @@ class PairedOverheadTests(unittest.TestCase):
     def test_unredacted_endpoint_is_rejected(self):
         changed = copy.deepcopy(self.records)
         for r in changed:
-            r["endpoint_host"] = "real-resource.openai.azure.com"
+            r["endpoint_host"] = "example.openai.azure.com"
         self.reject(records=changed)
 
     def test_delta_is_router_minus_direct(self):
