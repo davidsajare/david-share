@@ -37,9 +37,9 @@ answers on these tasks.**
 |---|---:|---:|---:|---:|---:|---|
 | GPT-4o mini | **0.367 s** | 2.26 s | 243 | **0.094** | 4.53 | Responses API, `stream=True`, no reasoning parameter, no tools |
 | GPT-5 mini `minimal` | 0.567 s | 2.20 s | 402 | 0.603 | 4.55 | Same, `reasoning_effort=minimal` |
+| GPT-5 mini `high` | 15.47 s | 17.5 s | 2 383 | 4.564 | 4.79 | Same, `reasoning_effort=high` |
 | GPT-5.6 Luna `none` | 1.074 s | **1.95 s** | 366 | 0.324 | **4.92** | Same, `reasoning_effort=none` |
 | GPT-5.6 Luna `high` | 1.918 s | 3.08 s | 468 | 0.447 | 4.95 | Same, `reasoning_effort=high` |
-| GPT-5 mini `high` | 15.47 s | 17.5 s | 2 383 | 4.564 | 4.79 | Same, `reasoning_effort=high` |
 
 > 51 measured requests per arm (17 prompts × 3 iterations, 1 warm-up discarded), 561
 > measured requests over 11 arms. TTFT and E2E are client-observed medians; tokens and
@@ -111,24 +111,30 @@ total, 0 API errors and 0 truncated answers.
 |---|---:|---:|---:|---:|---:|---:|
 | GPT-4o mini | 0.367 s | 2.26 s | 243 | 0 | 0.094 | 4.53 |
 | GPT-5 mini `minimal` | 0.567 s | 2.20 s | 402 | 0 | 0.603 | 4.55 |
+| GPT-5 mini `low` | 1.969 s | 3.97 s | 564 | 133 | 0.928 | 4.64 |
+| GPT-5 mini `medium` | 5.302 s | 7.38 s | 967 | 550 | 1.733 | 4.76 |
+| GPT-5 mini `high` | 15.472 s | 17.55 s | 2 383 | 1 950 | 4.564 | 4.79 |
 | GPT-5.6 Luna `none` | 1.074 s | 1.95 s | 366 | 0 | 0.324 | 4.92 |
 | GPT-5.6 Luna `low` | 1.171 s | 2.42 s | 387 | 15 | 0.350 | 4.82 |
 | GPT-5.6 Luna `medium` | 1.408 s | 3.14 s | 413 | 36 | 0.380 | 4.92 |
 | GPT-5.6 Luna `high` | 1.918 s | 3.08 s | 468 | 92 | 0.447 | 4.95 |
-| GPT-5 mini `low` | 1.969 s | 3.97 s | 564 | 133 | 0.928 | 4.64 |
 | GPT-5.6 Luna `xhigh` | 2.590 s | 3.67 s | 571 | 187 | 0.570 | 4.94 |
 | GPT-5.6 Luna `max` | 3.414 s | 4.37 s | 697 | 329 | 0.722 | 4.88 |
-| GPT-5 mini `medium` | 5.302 s | 7.38 s | 967 | 550 | 1.733 | 4.76 |
-| GPT-5 mini `high` | 15.472 s | 17.55 s | 2 383 | 1 950 | 4.564 | 4.79 |
 
-Ranked by TTFT P50. On Luna the 6 efforts span 4.82 to 4.95 and do not order by effort.
+Grouped by requested model, then by effort from minimum to maximum. On Luna the 6
+efforts span 4.82 to 4.95 and do not order by effort.
 On GPT-5 mini the judge does rise with effort, 4.55 to 4.79 over 4 steps — a 0.24-point
 gain bought with 7.6× the cost and 27× the TTFT. Per-scenario breakdown and blind-judge
 detail are in [the scenario study](scenario-model-benchmark/README.md).
 
 ### 3.2 Model Router selection
 
-1,410 measured requests over 10 arms, 470 blind-judged answers.
+1,410 measured requests over 10 arms, 470 blind-judged answers, 282 arm/question cells.
+
+**Selection was repeatable on this sample.** Every one of the 282 cells returned the same
+model on all three measured repetitions; 0 cells switched. The
+[per-question CSV](model-router-validation/outputs/router_question_hits.csv) keeps each
+served sequence.
 
 | Mode | Expensive-model share, effort not sent | Effort `low` | Reading for this sample |
 |---|---:|---:|---|
@@ -136,8 +142,27 @@ detail are in [the scenario study](scenario-model-benchmark/README.md).
 | `cost` | 0.0% | 0.0% | The cheaper model on every measured request |
 | `quality` | 48.9% | 48.9% | Mixed; author-assigned complexity labels did not define a routing threshold |
 
-These are observed counts from repeated synthetic prompts. They are not a production
-routing probability and not a reconstruction of the internal routing rule.
+Difficulty did not drive the choice. `quality` mode sent **more** simple prompts to the
+expensive model than complex ones ([per-tier CSV](model-router-validation/outputs/router_routing_by_tier.csv)):
+
+| Author-assigned tier | Requests | `balanced` expensive share | `quality` expensive share |
+|---|---:|---:|---:|
+| simple | 45 | 0.0% | 60.0% |
+| moderate | 54 | 0.0% | 38.9% |
+| complex | 42 | 14.3% | 50.0% |
+
+What did track the choice was the kind of work requested. Across the 40 measured
+categories ([per-category CSV](model-router-validation/outputs/router_routing_by_category.csv)),
+`quality` gave the expensive model the prompts that generate content or answer from model
+knowledge — `factual_lookup`, `faq`, `code_snippet`, `drafting`, `multi_step_math`,
+`code_reasoning` — and kept the cheaper model for prompts that transform text already
+supplied: `summarization`, `structured_extraction`, `rewriting`, `tone_shift_rewrite`,
+`keypoint_capture`. `balanced` reached for the expensive model in 2 categories only, both
+complex: `code_reasoning` and `constrained_reasoning`.
+
+These are observed counts from repeated synthetic prompts, and the task-type split is this
+author's reading of those 40 categories rather than a published rule. They are not a
+production routing probability and not a reconstruction of the internal routing rule.
 
 ### 3.3 Sessions, sustained load and the rate limit
 
@@ -156,22 +181,28 @@ routing probability and not a reconstruction of the internal routing rule.
 Details, per-level tables and the fallback client are in
 [the production-readiness study](production-readiness/README.md).
 
-### 3.4 Coverage, and what stayed out
+### 3.4 Required scope is complete
 
-| Model | Efforts measured | Where it was measured |
+| Required direct model | Efforts measured | Coverage |
 |---|---|---|
 | GPT-4o mini | reasoning parameter not sent | direct matrix |
 | GPT-5 mini | `minimal`, `low`, `medium`, `high` | direct matrix |
-| GPT-5.6 Luna | `none`, `low`, `medium`, `high`, `xhigh`, `max` | direct matrix, router baseline, API-path comparison |
-| GPT-5.6 Sol | effort not sent, and `low` | router baseline, API-path comparison |
-| GPT-5 nano, GPT-5.4 mini, GPT-5.4 nano | none | not deployed in this study |
+| GPT-5.6 Luna | `none`, `low`, `medium`, `high`, `xhigh`, `max` | direct matrix |
 
-The effort sweep is exhaustive for the two candidates that carry the direct matrix, so
-the effort conclusion stands for them. GPT-5.6 Sol entered only as the router's
-high-capability tier, was never swept across efforts, and carries no effort claim here.
-The last row is registry entries inherited from the migration benchmark that seeded the
-model list; they were never deployed, and `outputs/deployment_verification.json` records
-the 3 deployments that did exist.
+These are exactly the 3 requested direct-model candidates. Their 11 arms cover all
+supported effort settings across 6 scenarios: 66/66 cells, 51 measured requests per arm
+and 561 measured requests in total. The direct-model test requirement is complete.
+
+GPT-5.6 Sol is **not** the 4th requested direct-model candidate. It appears only in the
+Router study as the Router's high-capability option and as a matching direct baseline;
+the observations with effort not sent and `low` answer the Router-selection question,
+not a Sol effort-sweep question.
+
+The model registry inherited unused candidate entries from the earlier migration
+benchmark. Registry presence does not expand this study's scope and does not mean a model
+was measured. The
+[deployment verification](scenario-model-benchmark/outputs/deployment_verification.json)
+is the authoritative record of the 3 required direct deployments.
 
 <a id="cost-analysis"></a>
 ## 4. Cost Analysis

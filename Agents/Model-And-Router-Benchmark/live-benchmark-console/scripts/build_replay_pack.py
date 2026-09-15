@@ -125,7 +125,9 @@ def main() -> int:
                     "Replayed measurements, not a live test.",
         # Kept in the non-LFS pack so a clone without git-lfs can still open
         # replay mode. Live mode continues to read the sibling study assets.
-        "catalog": bench_core.catalog(),
+        # Preserve the original evidence-pack shape. The server filters
+        # unverified registry-only entries at read time.
+        "catalog": bench_core.catalog(include_unverified=True),
         "runs": runs,
     }
     rendered = json.dumps(pack, ensure_ascii=False, indent=2) + "\n"

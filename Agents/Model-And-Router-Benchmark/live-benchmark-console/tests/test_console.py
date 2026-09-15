@@ -51,6 +51,35 @@ class Statistics(unittest.TestCase):
         self.assertIsNone(bench_core.percentile([None], 90))
 
 
+class ArmOrdering(unittest.TestCase):
+    def test_study_models_are_grouped_and_efforts_ascend(self):
+        arms = [
+            "gpt-5.6-luna@xhigh", "gpt-5-mini@high", "gpt-5.6-luna@none",
+            "gpt-4o-mini-bench", "gpt-5-mini@medium", "gpt-5.6-luna@max",
+            "gpt-5-mini@minimal", "gpt-5.6-luna@high", "gpt-5-mini@low",
+            "gpt-5.6-luna@medium", "gpt-5.6-luna@low",
+        ]
+        self.assertEqual(sorted(arms, key=bench_core.arm_order_key), [
+            "gpt-4o-mini-bench",
+            "gpt-5-mini@minimal",
+            "gpt-5-mini@low",
+            "gpt-5-mini@medium",
+            "gpt-5-mini@high",
+            "gpt-5.6-luna@none",
+            "gpt-5.6-luna@low",
+            "gpt-5.6-luna@medium",
+            "gpt-5.6-luna@high",
+            "gpt-5.6-luna@xhigh",
+            "gpt-5.6-luna@max",
+        ])
+
+    def test_nonstudy_models_remain_grouped_by_deployment(self):
+        arms = ["router@low", "other@high", "router", "other@low"]
+        self.assertEqual(sorted(arms, key=bench_core.arm_order_key), [
+            "other@low", "other@high", "router", "router@low",
+        ])
+
+
 class Summaries(unittest.TestCase):
     def test_errors_are_counted_but_never_averaged(self):
         rows = [record(), record(), record(error="RateLimitError: 429", ttft_ms=None,
@@ -192,6 +221,14 @@ class Catalog(unittest.TestCase):
     def test_the_three_study_models_are_flagged(self):
         flagged = {a["deployment"] for a in self.catalog["arms"] if a["is_study_model"]}
         self.assertEqual(flagged, set(bench_core.STUDY_MODELS))
+
+    def test_unverified_registry_only_candidates_are_not_offered(self):
+        offered = {a["deployment"] for a in self.catalog["arms"]}
+        self.assertTrue(set(bench_core.STUDY_MODELS).issubset(offered))
+        self.assertTrue(all(a["verified"] or a["is_study_model"] for a in self.catalog["arms"]))
+        self.assertTrue({
+            "gpt-5-nano", "gpt-5.4-mini", "gpt-5.4-nano",
+        }.isdisjoint(offered))
 
     def test_deployments_carry_their_verified_region(self):
         self.assertTrue(self.catalog["regions"])
@@ -1005,6 +1042,31 @@ class Replay(unittest.TestCase):
                 for key in ("ttft_p50_ms", "decode_tps_p50", "cost_per_1k_requests",
                             "output_tokens_mean", "ok"):
                     self.assertIn(key, summary)
+
+    def test_scenario_replay_uses_model_then_effort_order(self):
+        pack = server.load_replay()
+        run = next(r for r in pack["runs"] if r["id"] == "scenario-matrix")
+        self.assertEqual([summary["arm"] for summary in run["summaries"]], [
+            "gpt-4o-mini-bench",
+            "gpt-5-mini@minimal",
+            "gpt-5-mini@low",
+            "gpt-5-mini@medium",
+            "gpt-5-mini@high",
+            "gpt-5.6-luna@none",
+            "gpt-5.6-luna@low",
+            "gpt-5.6-luna@medium",
+            "gpt-5.6-luna@high",
+            "gpt-5.6-luna@xhigh",
+            "gpt-5.6-luna@max",
+        ])
+
+    def test_replay_catalog_hides_unverified_registry_only_entries(self):
+        offered = {
+            arm["deployment"] for arm in server.load_replay()["catalog"]["arms"]
+        }
+        self.assertTrue({
+            "gpt-5-nano", "gpt-5.4-mini", "gpt-5.4-nano",
+        }.isdisjoint(offered))
 
     def test_pack_embeds_catalog_for_a_clone_without_git_lfs(self):
         pack = server.load_replay()

@@ -640,6 +640,13 @@ def load_replay() -> dict:
     if not path.is_file():
         return {"available": False, "runs": []}
     data = json.loads(path.read_text(encoding="utf-8"))
+    if data.get("catalog"):
+        data["catalog"] = bench_core.visible_catalog(data["catalog"])
+    for run in data.get("runs", []):
+        run["summaries"] = sorted(
+            run.get("summaries", []),
+            key=lambda summary: bench_core.arm_order_key(summary.get("arm", "")),
+        )
     data["available"] = True
     return data
 
