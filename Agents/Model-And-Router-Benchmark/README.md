@@ -44,8 +44,8 @@ answers on these tasks.**
 > 51 measured requests per arm (17 prompts × 3 iterations, 1 warm-up discarded), 561
 > measured requests over 11 arms. TTFT and E2E are client-observed medians; tokens and
 > cost are per-request means at published list prices. Quality is a blind LLM judge over
-> 5 dimensions (187 evaluations). Full 11-arm table in
-> [the scenario study](scenario-model-benchmark/README.md).
+> 5 dimensions (187 evaluations). These 5 rows are the decision-relevant extremes; all
+> 11 arms are listed in [3.1 Direct model matrix](#results).
 
 **Configuration this evidence supports**
 
@@ -103,10 +103,28 @@ latency conclusion in this repository therefore states its API path.
 
 ### 3.1 Direct model matrix
 
-11 model × effort arms, 561 measured requests, 0 API errors and 0 truncated answers.
-The headline rows are in the [Executive Summary](#executive-summary); the full matrix,
-per-scenario breakdown and blind-judge detail are in
-[the scenario study](scenario-model-benchmark/README.md).
+Every reasoning effort both reasoning candidates accept, plus the non-reasoning
+baseline: 11 arms × 6 scenarios, 66 filled cells, 51 measured requests per arm, 561 in
+total, 0 API errors and 0 truncated answers.
+
+| Arm | TTFT P50 | E2E P50 | Tokens / turn | Reasoning tokens | USD / 1k requests | Blind judge / 5 |
+|---|---:|---:|---:|---:|---:|---:|
+| GPT-4o mini | 0.367 s | 2.26 s | 243 | 0 | 0.094 | 4.53 |
+| GPT-5 mini `minimal` | 0.567 s | 2.20 s | 402 | 0 | 0.603 | 4.55 |
+| GPT-5.6 Luna `none` | 1.074 s | 1.95 s | 366 | 0 | 0.324 | 4.92 |
+| GPT-5.6 Luna `low` | 1.171 s | 2.42 s | 387 | 15 | 0.350 | 4.82 |
+| GPT-5.6 Luna `medium` | 1.408 s | 3.14 s | 413 | 36 | 0.380 | 4.92 |
+| GPT-5.6 Luna `high` | 1.918 s | 3.08 s | 468 | 92 | 0.447 | 4.95 |
+| GPT-5 mini `low` | 1.969 s | 3.97 s | 564 | 133 | 0.928 | 4.64 |
+| GPT-5.6 Luna `xhigh` | 2.590 s | 3.67 s | 571 | 187 | 0.570 | 4.94 |
+| GPT-5.6 Luna `max` | 3.414 s | 4.37 s | 697 | 329 | 0.722 | 4.88 |
+| GPT-5 mini `medium` | 5.302 s | 7.38 s | 967 | 550 | 1.733 | 4.76 |
+| GPT-5 mini `high` | 15.472 s | 17.55 s | 2 383 | 1 950 | 4.564 | 4.79 |
+
+Ranked by TTFT P50. On Luna the 6 efforts span 4.82 to 4.95 and do not order by effort.
+On GPT-5 mini the judge does rise with effort, 4.55 to 4.79 over 4 steps — a 0.24-point
+gain bought with 7.6× the cost and 27× the TTFT. Per-scenario breakdown and blind-judge
+detail are in [the scenario study](scenario-model-benchmark/README.md).
 
 ### 3.2 Model Router selection
 
@@ -137,6 +155,23 @@ routing probability and not a reconstruction of the internal routing rule.
 
 Details, per-level tables and the fallback client are in
 [the production-readiness study](production-readiness/README.md).
+
+### 3.4 Coverage, and what stayed out
+
+| Model | Efforts measured | Where it was measured |
+|---|---|---|
+| GPT-4o mini | reasoning parameter not sent | direct matrix |
+| GPT-5 mini | `minimal`, `low`, `medium`, `high` | direct matrix |
+| GPT-5.6 Luna | `none`, `low`, `medium`, `high`, `xhigh`, `max` | direct matrix, router baseline, API-path comparison |
+| GPT-5.6 Sol | effort not sent, and `low` | router baseline, API-path comparison |
+| GPT-5 nano, GPT-5.4 mini, GPT-5.4 nano | none | not deployed in this study |
+
+The effort sweep is exhaustive for the two candidates that carry the direct matrix, so
+the effort conclusion stands for them. GPT-5.6 Sol entered only as the router's
+high-capability tier, was never swept across efforts, and carries no effort claim here.
+The last row is registry entries inherited from the migration benchmark that seeded the
+model list; they were never deployed, and `outputs/deployment_verification.json` records
+the 3 deployments that did exist.
 
 <a id="cost-analysis"></a>
 ## 4. Cost Analysis
@@ -228,7 +263,9 @@ publishes no hosted instance, endpoint or credential.
 **What the evidence does not cover.** The prompts are synthetic and are not customer
 production traffic. Quality is a blind model judge near the top of its scale, not a
 human verdict. Concurrency beyond 16, windows beyond 90 s, and the rate-limit onset of
-the large-capacity deployments were not measured. Two prompt cells and one dependent
+the large-capacity deployments were not measured. Three registry models were never
+deployed and GPT-5.6 Sol was never swept across efforts; section 3.4 states that
+boundary. Two prompt cells and one dependent
 session carried identifiers and are withheld from this public copy; their numeric
 fields, scores and response hashes are unchanged, so every aggregate still covers them.
 Each study records the transformation in its `outputs/public_redaction.json`.
