@@ -94,6 +94,21 @@ GPT-4o mini `2024-07-18` 已对新客户弃用，而 GPT-5.6 系列可用至 202
 改走 Responses API 后，该比例降到 564 条中的 32 条，逐 Token 速率才变得可测。因此本
 仓库的每条时延结论都标明了 API 路径。
 
+### 2.1 测试集
+
+两套提示词，都已提交在本仓库中，也都是合成的：由作者按六类任务编写，不是从客户流量
+中抽样。
+
+| 提示词集 | 文件 | 条数 | 构成 | 使用它的研究 |
+|---|---|---:|---|---|
+| 助手场景 | [`assistant_scenarios.jsonl`](scenario-model-benchmark/datasets/assistant_scenarios.jsonl) | 17 | Next Move 3、Write For Me 4、Catch Me Up 3、Pay Attention 3、Live Interaction 2、Creator Zone 2；每条自带 80 到 900 Token 的回答预算 | 直连矩阵：11 个实验组 × 17 条 × 3 次迭代 = 561 个测量请求 |
+| Router Task B | [`router_taskb.jsonl`](model-router-validation/datasets/router_taskb.jsonl) | 47 | 上述 17 条助手提示词，加 30 条受控提示词（每个难度档 10 条），合计 40 个任务类目 | Router 研究：10 个实验组 × 47 条 × 3 次迭代 = 1,410 个测量请求 |
+
+每条提示词在每个实验组上由盲评模型评一次：直连矩阵 11 × 17 = 187 次，Router 研究
+10 × 47 = 470 次。难度档由作者在运行前标注，只是标签，不是路由阈值。公开副本撤回了
+2 条助手提示词（PA01、PA03）的原文，因为其中出现了客户团队名称；它们的测量数据原样
+保留，撤回集合由仓库门禁强制校验。
+
 <a id="results"></a>
 ## 3. 结果
 
@@ -125,10 +140,14 @@ effort 上升，4 档从 4.55 升到 4.79——这 0.24 分的提升，代价是
 
 ### 3.2 Model Router 的选择行为
 
-10 个实验组、1,410 个测量请求，470 条盲评回答，282 个实验组与问题的组合。
+10 个实验组（6 个 Router 实验组加 4 个直连基线）、1,410 个测量请求，470 条盲评回答。
 
-**在本样本上，选择是可重复的。** 282 个组合中的每一个，在三次测量重复中都返回了同一个
-模型，0 个组合发生切换。[逐问题 CSV](model-router-validation/outputs/router_question_hits.csv)
+Router 只有 2 个候选：GPT-5.6 Sol（贵）和 GPT-5.6 Luna（便宜），所以每个请求非此即彼：
+没送去贵模型的请求就送去了便宜模型，下面任何一行里两个计数之和就是该行的请求数。
+
+**在本样本上，选择是可重复的。** 282 个 Router 单元格（6 个 Router 实验组 × 47 条提示词；
+4 个直连基线实验组不做路由决策）中的每一个，在 3 次测量重复中都返回了同一个模型，
+0 个发生切换。[逐问题 CSV](model-router-validation/outputs/router_question_hits.csv)
 保留了每一次的服务序列。
 
 | 模式 | 不发送 effort 时选用贵模型的占比 | effort 为 `low` 时 | 本样本的读法 |
@@ -137,14 +156,18 @@ effort 上升，4 档从 4.55 升到 4.79——这 0.24 分的提升，代价是
 | `cost` | 0.0% | 0.0% | 所有已测请求都走便宜模型 |
 | `quality` | 48.9% | 48.9% | 两者混合；作者标注的复杂度并未构成路由阈值 |
 
-决定选择的不是难度。`quality` 模式送往贵模型的简单题**比**复杂题还多
-（[按难度档 CSV](model-router-validation/outputs/router_routing_by_tier.csv)）：
+决定选择的不是难度。每一行单独读：百分比是贵模型在**该难度档请求中**的占比，不是在全部
+请求中的占比，所以这一列本来就不会加到 100%。`quality` 模式送往贵模型的简单题**占比**
+高于复杂题（[按难度档 CSV](model-router-validation/outputs/router_routing_by_tier.csv)）：
 
-| 作者标注的难度档 | 请求数 | `balanced` 选用贵模型占比 | `quality` 选用贵模型占比 |
-|---|---:|---:|---:|
-| simple | 45 | 0.0% | 60.0% |
-| moderate | 54 | 0.0% | 38.9% |
-| complex | 42 | 14.3% | 50.0% |
+| 作者标注的难度档 | 提示词 | 请求数 | `cost`：贵 / 便宜 | `balanced`：贵 / 便宜 | `quality`：贵 / 便宜 |
+|---|---:|---:|---:|---:|---:|
+| simple | 15 | 45 | 0 / 45 (0.0%) | 0 / 45 (0.0%) | 27 / 18 (60.0%) |
+| moderate | 18 | 54 | 0 / 54 (0.0%) | 0 / 54 (0.0%) | 21 / 33 (38.9%) |
+| complex | 14 | 42 | 0 / 42 (0.0%) | 6 / 36 (14.3%) | 21 / 21 (50.0%) |
+| 全部 | 47 | 141 | 0 / 141 (0.0%) | 6 / 135 (4.3%) | 69 / 72 (48.9%) |
+
+计数取自不发送 effort 的实验组；`low` 实验组的分档计数与之相同。
 
 真正与选择相关的是所要求的工作类型。在 40 个已测类目中
 （[按类目 CSV](model-router-validation/outputs/router_routing_by_category.csv)），`quality`
