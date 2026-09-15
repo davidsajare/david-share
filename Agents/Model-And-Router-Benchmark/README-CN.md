@@ -53,7 +53,7 @@ Model Router 模式对比各自的直连基线，再补上试点通常要到生�
 |---|---|---|
 | API 路径 | Responses API + 流式 | Chat Completions 有 497/564 条回答整段一次到达，导致 TTFT 与逐 Token 速率无法测量 |
 | Reasoning effort | 各模型支持的最低值 | 在 GPT-5 mini 上，`high` 的成本高 7.6×、TTFT 高 27×，本样本中质量并未提升 |
-| Router 模式 | 用 `cost` 或 `balanced`，不用 `quality` | `quality` 在 48.9% 的请求上选了更贵的模型，并在 18 个会话中有 18 个中途换了模型 |
+| Router 模式 | 用 `cost` 或 `balanced`，不用 `quality` | `quality` 把 48.9% 的请求转给了 GPT-5.6 Sol，并在 18 个会话中有 18 个中途换了模型 |
 | 限流处理 | 识别流内错误的回退，而不是看状态码重试 | 所有拒绝都发生在 HTTP 200 的流内部；只看状态码的重试从未触发 |
 | 客户端位置 | 与部署同区域 | 跨区域调用会把网络耗时混进来，被误读成模型时延 |
 
@@ -140,45 +140,95 @@ effort 上升，4 档从 4.55 升到 4.79——这 0.24 分的提升，代价是
 
 ### 3.2 Model Router 的选择行为
 
-10 个实验组（6 个 Router 实验组加 4 个直连基线）、1,410 个测量请求，470 条盲评回答。
+**建了什么。** 在同一资源上建了 3 个 Model Router 部署，每种路由模式一个——`cost`、
+`balanced`、`quality`——均为 `model-router 2025-11-18`、GlobalStandard、容量 300，后面
+都只挂 2 个模型：`gpt-5.6-sol 2026-07-09` 和 `gpt-5.6-luna 2026-07-09`
+（[部署记录](model-router-validation/outputs/deployment_verification_router.json)）。
+每个请求都发给 Router，从不直接发给模型；实际作答的模型从响应里的
+`model_selection_details.model_router_details` 读出，逐请求记录。
 
-Router 只有 2 个候选：GPT-5.6 Sol（贵）和 GPT-5.6 Luna（便宜），所以每个请求非此即彼：
-没送去贵模型的请求就送去了便宜模型，下面任何一行里两个计数之和就是该行的请求数。
+**发了什么。** [2.1 测试集](#methodology)中的 47 条提示词，每条对每个 Router 测 3 次、
+另加 1 次预热，不发送 `reasoning_effort` 与发送 `low` 各跑一遍。加上 4 个 Sol、Luna
+直连基线，共 10 个实验组、1,410 个测量请求、470 条盲评回答。
 
-**在本样本上，选择是可重复的。** 282 个 Router 单元格（6 个 Router 实验组 × 47 条提示词；
-4 个直连基线实验组不做路由决策）中的每一个，在 3 次测量重复中都返回了同一个模型，
-0 个发生切换。[逐问题 CSV](model-router-validation/outputs/router_question_hits.csv)
-保留了每一次的服务序列。
+**在本样本上，选择是可重复的。** 282 个 Router 单元格（6 个 Router 实验组 × 47 条
+提示词）在 3 次重复中全部返回同一个模型，0 个切换。`low` 实验组对每条提示词的路由
+与不发送 effort 时完全一致，所以下表每种模式只列一列。
 
-| 模式 | 不发送 effort 时选用贵模型的占比 | effort 为 `low` 时 | 本样本的读法 |
-|---|---:|---:|---|
-| `balanced` | 4.3% | 4.3% | 绝大多数走便宜模型；贵模型只出现在 2 道受控复杂题上 |
-| `cost` | 0.0% | 0.0% | 所有已测请求都走便宜模型 |
-| `quality` | 48.9% | 48.9% | 两者混合；作者标注的复杂度并未构成路由阈值 |
+**每条提示词由哪个模型作答**
+（[逐问题 CSV](model-router-validation/outputs/router_question_hits.csv)；提示词原文见
+数据集文件，其中 2 条在公开副本中已撤回）：
 
-决定选择的不是难度。每一行单独读：百分比是贵模型在**该难度档请求中**的占比，不是在全部
-请求中的占比，所以这一列本来就不会加到 100%。`quality` 模式送往贵模型的简单题**占比**
-高于复杂题（[按难度档 CSV](model-router-validation/outputs/router_routing_by_tier.csv)）：
+| 难度档 | 提示词 | 类目 | `cost` | `balanced` | `quality` |
+|---|---|---|---|---|---|
+| simple | CZ02 | `edit_intent_parsing` | Luna | Luna | Luna |
+| simple | CMU03 | `executive_condense` | Luna | Luna | Luna |
+| simple | S01 | `factual_lookup` | Luna | Luna | Sol |
+| simple | S02 | `factual_lookup` | Luna | Luna | Sol |
+| simple | S09 | `faq` | Luna | Luna | Sol |
+| simple | S10 | `faq` | Luna | Luna | Sol |
+| simple | S07 | `formatting` | Luna | Luna | Luna |
+| simple | S08 | `formatting` | Luna | Luna | Sol |
+| simple | LI02 | `grounded_followup` | Luna | Luna | Sol |
+| simple | PA03 | `instant_recall` | Luna | Luna | Sol |
+| simple | S03 | `intent_classification` | Luna | Luna | Luna |
+| simple | S04 | `intent_classification` | Luna | Luna | Luna |
+| simple | S05 | `short_form` | Luna | Luna | Sol |
+| simple | S06 | `short_form` | Luna | Luna | Luna |
+| simple | NM03 | `short_suggestion` | Luna | Luna | Sol |
+| moderate | M07 | `classification_reasoning` | Luna | Luna | Luna |
+| moderate | M08 | `code_snippet` | Luna | Luna | Sol |
+| moderate | M04 | `comparison` | Luna | Luna | Sol |
+| moderate | LI01 | `conversational_turn` | Luna | Luna | Luna |
+| moderate | NM02 | `cross_device_continuity` | Luna | Luna | Sol |
+| moderate | CMU02 | `decision_extraction` | Luna | Luna | Luna |
+| moderate | M02 | `drafting` | Luna | Luna | Sol |
+| moderate | M09 | `planning` | Luna | Luna | Luna |
+| moderate | CZ01 | `prompt_expansion` | Luna | Luna | Sol |
+| moderate | M06 | `rewriting` | Luna | Luna | Luna |
+| moderate | WFM04 | `short_draft` | Luna | Luna | Sol |
+| moderate | M03 | `structured_extraction` | Luna | Luna | Luna |
+| moderate | M01 | `summarization` | Luna | Luna | Luna |
+| moderate | M10 | `summarization` | Luna | Luna | Luna |
+| moderate | WFM02 | `tone_continuation` | Luna | Luna | Luna |
+| moderate | WFM03 | `tone_shift_rewrite` | Luna | Luna | Luna |
+| moderate | PA02 | `translate_and_summarize` | Luna | Luna | Luna |
+| moderate | M05 | `troubleshooting` | Luna | Luna | Sol |
+| complex | C09 | `ambiguity_resolution` | Luna | Luna | Sol |
+| complex | C03 | `architecture_reasoning` | Luna | Luna | Luna |
+| complex | CMU01 | `backlog_digest` | Luna | Luna | Luna |
+| complex | C06 | `code_reasoning` | Luna | Sol | Sol |
+| complex | C04 | `constrained_reasoning` | Luna | Sol | Sol |
+| complex | PA01 | `keypoint_capture` | Luna | Luna | Luna |
+| complex | WFM01 | `long_form_draft` | Luna | Luna | Sol |
+| complex | C08 | `long_form_synthesis` | Luna | Luna | Luna |
+| complex | C10 | `multi_constraint_planning` | Luna | Luna | Sol |
+| complex | C01 | `multi_step_math` | Luna | Luna | Sol |
+| complex | C02 | `multi_step_math` | Luna | Luna | Sol |
+| complex | NM01 | `proactive_suggestion` | Luna | Luna | Luna |
+| complex | C05 | `root_cause_analysis` | Luna | Luna | Luna |
+| complex | C07 | `tradeoff_analysis` | Luna | Luna | Luna |
 
-| 作者标注的难度档 | 提示词 | 请求数 | `cost`：贵 / 便宜 | `balanced`：贵 / 便宜 | `quality`：贵 / 便宜 |
+**按难度档计数。** 按行横着读：Sol + Luna 等于该行的请求数。百分比是 Sol 在该档内的
+占比，所以这一列本来就不会加到 100%。
+
+| 作者标注的难度档 | 提示词 | 请求数 | `cost`：Sol / Luna | `balanced`：Sol / Luna | `quality`：Sol / Luna |
 |---|---:|---:|---:|---:|---:|
 | simple | 15 | 45 | 0 / 45 (0.0%) | 0 / 45 (0.0%) | 27 / 18 (60.0%) |
 | moderate | 18 | 54 | 0 / 54 (0.0%) | 0 / 54 (0.0%) | 21 / 33 (38.9%) |
 | complex | 14 | 42 | 0 / 42 (0.0%) | 6 / 36 (14.3%) | 21 / 21 (50.0%) |
 | 全部 | 47 | 141 | 0 / 141 (0.0%) | 6 / 135 (4.3%) | 69 / 72 (48.9%) |
 
-计数取自不发送 effort 的实验组；`low` 实验组的分档计数与之相同。
+`cost` 从未选过 Sol。`balanced` 只在 2 条提示词上选了 Sol，都是复杂档：`code_reasoning`
+与 `constrained_reasoning`。`quality` 在 47 条中有 23 条选了 Sol，且并不跟随作者标注的
+难度档——送往 Sol 的简单题占比高于复杂题。真正与选择相关的是所要求的工作类型：需要
+生成内容、或依赖模型自身知识作答的提示词由 Sol 作答（`factual_lookup`、`faq`、
+`code_snippet`、`drafting`、`multi_step_math`、`code_reasoning`），加工既有文本的提示词由
+Luna 作答（`summarization`、`structured_extraction`、`rewriting`、`tone_shift_rewrite`、
+`keypoint_capture`）。
 
-真正与选择相关的是所要求的工作类型。在 40 个已测类目中
-（[按类目 CSV](model-router-validation/outputs/router_routing_by_category.csv)），`quality`
-把需要生成内容、或依赖模型自身知识作答的提示词交给贵模型 —— `factual_lookup`、`faq`、
-`code_snippet`、`drafting`、`multi_step_math`、`code_reasoning` —— 而把加工既有文本的
-提示词留给便宜模型：`summarization`、`structured_extraction`、`rewriting`、
-`tone_shift_rewrite`、`keypoint_capture`。`balanced` 仅在 2 个类目上选用贵模型，且都属于
-复杂档：`code_reasoning` 与 `constrained_reasoning`。
-
-这些是合成提示词重复运行得到的观测计数；按任务类型的划分是本文作者对这 40 个类目的解读，
-而非已公开的规则。它们不是生产环境的路由概率，也不是对内部路由规则的还原。
+这些是合成提示词重复运行得到的观测计数；按任务类型的读法是本文作者对这 40 个类目的
+归类，而非已公开的规则。它们不是生产环境的路由概率，也不是对内部路由规则的还原。
 
 ### 3.3 会话、持续负载与限流
 
