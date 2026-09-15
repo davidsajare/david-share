@@ -104,6 +104,23 @@ measured that way is delivery, not generation. Re-running the identical prompts 
 Responses API reduced that to 32 of 564 and made per-token pace measurable. Every
 latency conclusion in this repository therefore states its API path.
 
+### 2.1 Test set
+
+Two prompt sets, both committed in this repository and both synthetic: written by the
+author for the six task families, not sampled from customer traffic.
+
+| Set | File | Prompts | Composition | Used by |
+|---|---|---:|---|---|
+| Assistant scenarios | [`assistant_scenarios.jsonl`](scenario-model-benchmark/datasets/assistant_scenarios.jsonl) | 17 | Next Move 3, Write For Me 4, Catch Me Up 3, Pay Attention 3, Live Interaction 2, Creator Zone 2; each prompt carries its own answer budget of 80 to 900 tokens | Direct matrix: 11 arms × 17 prompts × 3 iterations = 561 measured requests |
+| Router Task B | [`router_taskb.jsonl`](model-router-validation/datasets/router_taskb.jsonl) | 47 | The 17 assistant prompts plus 30 controlled prompts, 10 per difficulty tier, 40 task categories in total | Router study: 10 arms × 47 prompts × 3 iterations = 1,410 measured requests |
+
+Every prompt is scored once per arm by a blind LLM judge: 11 × 17 = 187 evaluations in
+the direct matrix and 10 × 47 = 470 in the router study. Difficulty tiers were assigned by
+the author before the run; they are labels, not a routing threshold. The public copy
+withholds the text of 2 assistant prompts (PA01, PA03) because it named the customer team;
+their measurements are retained unchanged and the withheld set is enforced by the
+repository gate.
+
 <a id="results"></a>
 ## 3. Results
 
@@ -135,10 +152,16 @@ detail are in [the scenario study](scenario-model-benchmark/README.md).
 
 ### 3.2 Model Router selection
 
-1,410 measured requests over 10 arms, 470 blind-judged answers, 282 arm/question cells.
+1,410 measured requests over 10 arms (6 router arms and 4 direct baselines), 470
+blind-judged answers.
 
-**Selection was repeatable on this sample.** Every one of the 282 cells returned the same
-model on all three measured repetitions; 0 cells switched. The
+The router had exactly 2 candidates, GPT-5.6 Sol (expensive) and GPT-5.6 Luna (cheaper),
+so every request went to one or the other: a request not sent to the expensive model went
+to the cheaper one, and the two counts in any row below add up to that row's requests.
+
+**Selection was repeatable on this sample.** Every one of the 282 router cells (6 router
+arms × 47 prompts; the 4 direct-baseline arms make no routing decision) returned the same
+model on all 3 measured repetitions; 0 cells switched. The
 [per-question CSV](model-router-validation/outputs/router_question_hits.csv) keeps each
 served sequence.
 
@@ -148,14 +171,21 @@ served sequence.
 | `cost` | 0.0% | 0.0% | The cheaper model on every measured request |
 | `quality` | 48.9% | 48.9% | Mixed; author-assigned complexity labels did not define a routing threshold |
 
-Difficulty did not drive the choice. `quality` mode sent **more** simple prompts to the
-expensive model than complex ones ([per-tier CSV](model-router-validation/outputs/router_routing_by_tier.csv)):
+Difficulty did not drive the choice. Read each row on its own: the percentage is the
+expensive-model share **of that tier's requests**, not a share of all requests, so the
+column is not meant to add up to 100%. `quality` mode sent a **larger share** of simple
+prompts to the expensive model than of complex ones
+([per-tier CSV](model-router-validation/outputs/router_routing_by_tier.csv)):
 
-| Author-assigned tier | Requests | `balanced` expensive share | `quality` expensive share |
-|---|---:|---:|---:|
-| simple | 45 | 0.0% | 60.0% |
-| moderate | 54 | 0.0% | 38.9% |
-| complex | 42 | 14.3% | 50.0% |
+| Author-assigned tier | Prompts | Requests | `cost`: expensive / cheaper | `balanced`: expensive / cheaper | `quality`: expensive / cheaper |
+|---|---:|---:|---:|---:|---:|
+| simple | 15 | 45 | 0 / 45 (0.0%) | 0 / 45 (0.0%) | 27 / 18 (60.0%) |
+| moderate | 18 | 54 | 0 / 54 (0.0%) | 0 / 54 (0.0%) | 21 / 33 (38.9%) |
+| complex | 14 | 42 | 0 / 42 (0.0%) | 6 / 36 (14.3%) | 21 / 21 (50.0%) |
+| all tiers | 47 | 141 | 0 / 141 (0.0%) | 6 / 135 (4.3%) | 69 / 72 (48.9%) |
+
+Counts are for the arms with effort not sent; the `low` arms produced the same per-tier
+counts.
 
 What did track the choice was the kind of work requested. Across the 40 measured
 categories ([per-category CSV](model-router-validation/outputs/router_routing_by_category.csv)),
