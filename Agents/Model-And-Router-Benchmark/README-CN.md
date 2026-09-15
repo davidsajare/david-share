@@ -32,14 +32,20 @@ Model Router 模式对比各自的直连基线，再补上试点通常要到生�
 |---|---:|---:|---:|---:|---:|---|
 | GPT-4o mini | **0.367 s** | 2.26 s | 243 | **0.094** | 4.53 | Responses API、`stream=True`、不发送 reasoning 参数、不挂工具 |
 | GPT-5 mini `minimal` | 0.567 s | 2.20 s | 402 | 0.603 | 4.55 | 同上，`reasoning_effort=minimal` |
-| GPT-5 mini `high` | 15.47 s | 17.5 s | 2 383 | 4.564 | 4.79 | 同上，`reasoning_effort=high` |
-| GPT-5.6 Luna `none` | 1.074 s | **1.95 s** | 366 | 0.324 | **4.92** | 同上，`reasoning_effort=none` |
-| GPT-5.6 Luna `high` | 1.918 s | 3.08 s | 468 | 0.447 | 4.95 | 同上，`reasoning_effort=high` |
+| GPT-5 mini `low` | 1.969 s | 3.97 s | 564 | 0.928 | 4.64 | 同上，`reasoning_effort=low` |
+| GPT-5 mini `medium` | 5.302 s | 7.38 s | 967 | 1.733 | 4.76 | 同上，`reasoning_effort=medium` |
+| GPT-5 mini `high` | 15.472 s | 17.55 s | 2 383 | 4.564 | 4.79 | 同上，`reasoning_effort=high` |
+| GPT-5.6 Luna `none` | 1.074 s | **1.95 s** | 366 | 0.324 | 4.92 | 同上，`reasoning_effort=none` |
+| GPT-5.6 Luna `low` | 1.171 s | 2.42 s | 387 | 0.350 | 4.82 | 同上，`reasoning_effort=low` |
+| GPT-5.6 Luna `medium` | 1.408 s | 3.14 s | 413 | 0.380 | 4.92 | 同上，`reasoning_effort=medium` |
+| GPT-5.6 Luna `high` | 1.918 s | 3.08 s | 468 | 0.447 | **4.95** | 同上，`reasoning_effort=high` |
+| GPT-5.6 Luna `xhigh` | 2.590 s | 3.67 s | 571 | 0.570 | 4.94 | 同上，`reasoning_effort=xhigh` |
+| GPT-5.6 Luna `max` | 3.414 s | 4.37 s | 697 | 0.722 | 4.88 | 同上，`reasoning_effort=max` |
 
 > 每个实验组 51 个测量请求（17 条提示词 × 3 次迭代，另丢弃 1 次预热），11 个实验组
 > 共 561 个测量请求。TTFT 与 E2E 为客户端观测中位数；Token 与成本为每请求均值，按
-> 公开标价计算。质量为盲评模型在 5 个维度上的评分（187 次评估）。这 5 行是与决策相关
-> 的极值；全部 11 个实验组见 [3.1 直连模型矩阵](#results)。
+> 公开标价计算。质量为盲评模型在 5 个维度上的评分（187 次评估）。上表已列出全部已测
+> 实验组；推理 Token 与逐场景明细见 [3.1 直连模型矩阵](#results)。
 
 **本证据支持的配置**
 

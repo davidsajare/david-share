@@ -37,15 +37,21 @@ answers on these tasks.**
 |---|---:|---:|---:|---:|---:|---|
 | GPT-4o mini | **0.367 s** | 2.26 s | 243 | **0.094** | 4.53 | Responses API, `stream=True`, no reasoning parameter, no tools |
 | GPT-5 mini `minimal` | 0.567 s | 2.20 s | 402 | 0.603 | 4.55 | Same, `reasoning_effort=minimal` |
-| GPT-5 mini `high` | 15.47 s | 17.5 s | 2 383 | 4.564 | 4.79 | Same, `reasoning_effort=high` |
-| GPT-5.6 Luna `none` | 1.074 s | **1.95 s** | 366 | 0.324 | **4.92** | Same, `reasoning_effort=none` |
-| GPT-5.6 Luna `high` | 1.918 s | 3.08 s | 468 | 0.447 | 4.95 | Same, `reasoning_effort=high` |
+| GPT-5 mini `low` | 1.969 s | 3.97 s | 564 | 0.928 | 4.64 | Same, `reasoning_effort=low` |
+| GPT-5 mini `medium` | 5.302 s | 7.38 s | 967 | 1.733 | 4.76 | Same, `reasoning_effort=medium` |
+| GPT-5 mini `high` | 15.472 s | 17.55 s | 2 383 | 4.564 | 4.79 | Same, `reasoning_effort=high` |
+| GPT-5.6 Luna `none` | 1.074 s | **1.95 s** | 366 | 0.324 | 4.92 | Same, `reasoning_effort=none` |
+| GPT-5.6 Luna `low` | 1.171 s | 2.42 s | 387 | 0.350 | 4.82 | Same, `reasoning_effort=low` |
+| GPT-5.6 Luna `medium` | 1.408 s | 3.14 s | 413 | 0.380 | 4.92 | Same, `reasoning_effort=medium` |
+| GPT-5.6 Luna `high` | 1.918 s | 3.08 s | 468 | 0.447 | **4.95** | Same, `reasoning_effort=high` |
+| GPT-5.6 Luna `xhigh` | 2.590 s | 3.67 s | 571 | 0.570 | 4.94 | Same, `reasoning_effort=xhigh` |
+| GPT-5.6 Luna `max` | 3.414 s | 4.37 s | 697 | 0.722 | 4.88 | Same, `reasoning_effort=max` |
 
 > 51 measured requests per arm (17 prompts × 3 iterations, 1 warm-up discarded), 561
 > measured requests over 11 arms. TTFT and E2E are client-observed medians; tokens and
 > cost are per-request means at published list prices. Quality is a blind LLM judge over
-> 5 dimensions (187 evaluations). These 5 rows are the decision-relevant extremes; all
-> 11 arms are listed in [3.1 Direct model matrix](#results).
+> 5 dimensions (187 evaluations). Every measured arm is listed above; reasoning-token
+> and per-scenario detail is in [3.1 Direct model matrix](#results).
 
 **Configuration this evidence supports**
 
