@@ -513,7 +513,7 @@ Run every command below from `Deep-Learning/Speculative-Decoding` in this reposi
 ```bash
 python3 -m venv "$HOME/.venvs/qwen38-specdec"
 source "$HOME/.venvs/qwen38-specdec/bin/activate"
-python -m pip install 'vllm==0.28.0' 'torch==2.13.0' 'transformers==5.16.1'
+python -m pip install 'vllm==0.28.0' 'torch==2.13.0' 'transformers==5.17.0'
 python -m pip check
 
 export MODEL_ROOT="$HOME/models/qwen38"
@@ -622,6 +622,8 @@ curl --fail-with-body --no-buffer --connect-timeout 10 --max-time 600 \
 
 Commands are transcribed from the recorded installation, actual launch arguments and `server_command` in the [measurement source](experiments/20260906-qwen38/source/campaign_runner.py), with local paths replaced by environment variables. **Their scope is starting the three server modes and sending a request, not running the full performance and quality evaluation.** A new installation still needs model-loading and request checks; existing scores are not acceptance results for that environment.
 
+**Verbatim replay on 2026-09-15.** The six code blocks above were executed once, as written and in order, in a clean `$HOME` (Python 3.12.3, H100 NVL 95 GB): `pip check` reported no conflicts after installation, and the installed versions were exactly vLLM 0.28.0, torch 2.13.0 and transformers 5.17.0; both weights were downloaded at the pinned revisions from the table above (32 + 5 files; the `config.json` SHA-256 values are recorded in the evidence directory); each of the three routes was launched once and `/v1/models` became ready after 135 s, 96 s and 105 s; one streamed request with `samples[0]` per route produced 772, 663 and 520 tokens, all with `finish_reason=stop` and a `[DONE]` marker. Per-block SHA-256 values, environment snapshots, `/v1/models` responses and the three complete SSE responses are in [readme-replay-20260915](experiments/20260906-qwen38/evidence/readme-replay-20260915/). The replay only shows that these commands complete one round in that environment; it produces no performance numbers, and the command blocks under "Reproducing the Adaptation" below were not replayed the same way.
+
 Reproducing the score table additionally requires the same 64 tasks, 27 groups, frozen ordering, closed-loop concurrency, original measurement logic and EvalPlus/Math-Verify grading. The full preparation steps, task inputs and scheduling configuration required by `campaign_runner.py` are not yet packaged as a standalone public entry point, so the settings on this page cannot be passed directly to `--stage all`. Available files provide startup/request guidance and offline replay, not a standalone installer for the full 27-group experiment. Official method references: [MTP](https://github.com/vllm-project/vllm/blob/v0.28.0/docs/features/speculative_decoding/mtp.md), [pinned speculative configuration source](https://github.com/vllm-project/vllm/blob/2cf0a6915ce544dc493a0990f2ea38d81601128a/vllm/config/speculative.py).
 
 ### Reproducing the Adaptation
@@ -653,11 +655,11 @@ Run this environment block only for a first installation. For existing environme
 ```bash
 python3.12 -m venv "$HOME/.venvs/qwen38-drafter"
 "$TRAIN_PYTHON" -m pip install \
-	torch==2.13.0 transformers==5.16.1 peft==0.20.0 \
+	torch==2.13.0 transformers==5.17.0 peft==0.20.0 \
 	dflash==0.1.0 datasets huggingface_hub
 python3.12 -m venv "$HOME/.venvs/qwen38-specdec"
 "$SERVE_PYTHON" -m pip install \
-	vllm==0.28.0 torch==2.13.0 transformers==5.16.1
+	vllm==0.28.0 torch==2.13.0 transformers==5.17.0
 "$TRAIN_PYTHON" -m pip check
 "$SERVE_PYTHON" -m pip check
 ```

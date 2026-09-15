@@ -1,0 +1,6 @@
+block_01=DIFFERS_FROM_PUBLIC
+block_02=same
+block_03=same
+block_04=same
+block_05=same
+block_06=same

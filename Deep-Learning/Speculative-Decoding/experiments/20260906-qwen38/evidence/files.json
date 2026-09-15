@@ -16,6 +16,54 @@
       "bytes": 15985,
       "sha256": "aa2a21b8b0ad05799acde42318f17a6954c406c288688eae66b30f08dc2031ff"
     },
+    "evidence/readme-replay-20260915/MANIFEST.sha256": {
+      "bytes": 947,
+      "sha256": "8fd7e9bd3a83aabc12da0674310026105564ca8292176433f54454f3d6dcdd95"
+    },
+    "evidence/readme-replay-20260915/blocks.public.sha256": {
+      "bytes": 2028,
+      "sha256": "ff5d2aab5641569f9ca9daf19ac536c4925bffdda4b3d888f22ca9ba218f9be5"
+    },
+    "evidence/readme-replay-20260915/blocks.replayed.sha256": {
+      "bytes": 2028,
+      "sha256": "6eabf40cef1b6adf9e31d8fda798b5943b5301cbf01a6d7e33893c0228cea6d6"
+    },
+    "evidence/readme-replay-20260915/blocks.vs-public.txt": {
+      "bytes": 99,
+      "sha256": "e033fdc869dd737a33d800aa84375c767abbfa3ba6f6091e5f3d507396cf7dfb"
+    },
+    "evidence/readme-replay-20260915/models-baseline.json": {
+      "bytes": 631,
+      "sha256": "3f6c5bad5d10bf9ad17a75b96bfa78c87c598fa081eac40c2177492b657d5711"
+    },
+    "evidence/readme-replay-20260915/models-dflash2_7.json": {
+      "bytes": 631,
+      "sha256": "79d65e102ca670eda9336c1318082f44fa2e52a812f961e72bf17ffd75ebe264"
+    },
+    "evidence/readme-replay-20260915/models-mtp7.json": {
+      "bytes": 631,
+      "sha256": "4a9b24ace4e760b8540c58a0a89811f6510dd242e40a3517992ec425c8786e06"
+    },
+    "evidence/readme-replay-20260915/replay-summary.json": {
+      "bytes": 6868,
+      "sha256": "19f78d1ee98f352d70c900ab2d2db96e542d48cca67b7fcaac03ef5e8a094393"
+    },
+    "evidence/readme-replay-20260915/request.json": {
+      "bytes": 1106,
+      "sha256": "82c5e14ebefc71f222038165c525732faf51d9d49fff32805a1d7bafe1ea4ad9"
+    },
+    "evidence/readme-replay-20260915/response-baseline.sse": {
+      "bytes": 179399,
+      "sha256": "12213a3027034d68e0dce00d9f9fc93aae54cfee6b23740613bdf3735c0b9dc1"
+    },
+    "evidence/readme-replay-20260915/response-dflash2_7.sse": {
+      "bytes": 34771,
+      "sha256": "25dc4a9022d5e32db7b74799fa1152a34927fc962972ec9d76a890c7da61e4d4"
+    },
+    "evidence/readme-replay-20260915/response-mtp7.sse": {
+      "bytes": 53312,
+      "sha256": "d8f0f67a65369204eef02ccd8a8131eb39f4d7eb6124498ca10cb104860fb2cc"
+    },
     "evidence/request-examples.json": {
       "bytes": 3026,
       "sha256": "da29ee3655c449ca0529467b96c1c6329b250a2232ae0b69f9abc6d5bbc3b647"

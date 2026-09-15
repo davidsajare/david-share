@@ -515,7 +515,7 @@ draft model 再适配走另一条训练路径，同样在单张 GPU 上按阶段
 ```bash
 python3 -m venv "$HOME/.venvs/qwen38-specdec"
 source "$HOME/.venvs/qwen38-specdec/bin/activate"
-python -m pip install 'vllm==0.28.0' 'torch==2.13.0' 'transformers==5.16.1'
+python -m pip install 'vllm==0.28.0' 'torch==2.13.0' 'transformers==5.17.0'
 python -m pip check
 
 export MODEL_ROOT="$HOME/models/qwen38"
@@ -624,6 +624,8 @@ curl --fail-with-body --no-buffer --connect-timeout 10 --max-time 600 \
 
 上述命令依据实际安装记录、启动参数及[测量源码](experiments/20260906-qwen38/source/campaign_runner.py)的 `server_command` 整理，将本机路径改为环境变量。**适用范围是三种服务的启动和单个请求的调用，不是完整的性能与质量评测。** 新安装环境仍需验证模型加载与请求结果，不能将已有测试成绩视为新环境的验收结果。
 
+**2026-09-15 逐字重放。** 上面 6 个代码块已在一台干净的 `$HOME`（Python 3.12.3，H100 NVL 95 GB）上按本页文本原样、按顺序执行一遍：环境安装后 `pip check` 无冲突，装到的正是 vLLM 0.28.0、torch 2.13.0、transformers 5.17.0；两份权重按上表固定版本下载完成（32 + 5 个文件，`config.json` 的 SHA-256 记录在证据目录）；三条路线各启动一次，`/v1/models` 分别在 135 s、96 s、105 s 后就绪；每条路线用 `samples[0]` 发一个流式请求，分别生成 772、663、520 个 token，全部 `finish_reason=stop` 并收到 `[DONE]`。逐块 SHA-256、环境快照、`/v1/models` 返回和三份完整 SSE 响应见 [readme-replay-20260915](experiments/20260906-qwen38/evidence/readme-replay-20260915/)。重放只证明这些命令在该环境能跑通一轮，不产生性能数字；下文「复现再适配」的命令块没有做同样的重放。
+
 复跑得分表还必须保持同一批 64 题、27 组、固定顺序和并发策略，执行原测量逻辑及 EvalPlus/Math-Verify 评分。`campaign_runner.py` 所需的完整准备步骤、题目输入和调度配置尚未打包为可独立运行的公开入口，因此不能仅凭本页配置直接运行 `--stage all`。现有文件支持启动与调用参考、已保存结果的离线复算，不是完整 27 组实验的独立安装包。官方方法入口：[MTP](https://github.com/vllm-project/vllm/blob/v0.28.0/docs/features/speculative_decoding/mtp.md)、[固定版本推测配置源码](https://github.com/vllm-project/vllm/blob/2cf0a6915ce544dc493a0990f2ea38d81601128a/vllm/config/speculative.py)。
 
 ### 复现再适配
@@ -655,11 +657,11 @@ printf 'export TRAIN_PYTHON=%q\n' "$TRAIN_PYTHON"
 ```bash
 python3.12 -m venv "$HOME/.venvs/qwen38-drafter"
 "$TRAIN_PYTHON" -m pip install \
-	torch==2.13.0 transformers==5.16.1 peft==0.20.0 \
+	torch==2.13.0 transformers==5.17.0 peft==0.20.0 \
 	dflash==0.1.0 datasets huggingface_hub
 python3.12 -m venv "$HOME/.venvs/qwen38-specdec"
 "$SERVE_PYTHON" -m pip install \
-	vllm==0.28.0 torch==2.13.0 transformers==5.16.1
+	vllm==0.28.0 torch==2.13.0 transformers==5.17.0
 "$TRAIN_PYTHON" -m pip check
 "$SERVE_PYTHON" -m pip check
 ```

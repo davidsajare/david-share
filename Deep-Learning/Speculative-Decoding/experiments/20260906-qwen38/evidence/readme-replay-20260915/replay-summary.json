@@ -1,0 +1,220 @@
+{
+ "utc": "2026-09-15T12:42:12Z",
+ "status": "PASS",
+ "rc": 0,
+ "what_was_replayed": "README_CN.md 快速上手 → 推理服务与请求 blocks 01–06, sourced verbatim in README order on a clean HOME; one server launch per route (blocks 03/04/05) and one streamed request per route (block 06).",
+ "not_replayed": "Blocks 07 onward (re-adaptation path) were not executed in this replay.",
+ "public_repo_head": "2d39fcf0695d81f22bcf8abd857bdfd4eddd2a03",
+ "environment_deviation": {
+  "HOME": "$HOME placed on the VM's ephemeral disk because the root disk was 98% full; TMPDIR under $HOME for pip; README text unchanged."
+ },
+ "blocks_vs_public": [
+  "block_01=DIFFERS_FROM_PUBLIC",
+  "block_02=same",
+  "block_03=same",
+  "block_04=same",
+  "block_05=same",
+  "block_06=same"
+ ],
+ "blocks_vs_public_note": "block_01 differed from the public README at replay time only in the transformers pin (public 5.16.1 had been copied from the evaluator environment; replayed 5.17.0 is the version frozen in the measured serving environment). The replayed text is the text published with this evidence.",
+ "env_precheck": [
+  "python3=Python 3.12.3 git=git version 2.43.0 curl=curl 8.5.0 (x86_64-pc-linux-gnu) libcurl/8.5.0 OpenSSL/3.0.13 zlib/1.3 brotli/1.1.0 zstd/1.5.5 libidn2/2.3.7 libpsl/0.21.2 (+libidn2/2.3.7) libssh/0.10.6/openssl/zlib nghttp2/1.59.0 librtmp/2.3 OpenLDAP/2.6.10",
+  "NVIDIA H100 NVL, 95830 MiB, 0 MiB, 615.71.09",
+  "Filesystem Size Used Avail Use% Mounted on",
+  "/dev/root 991G 971G 21G 98% /",
+  "/dev/sdb1 126G 168K 120G 1% /mnt",
+  "               total        used        free      shared  buff/cache   available",
+  "Mem:             314           3         311           0           1         311"
+ ],
+ "env_after_block01": [
+  "python=$HOME/.venvs/qwen38-specdec/bin/python Python 3.12.3",
+  "flashinfer-python==0.6.16.post3",
+  "huggingface_hub==1.31.0",
+  "torch==2.13.0",
+  "torch_c_dlpack_ext==0.1.5",
+  "torchaudio==2.11.0",
+  "torchcodec==0.16.0",
+  "torchvision==0.28.0",
+  "transformers==5.17.0",
+  "vllm==0.28.0",
+  "target files=32 bytes=55586114863 config_sha=191e0af232104ed8b65258cf3fb2b842e288008baca7633c11b82a1ac7203aab",
+  "draft files=5 bytes=3849113004 config_sha=873e3556509b0da06e29654ba00d4944888d4b5e8a33afde25f7eb27d321e980",
+  "/dev/sdb1       126G   67G   53G  57% /mnt"
+ ],
+ "routes": {
+  "baseline": {
+   "server_block": "block_03",
+   "client_block": "block_06",
+   "result": "PASS",
+   "ready_s": "135",
+   "client_s": "14",
+   "gpu_mem_used_when_ready": "83799MiB",
+   "server_log_bytes": 18639,
+   "spec_metrics_last": null,
+   "models_endpoint": {
+    "object": "list",
+    "data": [
+     {
+      "id": "Qwen/Qwen3.8-27B",
+      "object": "model",
+      "created": 1789475907,
+      "owned_by": "vllm",
+      "root": "$HOME/models/qwen38/target",
+      "parent": null,
+      "max_model_len": 32768,
+      "permission": [
+       {
+        "id": "modelperm-b682995b1204ed76",
+        "object": "model_permission",
+        "created": 1789475907,
+        "allow_create_engine": false,
+        "allow_sampling": true,
+        "allow_logprobs": true,
+        "allow_search_indices": false,
+        "allow_view": true,
+        "allow_fine_tuning": false,
+        "organization": "*",
+        "group": null,
+        "is_blocking": false
+       }
+      ]
+     }
+    ]
+   },
+   "response": {
+    "exists": true,
+    "bytes": 179399,
+    "chunks": 774,
+    "done_marker": true,
+    "finish_reason": "stop",
+    "content_chars": 600,
+    "reasoning_chars": 2106,
+    "usage": {
+     "prompt_tokens": 240,
+     "total_tokens": 1012,
+     "completion_tokens": 772,
+     "completion_tokens_details": {
+      "reasoning_tokens": 560
+     }
+    },
+    "content_head": "\n\n```python\ndef search(lst):\n    \"\"\"\n    Return the greatest positive integer in lst whose frequency is greater\n    than"
+   }
+  },
+  "mtp7": {
+   "server_block": "block_04",
+   "client_block": "block_06",
+   "result": "PASS",
+   "ready_s": "96",
+   "client_s": "6",
+   "gpu_mem_used_when_ready": "83689MiB",
+   "server_log_bytes": 25206,
+   "spec_metrics_last": null,
+   "models_endpoint": {
+    "object": "list",
+    "data": [
+     {
+      "id": "Qwen/Qwen3.8-27B",
+      "object": "model",
+      "created": 1789476017,
+      "owned_by": "vllm",
+      "root": "$HOME/models/qwen38/target",
+      "parent": null,
+      "max_model_len": 32768,
+      "permission": [
+       {
+        "id": "modelperm-a31751ba72ff2aa3",
+        "object": "model_permission",
+        "created": 1789476017,
+        "allow_create_engine": false,
+        "allow_sampling": true,
+        "allow_logprobs": true,
+        "allow_search_indices": false,
+        "allow_view": true,
+        "allow_fine_tuning": false,
+        "organization": "*",
+        "group": null,
+        "is_blocking": false
+       }
+      ]
+     }
+    ]
+   },
+   "response": {
+    "exists": true,
+    "bytes": 53312,
+    "chunks": 210,
+    "done_marker": true,
+    "finish_reason": "stop",
+    "content_chars": 258,
+    "reasoning_chars": 2162,
+    "usage": {
+     "prompt_tokens": 240,
+     "total_tokens": 903,
+     "completion_tokens": 663,
+     "completion_tokens_details": {
+      "reasoning_tokens": 582
+     }
+    },
+    "content_head": "\n\n```python\ndef search(lst):\n    freq = {}\n    for num in lst:\n        freq[num] = freq.get(num, 0) + 1\n\n    result = -1"
+   }
+  },
+  "dflash2_7": {
+   "server_block": "block_05",
+   "client_block": "block_06",
+   "result": "PASS",
+   "ready_s": "105",
+   "client_s": "4",
+   "gpu_mem_used_when_ready": "83553MiB",
+   "server_log_bytes": 26520,
+   "spec_metrics_last": null,
+   "models_endpoint": {
+    "object": "list",
+    "data": [
+     {
+      "id": "Qwen/Qwen3.8-27B",
+      "object": "model",
+      "created": 1789476128,
+      "owned_by": "vllm",
+      "root": "$HOME/models/qwen38/target",
+      "parent": null,
+      "max_model_len": 32768,
+      "permission": [
+       {
+        "id": "modelperm-a877e677f12cbda7",
+        "object": "model_permission",
+        "created": 1789476128,
+        "allow_create_engine": false,
+        "allow_sampling": true,
+        "allow_logprobs": true,
+        "allow_search_indices": false,
+        "allow_view": true,
+        "allow_fine_tuning": false,
+        "organization": "*",
+        "group": null,
+        "is_blocking": false
+       }
+      ]
+     }
+    ]
+   },
+   "response": {
+    "exists": true,
+    "bytes": 34771,
+    "chunks": 131,
+    "done_marker": true,
+    "finish_reason": "stop",
+    "content_chars": 424,
+    "reasoning_chars": 1647,
+    "usage": {
+     "prompt_tokens": 240,
+     "total_tokens": 760,
+     "completion_tokens": 520,
+     "completion_tokens_details": {
+      "reasoning_tokens": 421
+     }
+    },
+    "content_head": "\n\n```python\nfrom collections import Counter\n\ndef search(lst):\n    \"\"\"\n    Return the greatest integer greater than zero "
+   }
+  }
+ }
+}
