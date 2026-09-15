@@ -163,65 +163,89 @@ recorded per request.
 **What was sent.** The 47 prompts of [2.1 Test set](#methodology), each 3 measured times
 plus 1 warm-up per router, once with no `reasoning_effort` and once with `low`. With the 4
 direct Sol and Luna baselines that makes 10 arms, 1,410 measured requests and 470
-blind-judged answers.
+blind-judged answers. All arms used Chat Completions, the only API surface the router
+exposes.
 
 **Selection was repeatable on this sample.** All 282 router cells (6 router arms × 47
 prompts) returned the same model on all 3 repetitions; 0 switched. The `low` arms routed
-every prompt exactly as the no-effort arms did, so each mode is one column below.
+every prompt exactly as the no-effort arms did.
 
-**Which model answered each prompt**
-([per-question CSV](model-router-validation/outputs/router_question_hits.csv); prompt
-texts are in the dataset file, 2 of them withheld in the public copy):
+**Latency, cost and quality per arm.** Client-observed medians over 141 requests per arm;
+cost at list price of the model that actually served each request; quality is the blind
+judge over 47 answers per arm ([arm summary CSV](model-router-validation/outputs/router_arm_summary.csv)).
+Read the *Bursts* column first: on the direct DataZone baselines most answers arrived in
+one burst, so their TTFT is delivery time rather than first-token time, and a router-minus-
+direct difference in this table is **not** router overhead — that question is answered by
+the paired test below.
+
+| Arm | Served Sol / Luna | TTFT P50 / P90 | E2E P50 | Bursts <50 ms | Router decision P50 ms | Out tok | USD / 1k | Judge / 5 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| `router-sol-luna-cost` | 0 / 141 | 1.50 / 3.88 s | 2.19 s | 29 / 141 | 20 | 399 | 0.50 | 4.91 |
+| `router-sol-luna-cost@low` | 0 / 141 | 1.21 / 2.41 s | 1.86 s | 33 / 141 | 20 | 327 | 0.41 | 4.91 |
+| `router-sol-luna-balanced` | 6 / 135 | 1.43 / 4.05 s | 2.02 s | 29 / 141 | 20 | 397 | 1.95 | 4.91 |
+| `router-sol-luna-balanced@low` | 6 / 135 | 1.23 / 2.98 s | 1.78 s | 34 / 141 | 20 | 325 | 1.28 | 4.91 |
+| `router-sol-luna-quality` | 69 / 72 | 1.92 / 4.30 s | 2.59 s | 36 / 141 | 20 | 375 | 7.53 | 4.91 |
+| `router-sol-luna-quality@low` | 69 / 72 | 1.79 / 2.99 s | 2.44 s | 34 / 141 | 20 | 309 | 5.93 | 4.96 |
+| `gpt-5.6-luna-dz` | 0 / 141 | 1.57 / 5.29 s | 1.57 s | 126 / 141 | — | 372 | 0.46 | 4.86 |
+| `gpt-5.6-luna-dz@low` | 0 / 141 | 1.27 / 4.32 s | 1.28 s | 119 / 141 | — | 343 | 0.43 | 4.93 |
+| `gpt-5.6-sol-dz` | 141 / 0 | 2.08 / 7.68 s | 2.09 s | 127 / 141 | — | 360 | 11.24 | 4.88 |
+| `gpt-5.6-sol-dz@low` | 141 / 0 | 1.78 / 6.82 s | 1.80 s | 125 / 141 | — | 312 | 9.78 | 4.90 |
+
+**Which model answered each prompt, and what it cost.** Each mode cell is the served model,
+the TTFT median of the 3 measured requests, and USD per 1,000 requests for that prompt
+([per-question CSV](model-router-validation/outputs/router_question_hits.csv),
+[per-request CSV](model-router-validation/outputs/router_single_turn_sessions.csv); 2 prompt
+texts are withheld in the public copy):
 
 | Tier | Prompt | Category | `cost` | `balanced` | `quality` |
 |---|---|---|---|---|---|
-| simple | CZ02 | `edit_intent_parsing` | Luna | Luna | Luna |
-| simple | CMU03 | `executive_condense` | Luna | Luna | Luna |
-| simple | S01 | `factual_lookup` | Luna | Luna | Sol |
-| simple | S02 | `factual_lookup` | Luna | Luna | Sol |
-| simple | S09 | `faq` | Luna | Luna | Sol |
-| simple | S10 | `faq` | Luna | Luna | Sol |
-| simple | S07 | `formatting` | Luna | Luna | Luna |
-| simple | S08 | `formatting` | Luna | Luna | Sol |
-| simple | LI02 | `grounded_followup` | Luna | Luna | Sol |
-| simple | PA03 | `instant_recall` | Luna | Luna | Sol |
-| simple | S03 | `intent_classification` | Luna | Luna | Luna |
-| simple | S04 | `intent_classification` | Luna | Luna | Luna |
-| simple | S05 | `short_form` | Luna | Luna | Sol |
-| simple | S06 | `short_form` | Luna | Luna | Luna |
-| simple | NM03 | `short_suggestion` | Luna | Luna | Sol |
-| moderate | M07 | `classification_reasoning` | Luna | Luna | Luna |
-| moderate | M08 | `code_snippet` | Luna | Luna | Sol |
-| moderate | M04 | `comparison` | Luna | Luna | Sol |
-| moderate | LI01 | `conversational_turn` | Luna | Luna | Luna |
-| moderate | NM02 | `cross_device_continuity` | Luna | Luna | Sol |
-| moderate | CMU02 | `decision_extraction` | Luna | Luna | Luna |
-| moderate | M02 | `drafting` | Luna | Luna | Sol |
-| moderate | M09 | `planning` | Luna | Luna | Luna |
-| moderate | CZ01 | `prompt_expansion` | Luna | Luna | Sol |
-| moderate | M06 | `rewriting` | Luna | Luna | Luna |
-| moderate | WFM04 | `short_draft` | Luna | Luna | Sol |
-| moderate | M03 | `structured_extraction` | Luna | Luna | Luna |
-| moderate | M01 | `summarization` | Luna | Luna | Luna |
-| moderate | M10 | `summarization` | Luna | Luna | Luna |
-| moderate | WFM02 | `tone_continuation` | Luna | Luna | Luna |
-| moderate | WFM03 | `tone_shift_rewrite` | Luna | Luna | Luna |
-| moderate | PA02 | `translate_and_summarize` | Luna | Luna | Luna |
-| moderate | M05 | `troubleshooting` | Luna | Luna | Sol |
-| complex | C09 | `ambiguity_resolution` | Luna | Luna | Sol |
-| complex | C03 | `architecture_reasoning` | Luna | Luna | Luna |
-| complex | CMU01 | `backlog_digest` | Luna | Luna | Luna |
-| complex | C06 | `code_reasoning` | Luna | Sol | Sol |
-| complex | C04 | `constrained_reasoning` | Luna | Sol | Sol |
-| complex | PA01 | `keypoint_capture` | Luna | Luna | Luna |
-| complex | WFM01 | `long_form_draft` | Luna | Luna | Sol |
-| complex | C08 | `long_form_synthesis` | Luna | Luna | Luna |
-| complex | C10 | `multi_constraint_planning` | Luna | Luna | Sol |
-| complex | C01 | `multi_step_math` | Luna | Luna | Sol |
-| complex | C02 | `multi_step_math` | Luna | Luna | Sol |
-| complex | NM01 | `proactive_suggestion` | Luna | Luna | Luna |
-| complex | C05 | `root_cause_analysis` | Luna | Luna | Luna |
-| complex | C07 | `tradeoff_analysis` | Luna | Luna | Luna |
+| simple | CZ02 | `edit_intent_parsing` | Luna · 0.81 s · 0.12 | Luna · 1.01 s · 0.13 | Luna · 1.27 s · 0.12 |
+| simple | CMU03 | `executive_condense` | Luna · 1.00 s · 0.10 | Luna · 1.14 s · 0.09 | Luna · 1.20 s · 0.09 |
+| simple | S01 | `factual_lookup` | Luna · 0.69 s · 0.03 | Luna · 1.23 s · 0.03 | Sol · 1.63 s · 0.75 |
+| simple | S02 | `factual_lookup` | Luna · 1.50 s · 0.09 | Luna · 1.02 s · 0.09 | Sol · 2.25 s · 2.27 |
+| simple | S09 | `faq` | Luna · 1.79 s · 0.30 | Luna · 1.64 s · 0.31 | Sol · 3.29 s · 7.60 |
+| simple | S10 | `faq` | Luna · 1.21 s · 0.06 | Luna · 0.79 s · 0.06 | Sol · 1.71 s · 1.52 |
+| simple | S07 | `formatting` | Luna · 1.05 s · 0.03 | Luna · 0.83 s · 0.03 | Luna · 0.97 s · 0.03 |
+| simple | S08 | `formatting` | Luna · 1.00 s · 0.05 | Luna · 0.76 s · 0.04 | Sol · 1.79 s · 1.21 |
+| simple | LI02 | `grounded_followup` | Luna · 1.04 s · 0.07 | Luna · 1.22 s · 0.06 | Sol · 1.68 s · 1.39 |
+| simple | PA03 | `instant_recall` | Luna · 1.21 s · 0.05 | Luna · 1.66 s · 0.05 | Sol · 0.84 s · 1.28 |
+| simple | S03 | `intent_classification` | Luna · 1.36 s · 0.10 | Luna · 1.36 s · 0.10 | Luna · 1.74 s · 0.09 |
+| simple | S04 | `intent_classification` | Luna · 1.79 s · 0.16 | Luna · 1.70 s · 0.15 | Luna · 1.58 s · 0.16 |
+| simple | S05 | `short_form` | Luna · 0.77 s · 0.05 | Luna · 1.01 s · 0.04 | Sol · 1.90 s · 1.13 |
+| simple | S06 | `short_form` | Luna · 0.69 s · 0.02 | Luna · 0.70 s · 0.02 | Luna · 0.91 s · 0.02 |
+| simple | NM03 | `short_suggestion` | Luna · 1.18 s · 0.05 | Luna · 1.26 s · 0.05 | Sol · 2.46 s · 2.09 |
+| moderate | M07 | `classification_reasoning` | Luna · 0.93 s · 0.07 | Luna · 0.98 s · 0.08 | Luna · 1.00 s · 0.07 |
+| moderate | M08 | `code_snippet` | Luna · 2.07 s · 0.35 | Luna · 1.92 s · 0.31 | Sol · 3.45 s · 10.34 |
+| moderate | M04 | `comparison` | Luna · 1.65 s · 0.20 | Luna · 1.20 s · 0.20 | Sol · 1.99 s · 4.66 |
+| moderate | LI01 | `conversational_turn` | Luna · 1.04 s · 0.07 | Luna · 0.91 s · 0.07 | Luna · 1.22 s · 0.07 |
+| moderate | NM02 | `cross_device_continuity` | Luna · 1.53 s · 0.19 | Luna · 1.52 s · 0.18 | Sol · 2.20 s · 4.32 |
+| moderate | CMU02 | `decision_extraction` | Luna · 1.95 s · 0.28 | Luna · 2.03 s · 0.24 | Luna · 2.20 s · 0.29 |
+| moderate | M02 | `drafting` | Luna · 0.80 s · 0.11 | Luna · 0.97 s · 0.11 | Sol · 1.94 s · 2.51 |
+| moderate | M09 | `planning` | Luna · 1.32 s · 0.26 | Luna · 1.03 s · 0.23 | Luna · 1.42 s · 0.25 |
+| moderate | CZ01 | `prompt_expansion` | Luna · 1.08 s · 0.26 | Luna · 1.33 s · 0.30 | Sol · 1.98 s · 6.31 |
+| moderate | M06 | `rewriting` | Luna · 0.86 s · 0.03 | Luna · 0.76 s · 0.03 | Luna · 0.90 s · 0.03 |
+| moderate | WFM04 | `short_draft` | Luna · 1.86 s · 0.37 | Luna · 1.37 s · 0.34 | Sol · 1.78 s · 6.90 |
+| moderate | M03 | `structured_extraction` | Luna · 0.76 s · 0.06 | Luna · 0.88 s · 0.06 | Luna · 1.19 s · 0.06 |
+| moderate | M01 | `summarization` | Luna · 1.00 s · 0.07 | Luna · 0.98 s · 0.07 | Luna · 1.28 s · 0.07 |
+| moderate | M10 | `summarization` | Luna · 0.82 s · 0.06 | Luna · 0.86 s · 0.06 | Luna · 0.86 s · 0.06 |
+| moderate | WFM02 | `tone_continuation` | Luna · 1.54 s · 0.28 | Luna · 1.66 s · 0.24 | Luna · 1.61 s · 0.27 |
+| moderate | WFM03 | `tone_shift_rewrite` | Luna · 2.00 s · 0.20 | Luna · 2.53 s · 0.21 | Luna · 2.07 s · 0.16 |
+| moderate | PA02 | `translate_and_summarize` | Luna · 1.79 s · 0.29 | Luna · 1.91 s · 0.30 | Luna · 1.94 s · 0.29 |
+| moderate | M05 | `troubleshooting` | Luna · 2.38 s · 0.36 | Luna · 2.12 s · 0.31 | Sol · 4.15 s · 7.63 |
+| complex | C09 | `ambiguity_resolution` | Luna · 1.45 s · 0.53 | Luna · 1.96 s · 0.48 | Sol · 3.05 s · 11.57 |
+| complex | C03 | `architecture_reasoning` | Luna · 2.44 s · 0.89 | Luna · 2.87 s · 0.94 | Luna · 3.02 s · 0.86 |
+| complex | CMU01 | `backlog_digest` | Luna · 2.49 s · 0.45 | Luna · 2.41 s · 0.44 | Luna · 2.32 s · 0.43 |
+| complex | C06 | `code_reasoning` | Luna · 5.80 s · 1.05 | Sol · 9.45 s · 26.65 | Sol · 8.86 s · 25.32 |
+| complex | C04 | `constrained_reasoning` | Luna · 9.50 s · 1.77 | Sol · 14.03 s · 44.86 | Sol · 15.49 s · 48.18 |
+| complex | PA01 | `keypoint_capture` | Luna · 1.60 s · 0.56 | Luna · 1.11 s · 0.59 | Luna · 1.13 s · 0.51 |
+| complex | WFM01 | `long_form_draft` | Luna · 2.16 s · 3.29 | Luna · 1.72 s · 3.08 | Sol · 3.04 s · 64.92 |
+| complex | C08 | `long_form_synthesis` | Luna · 2.00 s · 2.39 | Luna · 1.71 s · 2.37 | Luna · 2.04 s · 2.47 |
+| complex | C10 | `multi_constraint_planning` | Luna · 8.29 s · 3.89 | Luna · 7.75 s · 4.31 | Sol · 11.27 s · 92.73 |
+| complex | C01 | `multi_step_math` | Luna · 7.92 s · 1.48 | Luna · 8.20 s · 1.28 | Sol · 12.36 s · 30.20 |
+| complex | C02 | `multi_step_math` | Luna · 2.48 s · 0.43 | Luna · 2.63 s · 0.52 | Sol · 3.50 s · 11.05 |
+| complex | NM01 | `proactive_suggestion` | Luna · 1.69 s · 0.25 | Luna · 1.55 s · 0.23 | Luna · 2.04 s · 0.23 |
+| complex | C05 | `root_cause_analysis` | Luna · 3.00 s · 0.59 | Luna · 2.63 s · 0.48 | Luna · 3.55 s · 0.51 |
+| complex | C07 | `tradeoff_analysis` | Luna · 2.60 s · 0.95 | Luna · 4.05 s · 1.04 | Luna · 2.96 s · 0.99 |
 
 **Counts per tier.** Read across a row: Sol + Luna equals that row's requests. The
 percentage is Sol's share of that tier only, so the column is not meant to sum to 100%.
@@ -234,17 +258,62 @@ percentage is Sol's share of that tier only, so the column is not meant to sum t
 | all tiers | 47 | 141 | 0 / 141 (0.0%) | 6 / 135 (4.3%) | 69 / 72 (48.9%) |
 
 `cost` never chose Sol. `balanced` chose Sol for 2 prompts only, both complex:
-`code_reasoning` and `constrained_reasoning`. `quality` chose Sol for 23 of 47 prompts and
-its choice did not follow the author-assigned tier — a larger share of simple prompts went to
-Sol than of complex ones. What did track the choice was the kind of work requested: Sol
-answered prompts that generate content or answer from model knowledge (`factual_lookup`,
-`faq`, `code_snippet`, `drafting`, `multi_step_math`, `code_reasoning`) and Luna answered
-prompts that transform text already supplied (`summarization`, `structured_extraction`,
-`rewriting`, `tone_shift_rewrite`, `keypoint_capture`).
+`code_reasoning` and `constrained_reasoning`. `quality` chose Sol for 23 of 47 prompts
+and its choice did not follow the author-assigned tier — a larger share of simple prompts
+went to Sol than of complex ones. What did track the choice was the kind of work requested:
+Sol answered prompts that generate content or answer from model knowledge
+(`factual_lookup`, `faq`, `code_snippet`, `drafting`, `multi_step_math`, `code_reasoning`)
+and Luna answered prompts that transform text already supplied (`summarization`,
+`structured_extraction`, `rewriting`, `tone_shift_rewrite`, `keypoint_capture`).
+
+**Does the router add latency? A paired test under identical conditions.** The table
+above cannot answer this: the router arms ran on GlobalStandard, the direct baselines on
+DataZoneStandard, the arms ran serially, and the direct answers arrived in bursts. A
+follow-up run removed all of that. `router-sol-luna-cost` — which routes every prompt to
+Luna — was measured against the direct `gpt-5.6-luna` deployment: both GlobalStandard,
+both Chat Completions, no `reasoning_effort` on either, the same 45 public prompts, and
+each prompt measured as router/direct **pairs back to back**, 1 warm-up pair and 3 measured
+pairs, alternating which side went first so ordering bias cancels
+([design and executed source](model-router-validation/scripts/paired_overhead.py),
+[deployment record](model-router-validation/outputs/paired_deployment_record_20260915.json),
+[pairs CSV](model-router-validation/outputs/router_overhead_paired_20260915_162607.csv),
+[summary CSV](model-router-validation/outputs/router_overhead_paired_summary.csv)).
+
+| Arm | SKU | n | TTFT P50 / P90 | E2E P50 | Bursts <50 ms | Out tok | USD / 1k | Self-reported router ms P50 / P95 |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| `router-sol-luna-cost` | GlobalStandard | 135 | 2.12 / 4.80 s | 2.65 s | 17.8% | 392 | 0.49 | 20 / 26 |
+| `gpt-5.6-luna` | GlobalStandard | 135 | 2.28 / 6.47 s | 2.29 s | 88.9% | 379 | 0.47 | — |
+
+Per-pair difference, router minus direct, on the 135 pairs where both sides were served
+by Luna (0 pairs excluded for a different served model). End-to-end time is the
+comparable column; the last column is kept to show why TTFT is not:
+
+| Pairs | n | ΔE2E P25 ms | P50 | P75 | P90 | mean | Router slower (E2E) | ΔTTFT P50 ms |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| all | 135 | -97 | 324 | 992 | 1569 | 501 | 71.9% | -147 |
+| router sent first | 45 | -97 | 261 | 956 | 2044 | 654 | 71.1% | -158 |
+| direct sent first | 90 | -32 | 324 | 992 | 1533 | 424 | 72.2% | -147 |
+| simple | 42 | 92 | 488 | 946 | 1350 | 556 | 81.0% | 357 |
+| moderate | 54 | -32 | 187 | 775 | 1533 | 390 | 70.4% | -152 |
+| complex | 39 | -652 | 264 | 1490 | 5086 | 594 | 64.1% | -1966 |
+
+Reading: the two sides did not stream alike. 88.9% of direct answers arrived in one burst
+against 17.8% through the router, so the direct TTFT is mostly whole-answer delivery time
+and the TTFT column compares the streaming layer, not the router — it even makes the
+router look faster to first token on long answers. On **end-to-end time**, with everything
+else held equal, putting the router in front of Luna added **324 ms at the median**
+(-97 to 992 ms interquartile, 1569 ms at P90) and the router was the slower side in
+71.9% of pairs, whichever side was sent first (261 ms versus 324 ms at the
+median), which is what rules out ordering bias. The router's self-reported decision time
+was 20 ms at the median, so the added time is mostly the extra hop and its delivery path
+rather than the decision itself. Answers through the router averaged 392 output tokens
+against 379 direct, from the same model at the same list price; the router fee, if any, is
+not in these numbers.
 
 These are observed counts from repeated synthetic prompts, and the task-type reading is
 this author's grouping of the 40 categories rather than a published rule. They are not a
 production routing probability and not a reconstruction of the internal routing rule.
+The paired overhead is one deployment pair, one region, one evening, at concurrency 1.
 
 ### 3.3 Sessions, sustained load and the rate limit
 

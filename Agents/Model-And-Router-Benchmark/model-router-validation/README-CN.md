@@ -174,7 +174,7 @@ python analyze.py "outputs/router_${RUN_ID}.jsonl" --mode router --quality "outp
 ## 解释边界与尚未测试的后续方案
 - PR 复核后，新收集器会拒绝被过滤或缺失终止事件的 Chat 响应，评分也会排除未完成的回答。第二轮复核又补上了可运行代码中的三个缺口：Router 分析器现在与直连分析器使用同一套“已完成 / 未截断 / 有 usage”过滤，遇到混合环境直接拒绝而不是照常输出表格；没有 usage 块的流记为 `missing_usage`（不再算零成本成功），报告校验器同样拒绝；校验器还要求路由 trace 中唯一成功的 attempt 与实际服务模型一致；并关闭了 SDK 的两次静默重试（`max_retries=0`），每次 429/5xx 都会成为可见错误而不是被藏进 TTFT。历史运行未保留 `finish_reason`，完成数依据已记录的状态、错误与截断标志，无法追溯排除未记录的终止事件。历史回答未改写；[原运行代码快照](outputs/source_snapshot/manifest.json)保留原始哈希，与加固后的可运行代码分开。
 - 测量期路由请求的 `model_selection_details.model_router_details` trace 自报决策耗时为**中位数 20 ms / P95 24 ms**。这是服务自报的组成部分，不是独立隔离测得、包含网络的总开销。
-- 路由 Global SKU 与直连 DataZone SKU 不同，且实验组按固定顺序串行运行，TTFT 差值存在混杂。沿用历史文件名的 [router_overhead.csv](outputs/router_overhead.csv)保存的是配对 TTFT **差值**，不是路由开销估计或上界。运行时段、流缓冲和服务范围等因素尚未控制。
+- 路由 Global SKU 与直连 DataZone SKU 不同，且实验组按固定顺序串行运行，TTFT 差值存在混杂。沿用历史文件名的 [router_overhead.csv](outputs/router_overhead.csv)保存的是配对 TTFT **差值**，不是路由开销估计或上界。本轮运行未控制运行时段、流缓冲和服务范围等因素。后续一次配对运行——Router 与直连 Luna 使用同一 GlobalStandard SKU、同一 Chat 接口、同一题集，背靠背成对测量并轮换先后顺序——隔离出了这项开销；见 [`scripts/paired_overhead.py`](scripts/paired_overhead.py)、[`router_overhead_paired_summary.csv`](outputs/router_overhead_paired_summary.csv) 与项目 README 第 3.2 节。
 - 本轮被拒绝的是 **AOAI 资源级 Responses 路径**。官方另有 [Foundry 项目级 Responses 路径](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/model-router#use-model-router)，本轮未测；不能概括为 Responses 一律不支持路由。
 - **尚未测试（NOT TESTED）：**3–4 档候选模型、APIM 策略路由、确定性升级规则、多轮状态传递、并发与负载上限、生产 SLA。未来的 APIM 对照组应记录策略决策，并在同一自有题集上比较时延、质量与成本；这不是本轮实验结果。
 

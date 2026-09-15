@@ -149,65 +149,88 @@ effort 上升，4 档从 4.55 升到 4.79——这 0.24 分的提升，代价是
 
 **发了什么。** [2.1 测试集](#methodology)中的 47 条提示词，每条对每个 Router 测 3 次、
 另加 1 次预热，不发送 `reasoning_effort` 与发送 `low` 各跑一遍。加上 4 个 Sol、Luna
-直连基线，共 10 个实验组、1,410 个测量请求、470 条盲评回答。
+直连基线，共 10 个实验组、1,410 个测量请求、470 条盲评回答。所有实验组都走
+Chat Completions——Router 只开放这一个 API 面。
 
 **在本样本上，选择是可重复的。** 282 个 Router 单元格（6 个 Router 实验组 × 47 条
 提示词）在 3 次重复中全部返回同一个模型，0 个切换。`low` 实验组对每条提示词的路由
-与不发送 effort 时完全一致，所以下表每种模式只列一列。
+与不发送 effort 时完全一致。
 
-**每条提示词由哪个模型作答**
-（[逐问题 CSV](model-router-validation/outputs/router_question_hits.csv)；提示词原文见
-数据集文件，其中 2 条在公开副本中已撤回）：
+**每个实验组的延迟、成本与质量。** 每组 141 个请求的客户端观测中位数；成本按实际作答
+模型的标价计算；质量为每组 47 条回答的盲评
+（[实验组汇总 CSV](model-router-validation/outputs/router_arm_summary.csv)）。请先看
+*整段到达* 一列：直连 DataZone 基线的大多数回答是一次性整段到达的，它们的 TTFT 是交付
+时间而不是首 Token 时间，所以这张表里 Router 减直连的差值**不是** Router 开销——那个
+问题由下面的配对测试回答。
+
+| 实验组 | 作答 Sol / Luna | TTFT P50 / P90 | E2E P50 | 整段到达 <50 ms | Router 决策 P50 ms | 输出 Token | 每 1k 请求 USD | 盲评 / 5 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| `router-sol-luna-cost` | 0 / 141 | 1.50 / 3.88 s | 2.19 s | 29 / 141 | 20 | 399 | 0.50 | 4.91 |
+| `router-sol-luna-cost@low` | 0 / 141 | 1.21 / 2.41 s | 1.86 s | 33 / 141 | 20 | 327 | 0.41 | 4.91 |
+| `router-sol-luna-balanced` | 6 / 135 | 1.43 / 4.05 s | 2.02 s | 29 / 141 | 20 | 397 | 1.95 | 4.91 |
+| `router-sol-luna-balanced@low` | 6 / 135 | 1.23 / 2.98 s | 1.78 s | 34 / 141 | 20 | 325 | 1.28 | 4.91 |
+| `router-sol-luna-quality` | 69 / 72 | 1.92 / 4.30 s | 2.59 s | 36 / 141 | 20 | 375 | 7.53 | 4.91 |
+| `router-sol-luna-quality@low` | 69 / 72 | 1.79 / 2.99 s | 2.44 s | 34 / 141 | 20 | 309 | 5.93 | 4.96 |
+| `gpt-5.6-luna-dz` | 0 / 141 | 1.57 / 5.29 s | 1.57 s | 126 / 141 | — | 372 | 0.46 | 4.86 |
+| `gpt-5.6-luna-dz@low` | 0 / 141 | 1.27 / 4.32 s | 1.28 s | 119 / 141 | — | 343 | 0.43 | 4.93 |
+| `gpt-5.6-sol-dz` | 141 / 0 | 2.08 / 7.68 s | 2.09 s | 127 / 141 | — | 360 | 11.24 | 4.88 |
+| `gpt-5.6-sol-dz@low` | 141 / 0 | 1.78 / 6.82 s | 1.80 s | 125 / 141 | — | 312 | 9.78 | 4.90 |
+
+**每条提示词由哪个模型作答、花了多少。** 每个模式单元格依次是作答模型、3 次测量请求
+的 TTFT 中位数、该题每 1,000 个请求的 USD
+（[逐问题 CSV](model-router-validation/outputs/router_question_hits.csv)、
+[逐请求 CSV](model-router-validation/outputs/router_single_turn_sessions.csv)；其中 2 条
+提示词原文在公开副本中已撤回）：
 
 | 难度档 | 提示词 | 类目 | `cost` | `balanced` | `quality` |
 |---|---|---|---|---|---|
-| simple | CZ02 | `edit_intent_parsing` | Luna | Luna | Luna |
-| simple | CMU03 | `executive_condense` | Luna | Luna | Luna |
-| simple | S01 | `factual_lookup` | Luna | Luna | Sol |
-| simple | S02 | `factual_lookup` | Luna | Luna | Sol |
-| simple | S09 | `faq` | Luna | Luna | Sol |
-| simple | S10 | `faq` | Luna | Luna | Sol |
-| simple | S07 | `formatting` | Luna | Luna | Luna |
-| simple | S08 | `formatting` | Luna | Luna | Sol |
-| simple | LI02 | `grounded_followup` | Luna | Luna | Sol |
-| simple | PA03 | `instant_recall` | Luna | Luna | Sol |
-| simple | S03 | `intent_classification` | Luna | Luna | Luna |
-| simple | S04 | `intent_classification` | Luna | Luna | Luna |
-| simple | S05 | `short_form` | Luna | Luna | Sol |
-| simple | S06 | `short_form` | Luna | Luna | Luna |
-| simple | NM03 | `short_suggestion` | Luna | Luna | Sol |
-| moderate | M07 | `classification_reasoning` | Luna | Luna | Luna |
-| moderate | M08 | `code_snippet` | Luna | Luna | Sol |
-| moderate | M04 | `comparison` | Luna | Luna | Sol |
-| moderate | LI01 | `conversational_turn` | Luna | Luna | Luna |
-| moderate | NM02 | `cross_device_continuity` | Luna | Luna | Sol |
-| moderate | CMU02 | `decision_extraction` | Luna | Luna | Luna |
-| moderate | M02 | `drafting` | Luna | Luna | Sol |
-| moderate | M09 | `planning` | Luna | Luna | Luna |
-| moderate | CZ01 | `prompt_expansion` | Luna | Luna | Sol |
-| moderate | M06 | `rewriting` | Luna | Luna | Luna |
-| moderate | WFM04 | `short_draft` | Luna | Luna | Sol |
-| moderate | M03 | `structured_extraction` | Luna | Luna | Luna |
-| moderate | M01 | `summarization` | Luna | Luna | Luna |
-| moderate | M10 | `summarization` | Luna | Luna | Luna |
-| moderate | WFM02 | `tone_continuation` | Luna | Luna | Luna |
-| moderate | WFM03 | `tone_shift_rewrite` | Luna | Luna | Luna |
-| moderate | PA02 | `translate_and_summarize` | Luna | Luna | Luna |
-| moderate | M05 | `troubleshooting` | Luna | Luna | Sol |
-| complex | C09 | `ambiguity_resolution` | Luna | Luna | Sol |
-| complex | C03 | `architecture_reasoning` | Luna | Luna | Luna |
-| complex | CMU01 | `backlog_digest` | Luna | Luna | Luna |
-| complex | C06 | `code_reasoning` | Luna | Sol | Sol |
-| complex | C04 | `constrained_reasoning` | Luna | Sol | Sol |
-| complex | PA01 | `keypoint_capture` | Luna | Luna | Luna |
-| complex | WFM01 | `long_form_draft` | Luna | Luna | Sol |
-| complex | C08 | `long_form_synthesis` | Luna | Luna | Luna |
-| complex | C10 | `multi_constraint_planning` | Luna | Luna | Sol |
-| complex | C01 | `multi_step_math` | Luna | Luna | Sol |
-| complex | C02 | `multi_step_math` | Luna | Luna | Sol |
-| complex | NM01 | `proactive_suggestion` | Luna | Luna | Luna |
-| complex | C05 | `root_cause_analysis` | Luna | Luna | Luna |
-| complex | C07 | `tradeoff_analysis` | Luna | Luna | Luna |
+| simple | CZ02 | `edit_intent_parsing` | Luna · 0.81 s · 0.12 | Luna · 1.01 s · 0.13 | Luna · 1.27 s · 0.12 |
+| simple | CMU03 | `executive_condense` | Luna · 1.00 s · 0.10 | Luna · 1.14 s · 0.09 | Luna · 1.20 s · 0.09 |
+| simple | S01 | `factual_lookup` | Luna · 0.69 s · 0.03 | Luna · 1.23 s · 0.03 | Sol · 1.63 s · 0.75 |
+| simple | S02 | `factual_lookup` | Luna · 1.50 s · 0.09 | Luna · 1.02 s · 0.09 | Sol · 2.25 s · 2.27 |
+| simple | S09 | `faq` | Luna · 1.79 s · 0.30 | Luna · 1.64 s · 0.31 | Sol · 3.29 s · 7.60 |
+| simple | S10 | `faq` | Luna · 1.21 s · 0.06 | Luna · 0.79 s · 0.06 | Sol · 1.71 s · 1.52 |
+| simple | S07 | `formatting` | Luna · 1.05 s · 0.03 | Luna · 0.83 s · 0.03 | Luna · 0.97 s · 0.03 |
+| simple | S08 | `formatting` | Luna · 1.00 s · 0.05 | Luna · 0.76 s · 0.04 | Sol · 1.79 s · 1.21 |
+| simple | LI02 | `grounded_followup` | Luna · 1.04 s · 0.07 | Luna · 1.22 s · 0.06 | Sol · 1.68 s · 1.39 |
+| simple | PA03 | `instant_recall` | Luna · 1.21 s · 0.05 | Luna · 1.66 s · 0.05 | Sol · 0.84 s · 1.28 |
+| simple | S03 | `intent_classification` | Luna · 1.36 s · 0.10 | Luna · 1.36 s · 0.10 | Luna · 1.74 s · 0.09 |
+| simple | S04 | `intent_classification` | Luna · 1.79 s · 0.16 | Luna · 1.70 s · 0.15 | Luna · 1.58 s · 0.16 |
+| simple | S05 | `short_form` | Luna · 0.77 s · 0.05 | Luna · 1.01 s · 0.04 | Sol · 1.90 s · 1.13 |
+| simple | S06 | `short_form` | Luna · 0.69 s · 0.02 | Luna · 0.70 s · 0.02 | Luna · 0.91 s · 0.02 |
+| simple | NM03 | `short_suggestion` | Luna · 1.18 s · 0.05 | Luna · 1.26 s · 0.05 | Sol · 2.46 s · 2.09 |
+| moderate | M07 | `classification_reasoning` | Luna · 0.93 s · 0.07 | Luna · 0.98 s · 0.08 | Luna · 1.00 s · 0.07 |
+| moderate | M08 | `code_snippet` | Luna · 2.07 s · 0.35 | Luna · 1.92 s · 0.31 | Sol · 3.45 s · 10.34 |
+| moderate | M04 | `comparison` | Luna · 1.65 s · 0.20 | Luna · 1.20 s · 0.20 | Sol · 1.99 s · 4.66 |
+| moderate | LI01 | `conversational_turn` | Luna · 1.04 s · 0.07 | Luna · 0.91 s · 0.07 | Luna · 1.22 s · 0.07 |
+| moderate | NM02 | `cross_device_continuity` | Luna · 1.53 s · 0.19 | Luna · 1.52 s · 0.18 | Sol · 2.20 s · 4.32 |
+| moderate | CMU02 | `decision_extraction` | Luna · 1.95 s · 0.28 | Luna · 2.03 s · 0.24 | Luna · 2.20 s · 0.29 |
+| moderate | M02 | `drafting` | Luna · 0.80 s · 0.11 | Luna · 0.97 s · 0.11 | Sol · 1.94 s · 2.51 |
+| moderate | M09 | `planning` | Luna · 1.32 s · 0.26 | Luna · 1.03 s · 0.23 | Luna · 1.42 s · 0.25 |
+| moderate | CZ01 | `prompt_expansion` | Luna · 1.08 s · 0.26 | Luna · 1.33 s · 0.30 | Sol · 1.98 s · 6.31 |
+| moderate | M06 | `rewriting` | Luna · 0.86 s · 0.03 | Luna · 0.76 s · 0.03 | Luna · 0.90 s · 0.03 |
+| moderate | WFM04 | `short_draft` | Luna · 1.86 s · 0.37 | Luna · 1.37 s · 0.34 | Sol · 1.78 s · 6.90 |
+| moderate | M03 | `structured_extraction` | Luna · 0.76 s · 0.06 | Luna · 0.88 s · 0.06 | Luna · 1.19 s · 0.06 |
+| moderate | M01 | `summarization` | Luna · 1.00 s · 0.07 | Luna · 0.98 s · 0.07 | Luna · 1.28 s · 0.07 |
+| moderate | M10 | `summarization` | Luna · 0.82 s · 0.06 | Luna · 0.86 s · 0.06 | Luna · 0.86 s · 0.06 |
+| moderate | WFM02 | `tone_continuation` | Luna · 1.54 s · 0.28 | Luna · 1.66 s · 0.24 | Luna · 1.61 s · 0.27 |
+| moderate | WFM03 | `tone_shift_rewrite` | Luna · 2.00 s · 0.20 | Luna · 2.53 s · 0.21 | Luna · 2.07 s · 0.16 |
+| moderate | PA02 | `translate_and_summarize` | Luna · 1.79 s · 0.29 | Luna · 1.91 s · 0.30 | Luna · 1.94 s · 0.29 |
+| moderate | M05 | `troubleshooting` | Luna · 2.38 s · 0.36 | Luna · 2.12 s · 0.31 | Sol · 4.15 s · 7.63 |
+| complex | C09 | `ambiguity_resolution` | Luna · 1.45 s · 0.53 | Luna · 1.96 s · 0.48 | Sol · 3.05 s · 11.57 |
+| complex | C03 | `architecture_reasoning` | Luna · 2.44 s · 0.89 | Luna · 2.87 s · 0.94 | Luna · 3.02 s · 0.86 |
+| complex | CMU01 | `backlog_digest` | Luna · 2.49 s · 0.45 | Luna · 2.41 s · 0.44 | Luna · 2.32 s · 0.43 |
+| complex | C06 | `code_reasoning` | Luna · 5.80 s · 1.05 | Sol · 9.45 s · 26.65 | Sol · 8.86 s · 25.32 |
+| complex | C04 | `constrained_reasoning` | Luna · 9.50 s · 1.77 | Sol · 14.03 s · 44.86 | Sol · 15.49 s · 48.18 |
+| complex | PA01 | `keypoint_capture` | Luna · 1.60 s · 0.56 | Luna · 1.11 s · 0.59 | Luna · 1.13 s · 0.51 |
+| complex | WFM01 | `long_form_draft` | Luna · 2.16 s · 3.29 | Luna · 1.72 s · 3.08 | Sol · 3.04 s · 64.92 |
+| complex | C08 | `long_form_synthesis` | Luna · 2.00 s · 2.39 | Luna · 1.71 s · 2.37 | Luna · 2.04 s · 2.47 |
+| complex | C10 | `multi_constraint_planning` | Luna · 8.29 s · 3.89 | Luna · 7.75 s · 4.31 | Sol · 11.27 s · 92.73 |
+| complex | C01 | `multi_step_math` | Luna · 7.92 s · 1.48 | Luna · 8.20 s · 1.28 | Sol · 12.36 s · 30.20 |
+| complex | C02 | `multi_step_math` | Luna · 2.48 s · 0.43 | Luna · 2.63 s · 0.52 | Sol · 3.50 s · 11.05 |
+| complex | NM01 | `proactive_suggestion` | Luna · 1.69 s · 0.25 | Luna · 1.55 s · 0.23 | Luna · 2.04 s · 0.23 |
+| complex | C05 | `root_cause_analysis` | Luna · 3.00 s · 0.59 | Luna · 2.63 s · 0.48 | Luna · 3.55 s · 0.51 |
+| complex | C07 | `tradeoff_analysis` | Luna · 2.60 s · 0.95 | Luna · 4.05 s · 1.04 | Luna · 2.96 s · 0.99 |
 
 **按难度档计数。** 按行横着读：Sol + Luna 等于该行的请求数。百分比是 Sol 在该档内的
 占比，所以这一列本来就不会加到 100%。
@@ -227,8 +250,47 @@ effort 上升，4 档从 4.55 升到 4.79——这 0.24 分的提升，代价是
 Luna 作答（`summarization`、`structured_extraction`、`rewriting`、`tone_shift_rewrite`、
 `keypoint_capture`）。
 
+**Router 有没有增加延迟？相同条件下的配对测试。** 上面那张表回答不了这个问题：Router
+组跑在 GlobalStandard，直连基线跑在 DataZoneStandard，各组串行运行，直连回答又是整段
+到达。一次补充运行把这些全部排除。`router-sol-luna-cost`——它把每条提示词都转给
+Luna——与直连 `gpt-5.6-luna` 部署对测：两边都是 GlobalStandard、都走 Chat Completions、
+都不发送 `reasoning_effort`、同样的 45 条公开提示词，每条提示词按 Router/直连**背靠背
+成对**测量，1 对预热加 3 对测量，轮换先发哪一边以抵消顺序偏差
+（[设计与已执行源码](model-router-validation/scripts/paired_overhead.py)、
+[部署记录](model-router-validation/outputs/paired_deployment_record_20260915.json)、
+[配对 CSV](model-router-validation/outputs/router_overhead_paired_20260915_162607.csv)、
+[汇总 CSV](model-router-validation/outputs/router_overhead_paired_summary.csv)）。
+
+| 实验组 | SKU | n | TTFT P50 / P90 | E2E P50 | 整段到达 <50 ms | 输出 Token | 每 1k 请求 USD | Router 自报 ms P50 / P95 |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| `router-sol-luna-cost` | GlobalStandard | 135 | 2.12 / 4.80 s | 2.65 s | 17.8% | 392 | 0.49 | 20 / 26 |
+| `gpt-5.6-luna` | GlobalStandard | 135 | 2.28 / 6.47 s | 2.29 s | 88.9% | 379 | 0.47 | — |
+
+逐对差值（Router 减直连），取两边都由 Luna 作答的 135 对（0 对因作答模型不同被排除）。
+端到端时间是可比的那一列；最后一列保留下来是为了说明 TTFT 为什么不可比：
+
+| 配对集合 | n | ΔE2E P25 ms | P50 | P75 | P90 | 均值 | Router 更慢（E2E） | ΔTTFT P50 ms |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| 全部 | 135 | -97 | 324 | 992 | 1569 | 501 | 71.9% | -147 |
+| 先发 Router | 45 | -97 | 261 | 956 | 2044 | 654 | 71.1% | -158 |
+| 先发直连 | 90 | -32 | 324 | 992 | 1533 | 424 | 72.2% | -147 |
+| simple | 42 | 92 | 488 | 946 | 1350 | 556 | 81.0% | 357 |
+| moderate | 54 | -32 | 187 | 775 | 1533 | 390 | 70.4% | -152 |
+| complex | 39 | -652 | 264 | 1490 | 5086 | 594 | 64.1% | -1966 |
+
+读法：两边的流式行为并不一样。直连回答有 88.9% 是整段一次到达的，经 Router 只有
+17.8%，所以直连的 TTFT 大多是整段回答的交付时间，TTFT 那一列比的是流式交付层而不是
+Router——在长回答上它甚至让 Router 看起来首 Token 更快。看**端到端时间**：其他条件全部
+相同时，在 Luna 前面加上 Router 使**中位数增加 324 ms**（四分位区间 -97 到
+992 ms，P90 为 1569 ms），71.9% 的配对中 Router 一侧更慢，且先发哪一边结果一致
+（中位数 261 ms 与 324 ms），这正是排除顺序偏差的依据。Router 自报的决策时间
+中位数是 20 ms，所以增加的时间大部分是多出来的那一跳及其交付路径，而不是决策本身。
+经 Router 的回答平均 392 个输出 Token，直连为 379 个，同一个模型、同一个标价；
+Router 本身如有费用，不在这些数字里。
+
 这些是合成提示词重复运行得到的观测计数；按任务类型的读法是本文作者对这 40 个类目的
 归类，而非已公开的规则。它们不是生产环境的路由概率，也不是对内部路由规则的还原。
+配对开销来自一对部署、一个区域、一个晚上、并发 1。
 
 ### 3.3 会话、持续负载与限流
 
