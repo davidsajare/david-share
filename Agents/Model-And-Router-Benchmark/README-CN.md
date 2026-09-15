@@ -32,9 +32,9 @@ Model Router 模式对比各自的直连基线，再补上试点通常要到生�
 |---|---:|---:|---:|---:|---:|---|
 | GPT-4o mini | **0.367 s** | 2.26 s | 243 | **0.094** | 4.53 | Responses API、`stream=True`、不发送 reasoning 参数、不挂工具 |
 | GPT-5 mini `minimal` | 0.567 s | 2.20 s | 402 | 0.603 | 4.55 | 同上，`reasoning_effort=minimal` |
+| GPT-5 mini `high` | 15.47 s | 17.5 s | 2 383 | 4.564 | 4.79 | 同上，`reasoning_effort=high` |
 | GPT-5.6 Luna `none` | 1.074 s | **1.95 s** | 366 | 0.324 | **4.92** | 同上，`reasoning_effort=none` |
 | GPT-5.6 Luna `high` | 1.918 s | 3.08 s | 468 | 0.447 | 4.95 | 同上，`reasoning_effort=high` |
-| GPT-5 mini `high` | 15.47 s | 17.5 s | 2 383 | 4.564 | 4.79 | 同上，`reasoning_effort=high` |
 
 > 每个实验组 51 个测量请求（17 条提示词 × 3 次迭代，另丢弃 1 次预热），11 个实验组
 > 共 561 个测量请求。TTFT 与 E2E 为客户端观测中位数；Token 与成本为每请求均值，按
@@ -101,24 +101,29 @@ GPT-4o mini `2024-07-18` 已对新客户弃用，而 GPT-5.6 系列可用至 202
 |---|---:|---:|---:|---:|---:|---:|
 | GPT-4o mini | 0.367 s | 2.26 s | 243 | 0 | 0.094 | 4.53 |
 | GPT-5 mini `minimal` | 0.567 s | 2.20 s | 402 | 0 | 0.603 | 4.55 |
+| GPT-5 mini `low` | 1.969 s | 3.97 s | 564 | 133 | 0.928 | 4.64 |
+| GPT-5 mini `medium` | 5.302 s | 7.38 s | 967 | 550 | 1.733 | 4.76 |
+| GPT-5 mini `high` | 15.472 s | 17.55 s | 2 383 | 1 950 | 4.564 | 4.79 |
 | GPT-5.6 Luna `none` | 1.074 s | 1.95 s | 366 | 0 | 0.324 | 4.92 |
 | GPT-5.6 Luna `low` | 1.171 s | 2.42 s | 387 | 15 | 0.350 | 4.82 |
 | GPT-5.6 Luna `medium` | 1.408 s | 3.14 s | 413 | 36 | 0.380 | 4.92 |
 | GPT-5.6 Luna `high` | 1.918 s | 3.08 s | 468 | 92 | 0.447 | 4.95 |
-| GPT-5 mini `low` | 1.969 s | 3.97 s | 564 | 133 | 0.928 | 4.64 |
 | GPT-5.6 Luna `xhigh` | 2.590 s | 3.67 s | 571 | 187 | 0.570 | 4.94 |
 | GPT-5.6 Luna `max` | 3.414 s | 4.37 s | 697 | 329 | 0.722 | 4.88 |
-| GPT-5 mini `medium` | 5.302 s | 7.38 s | 967 | 550 | 1.733 | 4.76 |
-| GPT-5 mini `high` | 15.472 s | 17.55 s | 2 383 | 1 950 | 4.564 | 4.79 |
 
-按 TTFT P50 排序。在 Luna 上，6 档 effort 的盲评分布在 4.82 到 4.95 之间，且不随
-effort 高低单调变化；在 GPT-5 mini 上，盲评确实随 effort 上升，4 档从 4.55 升到
-4.79——这 0.24 分的提升，代价是 7.6× 的成本和 27× 的 TTFT。逐场景拆解与盲评细节见
+先按要求的模型分组，再按 effort 从最低到最高排列。在 Luna 上，6 档 effort 的盲评分布
+在 4.82 到 4.95 之间，且不随 effort 高低单调变化；在 GPT-5 mini 上，盲评确实随
+effort 上升，4 档从 4.55 升到 4.79——这 0.24 分的提升，代价是 7.6× 的成本和
+27× 的 TTFT。逐场景拆解与盲评细节见
 [场景研究](scenario-model-benchmark/README-CN.md)。
 
 ### 3.2 Model Router 的选择行为
 
-10 个实验组、1,410 个测量请求，470 条盲评回答。
+10 个实验组、1,410 个测量请求，470 条盲评回答，282 个实验组与问题的组合。
+
+**在本样本上，选择是可重复的。** 282 个组合中的每一个，在三次测量重复中都返回了同一个
+模型，0 个组合发生切换。[逐问题 CSV](model-router-validation/outputs/router_question_hits.csv)
+保留了每一次的服务序列。
 
 | 模式 | 不发送 effort 时选用贵模型的占比 | effort 为 `low` 时 | 本样本的读法 |
 |---|---:|---:|---|
@@ -126,8 +131,25 @@ effort 高低单调变化；在 GPT-5 mini 上，盲评确实随 effort 上升�
 | `cost` | 0.0% | 0.0% | 所有已测请求都走便宜模型 |
 | `quality` | 48.9% | 48.9% | 两者混合；作者标注的复杂度并未构成路由阈值 |
 
-这些是合成提示词重复运行得到的观测计数，不是生产环境的路由概率，也不是对内部路由
-规则的还原。
+决定选择的不是难度。`quality` 模式送往贵模型的简单题**比**复杂题还多
+（[按难度档 CSV](model-router-validation/outputs/router_routing_by_tier.csv)）：
+
+| 作者标注的难度档 | 请求数 | `balanced` 选用贵模型占比 | `quality` 选用贵模型占比 |
+|---|---:|---:|---:|
+| simple | 45 | 0.0% | 60.0% |
+| moderate | 54 | 0.0% | 38.9% |
+| complex | 42 | 14.3% | 50.0% |
+
+真正与选择相关的是所要求的工作类型。在 40 个已测类目中
+（[按类目 CSV](model-router-validation/outputs/router_routing_by_category.csv)），`quality`
+把需要生成内容、或依赖模型自身知识作答的提示词交给贵模型 —— `factual_lookup`、`faq`、
+`code_snippet`、`drafting`、`multi_step_math`、`code_reasoning` —— 而把加工既有文本的
+提示词留给便宜模型：`summarization`、`structured_extraction`、`rewriting`、
+`tone_shift_rewrite`、`keypoint_capture`。`balanced` 仅在 2 个类目上选用贵模型，且都属于
+复杂档：`code_reasoning` 与 `constrained_reasoning`。
+
+这些是合成提示词重复运行得到的观测计数；按任务类型的划分是本文作者对这 40 个类目的解读，
+而非已公开的规则。它们不是生产环境的路由概率，也不是对内部路由规则的还原。
 
 ### 3.3 会话、持续负载与限流
 
@@ -144,21 +166,26 @@ effort 高低单调变化；在 GPT-5 mini 上，盲评确实随 effort 上升�
 
 逐级数据、明细表和回退客户端见[生产就绪研究](production-readiness/README-CN.md)。
 
-### 3.4 覆盖范围与未纳入的部分
+### 3.4 要求范围已完整覆盖
 
-| 模型 | 已测 effort | 测量位置 |
+| 要求的直连模型 | 已测 effort | 覆盖位置 |
 |---|---|---|
 | GPT-4o mini | 不发送 reasoning 参数 | 直连矩阵 |
 | GPT-5 mini | `minimal`、`low`、`medium`、`high` | 直连矩阵 |
-| GPT-5.6 Luna | `none`、`low`、`medium`、`high`、`xhigh`、`max` | 直连矩阵、Router 基线、API 路径对比 |
-| GPT-5.6 Sol | 不发送 effort，以及 `low` | Router 基线、API 路径对比 |
-| GPT-5 nano、GPT-5.4 mini、GPT-5.4 nano | 无 | 本研究未部署 |
+| GPT-5.6 Luna | `none`、`low`、`medium`、`high`、`xhigh`、`max` | 直连矩阵 |
 
-承载直连矩阵的两个候选模型已扫完各自支持的全部 effort 档位，因此关于 effort 的结论
-对它们成立。GPT-5.6 Sol 只作为 Router 的高能力档参与，没有做 effort 扫描，这里也不对
-它给出任何 effort 结论。最后一行是从播下模型清单的那个迁移基准继承来的注册表条目；
-它们从未被部署，`outputs/deployment_verification.json` 记录了实际存在的
-3 个部署。
+这正是要求的 3 个直连候选模型。它们的 11 个实验组穷尽了各自支持的 effort 档，并覆盖
+6 个场景：66/66 个单元格，每组 51 个测量请求，共 561 个测量请求。直连模型测试要求
+已经完整覆盖。
+
+GPT-5.6 Sol **不是**第 4 个要求的直连候选模型。它只在 Router 研究中作为 Router 的
+高能力选项以及匹配的直连基线出现；不发送 effort 和 `low` 的观测回答的是 Router
+选择问题，而不是 Sol 的 effort 扫描问题。
+
+模型注册表从较早的迁移基准继承了未使用的候选条目。出现在注册表里不会扩大本研究范围，
+也不代表该模型已经测量。
+[部署核验记录](scenario-model-benchmark/outputs/deployment_verification.json)
+才是 3 个要求的直连部署的权威记录。
 
 <a id="cost-analysis"></a>
 ## 4. 成本分析

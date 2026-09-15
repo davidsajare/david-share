@@ -54,6 +54,16 @@ SCENARIO_NOTES = {
 # The three candidate models the written study compares. Everything else in the
 # registry is a baseline, a router, or a deployment kept for another study.
 STUDY_MODELS = ("gpt-4o-mini-bench", "gpt-5-mini", "gpt-5.6-luna")
+EFFORT_ORDER = {
+    "": -1,
+    "none": 0,
+    "minimal": 0,
+    "low": 1,
+    "medium": 2,
+    "high": 3,
+    "xhigh": 4,
+    "max": 5,
+}
 
 # The study sends answer_budget + this headroom, so a reasoning model is not
 # truncated while every arm still answers the same prompt under the same rules.
@@ -73,6 +83,19 @@ BURST_DELTA_MS = 50
 
 class ConsoleError(RuntimeError):
     """Raised for conditions the operator can fix, and shown in the UI."""
+
+
+def arm_order_key(arm: str) -> tuple[int, str, int, str]:
+    """Group study models first and order each model's efforts semantically."""
+    deployment, separator, effort = arm.partition("@")
+    try:
+        model_rank = STUDY_MODELS.index(deployment)
+        fallback_name = ""
+    except ValueError:
+        model_rank = len(STUDY_MODELS)
+        fallback_name = deployment
+    effort_rank = EFFORT_ORDER.get(effort if separator else "", len(EFFORT_ORDER))
+    return model_rank, fallback_name, effort_rank, effort
 
 
 # --------------------------------------------------------------------------
@@ -282,12 +305,15 @@ def catalog() -> dict:
         key = billing_key(name, registry)
         price = pricing.get(key) if key else None
         fact = facts["deployments"].get(name, {})
+        is_study_model = name in STUDY_MODELS
+        if not is_study_model and not fact:
+            continue
         arms.append({
             "deployment": name,
             "family": entry.get("family"),
             "model_name": entry.get("model_name") or (None if _is_router(entry) else name),
             "is_router": _is_router(entry),
-            "is_study_model": name in STUDY_MODELS,
+            "is_study_model": is_study_model,
             "routing_mode": entry.get("routing_mode"),
             "router_subset": entry.get("subset"),
             "default_effort": entry.get("reasoning_effort"),

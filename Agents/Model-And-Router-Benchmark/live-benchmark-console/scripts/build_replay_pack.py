@@ -92,7 +92,10 @@ def build_run(source: dict) -> dict | None:
     for record in measured:
         by_arm.setdefault(record.get("arm") or record.get("deployment") or "unknown", []).append(record)
 
-    summaries = [bench_core.summarize_arm(arm, rows) for arm, rows in sorted(by_arm.items())]
+    summaries = [
+        bench_core.summarize_arm(arm, rows)
+        for arm, rows in sorted(by_arm.items(), key=lambda item: bench_core.arm_order_key(item[0]))
+    ]
     priced = [s["cost_per_1k_requests"] for s in summaries if s.get("cost_per_1k_requests")]
     baseline = max(priced) if priced else None
     for summary in summaries:
