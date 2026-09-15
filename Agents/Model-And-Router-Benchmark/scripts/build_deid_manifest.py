@@ -74,6 +74,26 @@ def resolve_lfs(raw: bytes) -> bytes:
     return result.stdout
 
 
+def current_index(project: str) -> dict[str, str]:
+    """Blob id of every tracked file under the project, keyed by relative path."""
+    result = subprocess.run(
+        ["git", "-c", "core.quotepath=false", "ls-files", "--stage", "--", project],
+        cwd=REPO, check=False, capture_output=True, text=True, encoding="utf-8",
+    )
+    if result.returncode:
+        raise ManifestError("git ls-files --stage failed")
+    entries: dict[str, str] = {}
+    for line in result.stdout.splitlines():
+        if not line:
+            continue
+        metadata, path = line.split("\t", 1)
+        _, oid, stage = metadata.split()
+        if stage != "0":
+            raise ManifestError(f"unmerged index entry: {path}")
+        entries[path[len(project) + 1:]] = oid
+    return entries
+
+
 def numeric_leaves(value, path: str = "") -> dict[str, float]:
     """Every numeric leaf in a parsed document, keyed by its structural path."""
     found: dict[str, float] = {}
@@ -132,13 +152,18 @@ def build() -> dict:
     missing: list[str] = []
     drift: list[str] = []
 
+    project = f"Agents/{ROOT.name}"
+    indexed = current_index(project)
+
     for relative, oid in sorted(blobs.items()):
-        absolute = ROOT / relative
-        if not absolute.is_file():
+        current_oid = indexed.get(relative)
+        if current_oid is None:
             missing.append(relative)
             continue
         before = resolve_lfs(git_bytes("cat-file", "blob", oid))
-        after = absolute.read_bytes()
+        # Compare the committed blob, not the working tree, so a checkout that
+        # normalizes line endings cannot change the verdict by platform.
+        after = resolve_lfs(git_bytes("cat-file", "blob", current_oid))
         if before == after:
             unchanged += 1
             continue
