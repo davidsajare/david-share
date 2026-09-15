@@ -1311,8 +1311,429 @@
       }
     }
   },
-  "scope": "Continuation training of the released DFlash 2 drafter against LoRA-fine-tuned Qwen3.8-27B targets. Not training from scratch. Two drift regimes; the Chinese serving comparison was repeated in a later session.",
-  "statistics_boundary": "PAIRED agreement comparisons share byte-identical target text and use a prompt-level bootstrap. Round 3/4 acceptance and vLLM figures are single executions on different generated texts. Round 5 repeats the Round 4 serving runs four times per cell and reports raw ranges; no significance claim.",
+  "round6": {
+    "block0_vs_round5_mean_pct": {
+      "baseline": {
+        "1": 0.66,
+        "4": 0.06,
+        "8": 0.04
+      },
+      "dflash_ours": {
+        "1": 0.2,
+        "4": -0.22,
+        "8": -0.05
+      },
+      "dflash_released": {
+        "1": 0.29,
+        "4": -0.11,
+        "8": -0.23
+      }
+    },
+    "blocks": {
+      "b0": {
+        "prompts": 40,
+        "skip": 0
+      },
+      "b1": {
+        "prompts": 40,
+        "skip": 40
+      },
+      "b2": {
+        "prompts": 40,
+        "skip": 80
+      },
+      "b3": {
+        "prompts": 40,
+        "skip": 120
+      },
+      "b4": {
+        "prompts": 40,
+        "skip": 160
+      }
+    },
+    "boundary": "One run per block; the five blocks are independent prompt samples but a single timing observation each. Concurrency 16 equals the engine's max-num-seqs. No answer grading.",
+    "eval_prompts_sha256": "ee8381e8c3767d583f753688141554c37377475a56b42d5e446f8f46991ace9f",
+    "scope": "Setting B target and both draft models served once per route on 2026-09-14 across five disjoint 40-prompt blocks of the same 200 held-out Chinese prompts (block 0 = Round 4/5 set) at concurrency 1/4/8/16; plus one block-0 thinking-mode attempt.",
+    "text_identity": {
+      "1": {
+        "baseline_vs_released_per_block": [
+          21,
+          24,
+          20,
+          21,
+          21
+        ],
+        "released_vs_adapted_per_block": [
+          40,
+          40,
+          40,
+          40,
+          40
+        ]
+      },
+      "16": {
+        "baseline_vs_released_per_block": [
+          25,
+          21,
+          22,
+          30,
+          21
+        ],
+        "released_vs_adapted_per_block": [
+          22,
+          26,
+          22,
+          25,
+          26
+        ]
+      },
+      "4": {
+        "baseline_vs_released_per_block": [
+          29,
+          24,
+          21,
+          20,
+          23
+        ],
+        "released_vs_adapted_per_block": [
+          35,
+          31,
+          35,
+          37,
+          38
+        ]
+      },
+      "8": {
+        "baseline_vs_released_per_block": [
+          22,
+          22,
+          24,
+          22,
+          25
+        ],
+        "released_vs_adapted_per_block": [
+          32,
+          28,
+          30,
+          32,
+          27
+        ]
+      }
+    },
+    "thinking_attempt": {
+      "reason": "CLIENT_RETRIEVED_NO_TEXT: every response had empty content and zero reasoning_chars; the model's decoding mode is unverified and throughput/identity numbers are not interpretable",
+      "routes": {
+        "baseline": {
+          "levels": {
+            "4": {
+              "completion_tokens": 5727,
+              "content_head_chars_total": 0,
+              "length_stops": 0,
+              "median_completion_tokens": 128.0,
+              "reasoning_chars_total": 0,
+              "tokens_per_second": 189.89
+            },
+            "8": {
+              "completion_tokens": 5533,
+              "content_head_chars_total": 0,
+              "length_stops": 0,
+              "median_completion_tokens": 123.5,
+              "reasoning_chars_total": 0,
+              "tokens_per_second": 356.9
+            }
+          },
+          "max_tokens": 2048
+        },
+        "dflash_ours": {
+          "levels": {
+            "4": {
+              "completion_tokens": 5665,
+              "content_head_chars_total": 0,
+              "length_stops": 0,
+              "median_completion_tokens": 128.0,
+              "reasoning_chars_total": 0,
+              "tokens_per_second": 356.44
+            },
+            "8": {
+              "completion_tokens": 5656,
+              "content_head_chars_total": 0,
+              "length_stops": 0,
+              "median_completion_tokens": 120.5,
+              "reasoning_chars_total": 0,
+              "tokens_per_second": 568.19
+            }
+          },
+          "max_tokens": 2048
+        },
+        "dflash_released": {
+          "levels": {
+            "4": {
+              "completion_tokens": 5650,
+              "content_head_chars_total": 0,
+              "length_stops": 0,
+              "median_completion_tokens": 128.0,
+              "reasoning_chars_total": 0,
+              "tokens_per_second": 331.36
+            },
+            "8": {
+              "completion_tokens": 5574,
+              "content_head_chars_total": 0,
+              "length_stops": 0,
+              "median_completion_tokens": 120.5,
+              "reasoning_chars_total": 0,
+              "tokens_per_second": 515.29
+            }
+          },
+          "max_tokens": 2048
+        }
+      },
+      "valid": false
+    },
+    "vllm": {
+      "per_concurrency": {
+        "1": {
+          "adapted_over_released_pct_per_block": [
+            9.0,
+            9.42,
+            8.91,
+            5.3,
+            5.96
+          ],
+          "adapted_speedup_mean": 1.955,
+          "adapted_speedup_per_block": [
+            1.973,
+            1.979,
+            2.011,
+            1.9,
+            1.913
+          ],
+          "all_blocks_positive": true,
+          "gain_max": 9.42,
+          "gain_mean": 7.72,
+          "gain_min": 5.3,
+          "released_speedup_mean": 1.815,
+          "released_speedup_per_block": [
+            1.81,
+            1.808,
+            1.847,
+            1.804,
+            1.806
+          ]
+        },
+        "16": {
+          "adapted_over_released_pct_per_block": [
+            13.56,
+            8.71,
+            12.48,
+            8.1,
+            2.97
+          ],
+          "adapted_speedup_mean": 1.489,
+          "adapted_speedup_per_block": [
+            1.641,
+            1.603,
+            1.55,
+            1.313,
+            1.338
+          ],
+          "all_blocks_positive": true,
+          "gain_max": 13.56,
+          "gain_mean": 9.16,
+          "gain_min": 2.97,
+          "released_speedup_mean": 1.362,
+          "released_speedup_per_block": [
+            1.445,
+            1.474,
+            1.378,
+            1.215,
+            1.299
+          ]
+        },
+        "4": {
+          "adapted_over_released_pct_per_block": [
+            7.65,
+            10.79,
+            10.54,
+            6.18,
+            5.5
+          ],
+          "adapted_speedup_mean": 1.814,
+          "adapted_speedup_per_block": [
+            1.79,
+            1.887,
+            1.895,
+            1.744,
+            1.753
+          ],
+          "all_blocks_positive": true,
+          "gain_max": 10.79,
+          "gain_mean": 8.13,
+          "gain_min": 5.5,
+          "released_speedup_mean": 1.677,
+          "released_speedup_per_block": [
+            1.663,
+            1.703,
+            1.714,
+            1.642,
+            1.662
+          ]
+        },
+        "8": {
+          "adapted_over_released_pct_per_block": [
+            8.7,
+            2.08,
+            8.6,
+            3.93,
+            7.05
+          ],
+          "adapted_speedup_mean": 1.62,
+          "adapted_speedup_per_block": [
+            1.715,
+            1.607,
+            1.628,
+            1.536,
+            1.612
+          ],
+          "all_blocks_positive": true,
+          "gain_max": 8.7,
+          "gain_mean": 6.07,
+          "gain_min": 2.08,
+          "released_speedup_mean": 1.527,
+          "released_speedup_per_block": [
+            1.577,
+            1.575,
+            1.499,
+            1.477,
+            1.506
+          ]
+        }
+      },
+      "tokens_per_second": {
+        "baseline": {
+          "b0": {
+            "1": 53.55,
+            "16": 507.05,
+            "4": 194.54,
+            "8": 336.41
+          },
+          "b1": {
+            "1": 53.02,
+            "16": 470.61,
+            "4": 183.13,
+            "8": 318.57
+          },
+          "b2": {
+            "1": 53.07,
+            "16": 475.48,
+            "4": 189.71,
+            "8": 333.31
+          },
+          "b3": {
+            "1": 53.3,
+            "16": 538.78,
+            "4": 190.28,
+            "8": 328.15
+          },
+          "b4": {
+            "1": 53.07,
+            "16": 519.13,
+            "4": 189.95,
+            "8": 322.15
+          }
+        },
+        "dflash_ours": {
+          "b0": {
+            "1": 105.63,
+            "16": 832.24,
+            "4": 348.3,
+            "8": 576.83
+          },
+          "b1": {
+            "1": 104.91,
+            "16": 754.34,
+            "4": 345.55,
+            "8": 512.03
+          },
+          "b2": {
+            "1": 106.75,
+            "16": 736.91,
+            "4": 359.51,
+            "8": 542.63
+          },
+          "b3": {
+            "1": 101.25,
+            "16": 707.44,
+            "4": 331.79,
+            "8": 503.88
+          },
+          "b4": {
+            "1": 101.54,
+            "16": 694.47,
+            "4": 332.96,
+            "8": 519.31
+          }
+        },
+        "dflash_released": {
+          "b0": {
+            "1": 96.91,
+            "16": 732.88,
+            "4": 323.56,
+            "8": 530.65
+          },
+          "b1": {
+            "1": 95.88,
+            "16": 693.87,
+            "4": 311.91,
+            "8": 501.59
+          },
+          "b2": {
+            "1": 98.02,
+            "16": 655.15,
+            "4": 325.23,
+            "8": 499.64
+          },
+          "b3": {
+            "1": 96.15,
+            "16": 654.41,
+            "4": 312.49,
+            "8": 484.84
+          },
+          "b4": {
+            "1": 95.83,
+            "16": 674.44,
+            "4": 315.61,
+            "8": 485.13
+          }
+        }
+      }
+    },
+    "vllm_server_acceptance": {
+      "dflash_ours": {
+        "accepted_tokens": 63224,
+        "derived_mean_acceptance_length": 2.5877,
+        "drafted_tokens": 278740,
+        "last_logged_interval_value": 2.61,
+        "logged_intervals": 40,
+        "server_logs": [
+          "vllm_dflash_ours"
+        ],
+        "verification_steps": 39820
+      },
+      "dflash_released": {
+        "accepted_tokens": 60235,
+        "derived_mean_acceptance_length": 2.3984,
+        "drafted_tokens": 301525,
+        "last_logged_interval_value": 2.41,
+        "logged_intervals": 43,
+        "server_logs": [
+          "vllm_dflash_released"
+        ],
+        "verification_steps": 43075
+      }
+    }
+  },
+  "scope": "Continuation training of the released DFlash 2 drafter against LoRA-fine-tuned Qwen3.8-27B targets. Not training from scratch. Two drift regimes; the Chinese serving comparison was repeated in a later session and then swept across five prompt blocks and four concurrency levels.",
+  "statistics_boundary": "PAIRED agreement comparisons share byte-identical target text and use a prompt-level bootstrap. Round 3/4 acceptance and vLLM figures are single executions on different generated texts. Round 5 repeats the Round 4 serving runs four times per cell and reports raw ranges. Round 6 serves five disjoint 40-prompt blocks once each and reports the per-block gain; no significance claim.",
   "training": {
     "chinese_seed20260908": {
       "args": {

@@ -44,6 +44,15 @@
     },
     {
       "evidence": [
+        "results/round6/vllm/",
+        "logs/round6/",
+        "source/round6/"
+      ],
+      "id": "round6-per-block-gain-concurrency-trend-and-thinking-validity",
+      "status": "PASS"
+    },
+    {
+      "evidence": [
         "evidence/provenance.json"
       ],
       "id": "provenance-hashes-and-private-marker-scan",
@@ -65,6 +74,6 @@
       "status": "PASS"
     }
   ],
-  "manifest_sha256": "303f05cb2a24bf42b46fdb752c60ecbb73cbb174b127caa471fbdfe0b1ddae5b",
+  "manifest_sha256": "b8dda571c3c1c9f49aca540f33822002492557b71d4553a90617642ecdc39f7b",
   "scope": "Offline verification of exported evidence; not fresh GPU execution, regrading or a quality certification."
 }

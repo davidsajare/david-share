@@ -194,6 +194,64 @@ class AdaptationEvidenceTests(unittest.TestCase):
                     validate_report.validate(self.root)
                 path.write_text(original, encoding="utf-8")
 
+    def test_round6_gain_is_recomputed_per_block_not_pooled(self):
+        summary = json.loads((self.root / "data/summary.json").read_text(encoding="utf-8"))
+        r6 = summary["round6"]
+        tps = r6["vllm"]["tokens_per_second"]
+        for concurrency, entry in r6["vllm"]["per_concurrency"].items():
+            with self.subTest(concurrency=concurrency):
+                expected = [round((tps["dflash_ours"][f"b{b}"][concurrency] / tps["dflash_released"][f"b{b}"][concurrency] - 1) * 100, 2) for b in range(5)]
+                self.assertEqual(entry["adapted_over_released_pct_per_block"], expected)
+                self.assertEqual(entry["gain_min"], min(expected))
+                self.assertEqual(entry["all_blocks_positive"], all(g > 0 for g in expected))
+                self.assertEqual(len(expected), 5)
+
+    def test_round6_block_contract_is_enforced(self):
+        self.mutate_json("results/round6/vllm/dflash_ours_b2.json", lambda value: value.update(skip=0))
+        with self.assertRaisesRegex(ValueError, "ROUND6_CONTRACT_MISMATCH:dflash_ours:b2"):
+            analyze_results.summarize(self.root)
+
+    def test_round6_changed_throughput_is_rejected(self):
+        self.mutate_json("results/round6/vllm/dflash_released_b3.json",
+                         lambda value: value["levels"][2].update(tokens_per_second=value["levels"][2]["tokens_per_second"] * 1.1))
+        with self.assertRaisesRegex(ValueError, "VLLM_THROUGHPUT_MISMATCH:dflash_released:b3"):
+            analyze_results.summarize(self.root)
+
+    def test_round6_thinking_attempt_is_marked_invalid_on_empty_text(self):
+        summary = json.loads((self.root / "data/summary.json").read_text(encoding="utf-8"))
+        attempt = summary["round6"]["thinking_attempt"]
+        self.assertFalse(attempt["valid"])
+        self.assertIn("CLIENT_RETRIEVED_NO_TEXT", attempt["reason"])
+        for route, entry in attempt["routes"].items():
+            for concurrency, level in entry["levels"].items():
+                with self.subTest(route=route, concurrency=concurrency):
+                    self.assertEqual(level["reasoning_chars_total"], 0)
+                    self.assertEqual(level["content_head_chars_total"], 0)
+        for filename, chinese in validate_report.READMES.items():
+            text = (self.topic / filename).read_text(encoding="utf-8")
+            self.assertIn("不作为 thinking 模式的任何结论" if chinese else "support no conclusion about thinking mode", text)
+
+    def test_round6_thinking_becomes_valid_when_text_is_present(self):
+        def restore_text(value):
+            for level in value["levels"]:
+                for row in level["per_request"]:
+                    row["reasoning_chars"] = 12
+        self.mutate_json("results/round6/vllm/baseline_think_b0.json", restore_text)
+        summary = analyze_results.summarize(self.root)
+        self.assertTrue(summary["round6"]["thinking_attempt"]["valid"])
+
+    def test_round6_readme_section_drift_is_rejected(self):
+        for filename in validate_report.READMES:
+            with self.subTest(filename=filename):
+                path = self.topic / filename
+                original = path.read_text(encoding="utf-8")
+                marker = "#### 提示集方差与高并发（Round 6）" if validate_report.READMES[filename] else "#### Prompt-Set Variance and Higher Concurrency (Round 6)"
+                self.assertIn(marker, original)
+                path.write_text(original.replace(marker, marker + " edited", 1), encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "REPORT_DATA_DRIFT:ADAPTATION_TABLE"):
+                    validate_report.validate(self.root)
+                path.write_text(original, encoding="utf-8")
+
     def test_forged_rule_record_is_rejected(self):
         self.mutate_json(validate_report.RULES, lambda value: value["checks"].append({"id": "extra", "status": "PASS", "evidence": []}))
         with self.assertRaisesRegex(ValueError, "VALIDATION_RECORD_DRIFT"):

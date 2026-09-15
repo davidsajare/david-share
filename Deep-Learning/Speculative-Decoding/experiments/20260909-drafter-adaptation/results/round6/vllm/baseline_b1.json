@@ -1,0 +1,1496 @@
+{
+  "decoding": "temperature 0.0 via OpenAI chat completions, enable_thinking=false",
+  "label": "baseline_b1",
+  "levels": [
+    {
+      "completion_tokens": 4604,
+      "concurrency": 1,
+      "finish_length": 0,
+      "median_request_seconds": 1.829,
+      "per_request": [
+        {
+          "completion_tokens": 116,
+          "finish_reason": "stop",
+          "prompt_tokens": 97,
+          "reasoning_chars": 0,
+          "seconds": 2.1775,
+          "text_head": "根据题目中的信息，患者在经过2到4周的非手术治疗后，截瘫症状没有改善，而MRI显示硬膜囊前方有压迫。在这种情况下，最合适的下一步治疗应该是直接解除压迫。\n\n选项",
+          "text_sha256": "1256f7c38657f27fda1d4cc40b59027571372ef96b5004cb53d3aa682aab933b"
+        },
+        {
+          "completion_tokens": 248,
+          "finish_reason": "stop",
+          "prompt_tokens": 71,
+          "reasoning_chars": 0,
+          "seconds": 4.6055,
+          "text_head": "根据患者的症状表现，我们可以从中医的角度进行辨证分析。患者在经期前后出现清晨泄泻，并伴有腰膝酸软、头晕耳鸣、畏寒肢冷、经色淡、质稀等症状，舌淡、苔白，脉沉迟。这",
+          "text_sha256": "1af0f376cb562795954a20cea9edbc1b01b9cc8af6fde148b6e48de72aeae3c3"
+        },
+        {
+          "completion_tokens": 93,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.7625,
+          "text_head": "根据您提供的信息，这名32岁女性患者的昏厥发作最可能的原因是频发多源性室性期前收缩引发的严重心律失常，比如室性心动过速或心室颤动。这些心律失常会导致心脏泵血功能",
+          "text_sha256": "734eaebf764ceecdde6feff678c5442b7c9874aef0ea27e05c6298201bc7e59a"
+        },
+        {
+          "completion_tokens": 103,
+          "finish_reason": "stop",
+          "prompt_tokens": 82,
+          "reasoning_chars": 0,
+          "seconds": 1.948,
+          "text_head": "根据患者的情况，考虑到他长期卧床后突发胸痛，以及影像学检查显示右肺上叶纹理稀疏、透光度增强，这些特征提示可能存在肺栓塞。肺栓塞是由于血栓阻塞肺动脉引起的，常见于",
+          "text_sha256": "c5c3653aed57a145268e73a95dc534ca396affdbad31b4c6ca33d8ab53ba456e"
+        },
+        {
+          "completion_tokens": 88,
+          "finish_reason": "stop",
+          "prompt_tokens": 85,
+          "reasoning_chars": 0,
+          "seconds": 1.6711,
+          "text_head": "根据患者的用药情况和症状表现，导致面部潮红、头痛和眩晕等症状的药物配伍很可能是甲硝唑与藿香正气水中的酒精发生了双硫仑样反应。甲硝唑会干扰酒精在体内的正常代谢，导",
+          "text_sha256": "063925b7bd627b91a60ecd23562b0b97b510bb7a3bfdd4068a7df413b11b0368"
+        },
+        {
+          "completion_tokens": 175,
+          "finish_reason": "stop",
+          "prompt_tokens": 114,
+          "reasoning_chars": 0,
+          "seconds": 3.2677,
+          "text_head": "根据患者的症状分析，她表现出明显的热象，包括发热、心烦、口渴、小便短少不利，舌红苔黄燥，脉细数。这些症状提示体内有实热，并且可能伴有阴液不足。\n\n在考虑各种方剂",
+          "text_sha256": "16aa42078259a1cf308058329be02cbfc6acff63399bc6ba2467347610233115"
+        },
+        {
+          "completion_tokens": 238,
+          "finish_reason": "stop",
+          "prompt_tokens": 71,
+          "reasoning_chars": 0,
+          "seconds": 4.422,
+          "text_head": "对于这位60岁男性肝硬化患者，在使用普萘洛尔后出现神志不清，并考虑为肝性脑病的情况下，通过静注阿托品进行治疗后，患者神志恢复正常。阿托品是一种抗胆碱能药物，其主",
+          "text_sha256": "58628ae95d6aa882d54c32054ff9de0b45fafe842dda404cff22505916170b76"
+        },
+        {
+          "completion_tokens": 53,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 1.0317,
+          "text_head": "在这种情况下，不适宜的治疗方法是使用硝酸甘油。硝酸甘油是一种血管扩张剂，通常用于治疗心绞痛，但它可能导致血压进一步下降，并可能加重鼻出血。因此，对于有高血压且正",
+          "text_sha256": "216b83418ff2bceb4321e342a81b7ebfcdc88733127454f9fe99bab862492236"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 82,
+          "reasoning_chars": 0,
+          "seconds": 1.6902,
+          "text_head": "根据描述的症状和体征，最可能的诊断是髂动脉假性动脉瘤。刀刺伤可能导致髂动脉受损，形成假性动脉瘤，这解释了搏动性肿块和收缩期杂音的出现。此外，右下肢的苍白和麻木提",
+          "text_sha256": "a5380fd4ae3c113e3caa2f9361f88aa131fd980501408d9c44cca08b79ab38c9"
+        },
+        {
+          "completion_tokens": 110,
+          "finish_reason": "stop",
+          "prompt_tokens": 38,
+          "reasoning_chars": 0,
+          "seconds": 2.0767,
+          "text_head": "根据描述的症状，新生儿在出生后2天出现双眼高度水肿、结膜充血水肿以及大量脓性分泌物，最可能的诊断是沙眼衣原体感染。虽然沙眼衣原体感染通常会在出生后1到2周出现症",
+          "text_sha256": "e6fe6442ca919421c10725039814f6111f9987a2871a69721041dcb1f4a13059"
+        },
+        {
+          "completion_tokens": 86,
+          "finish_reason": "stop",
+          "prompt_tokens": 106,
+          "reasoning_chars": 0,
+          "seconds": 1.6353,
+          "text_head": "根据患者的症状和舌脉表现，湿热中焦，尤其是脾胃湿热的情况较为明显。对于这种情况，需要选择能够清热利湿、健脾和胃的药材组合。经过分析，茯苓配滑石（选项E）能够有效",
+          "text_sha256": "b787bacaef93dff405511328710417bf5b49b0b7ad93d4ee2260094a2bd7542d"
+        },
+        {
+          "completion_tokens": 106,
+          "finish_reason": "stop",
+          "prompt_tokens": 104,
+          "reasoning_chars": 0,
+          "seconds": 2.005,
+          "text_head": "根据患者的症状分析，甲状腺肿大、心悸不宁、心烦少寐、易出汗、手指颤动、眼干、目眩、倦怠无力，以及舌质红、舌体颤、苔少或无苔、脉弦细数，这些都指向阴虚火旺的症候。",
+          "text_sha256": "a7fdf259740134f79b35e493f1f1a3b1296bb15a5019de6d361e53c0471cda47"
+        },
+        {
+          "completion_tokens": 68,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "reasoning_chars": 0,
+          "seconds": 1.3064,
+          "text_head": "对于该患者，确定壶腹部肿瘤的具体位置，十二指肠镜检查可能是最有价值的辅助检查方法。因为十二指肠镜可以直接观察到十二指肠乳头及壶腹部开口，从而明确肿瘤的具体位置。",
+          "text_sha256": "36f72bce46fe1646cc38294407fc17f44ed2cce56750ffbeac6de4d2687aa74a"
+        },
+        {
+          "completion_tokens": 49,
+          "finish_reason": "stop",
+          "prompt_tokens": 35,
+          "reasoning_chars": 0,
+          "seconds": 0.9571,
+          "text_head": "研究药物制剂的基本理论、处方设计、制备工艺、质量控制与合理应用的综合性技术科学称为“药剂学”。药剂学是一门涉及多学科知识的综合性科学，旨在确保药物的有效性和安全",
+          "text_sha256": "47b4b1491940cd793b09b3bbdd970b01a80c14f62c3faa342126642697e0706a"
+        },
+        {
+          "completion_tokens": 84,
+          "finish_reason": "stop",
+          "prompt_tokens": 106,
+          "reasoning_chars": 0,
+          "seconds": 1.5997,
+          "text_head": "根据患者的症状和病史，最可能的诊断是B. 盆腔炎。患者在放置宫内节育器（IUD）后出现了发热、寒战、下腹持续性疼痛、少量阴道流血以及恶心、呕吐等症状，这些症状与",
+          "text_sha256": "00d1ec88b7749cc62189687d62ce11987eba814cc0a3b8c8b9b60717393ea1fd"
+        },
+        {
+          "completion_tokens": 103,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "reasoning_chars": 0,
+          "seconds": 1.9489,
+          "text_head": "患者在跌倒时会阴部撞击硬物后，出现阴茎、阴囊、会阴和下腹壁的肿胀，最可能的原因是尿道损伤。当会阴部受到直接撞击时，尿道可能受到压迫或撕裂，导致尿液外渗。这种外渗",
+          "text_sha256": "0982bc8dc00a58ec2259117eed9f0028acec3071997f5964997fe99ced849d39"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 59,
+          "reasoning_chars": 0,
+          "seconds": 1.8,
+          "text_head": "对于一名心脏病患者，出现心悸、气促、大汗，心率为156次/分，心律轻度不规则，并且血压低至80/50mmHg，这种情况很可能是快速型心律失常导致的血流动力学不稳",
+          "text_sha256": "f9a6aa809d4e1ceb8ebfcf862936b6116b362fa45b4b1de13c13392008df3704"
+        },
+        {
+          "completion_tokens": 51,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 0.9924,
+          "text_head": "在肌肉注射的情况下，药物首先通过结缔组织扩散，然后进入毛细血管和淋巴系统，最终进入血液循环。由于肌肉组织有丰富的血液供应，药物通常能够迅速被吸收入血，因此其吸收",
+          "text_sha256": "4efcd523a233991371524c91887310b2f4a9b1e562bbd204e12bbb46dd02679e"
+        },
+        {
+          "completion_tokens": 97,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 1.8363,
+          "text_head": "在2个月大的婴儿患大肠杆菌脑膜炎并接受氨苄西林治疗1周后仍然发热不退，并频繁出现惊厥和落日眼的症状，其治疗效果不佳的最可能原因是细菌对氨苄西林产生了耐药性。此外",
+          "text_sha256": "3a8fc74301db761a2d7871f53436dca4382ba20914b55ef253985d79538140f6"
+        },
+        {
+          "completion_tokens": 192,
+          "finish_reason": "stop",
+          "prompt_tokens": 65,
+          "reasoning_chars": 0,
+          "seconds": 3.5823,
+          "text_head": "根据患者的症状表现，包括发热、汗出热不解、头昏重胀痛、口渴、鼻塞流浊涕、身重倦怠、胸闷欲吐、尿短赤、舌苔黄腻、脉濡数，这些症状指向了湿热内蕴，并伴有外感风热的情",
+          "text_sha256": "6f360024e2543400d8410218ff8a97df597a63b9ccb1ab91f6b0b9693af0961e"
+        },
+        {
+          "completion_tokens": 187,
+          "finish_reason": "stop",
+          "prompt_tokens": 89,
+          "reasoning_chars": 0,
+          "seconds": 3.4891,
+          "text_head": "根据患者的症状表现，他似乎处于少阳证的状态，这通常与半表半里的病机有关。患者有寒热往来、心烦、呕吐、胸胁满闷、咽干口苦、口渴喜饮等症状，这些都指向少阳证。\n\n小",
+          "text_sha256": "85b1be81b2f0e5bedb07c68da44531e77c176ce05db38b95f9e3c29dd130739e"
+        },
+        {
+          "completion_tokens": 91,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 1.7277,
+          "text_head": "根据患者的症状表现，包括牙痛牵引面颊、牙龈溃疡、恶热喜凉、口气热臭、舌红苔黄、脉滑大而数，这些症状指向了典型的胃火过旺。对于这种情况，清胃散是一个合适的中药方剂",
+          "text_sha256": "f64ae1a2b4f35650166ae360f0c7b861d3a1a53bfe2e481f6c6812646e3c5427"
+        },
+        {
+          "completion_tokens": 121,
+          "finish_reason": "stop",
+          "prompt_tokens": 87,
+          "reasoning_chars": 0,
+          "seconds": 2.2834,
+          "text_head": "在这种情况下，这位孕妇的症状和实验室检查结果提示可能存在巨幼细胞性贫血，这通常是由于维生素B12或叶酸缺乏引起的。考虑到妊娠期间叶酸需求增加，以及叶酸缺乏在孕妇",
+          "text_sha256": "dfe9fb8e5718f4bd29967dca772efda6fbc9da73e4ac787294a712228fa19874"
+        },
+        {
+          "completion_tokens": 114,
+          "finish_reason": "stop",
+          "prompt_tokens": 104,
+          "reasoning_chars": 0,
+          "seconds": 2.1563,
+          "text_head": "根据崔某的症状表现，包括头痛如刺、痛有定处、形体消瘦、项背强直、四肢抽搐，以及舌质紫暗、边有瘀斑、瘀点，脉象细涩，这些都提示存在血瘀的情况。因此，治疗上应该选择",
+          "text_sha256": "01ef6ef240cb2fd3411e66b7513e3294bd5a21c1527b15291e7fcc83ab3496bc"
+        },
+        {
+          "completion_tokens": 73,
+          "finish_reason": "stop",
+          "prompt_tokens": 81,
+          "reasoning_chars": 0,
+          "seconds": 1.3988,
+          "text_head": "根据题目中的描述，班主任在评定学生的进取性和聪慧性时，不论学生考上一本、二本、三本还是没上线，都普遍给予高分。这种情况很可能是因为班主任在评分时过于宽容，没有根",
+          "text_sha256": "482def84c742a466cfb33be8fbca4e95cd3a6bf61c8cdf8ae8b32b44085c72f9"
+        },
+        {
+          "completion_tokens": 90,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.7144,
+          "text_head": "在这种情况下，该患者最应该进行腰椎穿刺检查。由于患者有发热、头痛的症状，并且胸部X光显示双肺粟粒状结节影，痰结核菌阳性，这些都提示可能存在结核感染，尤其是结核性",
+          "text_sha256": "eacbf90c1edef3819af2a111d4e779327fad9bed36486d0c429c52e88f6e4188"
+        },
+        {
+          "completion_tokens": 210,
+          "finish_reason": "stop",
+          "prompt_tokens": 47,
+          "reasoning_chars": 0,
+          "seconds": 3.9127,
+          "text_head": "根据中医理论，李××的痫证临床表现，如痰火内盛、舌红苔黄腻、脉象弦滑而数，其主要病理基础可以归结为痰火内扰。具体来说，痰火内盛是由于体内痰湿与火热相互交织，导致",
+          "text_sha256": "a61dc31f96e0bbe92672a03ace4e4959fa6e9ecf498120cfd91dd33ea51cd786"
+        },
+        {
+          "completion_tokens": 70,
+          "finish_reason": "stop",
+          "prompt_tokens": 52,
+          "reasoning_chars": 0,
+          "seconds": 1.3443,
+          "text_head": "心理医生通过详细了解病史和周密检查后，明确告诉患者他的躯体症状是功能性的而非严重的器质性疾病，从而减轻了患者的焦虑。这种行为在心理支持中被称为“正常化”。通过正",
+          "text_sha256": "14f717d7fec89abf7359265e27a49c34a04630b7663e1bd0e5e4f839f366b6fd"
+        },
+        {
+          "completion_tokens": 170,
+          "finish_reason": "stop",
+          "prompt_tokens": 73,
+          "reasoning_chars": 0,
+          "seconds": 3.1828,
+          "text_head": "根据患者的胸部CT扫描结果，前纵隔中下份的囊实性混杂密度软组织肿块，其密度最低处CT值为-28HU，提示含有脂肪成分。增强扫描显示实性成分明显强化，而囊性部分无",
+          "text_sha256": "c54888e14ffa6b92a1d0fc211232dd078653961160f70f539a8a8c015c6583e3"
+        },
+        {
+          "completion_tokens": 81,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "reasoning_chars": 0,
+          "seconds": 1.5437,
+          "text_head": "根据患者的症状和检查结果，考虑到肝豆状核变性（Wilson病）的可能性很大。该病是由于铜代谢异常导致铜在体内，尤其是肝脏和脑部沉积引起的。治疗肝豆状核变性的首选",
+          "text_sha256": "7c55a8179aa446594be6ef4fc286e66b66fbdd236f97c11c2a9ce4c6eca23aa2"
+        },
+        {
+          "completion_tokens": 145,
+          "finish_reason": "stop",
+          "prompt_tokens": 222,
+          "reasoning_chars": 0,
+          "seconds": 2.7273,
+          "text_head": "根据提供的信息，这名6岁男孩的症状和化验结果最符合的诊断是C选项：肾病综合征合并原发性腹膜炎。\n\n首先，患儿有面部和全身水肿、尿少、尿蛋白(+++)，这些症状提",
+          "text_sha256": "db33dda4af4753ec4a6c3a6187a601947d448464900c79472d0b5255d9d5eb26"
+        },
+        {
+          "completion_tokens": 96,
+          "finish_reason": "stop",
+          "prompt_tokens": 75,
+          "reasoning_chars": 0,
+          "seconds": 1.8225,
+          "text_head": "根据患者的临床表现，包括呕吐咖啡色液体、黑便、头昏、乏力、出汗和心慌等症状，以及脉率增快到96次/分，可以推测患者存在上消化道出血。结合这些症状的严重程度，估计",
+          "text_sha256": "d41a214f80ba5ed84a851523d8dab1b7d716bdb612bb48af87035dd6e5962977"
+        },
+        {
+          "completion_tokens": 75,
+          "finish_reason": "stop",
+          "prompt_tokens": 48,
+          "reasoning_chars": 0,
+          "seconds": 1.4354,
+          "text_head": "根据患者的症状和当地疫情情况，首先考虑进行流感病毒检测是合理的选择。流感在冬季和春季较为常见，且症状与患者表现相符，包括高热、全身疼痛和呼吸急促。此外，由于当地",
+          "text_sha256": "c037fed5dcf20f81f9a50128e3d1ca86a4760f719e1f40908b5f6eb428bb854d"
+        },
+        {
+          "completion_tokens": 100,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 1.896,
+          "text_head": "根据描述的症状，这个5岁男孩最可能的原因是膀胱结石。膀胱结石会导致排尿困难和尿流中断，而当男孩跑动或改变体位时，结石的位置可能会发生变化，从而暂时解除对尿流的阻",
+          "text_sha256": "090486030f0c08ef10457dfbb0f447f127338d38ac2a24d30394d82b00c68456"
+        },
+        {
+          "completion_tokens": 71,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 1.3619,
+          "text_head": "在进行脊髓灰质炎后遗症的骨短缩术时，健肢股骨的短缩长度通常建议不超过2厘米，以避免对股四头肌的肌力产生显著影响。这一限制是基于临床经验，旨在确保术后功能恢复和肌",
+          "text_sha256": "3073aa83aa6ef5ff788e6d916bb7407a7b566acda29cee993e6d7f3f732efe82"
+        },
+        {
+          "completion_tokens": 117,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 2.2084,
+          "text_head": "根据您提供的信息，患者在医院接受青霉素治疗上呼吸道感染后死亡，而市鉴定委员会已经鉴定医院无责任。在这种情况下，患者的死亡事件很可能被认定为医疗意外。医疗意外是指",
+          "text_sha256": "beb8ab554f426a63d1434b0994b0d48c99e3f5c7c747863420466b9dd1539980"
+        },
+        {
+          "completion_tokens": 80,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 1.5256,
+          "text_head": "这种细菌是金黄色葡萄球菌（Staphylococcus aureus）。金黄色葡萄球菌是一种革兰阳性球菌，具有在高盐、高碱环境下生长的能力，并且能够在40%胆汁",
+          "text_sha256": "4c632b00fb29df80cc888e50724209e9b415fcf2d5bfc5a0c4760858e2a07aba"
+        },
+        {
+          "completion_tokens": 181,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 3.3805,
+          "text_head": "对于这位61岁的女性患者，她的症状表现为风湿痹痛多年，伴有腰膝酸痛、筋骨痿软无力，脉象弦细，这些症状提示可能存在肝肾不足以及风湿痹阻的情况。在选择药物时，我们需",
+          "text_sha256": "29287a86c9b588e299c429b311b97829047c64cd37cac06aa039a94478638c9e"
+        },
+        {
+          "completion_tokens": 64,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 1.2345,
+          "text_head": "提出“疗惊必先豁痰，豁痰必先驱风，驱风必先解热，解热必先祛邪”这一论点的著名医家是万全。万全在中医领域有着重要的地位，尤其在儿科方面有很深的造诣，他的这一理论体",
+          "text_sha256": "0195b0b2ee73fe70c1bda157b960ae30bdc182d6c7f741b5ff53d46419e05452"
+        },
+        {
+          "completion_tokens": 224,
+          "finish_reason": "stop",
+          "prompt_tokens": 104,
+          "reasoning_chars": 0,
+          "seconds": 4.1717,
+          "text_head": "根据题目中的信息，每片药片的规格为0.3g，但实际测量10片的总重量为3.5670g，因此每片的实际重量为0.3567g。\n\n我们需要称取相当于0.5g药物的量",
+          "text_sha256": "bac839b59764b92d2028d933b087cca27c9ad4ffe49306256bd9f69a908128ab"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 53.02,
+      "wall_seconds": 86.84
+    },
+    {
+      "completion_tokens": 4716,
+      "concurrency": 4,
+      "finish_length": 0,
+      "median_request_seconds": 1.992,
+      "per_request": [
+        {
+          "completion_tokens": 114,
+          "finish_reason": "stop",
+          "prompt_tokens": 97,
+          "reasoning_chars": 0,
+          "seconds": 2.2903,
+          "text_head": "根据题目中的信息，患者在经过2到4周的非手术治疗后，截瘫症状没有改善，而MRI显示硬膜囊前方有压迫。在这种情况下，最合适的下一步治疗应该是直接解除压迫。\n\n选项",
+          "text_sha256": "0186c7bccfba856f695a1b59863e9b8d9e996e1860d3a30f03acf2777bc8675a"
+        },
+        {
+          "completion_tokens": 248,
+          "finish_reason": "stop",
+          "prompt_tokens": 71,
+          "reasoning_chars": 0,
+          "seconds": 4.9408,
+          "text_head": "根据患者的症状表现，我们可以从中医的角度进行辨证分析。患者在经期前后出现清晨泄泻，并伴有腰膝酸软、头晕耳鸣、畏寒肢冷、经色淡、质稀等症状，舌淡、苔白，脉沉迟。这",
+          "text_sha256": "1af0f376cb562795954a20cea9edbc1b01b9cc8af6fde148b6e48de72aeae3c3"
+        },
+        {
+          "completion_tokens": 93,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.8246,
+          "text_head": "根据您提供的信息，这名32岁女性患者的昏厥发作最可能的原因是频发多源性室性期前收缩引发的严重心律失常，比如室性心动过速或心室颤动。这些心律失常会导致心脏泵血功能",
+          "text_sha256": "734eaebf764ceecdde6feff678c5442b7c9874aef0ea27e05c6298201bc7e59a"
+        },
+        {
+          "completion_tokens": 103,
+          "finish_reason": "stop",
+          "prompt_tokens": 82,
+          "reasoning_chars": 0,
+          "seconds": 2.0476,
+          "text_head": "根据患者的情况，考虑到他长期卧床后突发胸痛，以及影像学检查显示右肺上叶纹理稀疏、透光度增强，这些特征提示可能存在肺栓塞。肺栓塞是由于血栓阻塞肺动脉引起的，常见于",
+          "text_sha256": "c5c3653aed57a145268e73a95dc534ca396affdbad31b4c6ca33d8ab53ba456e"
+        },
+        {
+          "completion_tokens": 88,
+          "finish_reason": "stop",
+          "prompt_tokens": 85,
+          "reasoning_chars": 0,
+          "seconds": 1.812,
+          "text_head": "根据患者的用药情况和症状表现，导致面部潮红、头痛和眩晕等症状的药物配伍很可能是甲硝唑与藿香正气水中的酒精发生了双硫仑样反应。甲硝唑会干扰酒精在体内的正常代谢，导",
+          "text_sha256": "063925b7bd627b91a60ecd23562b0b97b510bb7a3bfdd4068a7df413b11b0368"
+        },
+        {
+          "completion_tokens": 221,
+          "finish_reason": "stop",
+          "prompt_tokens": 114,
+          "reasoning_chars": 0,
+          "seconds": 4.4072,
+          "text_head": "根据患者的症状分析，她表现出明显的热象，包括发热、心烦、口渴、小便短少不利，舌红苔黄燥，脉细数。这些症状提示体内有实热，并且可能伴有阴液不足。\n\n在考虑各种方剂",
+          "text_sha256": "bf687d1d0d41ed24ff132f6ea085cc6034a56a86c8892b5238538f4f92139b7b"
+        },
+        {
+          "completion_tokens": 239,
+          "finish_reason": "stop",
+          "prompt_tokens": 71,
+          "reasoning_chars": 0,
+          "seconds": 4.8,
+          "text_head": "对于这位60岁男性肝硬化患者，在使用普萘洛尔后出现神志不清，并考虑为肝性脑病的情况下，通过静注阿托品进行治疗后，患者神志恢复正常。阿托品是一种抗胆碱能药物，其主",
+          "text_sha256": "fd8010638f772428db220431743da703bef4091b14f26688df4a691925939e07"
+        },
+        {
+          "completion_tokens": 53,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 1.0804,
+          "text_head": "在这种情况下，不适宜的治疗方法是使用硝酸甘油。硝酸甘油是一种血管扩张剂，通常用于治疗心绞痛，但它可能导致血压进一步下降，并可能加重鼻出血。因此，对于有高血压且正",
+          "text_sha256": "216b83418ff2bceb4321e342a81b7ebfcdc88733127454f9fe99bab862492236"
+        },
+        {
+          "completion_tokens": 87,
+          "finish_reason": "stop",
+          "prompt_tokens": 82,
+          "reasoning_chars": 0,
+          "seconds": 1.7558,
+          "text_head": "根据描述的症状和体征，最可能的诊断是髂动脉假性动脉瘤。刀刺伤可能导致髂动脉受损，形成假性动脉瘤，这解释了搏动性肿块和收缩期杂音的出现。此外，右下肢的苍白和麻木提",
+          "text_sha256": "02ebd86821a73fbc11a22bdfbd78959f4c0716739f55743022bf689bb3023fdf"
+        },
+        {
+          "completion_tokens": 110,
+          "finish_reason": "stop",
+          "prompt_tokens": 38,
+          "reasoning_chars": 0,
+          "seconds": 2.2787,
+          "text_head": "根据描述的症状，新生儿在出生后2天出现双眼高度水肿、结膜充血水肿以及大量脓性分泌物，最可能的诊断是沙眼衣原体感染。虽然沙眼衣原体感染通常会在出生后1到2周出现症",
+          "text_sha256": "e6fe6442ca919421c10725039814f6111f9987a2871a69721041dcb1f4a13059"
+        },
+        {
+          "completion_tokens": 86,
+          "finish_reason": "stop",
+          "prompt_tokens": 106,
+          "reasoning_chars": 0,
+          "seconds": 1.8619,
+          "text_head": "根据患者的症状和舌脉表现，湿热中焦，尤其是脾胃湿热的情况较为明显。对于这种情况，需要选择能够清热利湿、健脾和胃的药材组合。经过分析，茯苓配滑石（选项E）能够有效",
+          "text_sha256": "b787bacaef93dff405511328710417bf5b49b0b7ad93d4ee2260094a2bd7542d"
+        },
+        {
+          "completion_tokens": 106,
+          "finish_reason": "stop",
+          "prompt_tokens": 104,
+          "reasoning_chars": 0,
+          "seconds": 2.3052,
+          "text_head": "根据患者的症状分析，甲状腺肿大、心悸不宁、心烦少寐、易出汗、手指颤动、眼干、目眩、倦怠无力，以及舌质红、舌体颤、苔少或无苔、脉弦细数，这些都指向阴虚火旺的症候。",
+          "text_sha256": "a7fdf259740134f79b35e493f1f1a3b1296bb15a5019de6d361e53c0471cda47"
+        },
+        {
+          "completion_tokens": 68,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "reasoning_chars": 0,
+          "seconds": 1.4664,
+          "text_head": "对于该患者，确定壶腹部肿瘤的具体位置，十二指肠镜检查可能是最有价值的辅助检查方法。因为十二指肠镜可以直接观察到十二指肠乳头及壶腹部开口，从而明确肿瘤的具体位置。",
+          "text_sha256": "36f72bce46fe1646cc38294407fc17f44ed2cce56750ffbeac6de4d2687aa74a"
+        },
+        {
+          "completion_tokens": 49,
+          "finish_reason": "stop",
+          "prompt_tokens": 35,
+          "reasoning_chars": 0,
+          "seconds": 1.0033,
+          "text_head": "研究药物制剂的基本理论、处方设计、制备工艺、质量控制与合理应用的综合性技术科学称为“药剂学”。药剂学是一门涉及多学科知识的综合性科学，旨在确保药物的有效性和安全",
+          "text_sha256": "47b4b1491940cd793b09b3bbdd970b01a80c14f62c3faa342126642697e0706a"
+        },
+        {
+          "completion_tokens": 84,
+          "finish_reason": "stop",
+          "prompt_tokens": 106,
+          "reasoning_chars": 0,
+          "seconds": 1.8058,
+          "text_head": "根据患者的症状和病史，最可能的诊断是B. 盆腔炎。患者在放置宫内节育器（IUD）后出现了发热、寒战、下腹持续性疼痛、少量阴道流血以及恶心、呕吐等症状，这些症状与",
+          "text_sha256": "00d1ec88b7749cc62189687d62ce11987eba814cc0a3b8c8b9b60717393ea1fd"
+        },
+        {
+          "completion_tokens": 114,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "reasoning_chars": 0,
+          "seconds": 2.4007,
+          "text_head": "患者在跌倒时会阴部撞击硬物后，出现阴茎、阴囊、会阴和下腹壁的肿胀，最可能的原因是尿道损伤。当会阴部受到强烈撞击时，尿道可能受到压迫或撕裂，导致尿液外渗。由于尿道",
+          "text_sha256": "ce4b12d422316ed9ba2574464dca7f9f6336f744dd857e309d656d32c94d49e9"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 59,
+          "reasoning_chars": 0,
+          "seconds": 1.9764,
+          "text_head": "对于一名心脏病患者，出现心悸、气促、大汗，心率为156次/分，心律轻度不规则，并且血压低至80/50mmHg，这种情况很可能是快速型心律失常导致的血流动力学不稳",
+          "text_sha256": "f9a6aa809d4e1ceb8ebfcf862936b6116b362fa45b4b1de13c13392008df3704"
+        },
+        {
+          "completion_tokens": 51,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 1.0449,
+          "text_head": "在肌肉注射的情况下，药物首先通过结缔组织扩散，然后进入毛细血管和淋巴系统，最终进入血液循环。由于肌肉组织有丰富的血液供应，药物通常能够迅速被吸收入血，因此其吸收",
+          "text_sha256": "4efcd523a233991371524c91887310b2f4a9b1e562bbd204e12bbb46dd02679e"
+        },
+        {
+          "completion_tokens": 96,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 1.9952,
+          "text_head": "在2个月大的婴儿患大肠杆菌脑膜炎并接受氨苄西林治疗1周后仍然发热不退，并频繁出现惊厥和落日眼的症状，其治疗效果不佳的最可能原因是细菌对氨苄西林产生了耐药性。此外",
+          "text_sha256": "6cd54995c407dc34fc92b3597a0d09536bd91ecd3319ea015f76239c97548326"
+        },
+        {
+          "completion_tokens": 193,
+          "finish_reason": "stop",
+          "prompt_tokens": 65,
+          "reasoning_chars": 0,
+          "seconds": 3.8752,
+          "text_head": "根据患者的症状表现，包括发热、汗出热不解、头昏重胀痛、口渴、鼻塞流浊涕、身重倦怠、胸闷欲吐、尿短赤、舌苔黄腻、脉濡数，这些症状指向了湿热内蕴，并伴有外感风热的情",
+          "text_sha256": "954f6d14f0f07518bea8b3e6880ddfae7fab134701fda4177f6365db57b99d67"
+        },
+        {
+          "completion_tokens": 187,
+          "finish_reason": "stop",
+          "prompt_tokens": 89,
+          "reasoning_chars": 0,
+          "seconds": 3.8002,
+          "text_head": "根据患者的症状表现，他似乎处于少阳证的状态，这通常与半表半里的病机有关。患者有寒热往来、心烦、呕吐、胸胁满闷、咽干口苦、口渴喜饮等症状，这些都指向少阳证。\n\n小",
+          "text_sha256": "85b1be81b2f0e5bedb07c68da44531e77c176ce05db38b95f9e3c29dd130739e"
+        },
+        {
+          "completion_tokens": 91,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 1.8332,
+          "text_head": "根据患者的症状表现，包括牙痛牵引面颊、牙龈溃疡、恶热喜凉、口气热臭、舌红苔黄、脉滑大而数，这些症状指向了典型的胃火过旺。对于这种情况，清胃散是一个合适的中药方剂",
+          "text_sha256": "f64ae1a2b4f35650166ae360f0c7b861d3a1a53bfe2e481f6c6812646e3c5427"
+        },
+        {
+          "completion_tokens": 120,
+          "finish_reason": "stop",
+          "prompt_tokens": 87,
+          "reasoning_chars": 0,
+          "seconds": 2.4201,
+          "text_head": "在这种情况下，这位孕妇的症状和实验室检查结果提示可能存在巨幼细胞性贫血，这通常是由于维生素B12或叶酸缺乏引起的。考虑到妊娠期间叶酸需求增加，以及叶酸缺乏在孕妇",
+          "text_sha256": "0f09cea02cab8d676ca2237ccdea7bfadc5b0578c961794c8e759e659c81d6ae"
+        },
+        {
+          "completion_tokens": 114,
+          "finish_reason": "stop",
+          "prompt_tokens": 104,
+          "reasoning_chars": 0,
+          "seconds": 2.3432,
+          "text_head": "根据崔某的症状表现，包括头痛如刺、痛有定处、形体消瘦、项背强直、四肢抽搐，以及舌质紫暗、边有瘀斑、瘀点，脉象细涩，这些都提示存在血瘀的情况。因此，治疗上应该选择",
+          "text_sha256": "01ef6ef240cb2fd3411e66b7513e3294bd5a21c1527b15291e7fcc83ab3496bc"
+        },
+        {
+          "completion_tokens": 73,
+          "finish_reason": "stop",
+          "prompt_tokens": 81,
+          "reasoning_chars": 0,
+          "seconds": 1.5575,
+          "text_head": "根据题目中的描述，班主任在评定学生的进取性和聪慧性时，不论学生考上一本、二本、三本还是没上线，都普遍给予高分。这种情况很可能是因为班主任在评分时过于宽容，没有根",
+          "text_sha256": "482def84c742a466cfb33be8fbca4e95cd3a6bf61c8cdf8ae8b32b44085c72f9"
+        },
+        {
+          "completion_tokens": 94,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.957,
+          "text_head": "在这种情况下，该患者最应该进行腰椎穿刺检查。由于患者有发热、头痛的症状，并且胸部X光显示双肺粟粒状结节影，痰结核菌阳性，这些都提示可能存在结核感染，尤其是结核性",
+          "text_sha256": "6cac13b9eb1ffdc6ea55eca862dd440e1d435e8840fb6230fea9ab84ebb0305b"
+        },
+        {
+          "completion_tokens": 199,
+          "finish_reason": "stop",
+          "prompt_tokens": 47,
+          "reasoning_chars": 0,
+          "seconds": 4.0347,
+          "text_head": "根据中医理论，李××的痫证临床表现，如痰火内盛、舌红苔黄腻、脉象弦滑而数，其主要病理基础可以归结为痰火内扰。具体来说，痰火内盛是由于体内痰湿与火热相互交织，导致",
+          "text_sha256": "8326edc8a24c2e974b8298766d9c6ea4c39ca27b51032c1397d1aad775d00108"
+        },
+        {
+          "completion_tokens": 70,
+          "finish_reason": "stop",
+          "prompt_tokens": 52,
+          "reasoning_chars": 0,
+          "seconds": 1.4683,
+          "text_head": "心理医生通过详细了解病史和周密检查后，明确告诉患者他的躯体症状是功能性的而非严重的器质性疾病，从而减轻了患者的焦虑。这种行为在心理支持中被称为“正常化”。通过正",
+          "text_sha256": "14f717d7fec89abf7359265e27a49c34a04630b7663e1bd0e5e4f839f366b6fd"
+        },
+        {
+          "completion_tokens": 170,
+          "finish_reason": "stop",
+          "prompt_tokens": 73,
+          "reasoning_chars": 0,
+          "seconds": 3.4501,
+          "text_head": "根据患者的胸部CT扫描结果，前纵隔中下份的囊实性混杂密度软组织肿块，其密度最低处CT值为-28HU，提示含有脂肪成分。增强扫描显示实性成分明显强化，而囊性部分无",
+          "text_sha256": "0846ad546156ef6ba2b9e26ccf54e584162b96cb9dbfc1209b295f9a841f26e2"
+        },
+        {
+          "completion_tokens": 81,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "reasoning_chars": 0,
+          "seconds": 1.662,
+          "text_head": "根据患者的症状和检查结果，考虑到肝豆状核变性（Wilson病）的可能性很大。该病是由于铜代谢异常导致铜在体内，尤其是肝脏和脑部沉积引起的。治疗肝豆状核变性的首选",
+          "text_sha256": "7c55a8179aa446594be6ef4fc286e66b66fbdd236f97c11c2a9ce4c6eca23aa2"
+        },
+        {
+          "completion_tokens": 145,
+          "finish_reason": "stop",
+          "prompt_tokens": 222,
+          "reasoning_chars": 0,
+          "seconds": 2.9409,
+          "text_head": "根据提供的信息，这名6岁男孩的症状和化验结果最符合的诊断是C选项：肾病综合征合并原发性腹膜炎。\n\n首先，患儿有面部和全身水肿、尿少、尿蛋白(+++)，这些症状提",
+          "text_sha256": "db33dda4af4753ec4a6c3a6187a601947d448464900c79472d0b5255d9d5eb26"
+        },
+        {
+          "completion_tokens": 96,
+          "finish_reason": "stop",
+          "prompt_tokens": 75,
+          "reasoning_chars": 0,
+          "seconds": 1.9896,
+          "text_head": "根据患者的临床表现，包括呕吐咖啡色液体、黑便、头昏、乏力、出汗和心慌等症状，以及脉率增快到96次/分，可以推测患者存在上消化道出血。结合这些症状的严重程度，估计",
+          "text_sha256": "d41a214f80ba5ed84a851523d8dab1b7d716bdb612bb48af87035dd6e5962977"
+        },
+        {
+          "completion_tokens": 71,
+          "finish_reason": "stop",
+          "prompt_tokens": 48,
+          "reasoning_chars": 0,
+          "seconds": 1.48,
+          "text_head": "根据患者的症状和当地疫情情况，首先考虑进行流感病毒检测是合理的选择。流感在冬季和春季较为常见，且症状与患者表现出的症状相符。此外，由于流感具有传染性，当地出现多",
+          "text_sha256": "75807d3794859327b09a25ff4d6b0c1b8fe6c0e89b742fa342b9a5c1376f6cdb"
+        },
+        {
+          "completion_tokens": 100,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 2.0675,
+          "text_head": "根据描述的症状，这个5岁男孩最可能的原因是膀胱结石。膀胱结石会导致排尿困难和尿流中断，而当男孩跑动或改变体位时，结石的位置可能会发生变化，从而暂时解除对尿流的阻",
+          "text_sha256": "090486030f0c08ef10457dfbb0f447f127338d38ac2a24d30394d82b00c68456"
+        },
+        {
+          "completion_tokens": 71,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 1.4513,
+          "text_head": "在进行脊髓灰质炎后遗症的骨短缩术时，健肢股骨的短缩长度通常建议不超过2厘米，以避免对股四头肌的肌力产生显著影响。这一限制是基于临床经验，旨在确保术后功能恢复和肌",
+          "text_sha256": "3073aa83aa6ef5ff788e6d916bb7407a7b566acda29cee993e6d7f3f732efe82"
+        },
+        {
+          "completion_tokens": 170,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 3.3979,
+          "text_head": "根据您提供的信息，患者在医院接受青霉素治疗上呼吸道感染后死亡，而市鉴定委员会已经鉴定医院无责任。在这种情况下，患者的死亡事件很可能被认定为医疗意外。医疗意外是指",
+          "text_sha256": "0acce294f03599199636db05379b10ce0b0fd7b1dd498a0cceaff63e48e0b6aa"
+        },
+        {
+          "completion_tokens": 79,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 1.6355,
+          "text_head": "这种细菌是金黄色葡萄球菌（Staphylococcus aureus）。金黄色葡萄球菌是一种革兰阳性球菌，具有在高盐和高碱条件下生长的能力，并且能够在40%胆汁",
+          "text_sha256": "dc9f639ffbf7c3b5995ffb30bbe80be2c451d79969f4e352c0b58a563cad3d5a"
+        },
+        {
+          "completion_tokens": 199,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 3.8955,
+          "text_head": "对于这位61岁的女性患者，她的症状表现为风湿痹痛多年，伴有腰膝酸痛、筋骨痿软无力，脉象弦细，这些症状提示可能存在肝肾不足以及风湿痹阻的情况。在选择药物时，我们需",
+          "text_sha256": "f19380646dafa8b09b1d536bfc2eeef796f9391bf8df23afe615285658db64b6"
+        },
+        {
+          "completion_tokens": 64,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 1.3187,
+          "text_head": "提出“疗惊必先豁痰，豁痰必先驱风，驱风必先解热，解热必先祛邪”这一论点的著名医家是万全。万全在中医领域有着重要的地位，尤其在儿科方面有很深的造诣，他的这一理论体",
+          "text_sha256": "0195b0b2ee73fe70c1bda157b960ae30bdc182d6c7f741b5ff53d46419e05452"
+        },
+        {
+          "completion_tokens": 224,
+          "finish_reason": "stop",
+          "prompt_tokens": 104,
+          "reasoning_chars": 0,
+          "seconds": 4.2666,
+          "text_head": "根据题目中的信息，每片药片的规格为0.3g，但实际测量10片的总重量为3.5670g，因此每片的实际重量为0.3567g。\n\n我们需要称取相当于0.5g药物的量",
+          "text_sha256": "bac839b59764b92d2028d933b087cca27c9ad4ffe49306256bd9f69a908128ab"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 183.13,
+      "wall_seconds": 25.75
+    },
+    {
+      "completion_tokens": 4628,
+      "concurrency": 8,
+      "finish_length": 0,
+      "median_request_seconds": 2.194,
+      "per_request": [
+        {
+          "completion_tokens": 116,
+          "finish_reason": "stop",
+          "prompt_tokens": 97,
+          "reasoning_chars": 0,
+          "seconds": 2.5164,
+          "text_head": "根据题目中的信息，患者在经过2到4周的非手术治疗后，截瘫症状没有改善，而MRI显示硬膜囊前方有压迫。在这种情况下，最合适的下一步治疗应该是直接解除压迫。\n\n选项",
+          "text_sha256": "1256f7c38657f27fda1d4cc40b59027571372ef96b5004cb53d3aa682aab933b"
+        },
+        {
+          "completion_tokens": 208,
+          "finish_reason": "stop",
+          "prompt_tokens": 71,
+          "reasoning_chars": 0,
+          "seconds": 4.5689,
+          "text_head": "根据患者的症状表现，我们可以从中医的角度进行辨证分析。患者在经期前后出现清晨泄泻，并伴有腰膝酸软、头晕耳鸣、畏寒肢冷、经色淡、质稀等症状，舌淡、苔白，脉沉迟。这",
+          "text_sha256": "82c8bedb0fa185428ca348f55144cbdab1f2ed47d516a9124510fc1509ac5b69"
+        },
+        {
+          "completion_tokens": 93,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.9993,
+          "text_head": "根据您提供的信息，这名32岁女性患者的昏厥发作最可能的原因是频发多源性室性期前收缩引发的严重心律失常，比如室性心动过速或心室颤动。这些心律失常会导致心脏泵血功能",
+          "text_sha256": "734eaebf764ceecdde6feff678c5442b7c9874aef0ea27e05c6298201bc7e59a"
+        },
+        {
+          "completion_tokens": 103,
+          "finish_reason": "stop",
+          "prompt_tokens": 82,
+          "reasoning_chars": 0,
+          "seconds": 2.2288,
+          "text_head": "根据患者的情况，考虑到他长期卧床后突发胸痛，以及影像学检查显示右肺上叶纹理稀疏、透光度增强，这些特征提示可能存在肺栓塞。肺栓塞是由于血栓阻塞肺动脉引起的，常见于",
+          "text_sha256": "c5c3653aed57a145268e73a95dc534ca396affdbad31b4c6ca33d8ab53ba456e"
+        },
+        {
+          "completion_tokens": 88,
+          "finish_reason": "stop",
+          "prompt_tokens": 85,
+          "reasoning_chars": 0,
+          "seconds": 1.8655,
+          "text_head": "根据患者的用药情况和症状表现，导致面部潮红、头痛和眩晕等症状的药物配伍很可能是甲硝唑与藿香正气水中的酒精发生了双硫仑样反应。甲硝唑会干扰酒精在体内的正常代谢，导",
+          "text_sha256": "063925b7bd627b91a60ecd23562b0b97b510bb7a3bfdd4068a7df413b11b0368"
+        },
+        {
+          "completion_tokens": 205,
+          "finish_reason": "stop",
+          "prompt_tokens": 114,
+          "reasoning_chars": 0,
+          "seconds": 4.4723,
+          "text_head": "根据患者的症状分析，她表现出明显的热象，包括发热、心烦、口渴、小便短少不利，舌红苔黄燥，脉细数。这些症状提示体内有实热，并且可能伴有阴液不足。\n\n在考虑各种方剂",
+          "text_sha256": "0cbc55d655a9b5c1240ef493130c3f0372812e4636082f22b72d399920ba44b9"
+        },
+        {
+          "completion_tokens": 240,
+          "finish_reason": "stop",
+          "prompt_tokens": 71,
+          "reasoning_chars": 0,
+          "seconds": 5.2572,
+          "text_head": "对于这位60岁男性肝硬化患者，在使用普萘洛尔后出现神志不清，并考虑为肝性脑病的情况下，通过静注阿托品进行治疗后，患者神志恢复正常。阿托品是一种抗胆碱能药物，其主",
+          "text_sha256": "ba52179991ab71f73c325613d90891ff739ee69f134f48f634d44001a45ce3d0"
+        },
+        {
+          "completion_tokens": 53,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 1.1415,
+          "text_head": "在这种情况下，不适宜的治疗方法是使用硝酸甘油。硝酸甘油是一种血管扩张剂，通常用于治疗心绞痛，但它可能导致血压进一步下降，并可能加重鼻出血。因此，对于有高血压且正",
+          "text_sha256": "216b83418ff2bceb4321e342a81b7ebfcdc88733127454f9fe99bab862492236"
+        },
+        {
+          "completion_tokens": 87,
+          "finish_reason": "stop",
+          "prompt_tokens": 82,
+          "reasoning_chars": 0,
+          "seconds": 1.9206,
+          "text_head": "根据描述的症状和体征，最可能的诊断是髂动脉假性动脉瘤。刀刺伤可能导致髂动脉受损，形成假性动脉瘤，这解释了搏动性肿块和收缩期杂音的出现。此外，右下肢的苍白和麻木提",
+          "text_sha256": "8fcc48ce9a36dc8e8c220f03c96864c96a0381620cb1750f3d50de862bc6c40f"
+        },
+        {
+          "completion_tokens": 110,
+          "finish_reason": "stop",
+          "prompt_tokens": 38,
+          "reasoning_chars": 0,
+          "seconds": 2.4744,
+          "text_head": "根据描述的症状，新生儿在出生后2天出现双眼高度水肿、结膜充血水肿以及大量脓性分泌物，最可能的诊断是沙眼衣原体感染。虽然沙眼衣原体感染通常会在出生后1到2周出现症",
+          "text_sha256": "e6fe6442ca919421c10725039814f6111f9987a2871a69721041dcb1f4a13059"
+        },
+        {
+          "completion_tokens": 86,
+          "finish_reason": "stop",
+          "prompt_tokens": 106,
+          "reasoning_chars": 0,
+          "seconds": 1.8672,
+          "text_head": "根据患者的症状和舌脉表现，湿热中焦，尤其是脾胃湿热的情况较为明显。对于这种情况，需要选择能够清热利湿、健脾和胃的药材组合。经过分析，茯苓配滑石（选项E）能够有效",
+          "text_sha256": "b787bacaef93dff405511328710417bf5b49b0b7ad93d4ee2260094a2bd7542d"
+        },
+        {
+          "completion_tokens": 106,
+          "finish_reason": "stop",
+          "prompt_tokens": 104,
+          "reasoning_chars": 0,
+          "seconds": 2.4322,
+          "text_head": "根据患者的症状分析，甲状腺肿大、心悸不宁、心烦少寐、易出汗、手指颤动、眼干、目眩、倦怠无力，以及舌质红、舌体颤、苔少或无苔、脉弦细数，这些都指向阴虚火旺的症候。",
+          "text_sha256": "a7fdf259740134f79b35e493f1f1a3b1296bb15a5019de6d361e53c0471cda47"
+        },
+        {
+          "completion_tokens": 68,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "reasoning_chars": 0,
+          "seconds": 1.4838,
+          "text_head": "对于该患者，确定壶腹部肿瘤的具体位置，十二指肠镜检查可能是最有价值的辅助检查方法。因为十二指肠镜可以直接观察到十二指肠乳头及壶腹部开口，从而明确肿瘤的具体位置。",
+          "text_sha256": "36f72bce46fe1646cc38294407fc17f44ed2cce56750ffbeac6de4d2687aa74a"
+        },
+        {
+          "completion_tokens": 49,
+          "finish_reason": "stop",
+          "prompt_tokens": 35,
+          "reasoning_chars": 0,
+          "seconds": 1.1054,
+          "text_head": "研究药物制剂的基本理论、处方设计、制备工艺、质量控制与合理应用的综合性技术科学称为“药剂学”。药剂学是一门涉及多学科知识的综合性科学，旨在确保药物的有效性和安全",
+          "text_sha256": "47b4b1491940cd793b09b3bbdd970b01a80c14f62c3faa342126642697e0706a"
+        },
+        {
+          "completion_tokens": 84,
+          "finish_reason": "stop",
+          "prompt_tokens": 106,
+          "reasoning_chars": 0,
+          "seconds": 2.0005,
+          "text_head": "根据患者的症状和病史，最可能的诊断是B. 盆腔炎。患者在放置宫内节育器（IUD）后出现了发热、寒战、下腹持续性疼痛、少量阴道流血以及恶心、呕吐等症状，这些症状与",
+          "text_sha256": "00d1ec88b7749cc62189687d62ce11987eba814cc0a3b8c8b9b60717393ea1fd"
+        },
+        {
+          "completion_tokens": 104,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "reasoning_chars": 0,
+          "seconds": 2.4397,
+          "text_head": "患者在跌倒时会阴部撞击硬物后，出现阴茎、阴囊、会阴和下腹壁的肿胀，最可能的原因是尿道损伤。当会阴部受到强烈撞击时，尿道可能受到压迫或撕裂，导致尿液外渗。这种外渗",
+          "text_sha256": "35cf5b349d3946acccf4593936eed3b70f7bc1011763f2047f531d89370b9560"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 59,
+          "reasoning_chars": 0,
+          "seconds": 2.176,
+          "text_head": "对于一名心脏病患者，出现心悸、气促、大汗，心率为156次/分，心律轻度不规则，并且血压低至80/50mmHg，这种情况很可能是快速型心律失常导致的血流动力学不稳",
+          "text_sha256": "f9a6aa809d4e1ceb8ebfcf862936b6116b362fa45b4b1de13c13392008df3704"
+        },
+        {
+          "completion_tokens": 62,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 1.431,
+          "text_head": "在肌肉注射的情况下，药物首先通过结缔组织扩散，然后进入毛细血管和淋巴系统，最终进入血液循环。由于肌肉组织血流丰富，药物吸收通常较快，其生物利用度可以接近静脉注射",
+          "text_sha256": "f41640d08921811efca6f8e9fced4e57c81cc85fc90b3cbe866ec51c51ac4b39"
+        },
+        {
+          "completion_tokens": 96,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 2.1951,
+          "text_head": "在2个月大的婴儿患大肠杆菌脑膜炎并接受氨苄西林治疗1周后仍然发热不退，并频繁出现惊厥和落日眼的症状，其治疗效果不佳的最可能原因是细菌对氨苄西林产生了耐药性。此外",
+          "text_sha256": "6cd54995c407dc34fc92b3597a0d09536bd91ecd3319ea015f76239c97548326"
+        },
+        {
+          "completion_tokens": 193,
+          "finish_reason": "stop",
+          "prompt_tokens": 65,
+          "reasoning_chars": 0,
+          "seconds": 4.3091,
+          "text_head": "根据患者的症状表现，包括发热、汗出热不解、头昏重胀痛、口渴、鼻塞流浊涕、身重倦怠、胸闷欲吐、尿短赤、舌苔黄腻、脉濡数，这些症状指向了湿热内蕴，并伴有外感风热的情",
+          "text_sha256": "954f6d14f0f07518bea8b3e6880ddfae7fab134701fda4177f6365db57b99d67"
+        },
+        {
+          "completion_tokens": 184,
+          "finish_reason": "stop",
+          "prompt_tokens": 89,
+          "reasoning_chars": 0,
+          "seconds": 4.0648,
+          "text_head": "根据患者的症状表现，他似乎处于少阳证的状态，这通常与半表半里的病机有关。患者有寒热往来、心烦、呕吐、胸胁满闷、咽干口苦、口渴喜饮等症状，这些都指向少阳证。\n\n小",
+          "text_sha256": "daf609b8a41c63660d276dc9719de90bb2e69bc404280acfbc7e09bce1d8acb0"
+        },
+        {
+          "completion_tokens": 90,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 2.011,
+          "text_head": "根据患者的症状表现，包括牙痛牵引面颊、牙龈溃疡、恶热喜凉、口气热臭、舌红苔黄、脉滑大而数，这些症状指向了典型的胃火旺盛。对于这种情况，清胃散是一个合适的中药方剂",
+          "text_sha256": "e004c1906892958cffa2c04dac323d82d8e3dd430cd338676943d40746ee681f"
+        },
+        {
+          "completion_tokens": 125,
+          "finish_reason": "stop",
+          "prompt_tokens": 87,
+          "reasoning_chars": 0,
+          "seconds": 2.8033,
+          "text_head": "在这种情况下，这位孕妇的症状和实验室检查结果提示可能存在巨幼细胞性贫血，这通常是由于维生素B12或叶酸缺乏引起的。考虑到妊娠期间叶酸需求增加，以及叶酸缺乏在孕妇",
+          "text_sha256": "0b94f0446f69e2c5967d2541ab26e9e89a0961fb2e43f0027fb9c97eff94cfe3"
+        },
+        {
+          "completion_tokens": 114,
+          "finish_reason": "stop",
+          "prompt_tokens": 104,
+          "reasoning_chars": 0,
+          "seconds": 2.4795,
+          "text_head": "根据崔某的症状表现，包括头痛如刺、痛有定处、形体消瘦、项背强直、四肢抽搐，以及舌质紫暗、边有瘀斑、瘀点，脉象细涩，这些都提示存在血瘀的情况。因此，治疗上应该选择",
+          "text_sha256": "01ef6ef240cb2fd3411e66b7513e3294bd5a21c1527b15291e7fcc83ab3496bc"
+        },
+        {
+          "completion_tokens": 73,
+          "finish_reason": "stop",
+          "prompt_tokens": 81,
+          "reasoning_chars": 0,
+          "seconds": 1.614,
+          "text_head": "根据题目中的描述，班主任在评定学生的进取性和聪慧性时，不论学生考上一本、二本、三本还是没上线，都普遍给予高分。这种情况很可能是因为班主任在评分时过于宽容，没有根",
+          "text_sha256": "482def84c742a466cfb33be8fbca4e95cd3a6bf61c8cdf8ae8b32b44085c72f9"
+        },
+        {
+          "completion_tokens": 90,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 2.0013,
+          "text_head": "在这种情况下，该患者最应该进行腰椎穿刺检查。由于患者有发热、头痛的症状，并且胸部X光显示双肺粟粒状结节影，痰结核菌阳性，这些都提示可能存在结核感染，尤其是结核性",
+          "text_sha256": "eacbf90c1edef3819af2a111d4e779327fad9bed36486d0c429c52e88f6e4188"
+        },
+        {
+          "completion_tokens": 199,
+          "finish_reason": "stop",
+          "prompt_tokens": 47,
+          "reasoning_chars": 0,
+          "seconds": 4.3825,
+          "text_head": "根据中医理论，李××的痫证临床表现，如痰火内盛、舌红苔黄腻、脉象弦滑而数，其主要病理基础可以归结为痰火内扰。具体来说，痰火内盛是由于体内痰湿与火热相互交织，导致",
+          "text_sha256": "8326edc8a24c2e974b8298766d9c6ea4c39ca27b51032c1397d1aad775d00108"
+        },
+        {
+          "completion_tokens": 70,
+          "finish_reason": "stop",
+          "prompt_tokens": 52,
+          "reasoning_chars": 0,
+          "seconds": 1.6258,
+          "text_head": "心理医生通过详细了解病史和周密检查后，明确告诉患者他的躯体症状是功能性的而非严重的器质性疾病，从而减轻了患者的焦虑。这种行为在心理支持中被称为“正常化”。通过正",
+          "text_sha256": "14f717d7fec89abf7359265e27a49c34a04630b7663e1bd0e5e4f839f366b6fd"
+        },
+        {
+          "completion_tokens": 152,
+          "finish_reason": "stop",
+          "prompt_tokens": 73,
+          "reasoning_chars": 0,
+          "seconds": 3.4702,
+          "text_head": "根据患者的胸部CT扫描结果，前纵隔中下份的囊实性混杂密度软组织肿块，其密度最低处CT值为-28HU，提示含有脂肪成分。增强扫描显示实性成分明显强化，而囊性部分无",
+          "text_sha256": "9318c7e83ef787237380d8229e08d8b31f728994dc425d5545e22ddeaecb6574"
+        },
+        {
+          "completion_tokens": 168,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "reasoning_chars": 0,
+          "seconds": 3.7469,
+          "text_head": "根据患者的症状和检查结果，考虑到肝豆状核变性（Wilson病）的可能性很大。该病是由于铜代谢异常导致的，铜在体内尤其是肝脏和脑部沉积，引起神经系统和肝脏的损害。",
+          "text_sha256": "b81e362ca69a06adf765245597fbefe72f71ae41f39266aebb8b047af1537826"
+        },
+        {
+          "completion_tokens": 143,
+          "finish_reason": "stop",
+          "prompt_tokens": 222,
+          "reasoning_chars": 0,
+          "seconds": 3.2214,
+          "text_head": "根据提供的信息，这名6岁男孩的症状和化验结果最符合的诊断是C选项：肾病综合征合并原发性腹膜炎。\n\n首先，患儿有面部和全身水肿、尿少、尿蛋白(+++)，这些症状提",
+          "text_sha256": "4d6ae92108a6f41f5a75fbba5e8b0fd1d7295f6ce693c64427b6d9f35c5eed1a"
+        },
+        {
+          "completion_tokens": 96,
+          "finish_reason": "stop",
+          "prompt_tokens": 75,
+          "reasoning_chars": 0,
+          "seconds": 2.1485,
+          "text_head": "根据患者的临床表现，包括呕吐咖啡色液体、黑便、头昏、乏力、出汗和心慌等症状，以及脉率增快到96次/分，可以推测患者存在上消化道出血。结合这些症状的严重程度，估计",
+          "text_sha256": "d41a214f80ba5ed84a851523d8dab1b7d716bdb612bb48af87035dd6e5962977"
+        },
+        {
+          "completion_tokens": 80,
+          "finish_reason": "stop",
+          "prompt_tokens": 48,
+          "reasoning_chars": 0,
+          "seconds": 1.7884,
+          "text_head": "根据患者的症状和当地疫情情况，首先考虑进行流感病毒检测是合理的选择。流感在冬季和春季较为常见，且症状与患者表现相符，包括高热、全身疼痛和呼吸急促。此外，流感具有",
+          "text_sha256": "bbfbef85ba3714aaf2777e7abf77a2b9138385331227370d4e80a5dfed51aaed"
+        },
+        {
+          "completion_tokens": 100,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 2.1926,
+          "text_head": "根据描述的症状，这个5岁男孩最可能的原因是膀胱结石。膀胱结石会导致排尿困难和尿流中断，而当男孩跑动或改变体位时，结石的位置可能会发生变化，从而暂时解除对尿流的阻",
+          "text_sha256": "090486030f0c08ef10457dfbb0f447f127338d38ac2a24d30394d82b00c68456"
+        },
+        {
+          "completion_tokens": 71,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 1.5256,
+          "text_head": "在进行脊髓灰质炎后遗症的骨短缩术时，健肢股骨的短缩长度通常建议不超过2厘米，以避免对股四头肌的肌力产生显著影响。这一限制是基于临床经验，旨在确保术后功能恢复和肌",
+          "text_sha256": "3073aa83aa6ef5ff788e6d916bb7407a7b566acda29cee993e6d7f3f732efe82"
+        },
+        {
+          "completion_tokens": 118,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 2.5078,
+          "text_head": "根据您提供的信息，患者在医院接受青霉素治疗上呼吸道感染后死亡，而市鉴定委员会已经鉴定医院无责任。在这种情况下，患者的死亡事件很可能被认定为医疗意外。医疗意外是指",
+          "text_sha256": "01fd201834b9615586fcc838aa4790456de425a9b946a4e75c5537c6edfc3763"
+        },
+        {
+          "completion_tokens": 79,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 1.7369,
+          "text_head": "这种细菌是金黄色葡萄球菌（Staphylococcus aureus）。金黄色葡萄球菌是一种革兰阳性球菌，能够在高盐、高碱条件下生长，并且可以在40%胆汁培养基",
+          "text_sha256": "b820e706323028b654d0abd4a7995f9215740addc1ddf8937dd6185225c7f86c"
+        },
+        {
+          "completion_tokens": 191,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 3.8017,
+          "text_head": "对于这位61岁的女性患者，她的症状表现为风湿痹痛多年，伴有腰膝酸痛、筋骨痿软无力，脉象弦细，这些症状提示可能存在肝肾不足以及风湿痹阻的情况。在选择药物时，我们需",
+          "text_sha256": "67c395e183234e53b6a364d16a1d86c9ceadba6af0775ef20a1da719fcbbc54b"
+        },
+        {
+          "completion_tokens": 64,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 1.3725,
+          "text_head": "提出“疗惊必先豁痰，豁痰必先驱风，驱风必先解热，解热必先祛邪”这一论点的著名医家是万全。万全在中医领域有着重要的地位，尤其在儿科方面有很深的造诣，他的这一理论体",
+          "text_sha256": "0195b0b2ee73fe70c1bda157b960ae30bdc182d6c7f741b5ff53d46419e05452"
+        },
+        {
+          "completion_tokens": 175,
+          "finish_reason": "stop",
+          "prompt_tokens": 104,
+          "reasoning_chars": 0,
+          "seconds": 3.4552,
+          "text_head": "根据题目中的信息，每片药片的规格为0.3g，但实际测量10片的总重量为3.5670g，因此每片的实际重量为0.3567g。\n\n我们需要称取相当于0.5g药物的量",
+          "text_sha256": "cdc43f119ec741cbff6944eda353eb95c559fa3ecf08c2e7f65e4f94dc58a324"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 318.57,
+      "wall_seconds": 14.53
+    },
+    {
+      "completion_tokens": 4826,
+      "concurrency": 16,
+      "finish_length": 0,
+      "median_request_seconds": 2.477,
+      "per_request": [
+        {
+          "completion_tokens": 133,
+          "finish_reason": "stop",
+          "prompt_tokens": 97,
+          "reasoning_chars": 0,
+          "seconds": 3.3338,
+          "text_head": "根据题目中的信息，患者在经过2到4周的非手术治疗后，截瘫症状没有改善，而MRI显示硬膜囊前方有压迫。在这种情况下，最合适的下一步治疗应该是直接解除压迫。\n\n选项",
+          "text_sha256": "9f7650f34b97467f94ae888b3575e8a2c02480d9bd161e83f0a075e5aa35a9ad"
+        },
+        {
+          "completion_tokens": 248,
+          "finish_reason": "stop",
+          "prompt_tokens": 71,
+          "reasoning_chars": 0,
+          "seconds": 6.0981,
+          "text_head": "根据患者的症状表现，我们可以从中医的角度进行辨证分析。患者在经期前后出现清晨泄泻，并伴有腰膝酸软、头晕耳鸣、畏寒肢冷、经色淡、质稀等症状，舌淡、苔白，脉沉迟。这",
+          "text_sha256": "1af0f376cb562795954a20cea9edbc1b01b9cc8af6fde148b6e48de72aeae3c3"
+        },
+        {
+          "completion_tokens": 96,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 2.4567,
+          "text_head": "根据您提供的信息，这名32岁女性患者的昏厥发作最可能的原因是频发多源性室性期前收缩引发的严重心律失常，比如室性心动过速或心室颤动。这些心律失常会导致心脏泵血功能",
+          "text_sha256": "145ede415403ddf0d7993fcff50f9ecc7ed39b63ccee5d344cd6f8e74358fcec"
+        },
+        {
+          "completion_tokens": 103,
+          "finish_reason": "stop",
+          "prompt_tokens": 82,
+          "reasoning_chars": 0,
+          "seconds": 2.632,
+          "text_head": "根据患者的情况，考虑到他长期卧床后突发胸痛，以及影像学检查显示右肺上叶纹理稀疏、透光度增强，这些特征提示可能存在肺栓塞。肺栓塞是由于血栓阻塞肺动脉引起的，常见于",
+          "text_sha256": "c5c3653aed57a145268e73a95dc534ca396affdbad31b4c6ca33d8ab53ba456e"
+        },
+        {
+          "completion_tokens": 88,
+          "finish_reason": "stop",
+          "prompt_tokens": 85,
+          "reasoning_chars": 0,
+          "seconds": 2.1546,
+          "text_head": "根据患者的用药情况和症状表现，导致面部潮红、头痛和眩晕等症状的药物配伍很可能是甲硝唑与藿香正气水中的酒精发生了双硫仑样反应。甲硝唑会干扰酒精在体内的正常代谢，导",
+          "text_sha256": "063925b7bd627b91a60ecd23562b0b97b510bb7a3bfdd4068a7df413b11b0368"
+        },
+        {
+          "completion_tokens": 205,
+          "finish_reason": "stop",
+          "prompt_tokens": 114,
+          "reasoning_chars": 0,
+          "seconds": 5.1352,
+          "text_head": "根据患者的症状分析，她表现出明显的热象，包括发热、心烦、口渴、小便短少不利，舌红苔黄燥，脉细数。这些症状提示体内有实热，并且可能伴有阴液不足。\n\n在考虑各种方剂",
+          "text_sha256": "0cbc55d655a9b5c1240ef493130c3f0372812e4636082f22b72d399920ba44b9"
+        },
+        {
+          "completion_tokens": 239,
+          "finish_reason": "stop",
+          "prompt_tokens": 71,
+          "reasoning_chars": 0,
+          "seconds": 5.8976,
+          "text_head": "对于这位60岁男性肝硬化患者，在使用普萘洛尔后出现神志不清，并考虑为肝性脑病的情况下，通过静注阿托品进行治疗后，患者神志恢复正常。阿托品是一种抗胆碱能药物，其主",
+          "text_sha256": "2123485a7e46aed88dac01624e845afd1f462f95f6518a976fa4f0d2eaac8766"
+        },
+        {
+          "completion_tokens": 53,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 1.3353,
+          "text_head": "在这种情况下，不适宜的治疗方法是使用硝酸甘油。硝酸甘油是一种血管扩张剂，通常用于治疗心绞痛，但它可能导致血压进一步下降，并可能加重鼻出血。因此，对于有高血压且正",
+          "text_sha256": "216b83418ff2bceb4321e342a81b7ebfcdc88733127454f9fe99bab862492236"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 82,
+          "reasoning_chars": 0,
+          "seconds": 2.2267,
+          "text_head": "根据描述的症状和体征，最可能的诊断是髂动脉假性动脉瘤。刀刺伤可能导致髂动脉受损，形成假性动脉瘤，这解释了搏动性肿块和收缩期杂音的出现。此外，右下肢的苍白和麻木提",
+          "text_sha256": "a5380fd4ae3c113e3caa2f9361f88aa131fd980501408d9c44cca08b79ab38c9"
+        },
+        {
+          "completion_tokens": 148,
+          "finish_reason": "stop",
+          "prompt_tokens": 38,
+          "reasoning_chars": 0,
+          "seconds": 3.7493,
+          "text_head": "根据描述的症状，新生儿在出生后2天出现双眼高度水肿、结膜充血水肿以及大量脓性分泌物，最可能的诊断是新生儿化脓性感染，尤其是由沙眼衣原体或淋病奈瑟菌引起的感染。这",
+          "text_sha256": "4c461c4de62935b68cc06cf723a8111cb08551438caeef556c7e5ccf0ab81fa7"
+        },
+        {
+          "completion_tokens": 86,
+          "finish_reason": "stop",
+          "prompt_tokens": 106,
+          "reasoning_chars": 0,
+          "seconds": 2.1315,
+          "text_head": "根据患者的症状和舌脉表现，湿热中焦，尤其是脾胃湿热的情况较为明显。对于这种情况，需要选择能够清热利湿、健脾和胃的药材组合。经过分析，茯苓配滑石（选项E）能够有效",
+          "text_sha256": "b787bacaef93dff405511328710417bf5b49b0b7ad93d4ee2260094a2bd7542d"
+        },
+        {
+          "completion_tokens": 106,
+          "finish_reason": "stop",
+          "prompt_tokens": 104,
+          "reasoning_chars": 0,
+          "seconds": 2.7974,
+          "text_head": "根据患者的症状分析，甲状腺肿大、心悸不宁、心烦少寐、易出汗、手指颤动、眼干、目眩、倦怠无力，以及舌质红、舌体颤、苔少或无苔、脉弦细数，这些都指向阴虚火旺的症候。",
+          "text_sha256": "a7fdf259740134f79b35e493f1f1a3b1296bb15a5019de6d361e53c0471cda47"
+        },
+        {
+          "completion_tokens": 68,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "reasoning_chars": 0,
+          "seconds": 1.6727,
+          "text_head": "对于该患者，确定壶腹部肿瘤的具体位置，十二指肠镜检查可能是最有价值的辅助检查方法。因为十二指肠镜可以直接观察到十二指肠乳头及壶腹部开口，从而明确肿瘤的具体位置。",
+          "text_sha256": "36f72bce46fe1646cc38294407fc17f44ed2cce56750ffbeac6de4d2687aa74a"
+        },
+        {
+          "completion_tokens": 49,
+          "finish_reason": "stop",
+          "prompt_tokens": 35,
+          "reasoning_chars": 0,
+          "seconds": 1.2175,
+          "text_head": "研究药物制剂的基本理论、处方设计、制备工艺、质量控制与合理应用的综合性技术科学称为“药剂学”。药剂学是一门涉及多学科知识的综合性科学，旨在确保药物的有效性和安全",
+          "text_sha256": "47b4b1491940cd793b09b3bbdd970b01a80c14f62c3faa342126642697e0706a"
+        },
+        {
+          "completion_tokens": 84,
+          "finish_reason": "stop",
+          "prompt_tokens": 106,
+          "reasoning_chars": 0,
+          "seconds": 2.0354,
+          "text_head": "根据患者的症状和病史，最可能的诊断是B. 盆腔炎。患者在放置宫内节育器（IUD）后出现了发热、寒战、下腹持续性疼痛、少量阴道流血以及恶心、呕吐等症状，这些症状与",
+          "text_sha256": "00d1ec88b7749cc62189687d62ce11987eba814cc0a3b8c8b9b60717393ea1fd"
+        },
+        {
+          "completion_tokens": 104,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "reasoning_chars": 0,
+          "seconds": 2.6478,
+          "text_head": "患者在跌倒时会阴部撞击硬物后，出现阴茎、阴囊、会阴和下腹壁的肿胀，最可能的原因是尿道损伤。当会阴部受到直接撞击时，尿道可能受到压迫或撕裂，导致尿液外渗。这种外渗",
+          "text_sha256": "d249cf944242fefecfb1bd30de1c989c4f71bde0177e58f5bca12b8107bbe4a3"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 59,
+          "reasoning_chars": 0,
+          "seconds": 2.4346,
+          "text_head": "对于一名心脏病患者，出现心悸、气促、大汗，心率为156次/分，心律轻度不规则，并且血压低至80/50mmHg，这种情况很可能是快速型心律失常导致的血流动力学不稳",
+          "text_sha256": "f9a6aa809d4e1ceb8ebfcf862936b6116b362fa45b4b1de13c13392008df3704"
+        },
+        {
+          "completion_tokens": 51,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 1.4629,
+          "text_head": "在肌肉注射的情况下，药物首先通过结缔组织扩散，然后进入毛细血管和淋巴系统，最终进入血液循环。由于肌肉组织有丰富的血液供应，药物通常能够迅速被吸收入血，因此其吸收",
+          "text_sha256": "4efcd523a233991371524c91887310b2f4a9b1e562bbd204e12bbb46dd02679e"
+        },
+        {
+          "completion_tokens": 97,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 2.4963,
+          "text_head": "在2个月大的婴儿患大肠杆菌脑膜炎并接受氨苄西林治疗1周后仍然发热不退，并频繁出现惊厥和落日眼的症状，其治疗效果不佳的最可能原因是细菌对氨苄西林产生了耐药性。此外",
+          "text_sha256": "3a8fc74301db761a2d7871f53436dca4382ba20914b55ef253985d79538140f6"
+        },
+        {
+          "completion_tokens": 195,
+          "finish_reason": "stop",
+          "prompt_tokens": 65,
+          "reasoning_chars": 0,
+          "seconds": 4.7582,
+          "text_head": "根据患者的症状表现，包括发热、汗出热不解、头昏重胀痛、口渴、鼻塞流浊涕、身重倦怠、胸闷欲吐、尿短赤、舌苔黄腻、脉濡数，这些症状指向了湿热内蕴，并伴有外感风热的情",
+          "text_sha256": "4cf600bd0656df24186a8fb8bc7beb214b6d53d673513af096036ef9853e58d2"
+        },
+        {
+          "completion_tokens": 177,
+          "finish_reason": "stop",
+          "prompt_tokens": 89,
+          "reasoning_chars": 0,
+          "seconds": 4.3543,
+          "text_head": "根据患者的症状表现，他似乎处于少阳证的状态，这通常与半表半里的病机有关。患者有寒热往来、心烦、呕吐、胸胁满闷、咽干口苦、口渴喜饮等症状，这些都指向少阳证。\n\n小",
+          "text_sha256": "b13b90ce91f137e29da378974201a5eea605043b261de07439b82b39c75d263a"
+        },
+        {
+          "completion_tokens": 91,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 2.4443,
+          "text_head": "根据患者的症状表现，包括牙痛牵引面颊、牙龈溃疡、恶热喜凉、口气热臭、舌红苔黄、脉滑大而数，这些症状指向了典型的胃火过旺。对于这种情况，清胃散是一个合适的中药方剂",
+          "text_sha256": "f64ae1a2b4f35650166ae360f0c7b861d3a1a53bfe2e481f6c6812646e3c5427"
+        },
+        {
+          "completion_tokens": 121,
+          "finish_reason": "stop",
+          "prompt_tokens": 87,
+          "reasoning_chars": 0,
+          "seconds": 3.0837,
+          "text_head": "在这种情况下，这位孕妇的症状和实验室检查结果提示可能存在巨幼细胞性贫血，这通常是由于维生素B12或叶酸缺乏引起的。考虑到妊娠期间叶酸需求增加，以及叶酸缺乏在孕妇",
+          "text_sha256": "dfe9fb8e5718f4bd29967dca772efda6fbc9da73e4ac787294a712228fa19874"
+        },
+        {
+          "completion_tokens": 114,
+          "finish_reason": "stop",
+          "prompt_tokens": 104,
+          "reasoning_chars": 0,
+          "seconds": 2.8562,
+          "text_head": "根据崔某的症状表现，包括头痛如刺、痛有定处、形体消瘦、项背强直、四肢抽搐，以及舌质紫暗、边有瘀斑、瘀点，脉象细涩，这些都提示存在血瘀的情况。因此，治疗上应该选择",
+          "text_sha256": "01ef6ef240cb2fd3411e66b7513e3294bd5a21c1527b15291e7fcc83ab3496bc"
+        },
+        {
+          "completion_tokens": 73,
+          "finish_reason": "stop",
+          "prompt_tokens": 81,
+          "reasoning_chars": 0,
+          "seconds": 1.7995,
+          "text_head": "根据题目中的描述，班主任在评定学生的进取性和聪慧性时，不论学生考上一本、二本、三本还是没上线，都普遍给予高分。这种情况很可能是因为班主任在评分时过于宽容，没有根",
+          "text_sha256": "482def84c742a466cfb33be8fbca4e95cd3a6bf61c8cdf8ae8b32b44085c72f9"
+        },
+        {
+          "completion_tokens": 90,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 2.2664,
+          "text_head": "在这种情况下，该患者最应该进行腰椎穿刺检查。由于患者有发热、头痛的症状，并且胸部X光显示双肺粟粒状结节影，痰结核菌阳性，这些都提示可能存在结核感染，尤其是结核性",
+          "text_sha256": "eacbf90c1edef3819af2a111d4e779327fad9bed36486d0c429c52e88f6e4188"
+        },
+        {
+          "completion_tokens": 199,
+          "finish_reason": "stop",
+          "prompt_tokens": 47,
+          "reasoning_chars": 0,
+          "seconds": 4.5253,
+          "text_head": "根据中医理论，李××的痫证临床表现，如痰火内盛、舌红苔黄腻、脉象弦滑而数，其主要病理基础可以归结为痰火内扰。具体来说，痰火内盛是由于体内痰湿与火热相互交织，导致",
+          "text_sha256": "8326edc8a24c2e974b8298766d9c6ea4c39ca27b51032c1397d1aad775d00108"
+        },
+        {
+          "completion_tokens": 70,
+          "finish_reason": "stop",
+          "prompt_tokens": 52,
+          "reasoning_chars": 0,
+          "seconds": 1.6515,
+          "text_head": "心理医生通过详细了解病史和周密检查后，明确告诉患者他的躯体症状是功能性的而非严重的器质性疾病，从而减轻了患者的焦虑。这种行为在心理支持中被称为“正常化”。通过正",
+          "text_sha256": "14f717d7fec89abf7359265e27a49c34a04630b7663e1bd0e5e4f839f366b6fd"
+        },
+        {
+          "completion_tokens": 183,
+          "finish_reason": "stop",
+          "prompt_tokens": 73,
+          "reasoning_chars": 0,
+          "seconds": 4.1644,
+          "text_head": "根据患者的胸部CT扫描结果，前纵隔中下份的囊实性混杂密度软组织肿块，其密度最低处CT值为-28HU，提示含有脂肪成分。增强扫描显示实性成分明显强化，而囊性部分无",
+          "text_sha256": "8d428954724e5af1b7f4b47c11540d9bc98c94d3fe195fd04e7815b8b4b1582e"
+        },
+        {
+          "completion_tokens": 148,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "reasoning_chars": 0,
+          "seconds": 3.4408,
+          "text_head": "根据患者的症状和检查结果，考虑到肝豆状核变性（Wilson病）的可能性很高。该病是由于铜代谢异常导致的，铜在体内尤其是肝脏和脑部沉积，引起神经系统和肝脏的损害。",
+          "text_sha256": "c134d1060fc38d6222223d47b9108d0967abc2afda913faad8b6fcbe939c87f9"
+        },
+        {
+          "completion_tokens": 145,
+          "finish_reason": "stop",
+          "prompt_tokens": 222,
+          "reasoning_chars": 0,
+          "seconds": 3.3451,
+          "text_head": "根据提供的信息，这名6岁男孩的症状和化验结果最符合的诊断是C选项：肾病综合征合并原发性腹膜炎。\n\n首先，患儿有面部和全身水肿、尿少、尿蛋白(+++)，这些症状提",
+          "text_sha256": "db33dda4af4753ec4a6c3a6187a601947d448464900c79472d0b5255d9d5eb26"
+        },
+        {
+          "completion_tokens": 96,
+          "finish_reason": "stop",
+          "prompt_tokens": 75,
+          "reasoning_chars": 0,
+          "seconds": 2.2954,
+          "text_head": "根据患者的临床表现，包括呕吐咖啡色液体、黑便、头昏、乏力、出汗和心慌等症状，以及脉率增快到96次/分，可以推测患者存在上消化道出血。结合这些症状的严重程度，估计",
+          "text_sha256": "d41a214f80ba5ed84a851523d8dab1b7d716bdb612bb48af87035dd6e5962977"
+        },
+        {
+          "completion_tokens": 75,
+          "finish_reason": "stop",
+          "prompt_tokens": 48,
+          "reasoning_chars": 0,
+          "seconds": 1.8313,
+          "text_head": "根据患者的症状和当地疫情情况，首先考虑进行流感病毒检测是合理的选择。流感在冬季和春季较为常见，且症状与患者表现相符，包括高热、全身疼痛和呼吸急促。此外，由于当地",
+          "text_sha256": "c037fed5dcf20f81f9a50128e3d1ca86a4760f719e1f40908b5f6eb428bb854d"
+        },
+        {
+          "completion_tokens": 100,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 2.3455,
+          "text_head": "根据描述的症状，这个5岁男孩最可能的原因是膀胱结石。膀胱结石会导致排尿困难和尿流中断，而当男孩跑动或改变体位时，结石的位置可能会发生变化，从而暂时解除对尿流的阻",
+          "text_sha256": "090486030f0c08ef10457dfbb0f447f127338d38ac2a24d30394d82b00c68456"
+        },
+        {
+          "completion_tokens": 71,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 1.6638,
+          "text_head": "在进行脊髓灰质炎后遗症的骨短缩术时，健肢股骨的短缩长度通常建议不超过2厘米，以避免对股四头肌的肌力产生显著影响。这一限制是基于临床经验，旨在确保术后功能恢复和肌",
+          "text_sha256": "3073aa83aa6ef5ff788e6d916bb7407a7b566acda29cee993e6d7f3f732efe82"
+        },
+        {
+          "completion_tokens": 169,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 3.5231,
+          "text_head": "根据您提供的信息，患者在医院接受青霉素治疗上呼吸道感染后死亡，而市鉴定委员会已经鉴定医院无责任。在这种情况下，患者的死亡事件很可能被认定为医疗意外。医疗意外是指",
+          "text_sha256": "f4d193c5ad4ee0e6d6e657c41411af64b28f09d457d1af95f2da22cc4f43c582"
+        },
+        {
+          "completion_tokens": 80,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 1.7813,
+          "text_head": "这种细菌是金黄色葡萄球菌（Staphylococcus aureus）。金黄色葡萄球菌是一种革兰阳性球菌，具有在高盐、高碱环境下生长的能力，并且能够在40%胆汁",
+          "text_sha256": "4c632b00fb29df80cc888e50724209e9b415fcf2d5bfc5a0c4760858e2a07aba"
+        },
+        {
+          "completion_tokens": 199,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 3.9884,
+          "text_head": "对于这位61岁的女性患者，她的症状表现为风湿痹痛多年，伴有腰膝酸痛、筋骨痿软无力，脉象弦细，这些症状提示可能存在肝肾不足以及风湿痹阻的情况。在选择药物时，我们需",
+          "text_sha256": "f19380646dafa8b09b1d536bfc2eeef796f9391bf8df23afe615285658db64b6"
+        },
+        {
+          "completion_tokens": 64,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 1.423,
+          "text_head": "提出“疗惊必先豁痰，豁痰必先驱风，驱风必先解热，解热必先祛邪”这一论点的著名医家是万全。万全在中医领域有着重要的地位，尤其在儿科方面有很深的造诣，他的这一理论体",
+          "text_sha256": "0195b0b2ee73fe70c1bda157b960ae30bdc182d6c7f741b5ff53d46419e05452"
+        },
+        {
+          "completion_tokens": 224,
+          "finish_reason": "stop",
+          "prompt_tokens": 104,
+          "reasoning_chars": 0,
+          "seconds": 4.3535,
+          "text_head": "根据题目中的信息，每片药片的规格为0.3g，但实际测量10片的总重量为3.5670g，因此每片的实际重量为0.3567g。\n\n我们需要称取相当于0.5g药物的量",
+          "text_sha256": "3d676714779175f5065bf9dbc7e41a70ee3d9724ac2becabaf5f42e4201176ee"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 470.61,
+      "wall_seconds": 10.25
+    }
+  ],
+  "max_tokens": 256,
+  "model": "Qwen/Qwen3.8-27B",
+  "num_prompts": 40,
+  "prompts": "eval_prompts.jsonl",
+  "skip": 40,
+  "thinking": false
+}

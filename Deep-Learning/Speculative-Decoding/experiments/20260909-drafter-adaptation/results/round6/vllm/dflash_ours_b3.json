@@ -1,0 +1,1496 @@
+{
+  "decoding": "temperature 0.0 via OpenAI chat completions, enable_thinking=false",
+  "label": "dflash_ours_b3",
+  "levels": [
+    {
+      "completion_tokens": 4713,
+      "concurrency": 1,
+      "finish_length": 1,
+      "median_request_seconds": 0.865,
+      "per_request": [
+        {
+          "completion_tokens": 194,
+          "finish_reason": "stop",
+          "prompt_tokens": 69,
+          "reasoning_chars": 0,
+          "seconds": 2.3104,
+          "text_head": "根据您提供的症状，6岁男孩的情况确实符合急性链球菌感染后肾小球肾炎的表现，尤其是血清总补体下降、尿蛋白阳性、镜下血尿以及浮肿等症状。在中医治疗上，对于这种湿热下",
+          "text_sha256": "95a17ac29ca8e100bbae70e1120a3b617ae08b424131cd1fd6353add20e784d5"
+        },
+        {
+          "completion_tokens": 72,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 0.6771,
+          "text_head": "根据患者左眼视力骤降、结膜混合充血以及角膜前突等症状，最可能的诊断是急性闭角型青光眼。这种病症通常表现为眼压急剧升高，导致视力迅速下降，并伴有眼部充血和角膜水肿",
+          "text_sha256": "b512fd3857b302ef11722ca941e96d7cfbfaf9041ddee0dd35e734f38affcc07"
+        },
+        {
+          "completion_tokens": 160,
+          "finish_reason": "stop",
+          "prompt_tokens": 69,
+          "reasoning_chars": 0,
+          "seconds": 1.6597,
+          "text_head": "在这种情况下，血乳酸水平升高的最可能原因是肠道缺血。患者有糖尿病史，并出现腹痛、腹泻和发热，这些症状提示可能存在感染或炎症。然而，在补液和升压治疗后，虽然血压有",
+          "text_sha256": "4ae40e70e2224a7325996520f96a0524eb9daaeaabc772620426c71d3160f2af"
+        },
+        {
+          "completion_tokens": 98,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 0.7507,
+          "text_head": "根据患者的症状：腹痛、腹泻、脓血便、里急后重，这些表现与溃疡性结肠炎非常吻合。溃疡性结肠炎是一种慢性炎症性肠病，通常会导致结肠和直肠的炎症，从而引起上述症状。此",
+          "text_sha256": "7da532b642f585883b357169b2d8cc38f6f2631d7a29b200555de3ae34ff8a23"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 66,
+          "reasoning_chars": 0,
+          "seconds": 2.2882,
+          "text_head": "根据患者的肝功能检查结果，总胆红素为19.2μmol/L，结合胆红素为6.8μmol/L，白蛋白为35g/L，球蛋白为30g/L，凝血酶原时间为12秒，我们可以",
+          "text_sha256": "f231e5e6e65b050ff089aa5459f440b10f1ce4f5b4a53b178ee7c0de7228dd9c"
+        },
+        {
+          "completion_tokens": 78,
+          "finish_reason": "stop",
+          "prompt_tokens": 92,
+          "reasoning_chars": 0,
+          "seconds": 0.8236,
+          "text_head": "根据患者的情况，72岁男性，突发昏迷，CT诊断为脑出血，随后出现上消化道出血，最可能的原因是应激引起的急性胃粘膜病变。脑出血导致身体处于高度应激状态，这种应激反",
+          "text_sha256": "0d09b9f9972823fb5cefd8a4495d28a3d188e8ccd3e2a277fc2ddfa19557a1af"
+        },
+        {
+          "completion_tokens": 137,
+          "finish_reason": "stop",
+          "prompt_tokens": 22,
+          "reasoning_chars": 0,
+          "seconds": 1.3088,
+          "text_head": "根据患者的病情表现，不恰当的治疗方法包括：\n\n1. **使用抗生素**：如果患者没有明确的细菌感染证据，使用抗生素不仅无效，还可能导致抗生素耐药性增加，并可能引",
+          "text_sha256": "a33aa43270c14cf3df8b08764978094ecd8f33f2fd07201cb24e08015abd31ae"
+        },
+        {
+          "completion_tokens": 118,
+          "finish_reason": "stop",
+          "prompt_tokens": 81,
+          "reasoning_chars": 0,
+          "seconds": 1.353,
+          "text_head": "根据患者的症状和病史，术后出现的嗜睡、体温降低、低血压、心动过缓以及腱反射减弱，这些表现与黏液性水肿危象非常一致。黏液性水肿危象是甲状腺功能减退的严重并发症，尤",
+          "text_sha256": "1a91147f1049bf17930230195e97e8e375ac2f394765db86f522414e52c8e66d"
+        },
+        {
+          "completion_tokens": 130,
+          "finish_reason": "stop",
+          "prompt_tokens": 65,
+          "reasoning_chars": 0,
+          "seconds": 1.1481,
+          "text_head": "根据患者的症状表现，经来先期、量多、色紫红、质黏稠，以及心烦、面红口干、小便黄、大便燥结，舌质红、苔黄、脉滑数，这些都指向了体内存在明显的实热症状。\n\n在中医治",
+          "text_sha256": "6334822e18417173623cb5c9d3eb908102b0898c671ec8461ea0f610edf5e260"
+        },
+        {
+          "completion_tokens": 117,
+          "finish_reason": "stop",
+          "prompt_tokens": 123,
+          "reasoning_chars": 0,
+          "seconds": 0.7756,
+          "text_head": "根据患者的症状和检查结果，最可能的诊断是C. 异位输尿管开口。患者长期出现持续性阴道漏尿，而尿常规显示有感染迹象，B超显示右肾重度积水且无功能，这些情况与异位输",
+          "text_sha256": "0ba6e874c110493dca6cf0aacbc3bcb0b94921aec5eb5e33bed2bd7b41b7aac5"
+        },
+        {
+          "completion_tokens": 209,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 2.3334,
+          "text_head": "对于这名3岁6个月的男孩，根据他的症状和体检结果，他可能存在严重的呼吸道问题，如哮喘急性发作或严重的下呼吸道感染。在急诊处理中，首要任务是确保他的气道通畅和缓解",
+          "text_sha256": "07982c19d7a5574dabbe091ac8f8b8e5915c2f280401cbd0da2c9b32976f91b0"
+        },
+        {
+          "completion_tokens": 111,
+          "finish_reason": "stop",
+          "prompt_tokens": 62,
+          "reasoning_chars": 0,
+          "seconds": 1.1242,
+          "text_head": "根据描述，这位患者最可能的死亡原因是急性心肌梗死引发的恶性心律失常，比如心室颤动。患者在劳累时出现心前区疼痛并向左肩放射，心电图显示心肌缺血，这些都是急性心肌梗",
+          "text_sha256": "9301fb8a96fc57573f783d139d3f948b33658ae9635406ac52b4f36a97f416b8"
+        },
+        {
+          "completion_tokens": 179,
+          "finish_reason": "stop",
+          "prompt_tokens": 44,
+          "reasoning_chars": 0,
+          "seconds": 2.1678,
+          "text_head": "对于一名30岁的女性，怀孕50天且B超显示落雪图像，这通常提示葡萄胎的可能性较大。在这种情况下，随访是非常重要的，因为葡萄胎有发展为恶性病变的风险。\n\n通常建议",
+          "text_sha256": "8ed1896c244c79c8963eacdf846a6f3d7b9b995b8d49a0dd89113daf7bd439a1"
+        },
+        {
+          "completion_tokens": 161,
+          "finish_reason": "stop",
+          "prompt_tokens": 64,
+          "reasoning_chars": 0,
+          "seconds": 1.9351,
+          "text_head": "根据提供的信息，这位31岁女性婚后3年不孕，月经规则，基础体温呈双相变化，说明她有正常的排卵功能。然而，她出现了继发性的痛经，并且检查发现双附件增厚。这些症状和",
+          "text_sha256": "50b5afba945aab4e925eca4c1ff8f0061465c3ead406672c2267b2628e80736e"
+        },
+        {
+          "completion_tokens": 73,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 0.6984,
+          "text_head": "对于一名2岁半的男孩，病程为3到4天的瑞氏综合征，通过肝穿刺进行病理切片观察，光学显微镜下可以观察到的主要特征性病理变化是肝细胞内的微泡性脂肪变性。这种变化表现",
+          "text_sha256": "9cb1b9ec85d9befbdc126e6fe02a385f1ead55d050f6ed8e6443b7a2d8e41f68"
+        },
+        {
+          "completion_tokens": 51,
+          "finish_reason": "stop",
+          "prompt_tokens": 37,
+          "reasoning_chars": 0,
+          "seconds": 0.4533,
+          "text_head": "根据《放射诊疗管理规定》，如果医疗机构使用不具备相应资质的人员从事放射诊疗工作，县级以上卫生行政部门可以责令其限期改正，并处以1万元以下的罚款。这一规定旨在确保",
+          "text_sha256": "2cc2820bbed17b5b21e47690f0ad5a5a25789cac6ba5a5937537504d2b71d9f2"
+        },
+        {
+          "completion_tokens": 54,
+          "finish_reason": "stop",
+          "prompt_tokens": 78,
+          "reasoning_chars": 0,
+          "seconds": 0.2851,
+          "text_head": "根据患者的症状和年龄，最可能的诊断是贲门癌。患者有吞咽梗阻感、消瘦、乏力以及中上腹痛，这些症状与贲门癌的表现相符。因此，最可能的诊断是C. 贲门癌。",
+          "text_sha256": "097b9872b0403fbd8235115821763f6606aaf26ec03f08c73aec15172208636f"
+        },
+        {
+          "completion_tokens": 48,
+          "finish_reason": "stop",
+          "prompt_tokens": 83,
+          "reasoning_chars": 0,
+          "seconds": 0.3541,
+          "text_head": "根据患者的症状和X线检查结果，他可能患有肺脓肿，这通常与厌氧菌感染有关。对于厌氧菌感染，克林霉素是常用的有效抗生素。因此，在这种情况下，治疗首选的是D. 克林霉",
+          "text_sha256": "c3dbf6ac523b7fe49f000841ed6aec7b3210a8aaa42b201937c7b6a7ae62f1a1"
+        },
+        {
+          "completion_tokens": 107,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.1455,
+          "text_head": "对于70岁男性患者，其上颌牙列缺失，使用Co-Cr合金制作铸造支架时，建议选择磷酸盐包埋材料。这是因为Co-Cr合金的熔点较高，而磷酸盐包埋材料能够耐受高温，确",
+          "text_sha256": "f91d151644409b9e4555a59daad72d6e37ce65a88a70e786a209aba50472f54d"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 87,
+          "reasoning_chars": 0,
+          "seconds": 0.7738,
+          "text_head": "根据超声描述，结节位于脾门区，呈近圆形，内部回声与脾实质相同，且边缘清晰，这些特征都非常符合副脾的表现。副脾通常与脾脏组织具有相同的回声特征，并且边缘清晰，而脾",
+          "text_sha256": "d058b34abaf9f4facd5190365298e5807b740df12951c91ae49c1454945c6747"
+        },
+        {
+          "completion_tokens": 61,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 0.6108,
+          "text_head": "这项规定属于学校健康政策。学校健康政策是指学校为了保障学生的身心健康，制定的一系列规章制度和行为准则。禁止吸烟、喝酒和使用非法影响精神的物质的规定，正是学校健康",
+          "text_sha256": "510e8727c02c931600c84abf5ebaf0e51cfa1ab8fcf4da906fe6686c4c86075a"
+        },
+        {
+          "completion_tokens": 98,
+          "finish_reason": "stop",
+          "prompt_tokens": 56,
+          "reasoning_chars": 0,
+          "seconds": 0.7747,
+          "text_head": "在皮肤细胞学检查中，如果发现大量单个角化不良、棘层松解性鳞状角质形成细胞，细胞呈圆形且核周有晕轮的特点，这种表现符合天疱疮。天疱疮是一种自身免疫性大疱性皮肤病，",
+          "text_sha256": "1b6a0cb242e083b47e7bf4ed4022ab584ac11f0586c587f3a900feb4c5d18334"
+        },
+        {
+          "completion_tokens": 87,
+          "finish_reason": "stop",
+          "prompt_tokens": 90,
+          "reasoning_chars": 0,
+          "seconds": 0.821,
+          "text_head": "根据患者的症状分析，低热、口干唇焦、手足心热、手指蠕动、心中憺憺大动、舌质干绛、脉虚大，这些都指向阴虚内热，并伴有虚风内动的表现。因此，治疗上应该以滋阴为主，同",
+          "text_sha256": "33a050468386e3bf9c5076e70fd08da0173b2a6acb50568d30aa64fe52d07689"
+        },
+        {
+          "completion_tokens": 148,
+          "finish_reason": "stop",
+          "prompt_tokens": 59,
+          "reasoning_chars": 0,
+          "seconds": 0.8894,
+          "text_head": "漏报率可以通过以下公式计算：漏报率 = (漏报病例数 / 实际感染病例总数) × 100%。\n\n在这个问题中，漏报的医院感染病例数为20例，上报的医院感染病例数",
+          "text_sha256": "fc02854560ecd8a52b37f43a419b77f4c899215259410b867ec938b98b935040"
+        },
+        {
+          "completion_tokens": 73,
+          "finish_reason": "stop",
+          "prompt_tokens": 44,
+          "reasoning_chars": 0,
+          "seconds": 0.8411,
+          "text_head": "根据中医理论，这种治疗方法属于“培土生金”的原则。六君子汤主要用于补益脾胃，而脾胃在五行中属土，肺属金。通过补益脾胃（培土），可以增强其对肺（金）的支持作用，从",
+          "text_sha256": "a29047db9ec0ef9de2d8a9b0c40dce6ab188e80bfa28335b46bee59a577f4aff"
+        },
+        {
+          "completion_tokens": 134,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 1.3587,
+          "text_head": "根据患者的症状和体征，尤其是剧烈胀痛、苍白水肿、棕色流出物以及触诊时的捻发感，这些都非常符合气性坏疽的表现。气性坏疽通常由产气荚膜梭菌（Clostridium ",
+          "text_sha256": "e03588e794b18ec51693012e7f3bf89bacb2a1286fb31c21821e4e08fd43a6c2"
+        },
+        {
+          "completion_tokens": 117,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 1.0312,
+          "text_head": "根据患者的症状和检查结果，最可能的并发症是中毒性巨结肠。患者表现出剧烈腹痛、高热、肛门少排气排便，以及腹部膨隆、全腹压痛、鼓音、肠鸣音消失等体征，这些都提示肠道",
+          "text_sha256": "b36429a243d5b7e6b1b9a9c34b17c8356fa4a1b7da4e7ad0633dd3cb6b3bd26f"
+        },
+        {
+          "completion_tokens": 200,
+          "finish_reason": "stop",
+          "prompt_tokens": 76,
+          "reasoning_chars": 0,
+          "seconds": 2.2171,
+          "text_head": "根据您提供的信息，这个婴儿的情况符合ABO血型不合引起的溶血性黄疸。母亲是O型血，婴儿是A型血，这种情况下，母亲体内的抗A抗体可能通过胎盘进入婴儿体内，导致婴儿",
+          "text_sha256": "7021837ae5c7214671f7f67f2a82f083e2e5d0d7d2b9e186a8dafd124449e344"
+        },
+        {
+          "completion_tokens": 104,
+          "finish_reason": "stop",
+          "prompt_tokens": 122,
+          "reasoning_chars": 0,
+          "seconds": 0.7025,
+          "text_head": "根据患者的症状表现，包括咳逆、喘息气粗、胸满烦躁、痰黄黏稠难咯、汗出不多、口渴欲饮、溲赤便干、舌尖红、苔黄腻、脉滑数，这些都指向了痰热壅肺的证候。针对这种证候，",
+          "text_sha256": "cb154568202d8b9df88130b9c83f01ac8aee3055b088393aa9d5986f7a06c20b"
+        },
+        {
+          "completion_tokens": 83,
+          "finish_reason": "stop",
+          "prompt_tokens": 85,
+          "reasoning_chars": 0,
+          "seconds": 0.612,
+          "text_head": "根据患者的症状分析，头晕目眩、神疲乏力、心悸健忘、眠差多梦，以及舌苔薄腻、脉细弱无力，这些表现都指向心血不足。心血不足会导致心神不宁，出现心悸、健忘、多梦等症状",
+          "text_sha256": "5e0a652ea83529eb6d61b7aab6fb323d478a4d4b237aa8bb10419c5bcb19a3c7"
+        },
+        {
+          "completion_tokens": 64,
+          "finish_reason": "stop",
+          "prompt_tokens": 92,
+          "reasoning_chars": 0,
+          "seconds": 0.8,
+          "text_head": "对于这位55岁的女性，考虑到她的绝经状态和阴道黏膜菲薄的情况，使用生理盐水进行阴道冲洗是一个安全且合适的选择。生理盐水温和且不会刺激已经萎缩的阴道组织，能够有效",
+          "text_sha256": "34d107d8ffb9689395abb8a1e28e041b0d1879eddb642143874a5680d8802026"
+        },
+        {
+          "completion_tokens": 96,
+          "finish_reason": "stop",
+          "prompt_tokens": 101,
+          "reasoning_chars": 0,
+          "seconds": 0.7732,
+          "text_head": "根据患者的症状表现，包括下腹部胀痛、经血量多有块、排出痛减，以及伴随的经前情志抑郁和乳房胀痛，结合舌紫暗、脉弦涩，这些都提示有血瘀和肝气郁结的情况。\n\n在提供的",
+          "text_sha256": "ce827ab847987d80d3ac8de046f6bb0250215fe921a84b4fc2313fbbada10e62"
+        },
+        {
+          "completion_tokens": 160,
+          "finish_reason": "stop",
+          "prompt_tokens": 76,
+          "reasoning_chars": 0,
+          "seconds": 1.7691,
+          "text_head": "根据患者的症状和检查结果，他可能患有甲状腺功能亢进，并伴有低钾性周期性麻痹。在急诊处理中，首要任务是稳定患者的心律和纠正可能的低钾血症。\n\n首先，建议立即进行心",
+          "text_sha256": "df7c2355e75bdf9ccebb939cff4df453ea26035509e8dfd3c0e6f7fc27cfba68"
+        },
+        {
+          "completion_tokens": 56,
+          "finish_reason": "stop",
+          "prompt_tokens": 29,
+          "reasoning_chars": 0,
+          "seconds": 0.6109,
+          "text_head": "常发生在出生后或少年期且通常不影响视力的白内障最有可能是先天性白内障中的点状白内障。这种类型的白内障通常表现为晶状体中的小点状混浊，对视力影响较小，因此在儿童或",
+          "text_sha256": "3ab8429e3ec42da3ee943c5aa9805e64c4fd62216305c98f1befaf0b5562cce2"
+        },
+        {
+          "completion_tokens": 78,
+          "finish_reason": "stop",
+          "prompt_tokens": 83,
+          "reasoning_chars": 0,
+          "seconds": 0.6335,
+          "text_head": "根据患者的症状和声像图分析，最可能的诊断是C. 肝内胆管蛔虫。患者为34岁女性，出现反复发作的剧烈右上腹痛，这种症状与肝内胆管蛔虫感染相符。声像图中可能显示的细",
+          "text_sha256": "c2be02eaf2cb5e7180bb3859c74d43e454912ddfc203e413256cf390c48ea503"
+        },
+        {
+          "completion_tokens": 238,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 2.745,
+          "text_head": "在这种情况下，最佳的治疗方案需要综合考虑患者的具体情况，包括肿瘤的大小、位置、分期，以及患者的整体健康状况。\n\n首先，根据患者的症状和检查结果，左肺门区的肿块很",
+          "text_sha256": "30e04fa18749d185b52a6c826cd66b96fae5959341b2d8657eb0e5dbf2e74438"
+        },
+        {
+          "completion_tokens": 134,
+          "finish_reason": "stop",
+          "prompt_tokens": 85,
+          "reasoning_chars": 0,
+          "seconds": 1.0766,
+          "text_head": "根据患者的临床表现和实验室检查结果，首先考虑的疾病是原发性肝细胞癌（HCC）。患者有长期的肝炎病史，这是肝癌的一个重要危险因素。近期出现的右侧季肋部持续胀痛、厌",
+          "text_sha256": "c3adb503f45116a2d6d8eddc29699add587755502d02a40905a6539d8e1a747c"
+        },
+        {
+          "completion_tokens": 70,
+          "finish_reason": "stop",
+          "prompt_tokens": 115,
+          "reasoning_chars": 0,
+          "seconds": 0.6998,
+          "text_head": "根据患者的症状和体征，可以判断出血部位在左基底节。患者出现右侧肢体无力、言语不清和意识障碍，这些症状通常与左脑的病变有关。特别是左基底节区域的出血，可以解释这些",
+          "text_sha256": "6623b3a8b612c60c86ee98d6a9da236997dc6d55392d695e38484b97ed04001e"
+        },
+        {
+          "completion_tokens": 163,
+          "finish_reason": "stop",
+          "prompt_tokens": 50,
+          "reasoning_chars": 0,
+          "seconds": 2.0223,
+          "text_head": "根据中医理论，这位患者的症状和习惯性流产可能与肾虚有关。肾在中医中负责生殖和发育，因此肾虚可能导致流产。患者的症状如腰膝酸软、头晕耳鸣、小便频数，都是典型的肾虚",
+          "text_sha256": "218797aa3699170c7f5327ebc45450642321cf74be3fc5a36896f6dbbedfdf06"
+        },
+        {
+          "completion_tokens": 107,
+          "finish_reason": "stop",
+          "prompt_tokens": 60,
+          "reasoning_chars": 0,
+          "seconds": 1.1898,
+          "text_head": "针对这位16岁女性患者的情况，考虑到她的症状和病史，最关键的检查是进行X光片检查。X光片能够帮助我们查看牙齿内部和周围骨头的情况，明确龋坏的深度，判断是否已经影",
+          "text_sha256": "87dfa46099d5bcd95efbc9509cbd7a3b58fc5fd53e6664bfeeb13e76d39189da"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 101.25,
+      "wall_seconds": 46.55
+    },
+    {
+      "completion_tokens": 4707,
+      "concurrency": 4,
+      "finish_length": 1,
+      "median_request_seconds": 1.064,
+      "per_request": [
+        {
+          "completion_tokens": 194,
+          "finish_reason": "stop",
+          "prompt_tokens": 69,
+          "reasoning_chars": 0,
+          "seconds": 2.5192,
+          "text_head": "根据您提供的症状，6岁男孩的情况确实符合急性链球菌感染后肾小球肾炎的表现，尤其是血清总补体下降、尿蛋白阳性、镜下血尿以及浮肿等症状。在中医治疗上，对于这种湿热下",
+          "text_sha256": "ad8afa98bc97ee8bba50de79dc98f9051e978b5ece71b96c707bae93c6535dd5"
+        },
+        {
+          "completion_tokens": 72,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 0.7592,
+          "text_head": "根据患者左眼视力骤降、结膜混合充血以及角膜前突等症状，最可能的诊断是急性闭角型青光眼。这种病症通常表现为眼压急剧升高，导致视力迅速下降，并伴有眼部充血和角膜水肿",
+          "text_sha256": "b512fd3857b302ef11722ca941e96d7cfbfaf9041ddee0dd35e734f38affcc07"
+        },
+        {
+          "completion_tokens": 159,
+          "finish_reason": "stop",
+          "prompt_tokens": 69,
+          "reasoning_chars": 0,
+          "seconds": 1.8338,
+          "text_head": "在这种情况下，血乳酸水平升高的最可能原因是肠道缺血。患者有糖尿病史，并出现腹痛、腹泻和发热，这些症状提示可能存在感染或炎症。然而，在补液和升压治疗后，虽然血压有",
+          "text_sha256": "a6beea07d6482652fb230867ed167df2430a39f21564e6c683c2aacf156a2984"
+        },
+        {
+          "completion_tokens": 101,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 0.9626,
+          "text_head": "根据患者的症状：腹痛、腹泻、脓血便、里急后重，这些表现与溃疡性结肠炎非常吻合。溃疡性结肠炎是一种慢性炎症性肠病，通常会导致结肠和直肠的炎症，从而引起上述症状。此",
+          "text_sha256": "88ffc08d5638ab0a47eaafc83fe51af70444f69d0d7f4a1b3aeb66c9250ab6ee"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 66,
+          "reasoning_chars": 0,
+          "seconds": 2.6847,
+          "text_head": "根据患者的肝功能检查结果，总胆红素为19.2μmol/L，结合胆红素为6.8μmol/L，白蛋白为35g/L，球蛋白为30g/L，凝血酶原时间为12秒，我们可以",
+          "text_sha256": "f231e5e6e65b050ff089aa5459f440b10f1ce4f5b4a53b178ee7c0de7228dd9c"
+        },
+        {
+          "completion_tokens": 78,
+          "finish_reason": "stop",
+          "prompt_tokens": 92,
+          "reasoning_chars": 0,
+          "seconds": 0.9787,
+          "text_head": "根据患者的情况，72岁男性，突发昏迷，CT诊断为脑出血，随后出现上消化道出血，最可能的原因是应激引起的急性胃粘膜病变。脑出血导致身体处于高度应激状态，这种应激反",
+          "text_sha256": "0d09b9f9972823fb5cefd8a4495d28a3d188e8ccd3e2a277fc2ddfa19557a1af"
+        },
+        {
+          "completion_tokens": 137,
+          "finish_reason": "stop",
+          "prompt_tokens": 22,
+          "reasoning_chars": 0,
+          "seconds": 1.5077,
+          "text_head": "根据患者的病情表现，不恰当的治疗方法包括：\n\n1. **使用抗生素**：如果患者没有明确的细菌感染证据，使用抗生素不仅无效，还可能导致抗生素耐药性增加，并可能引",
+          "text_sha256": "a33aa43270c14cf3df8b08764978094ecd8f33f2fd07201cb24e08015abd31ae"
+        },
+        {
+          "completion_tokens": 118,
+          "finish_reason": "stop",
+          "prompt_tokens": 81,
+          "reasoning_chars": 0,
+          "seconds": 1.6043,
+          "text_head": "根据患者的症状和病史，术后出现的嗜睡、体温降低、低血压、心动过缓以及腱反射减弱，这些表现与黏液性水肿危象非常一致。黏液性水肿危象是甲状腺功能减退的严重并发症，尤",
+          "text_sha256": "1a91147f1049bf17930230195e97e8e375ac2f394765db86f522414e52c8e66d"
+        },
+        {
+          "completion_tokens": 130,
+          "finish_reason": "stop",
+          "prompt_tokens": 65,
+          "reasoning_chars": 0,
+          "seconds": 1.3562,
+          "text_head": "根据患者的症状表现，经来先期、量多、色紫红、质黏稠，以及心烦、面红口干、小便黄、大便燥结，舌质红、苔黄、脉滑数，这些都指向了体内存在明显的实热症状。\n\n在中医治",
+          "text_sha256": "6334822e18417173623cb5c9d3eb908102b0898c671ec8461ea0f610edf5e260"
+        },
+        {
+          "completion_tokens": 108,
+          "finish_reason": "stop",
+          "prompt_tokens": 123,
+          "reasoning_chars": 0,
+          "seconds": 1.0654,
+          "text_head": "根据患者的症状和检查结果，最可能的诊断是C. 异位输尿管开口。患者长期出现持续性阴道漏尿，而尿常规显示有感染迹象，B超和肾图检查提示右肾重度积水且无功能。这些症",
+          "text_sha256": "174469f4616322030e1839023c0f1617a7ed610d07c4cf0478264afb04da08ac"
+        },
+        {
+          "completion_tokens": 209,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 2.6995,
+          "text_head": "对于这名3岁6个月的男孩，根据他的症状和体检结果，他可能存在严重的呼吸道问题，如哮喘急性发作或严重的下呼吸道感染。在急诊处理中，首要任务是确保他的气道通畅和缓解",
+          "text_sha256": "07982c19d7a5574dabbe091ac8f8b8e5915c2f280401cbd0da2c9b32976f91b0"
+        },
+        {
+          "completion_tokens": 111,
+          "finish_reason": "stop",
+          "prompt_tokens": 62,
+          "reasoning_chars": 0,
+          "seconds": 1.2938,
+          "text_head": "根据描述，这位患者最可能的死亡原因是急性心肌梗死引发的恶性心律失常，比如心室颤动。患者在劳累时出现心前区疼痛并向左肩放射，心电图显示心肌缺血，这些都是急性心肌梗",
+          "text_sha256": "9301fb8a96fc57573f783d139d3f948b33658ae9635406ac52b4f36a97f416b8"
+        },
+        {
+          "completion_tokens": 179,
+          "finish_reason": "stop",
+          "prompt_tokens": 44,
+          "reasoning_chars": 0,
+          "seconds": 2.487,
+          "text_head": "对于一名30岁的女性，怀孕50天且B超显示落雪图像，这通常提示葡萄胎的可能性较大。在这种情况下，随访是非常重要的，因为葡萄胎有发展为恶性病变的风险。\n\n通常建议",
+          "text_sha256": "8ed1896c244c79c8963eacdf846a6f3d7b9b995b8d49a0dd89113daf7bd439a1"
+        },
+        {
+          "completion_tokens": 161,
+          "finish_reason": "stop",
+          "prompt_tokens": 64,
+          "reasoning_chars": 0,
+          "seconds": 2.2921,
+          "text_head": "根据提供的信息，这位31岁女性婚后3年不孕，月经规则，基础体温呈双相变化，说明她有正常的排卵功能。然而，她出现了继发性的痛经，并且检查发现双附件增厚。这些症状和",
+          "text_sha256": "50b5afba945aab4e925eca4c1ff8f0061465c3ead406672c2267b2628e80736e"
+        },
+        {
+          "completion_tokens": 73,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 0.792,
+          "text_head": "对于一名2岁半的男孩，病程为3到4天的瑞氏综合征，通过肝穿刺进行病理切片观察，光学显微镜下可以观察到的主要特征性病理变化是肝细胞内的微泡性脂肪变性。这种变化表现",
+          "text_sha256": "9cb1b9ec85d9befbdc126e6fe02a385f1ead55d050f6ed8e6443b7a2d8e41f68"
+        },
+        {
+          "completion_tokens": 51,
+          "finish_reason": "stop",
+          "prompt_tokens": 37,
+          "reasoning_chars": 0,
+          "seconds": 0.5113,
+          "text_head": "根据《放射诊疗管理规定》，如果医疗机构使用不具备相应资质的人员从事放射诊疗工作，县级以上卫生行政部门可以责令其限期改正，并处以1万元以下的罚款。这一规定旨在确保",
+          "text_sha256": "2cc2820bbed17b5b21e47690f0ad5a5a25789cac6ba5a5937537504d2b71d9f2"
+        },
+        {
+          "completion_tokens": 54,
+          "finish_reason": "stop",
+          "prompt_tokens": 78,
+          "reasoning_chars": 0,
+          "seconds": 0.3464,
+          "text_head": "根据患者的症状和年龄，最可能的诊断是贲门癌。患者有吞咽梗阻感、消瘦、乏力以及中上腹痛，这些症状与贲门癌的表现相符。因此，最可能的诊断是C. 贲门癌。",
+          "text_sha256": "097b9872b0403fbd8235115821763f6606aaf26ec03f08c73aec15172208636f"
+        },
+        {
+          "completion_tokens": 49,
+          "finish_reason": "stop",
+          "prompt_tokens": 83,
+          "reasoning_chars": 0,
+          "seconds": 0.4526,
+          "text_head": "根据患者的症状和X线检查结果，他可能患有肺脓肿，这通常与厌氧菌感染有关。对于这种情况，首选的抗生素是克林霉素，因为它对厌氧菌有良好的疗效。因此，答案是D. 克林",
+          "text_sha256": "62b4edb54e8715a18805c71b4155f4cdb2badd66d86d4fb0336fd72961d07e60"
+        },
+        {
+          "completion_tokens": 107,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.4205,
+          "text_head": "对于70岁男性患者，其上颌牙列缺失，使用Co-Cr合金制作铸造支架时，建议选择磷酸盐包埋材料。这是因为Co-Cr合金的熔点较高，而磷酸盐包埋材料能够耐受高温，确",
+          "text_sha256": "f91d151644409b9e4555a59daad72d6e37ce65a88a70e786a209aba50472f54d"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 87,
+          "reasoning_chars": 0,
+          "seconds": 0.9376,
+          "text_head": "根据超声描述，结节位于脾门区，呈近圆形，内部回声与脾实质相同，且边缘清晰，这些特征都非常符合副脾的表现。副脾通常与脾脏组织具有相同的回声特征，并且边缘清晰，而脾",
+          "text_sha256": "d058b34abaf9f4facd5190365298e5807b740df12951c91ae49c1454945c6747"
+        },
+        {
+          "completion_tokens": 61,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 0.7028,
+          "text_head": "这项规定属于学校健康政策。学校健康政策是指学校为了保障学生的身心健康，制定的一系列规章制度和行为准则。禁止吸烟、喝酒和使用非法影响精神的物质的规定，正是学校健康",
+          "text_sha256": "510e8727c02c931600c84abf5ebaf0e51cfa1ab8fcf4da906fe6686c4c86075a"
+        },
+        {
+          "completion_tokens": 98,
+          "finish_reason": "stop",
+          "prompt_tokens": 56,
+          "reasoning_chars": 0,
+          "seconds": 0.905,
+          "text_head": "在皮肤细胞学检查中，如果发现大量单个角化不良、棘层松解性鳞状角质形成细胞，细胞呈圆形且核周有晕轮的特点，这种表现符合天疱疮。天疱疮是一种自身免疫性大疱性皮肤病，",
+          "text_sha256": "1b6a0cb242e083b47e7bf4ed4022ab584ac11f0586c587f3a900feb4c5d18334"
+        },
+        {
+          "completion_tokens": 87,
+          "finish_reason": "stop",
+          "prompt_tokens": 90,
+          "reasoning_chars": 0,
+          "seconds": 0.9868,
+          "text_head": "根据患者的症状分析，低热、口干唇焦、手足心热、手指蠕动、心中憺憺大动、舌质干绛、脉虚大，这些都指向阴虚内热，并伴有虚风内动的表现。因此，治疗上应该以滋阴为主，同",
+          "text_sha256": "33a050468386e3bf9c5076e70fd08da0173b2a6acb50568d30aa64fe52d07689"
+        },
+        {
+          "completion_tokens": 148,
+          "finish_reason": "stop",
+          "prompt_tokens": 59,
+          "reasoning_chars": 0,
+          "seconds": 1.0626,
+          "text_head": "漏报率可以通过以下公式计算：漏报率 = (漏报病例数 / 实际感染病例总数) × 100%。\n\n在这个问题中，漏报的医院感染病例数为20例，上报的医院感染病例数",
+          "text_sha256": "fc02854560ecd8a52b37f43a419b77f4c899215259410b867ec938b98b935040"
+        },
+        {
+          "completion_tokens": 73,
+          "finish_reason": "stop",
+          "prompt_tokens": 44,
+          "reasoning_chars": 0,
+          "seconds": 1.0141,
+          "text_head": "根据中医理论，这种治疗方法属于“培土生金”的原则。六君子汤主要用于补益脾胃，而脾胃在五行中属土，肺属金。通过补益脾胃（培土），可以增强其对肺（金）的支持作用，从",
+          "text_sha256": "a29047db9ec0ef9de2d8a9b0c40dce6ab188e80bfa28335b46bee59a577f4aff"
+        },
+        {
+          "completion_tokens": 134,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 1.5755,
+          "text_head": "根据患者的症状和体征，尤其是剧烈胀痛、苍白水肿、棕色流出物以及触诊时的捻发感，这些都非常符合气性坏疽的表现。气性坏疽通常由产气荚膜梭菌（Clostridium ",
+          "text_sha256": "e03588e794b18ec51693012e7f3bf89bacb2a1286fb31c21821e4e08fd43a6c2"
+        },
+        {
+          "completion_tokens": 117,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 1.277,
+          "text_head": "根据患者的症状和检查结果，最可能的并发症是中毒性巨结肠。患者表现出剧烈腹痛、高热、肛门少排气排便，以及腹部膨隆、全腹压痛、鼓音、肠鸣音消失等体征，这些都提示肠道",
+          "text_sha256": "b36429a243d5b7e6b1b9a9c34b17c8356fa4a1b7da4e7ad0633dd3cb6b3bd26f"
+        },
+        {
+          "completion_tokens": 200,
+          "finish_reason": "stop",
+          "prompt_tokens": 76,
+          "reasoning_chars": 0,
+          "seconds": 2.5617,
+          "text_head": "根据您提供的信息，这个婴儿的情况符合ABO血型不合引起的溶血性黄疸。母亲是O型血，婴儿是A型血，这种情况下，母亲体内的抗A抗体可能通过胎盘进入婴儿体内，导致婴儿",
+          "text_sha256": "7021837ae5c7214671f7f67f2a82f083e2e5d0d7d2b9e186a8dafd124449e344"
+        },
+        {
+          "completion_tokens": 104,
+          "finish_reason": "stop",
+          "prompt_tokens": 122,
+          "reasoning_chars": 0,
+          "seconds": 0.8422,
+          "text_head": "根据患者的症状表现，包括咳逆、喘息气粗、胸满烦躁、痰黄黏稠难咯、汗出不多、口渴欲饮、溲赤便干、舌尖红、苔黄腻、脉滑数，这些都指向了痰热壅肺的证候。针对这种证候，",
+          "text_sha256": "cb154568202d8b9df88130b9c83f01ac8aee3055b088393aa9d5986f7a06c20b"
+        },
+        {
+          "completion_tokens": 83,
+          "finish_reason": "stop",
+          "prompt_tokens": 85,
+          "reasoning_chars": 0,
+          "seconds": 0.736,
+          "text_head": "根据患者的症状分析，头晕目眩、神疲乏力、心悸健忘、眠差多梦，以及舌苔薄腻、脉细弱无力，这些表现都指向心血不足。心血不足会导致心神不宁，出现心悸、健忘、多梦等症状",
+          "text_sha256": "5e0a652ea83529eb6d61b7aab6fb323d478a4d4b237aa8bb10419c5bcb19a3c7"
+        },
+        {
+          "completion_tokens": 64,
+          "finish_reason": "stop",
+          "prompt_tokens": 92,
+          "reasoning_chars": 0,
+          "seconds": 0.9399,
+          "text_head": "对于这位55岁的女性，考虑到她的绝经状态和阴道黏膜菲薄的情况，使用生理盐水进行阴道冲洗是一个安全且合适的选择。生理盐水温和且不会刺激已经萎缩的阴道组织，能够有效",
+          "text_sha256": "34d107d8ffb9689395abb8a1e28e041b0d1879eddb642143874a5680d8802026"
+        },
+        {
+          "completion_tokens": 96,
+          "finish_reason": "stop",
+          "prompt_tokens": 101,
+          "reasoning_chars": 0,
+          "seconds": 0.8375,
+          "text_head": "根据患者的症状表现，包括下腹部胀痛、经血量多有块、排出痛减，以及伴随的经前情志抑郁和乳房胀痛，结合舌紫暗、脉弦涩，这些都提示有血瘀和肝气郁结的情况。\n\n在提供的",
+          "text_sha256": "ce827ab847987d80d3ac8de046f6bb0250215fe921a84b4fc2313fbbada10e62"
+        },
+        {
+          "completion_tokens": 160,
+          "finish_reason": "stop",
+          "prompt_tokens": 76,
+          "reasoning_chars": 0,
+          "seconds": 2.1231,
+          "text_head": "根据患者的症状和检查结果，他可能患有甲状腺功能亢进，并伴有低钾性周期性麻痹。在急诊处理中，首要任务是稳定患者的心律和纠正可能的低钾血症。\n\n首先，建议立即进行心",
+          "text_sha256": "9e792c5c61d9ed030461ab7eba361aad12f79762f2aa4d78d376f9c81f1a3f0a"
+        },
+        {
+          "completion_tokens": 56,
+          "finish_reason": "stop",
+          "prompt_tokens": 29,
+          "reasoning_chars": 0,
+          "seconds": 0.6759,
+          "text_head": "常发生在出生后或少年期且通常不影响视力的白内障最有可能是先天性白内障中的点状白内障。这种类型的白内障通常表现为晶状体中的小点状混浊，对视力影响较小，因此在儿童或",
+          "text_sha256": "3ab8429e3ec42da3ee943c5aa9805e64c4fd62216305c98f1befaf0b5562cce2"
+        },
+        {
+          "completion_tokens": 78,
+          "finish_reason": "stop",
+          "prompt_tokens": 83,
+          "reasoning_chars": 0,
+          "seconds": 0.7533,
+          "text_head": "根据患者的症状和声像图分析，最可能的诊断是C. 肝内胆管蛔虫。患者为34岁女性，出现反复发作的剧烈右上腹痛，这种症状与肝内胆管蛔虫感染相符。声像图中可能显示的细",
+          "text_sha256": "c2be02eaf2cb5e7180bb3859c74d43e454912ddfc203e413256cf390c48ea503"
+        },
+        {
+          "completion_tokens": 238,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 3.1094,
+          "text_head": "在这种情况下，最佳的治疗方案需要综合考虑患者的具体情况，包括肿瘤的大小、位置、分期，以及患者的整体健康状况。\n\n首先，根据患者的症状和检查结果，左肺门区的肿块很",
+          "text_sha256": "30e04fa18749d185b52a6c826cd66b96fae5959341b2d8657eb0e5dbf2e74438"
+        },
+        {
+          "completion_tokens": 134,
+          "finish_reason": "stop",
+          "prompt_tokens": 85,
+          "reasoning_chars": 0,
+          "seconds": 1.3451,
+          "text_head": "根据患者的临床表现和实验室检查结果，首先考虑的疾病是原发性肝细胞癌（HCC）。患者有长期的肝炎病史，这是肝癌的一个重要危险因素。近期出现的右侧季肋部持续胀痛、厌",
+          "text_sha256": "c3adb503f45116a2d6d8eddc29699add587755502d02a40905a6539d8e1a747c"
+        },
+        {
+          "completion_tokens": 70,
+          "finish_reason": "stop",
+          "prompt_tokens": 115,
+          "reasoning_chars": 0,
+          "seconds": 0.8298,
+          "text_head": "根据患者的症状和体征，可以判断出血部位在左基底节。患者出现右侧肢体无力、言语不清和意识障碍，这些症状通常与左脑的病变有关。特别是左基底节区域的出血，可以解释这些",
+          "text_sha256": "6623b3a8b612c60c86ee98d6a9da236997dc6d55392d695e38484b97ed04001e"
+        },
+        {
+          "completion_tokens": 163,
+          "finish_reason": "stop",
+          "prompt_tokens": 50,
+          "reasoning_chars": 0,
+          "seconds": 2.2008,
+          "text_head": "根据中医理论，这位患者的症状和习惯性流产可能与肾虚有关。肾在中医中负责生殖和发育，因此肾虚可能导致流产。患者的症状如腰膝酸软、头晕耳鸣、小便频数，都是典型的肾虚",
+          "text_sha256": "218797aa3699170c7f5327ebc45450642321cf74be3fc5a36896f6dbbedfdf06"
+        },
+        {
+          "completion_tokens": 107,
+          "finish_reason": "stop",
+          "prompt_tokens": 60,
+          "reasoning_chars": 0,
+          "seconds": 1.2999,
+          "text_head": "针对这位16岁女性患者的情况，考虑到她的症状和病史，最关键的检查是进行X光片检查。X光片能够帮助我们查看牙齿内部和周围骨头的情况，明确龋坏的深度，判断是否已经影",
+          "text_sha256": "87dfa46099d5bcd95efbc9509cbd7a3b58fc5fd53e6664bfeeb13e76d39189da"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 331.79,
+      "wall_seconds": 14.19
+    },
+    {
+      "completion_tokens": 4783,
+      "concurrency": 8,
+      "finish_length": 0,
+      "median_request_seconds": 1.261,
+      "per_request": [
+        {
+          "completion_tokens": 215,
+          "finish_reason": "stop",
+          "prompt_tokens": 69,
+          "reasoning_chars": 0,
+          "seconds": 3.7636,
+          "text_head": "根据您提供的症状，6岁男孩的情况确实符合急性链球菌感染后肾小球肾炎的表现，尤其是血清总补体下降、尿蛋白阳性、镜下血尿以及浮肿等症状。在中医治疗上，对于这种湿热下",
+          "text_sha256": "a0e64b8348e43cec1577705ec2196905d1729c3c5faa1b2839423b79506dcd9c"
+        },
+        {
+          "completion_tokens": 72,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 0.891,
+          "text_head": "根据患者左眼视力骤降、结膜混合充血以及角膜前突等症状，最可能的诊断是急性闭角型青光眼。这种病症通常表现为眼压急剧升高，导致视力迅速下降，并伴有眼部充血和角膜水肿",
+          "text_sha256": "b512fd3857b302ef11722ca941e96d7cfbfaf9041ddee0dd35e734f38affcc07"
+        },
+        {
+          "completion_tokens": 159,
+          "finish_reason": "stop",
+          "prompt_tokens": 69,
+          "reasoning_chars": 0,
+          "seconds": 2.2242,
+          "text_head": "在这种情况下，血乳酸水平升高的最可能原因是肠道缺血。患者有糖尿病史，并出现腹痛、腹泻和发热，这些症状提示可能存在感染或炎症。然而，在补液和升压治疗后，虽然血压有",
+          "text_sha256": "a6beea07d6482652fb230867ed167df2430a39f21564e6c683c2aacf156a2984"
+        },
+        {
+          "completion_tokens": 101,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 1.1507,
+          "text_head": "根据患者的症状：腹痛、腹泻、脓血便、里急后重，这些表现与溃疡性结肠炎非常吻合。溃疡性结肠炎是一种慢性炎症性肠病，通常会导致结肠和直肠的炎症，从而引起上述症状。此",
+          "text_sha256": "88ffc08d5638ab0a47eaafc83fe51af70444f69d0d7f4a1b3aeb66c9250ab6ee"
+        },
+        {
+          "completion_tokens": 255,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "reasoning_chars": 0,
+          "seconds": 2.8673,
+          "text_head": "根据患者的肝功能检查结果，总胆红素为19.2μmol/L，结合胆红素为6.8μmol/L，白蛋白为35g/L，球蛋白为30g/L，凝血酶原时间为12秒，我们可以",
+          "text_sha256": "606aecf8a9f76dbd4e4b12fc91ba2ada5101c8c8d9c5b9e0c7b3b412c2790526"
+        },
+        {
+          "completion_tokens": 78,
+          "finish_reason": "stop",
+          "prompt_tokens": 92,
+          "reasoning_chars": 0,
+          "seconds": 1.119,
+          "text_head": "根据患者的情况，72岁男性，突发昏迷，CT诊断为脑出血，随后出现上消化道出血，最可能的原因是应激引起的急性胃粘膜病变。脑出血导致身体处于高度应激状态，这种应激反",
+          "text_sha256": "0d09b9f9972823fb5cefd8a4495d28a3d188e8ccd3e2a277fc2ddfa19557a1af"
+        },
+        {
+          "completion_tokens": 194,
+          "finish_reason": "stop",
+          "prompt_tokens": 22,
+          "reasoning_chars": 0,
+          "seconds": 2.7012,
+          "text_head": "根据患者的病情表现，不恰当的治疗方法包括：\n\n1. **使用抗生素**：如果患者没有明确的细菌感染证据，使用抗生素不仅无效，还可能导致抗生素耐药性增加，并可能引",
+          "text_sha256": "a0bfb7b10f9d56dfeda9a13e2d7d33f8a63b411e73ed3e8444aef5c2c00582b7"
+        },
+        {
+          "completion_tokens": 118,
+          "finish_reason": "stop",
+          "prompt_tokens": 81,
+          "reasoning_chars": 0,
+          "seconds": 1.7466,
+          "text_head": "根据患者的症状和病史，术后出现的嗜睡、体温降低、低血压、心动过缓以及腱反射减弱，这些表现与黏液性水肿危象非常一致。黏液性水肿危象是甲状腺功能减退的严重并发症，尤",
+          "text_sha256": "b6ac38ec5b579e3209afb4cd8a689bed68f15c3f19ee775232345d0d0a640ef7"
+        },
+        {
+          "completion_tokens": 130,
+          "finish_reason": "stop",
+          "prompt_tokens": 65,
+          "reasoning_chars": 0,
+          "seconds": 1.5869,
+          "text_head": "根据患者的症状表现，经来先期、量多、色紫红、质黏稠，以及心烦、面红口干、小便黄、大便燥结，舌质红、苔黄、脉滑数，这些都指向了体内存在明显的实热症状。\n\n在中医治",
+          "text_sha256": "6334822e18417173623cb5c9d3eb908102b0898c671ec8461ea0f610edf5e260"
+        },
+        {
+          "completion_tokens": 108,
+          "finish_reason": "stop",
+          "prompt_tokens": 123,
+          "reasoning_chars": 0,
+          "seconds": 1.1036,
+          "text_head": "根据患者的症状和检查结果，最可能的诊断是C. 异位输尿管开口。患者长期出现持续性阴道漏尿，而尿常规显示有感染迹象，B超显示右肾重度积水且无功能，这些情况与异位输",
+          "text_sha256": "d0934d4630575371cc1d1f312df785991f3e8495a1a0619dbe88791171a8c877"
+        },
+        {
+          "completion_tokens": 237,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 3.843,
+          "text_head": "对于这名3岁6个月的男孩，根据他的症状和体检结果，他可能存在严重的呼吸道问题，如哮喘急性发作或严重的下呼吸道感染。在急诊处理中，首要任务是确保他的气道通畅和缓解",
+          "text_sha256": "05f698abf96578a5148611b1cbb6e8d3d028ccfeafaec2787293a6d5d8060556"
+        },
+        {
+          "completion_tokens": 111,
+          "finish_reason": "stop",
+          "prompt_tokens": 62,
+          "reasoning_chars": 0,
+          "seconds": 1.5305,
+          "text_head": "根据描述，这位患者最可能的死亡原因是急性心肌梗死引发的恶性心律失常，比如心室颤动。患者在劳累时出现心前区疼痛并向左肩放射，心电图显示心肌缺血，这些都是急性心肌梗",
+          "text_sha256": "9301fb8a96fc57573f783d139d3f948b33658ae9635406ac52b4f36a97f416b8"
+        },
+        {
+          "completion_tokens": 172,
+          "finish_reason": "stop",
+          "prompt_tokens": 44,
+          "reasoning_chars": 0,
+          "seconds": 2.9892,
+          "text_head": "对于一名30岁的女性，怀孕50天，B超检查显示落雪图像，这通常提示葡萄胎的可能性较大。对于这种情况，随访是非常重要的，因为葡萄胎有发展为恶性病变的风险。\n\n通常",
+          "text_sha256": "11f07977c9b2dae61c31880589699d158fc6dd5cbd8515abd3ae77d1340d493a"
+        },
+        {
+          "completion_tokens": 161,
+          "finish_reason": "stop",
+          "prompt_tokens": 64,
+          "reasoning_chars": 0,
+          "seconds": 2.8352,
+          "text_head": "根据提供的信息，这位31岁女性婚后3年不孕，月经规则，基础体温呈双相变化，说明她有正常的排卵功能。然而，她出现了继发性的痛经，并且检查发现双附件增厚。这些症状和",
+          "text_sha256": "50b5afba945aab4e925eca4c1ff8f0061465c3ead406672c2267b2628e80736e"
+        },
+        {
+          "completion_tokens": 73,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 1.0609,
+          "text_head": "对于一名2岁半的男孩，病程为3到4天的瑞氏综合征，通过肝穿刺进行病理切片观察，光学显微镜下可以观察到的主要特征性病理变化是肝细胞内的微泡性脂肪变性。这种变化表现",
+          "text_sha256": "9cb1b9ec85d9befbdc126e6fe02a385f1ead55d050f6ed8e6443b7a2d8e41f68"
+        },
+        {
+          "completion_tokens": 51,
+          "finish_reason": "stop",
+          "prompt_tokens": 37,
+          "reasoning_chars": 0,
+          "seconds": 0.6536,
+          "text_head": "根据《放射诊疗管理规定》，如果医疗机构使用不具备相应资质的人员从事放射诊疗工作，县级以上卫生行政部门可以责令其限期改正，并处以1万元以下的罚款。这一规定旨在确保",
+          "text_sha256": "2cc2820bbed17b5b21e47690f0ad5a5a25789cac6ba5a5937537504d2b71d9f2"
+        },
+        {
+          "completion_tokens": 54,
+          "finish_reason": "stop",
+          "prompt_tokens": 78,
+          "reasoning_chars": 0,
+          "seconds": 0.3811,
+          "text_head": "根据患者的症状和年龄，最可能的诊断是贲门癌。患者有吞咽梗阻感、消瘦、乏力以及中上腹痛，这些症状与贲门癌的表现相符。因此，最可能的诊断是C. 贲门癌。",
+          "text_sha256": "097b9872b0403fbd8235115821763f6606aaf26ec03f08c73aec15172208636f"
+        },
+        {
+          "completion_tokens": 48,
+          "finish_reason": "stop",
+          "prompt_tokens": 83,
+          "reasoning_chars": 0,
+          "seconds": 0.6196,
+          "text_head": "根据患者的症状和X线检查结果，他可能患有肺脓肿，这通常与厌氧菌感染有关。对于厌氧菌感染，克林霉素是常用的有效抗生素。因此，在这种情况下，治疗首选的是D. 克林霉",
+          "text_sha256": "c3dbf6ac523b7fe49f000841ed6aec7b3210a8aaa42b201937c7b6a7ae62f1a1"
+        },
+        {
+          "completion_tokens": 107,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.6868,
+          "text_head": "对于70岁男性患者，其上颌牙列缺失，使用Co-Cr合金制作铸造支架时，建议选择磷酸盐包埋材料。这是因为Co-Cr合金的熔点较高，而磷酸盐包埋材料能够耐受高温，确",
+          "text_sha256": "f91d151644409b9e4555a59daad72d6e37ce65a88a70e786a209aba50472f54d"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 87,
+          "reasoning_chars": 0,
+          "seconds": 1.1247,
+          "text_head": "根据超声描述，结节位于脾门区，呈近圆形，内部回声与脾实质相同，且边缘清晰，这些特征都非常符合副脾的表现。副脾通常与脾脏组织具有相同的回声特征，并且边缘清晰，而脾",
+          "text_sha256": "d058b34abaf9f4facd5190365298e5807b740df12951c91ae49c1454945c6747"
+        },
+        {
+          "completion_tokens": 61,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 0.8322,
+          "text_head": "这项规定属于学校健康政策。学校健康政策是指学校为了保障学生的身心健康，制定的一系列规章制度和行为准则。禁止吸烟、喝酒和使用非法影响精神的物质的规定，正是学校健康",
+          "text_sha256": "510e8727c02c931600c84abf5ebaf0e51cfa1ab8fcf4da906fe6686c4c86075a"
+        },
+        {
+          "completion_tokens": 98,
+          "finish_reason": "stop",
+          "prompt_tokens": 56,
+          "reasoning_chars": 0,
+          "seconds": 1.0641,
+          "text_head": "在皮肤细胞学检查中，如果发现大量单个角化不良、棘层松解性鳞状角质形成细胞，细胞呈圆形且核周有晕轮的特点，这种表现符合天疱疮。天疱疮是一种自身免疫性大疱性皮肤病，",
+          "text_sha256": "1b6a0cb242e083b47e7bf4ed4022ab584ac11f0586c587f3a900feb4c5d18334"
+        },
+        {
+          "completion_tokens": 87,
+          "finish_reason": "stop",
+          "prompt_tokens": 90,
+          "reasoning_chars": 0,
+          "seconds": 1.0971,
+          "text_head": "根据患者的症状分析，低热、口干唇焦、手足心热、手指蠕动、心中憺憺大动、舌质干绛、脉虚大，这些都指向阴虚内热，并伴有虚风内动的表现。因此，治疗上应该以滋阴为主，同",
+          "text_sha256": "33a050468386e3bf9c5076e70fd08da0173b2a6acb50568d30aa64fe52d07689"
+        },
+        {
+          "completion_tokens": 148,
+          "finish_reason": "stop",
+          "prompt_tokens": 59,
+          "reasoning_chars": 0,
+          "seconds": 1.302,
+          "text_head": "漏报率可以通过以下公式计算：漏报率 = (漏报病例数 / 实际感染病例总数) × 100%。\n\n在这个问题中，漏报的医院感染病例数为20例，上报的医院感染病例数",
+          "text_sha256": "fc02854560ecd8a52b37f43a419b77f4c899215259410b867ec938b98b935040"
+        },
+        {
+          "completion_tokens": 73,
+          "finish_reason": "stop",
+          "prompt_tokens": 44,
+          "reasoning_chars": 0,
+          "seconds": 1.2207,
+          "text_head": "根据中医理论，这种治疗方法属于“培土生金”的原则。六君子汤主要用于补益脾胃，而脾胃在五行中属土，肺属金。通过补益脾胃（培土），可以增强其对肺（金）的支持作用，从",
+          "text_sha256": "a29047db9ec0ef9de2d8a9b0c40dce6ab188e80bfa28335b46bee59a577f4aff"
+        },
+        {
+          "completion_tokens": 134,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 1.9659,
+          "text_head": "根据患者的症状和体征，尤其是剧烈胀痛、苍白水肿的皮肤、棕色流出物以及触诊时的捻发感，这些都非常符合气性坏疽的表现。气性坏疽通常由产气荚膜梭菌（Clostridi",
+          "text_sha256": "77d5e9d18433a5d613bb70e6f82ceaeeb83f5626be5cefdf405f27c23141060c"
+        },
+        {
+          "completion_tokens": 110,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 1.4823,
+          "text_head": "根据患者的症状和检查结果，最可能的并发症是中毒性巨结肠。患者表现出剧烈腹痛、高热、肛门少排气排便，以及腹部膨隆、全腹压痛、鼓音、肠鸣音消失等体征，这些都提示肠道",
+          "text_sha256": "5e78d3b9e6866d466b81decbaecbde38268f2a8683ab2c9e63b8d687da6f3ea8"
+        },
+        {
+          "completion_tokens": 200,
+          "finish_reason": "stop",
+          "prompt_tokens": 76,
+          "reasoning_chars": 0,
+          "seconds": 3.0662,
+          "text_head": "根据您提供的信息，这个婴儿的情况符合ABO血型不合引起的溶血性黄疸。母亲是O型血，婴儿是A型血，这种情况下，母亲体内的抗A抗体可能通过胎盘进入婴儿体内，导致婴儿",
+          "text_sha256": "7021837ae5c7214671f7f67f2a82f083e2e5d0d7d2b9e186a8dafd124449e344"
+        },
+        {
+          "completion_tokens": 104,
+          "finish_reason": "stop",
+          "prompt_tokens": 122,
+          "reasoning_chars": 0,
+          "seconds": 1.0904,
+          "text_head": "根据患者的症状表现，包括咳逆、喘息气粗、胸满烦躁、痰黄黏稠难咯、汗出不多、口渴欲饮、溲赤便干、舌尖红、苔黄腻、脉滑数，这些都指向了痰热壅肺的证候。针对这种证候，",
+          "text_sha256": "cb154568202d8b9df88130b9c83f01ac8aee3055b088393aa9d5986f7a06c20b"
+        },
+        {
+          "completion_tokens": 83,
+          "finish_reason": "stop",
+          "prompt_tokens": 85,
+          "reasoning_chars": 0,
+          "seconds": 0.9129,
+          "text_head": "根据患者的症状分析，头晕目眩、神疲乏力、心悸健忘、眠差多梦，以及舌苔薄腻、脉细弱无力，这些表现都指向心血不足。心血不足会导致心神不宁，出现心悸、健忘、多梦等症状",
+          "text_sha256": "5e0a652ea83529eb6d61b7aab6fb323d478a4d4b237aa8bb10419c5bcb19a3c7"
+        },
+        {
+          "completion_tokens": 64,
+          "finish_reason": "stop",
+          "prompt_tokens": 92,
+          "reasoning_chars": 0,
+          "seconds": 1.1225,
+          "text_head": "对于这位55岁的女性，考虑到她的绝经状态和阴道黏膜菲薄的情况，使用生理盐水进行阴道冲洗是一个安全且合适的选择。生理盐水温和且不会刺激已经萎缩的阴道组织，能够有效",
+          "text_sha256": "34d107d8ffb9689395abb8a1e28e041b0d1879eddb642143874a5680d8802026"
+        },
+        {
+          "completion_tokens": 96,
+          "finish_reason": "stop",
+          "prompt_tokens": 101,
+          "reasoning_chars": 0,
+          "seconds": 1.1202,
+          "text_head": "根据患者的症状表现，包括下腹部胀痛、经血量多有块、排出痛减，以及伴随的经前情志抑郁和乳房胀痛，结合舌紫暗、脉弦涩，这些都提示有血瘀和肝气郁结的情况。\n\n在提供的",
+          "text_sha256": "ce827ab847987d80d3ac8de046f6bb0250215fe921a84b4fc2313fbbada10e62"
+        },
+        {
+          "completion_tokens": 160,
+          "finish_reason": "stop",
+          "prompt_tokens": 76,
+          "reasoning_chars": 0,
+          "seconds": 2.4086,
+          "text_head": "根据患者的症状和检查结果，他可能患有甲状腺功能亢进，并伴有低钾性周期性麻痹。在急诊处理中，首要任务是稳定患者的心律和纠正可能的低钾血症。\n\n首先，建议立即进行心",
+          "text_sha256": "df7c2355e75bdf9ccebb939cff4df453ea26035509e8dfd3c0e6f7fc27cfba68"
+        },
+        {
+          "completion_tokens": 56,
+          "finish_reason": "stop",
+          "prompt_tokens": 29,
+          "reasoning_chars": 0,
+          "seconds": 0.8496,
+          "text_head": "常发生在出生后或少年期且通常不影响视力的白内障最有可能是先天性白内障中的点状白内障。这种类型的白内障通常表现为晶状体中的小点状混浊，对视力影响较小，因此在儿童或",
+          "text_sha256": "3ab8429e3ec42da3ee943c5aa9805e64c4fd62216305c98f1befaf0b5562cce2"
+        },
+        {
+          "completion_tokens": 78,
+          "finish_reason": "stop",
+          "prompt_tokens": 83,
+          "reasoning_chars": 0,
+          "seconds": 0.909,
+          "text_head": "根据患者的症状和声像图分析，最可能的诊断是C. 肝内胆管蛔虫。患者为34岁女性，出现反复发作的剧烈右上腹痛，这种症状与肝内胆管蛔虫感染相符。声像图中可能显示的细",
+          "text_sha256": "c2be02eaf2cb5e7180bb3859c74d43e454912ddfc203e413256cf390c48ea503"
+        },
+        {
+          "completion_tokens": 238,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 3.1547,
+          "text_head": "在这种情况下，最佳的治疗方案需要综合考虑患者的具体情况，包括肿瘤的大小、位置、分期，以及患者的整体健康状况。\n\n首先，根据患者的症状和检查结果，左肺门区的肿块很",
+          "text_sha256": "30e04fa18749d185b52a6c826cd66b96fae5959341b2d8657eb0e5dbf2e74438"
+        },
+        {
+          "completion_tokens": 134,
+          "finish_reason": "stop",
+          "prompt_tokens": 85,
+          "reasoning_chars": 0,
+          "seconds": 1.4153,
+          "text_head": "根据患者的临床表现和实验室检查结果，首先考虑的疾病是原发性肝细胞癌（HCC）。患者有长期的肝炎病史，这是肝癌的一个重要危险因素。近期出现的右侧季肋部持续胀痛、厌",
+          "text_sha256": "c3adb503f45116a2d6d8eddc29699add587755502d02a40905a6539d8e1a747c"
+        },
+        {
+          "completion_tokens": 70,
+          "finish_reason": "stop",
+          "prompt_tokens": 115,
+          "reasoning_chars": 0,
+          "seconds": 0.9249,
+          "text_head": "根据患者的症状和体征，可以判断出血部位在左基底节。患者出现右侧肢体无力、言语不清和意识障碍，这些症状通常与左脑的病变有关。特别是左基底节区域的出血，可以解释这些",
+          "text_sha256": "6623b3a8b612c60c86ee98d6a9da236997dc6d55392d695e38484b97ed04001e"
+        },
+        {
+          "completion_tokens": 149,
+          "finish_reason": "stop",
+          "prompt_tokens": 50,
+          "reasoning_chars": 0,
+          "seconds": 2.1661,
+          "text_head": "根据中医理论，这位患者的症状和习惯性流产可能与肾虚有关。肾在中医中负责生殖和发育，因此肾虚可能导致流产。患者的症状如腰膝酸软、头晕耳鸣、小便频数，都是典型的肾虚",
+          "text_sha256": "08cda078c99a8e953248b061ab4c630d0605419cb45cf6c9d6e80fd27e6ab36c"
+        },
+        {
+          "completion_tokens": 107,
+          "finish_reason": "stop",
+          "prompt_tokens": 60,
+          "reasoning_chars": 0,
+          "seconds": 1.4872,
+          "text_head": "针对这位16岁女性患者的情况，考虑到她的症状和病史，最关键的检查是进行X光片检查。X光片能够帮助我们查看牙齿内部和周围骨头的情况，明确龋坏的深度，判断是否已经影",
+          "text_sha256": "87dfa46099d5bcd95efbc9509cbd7a3b58fc5fd53e6664bfeeb13e76d39189da"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 503.88,
+      "wall_seconds": 9.49
+    },
+    {
+      "completion_tokens": 4835,
+      "concurrency": 16,
+      "finish_length": 0,
+      "median_request_seconds": 1.741,
+      "per_request": [
+        {
+          "completion_tokens": 224,
+          "finish_reason": "stop",
+          "prompt_tokens": 69,
+          "reasoning_chars": 0,
+          "seconds": 5.1777,
+          "text_head": "根据您提供的症状，6岁小男孩的情况确实符合急性链球菌感染后肾小球肾炎的表现，尤其是血清总补体下降、尿蛋白阳性、镜下血尿以及浮肿等症状。在中医治疗上，对于这种湿热",
+          "text_sha256": "43b25f4c46d53387e77395cc91374aee865ef81e5a1ebb6e0d3660f77f7fe256"
+        },
+        {
+          "completion_tokens": 83,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 1.7486,
+          "text_head": "根据患者描述的症状，包括左眼视力骤降、结膜混合充血以及角膜前突，这些症状高度提示急性闭角型青光眼的可能性。急性闭角型青光眼是一种眼科急症，通常由于房水流出受阻导",
+          "text_sha256": "bcd8aae441950c7980cbd11924d8b463a1621090d885f39c05fd5cd9ffc9069c"
+        },
+        {
+          "completion_tokens": 159,
+          "finish_reason": "stop",
+          "prompt_tokens": 69,
+          "reasoning_chars": 0,
+          "seconds": 3.1095,
+          "text_head": "在这种情况下，血乳酸水平升高的最可能原因是肠道缺血。患者有糖尿病史，并出现腹痛、腹泻和发热，这些症状提示可能存在感染或炎症。然而，在补液和升压治疗后，虽然血压有",
+          "text_sha256": "a6beea07d6482652fb230867ed167df2430a39f21564e6c683c2aacf156a2984"
+        },
+        {
+          "completion_tokens": 98,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 1.3773,
+          "text_head": "根据患者的症状：腹痛、腹泻、脓血便、里急后重，这些表现与溃疡性结肠炎非常吻合。溃疡性结肠炎是一种慢性炎症性肠病，通常会导致结肠和直肠的炎症，从而引起上述症状。此",
+          "text_sha256": "7da532b642f585883b357169b2d8cc38f6f2631d7a29b200555de3ae34ff8a23"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "reasoning_chars": 0,
+          "seconds": 3.8805,
+          "text_head": "根据患者的肝功能检查结果，总胆红素为19.2μmol/L，结合胆红素为6.8μmol/L，白蛋白为35g/L，球蛋白为30g/L，凝血酶原时间为12秒，我们可以",
+          "text_sha256": "f9b03edad5fa787514f052a70721926c563ecf80b039757e6f86d58889bffbca"
+        },
+        {
+          "completion_tokens": 78,
+          "finish_reason": "stop",
+          "prompt_tokens": 92,
+          "reasoning_chars": 0,
+          "seconds": 1.5819,
+          "text_head": "根据患者的情况，72岁男性，突发昏迷，CT诊断为脑出血，随后出现上消化道出血，最可能的原因是应激引起的急性胃粘膜病变。脑出血导致身体处于高度应激状态，这种应激反",
+          "text_sha256": "0d09b9f9972823fb5cefd8a4495d28a3d188e8ccd3e2a277fc2ddfa19557a1af"
+        },
+        {
+          "completion_tokens": 191,
+          "finish_reason": "stop",
+          "prompt_tokens": 22,
+          "reasoning_chars": 0,
+          "seconds": 3.6719,
+          "text_head": "根据患者的病情表现，不恰当的治疗方法包括：\n\n1. **使用抗生素**：如果患者没有明确的细菌感染证据，使用抗生素不仅无效，还可能导致抗生素耐药性增加，并可能引",
+          "text_sha256": "28e883bc779ebf8504ebce73533eda9f7dc8a591bf876e383381fe32e6cc25da"
+        },
+        {
+          "completion_tokens": 142,
+          "finish_reason": "stop",
+          "prompt_tokens": 81,
+          "reasoning_chars": 0,
+          "seconds": 3.1033,
+          "text_head": "根据患者的症状和病史，术后出现的嗜睡、体温降低、低血压、心动过缓以及腱反射减弱等症状，最可能的原因是黏液性水肿昏迷。这种状况通常与甲状腺功能减退有关，尤其是在老",
+          "text_sha256": "7f0be314bd903e2008416ecb3828f3feacdb3e537cd6ecc18df0f153d685cc1b"
+        },
+        {
+          "completion_tokens": 130,
+          "finish_reason": "stop",
+          "prompt_tokens": 65,
+          "reasoning_chars": 0,
+          "seconds": 2.2189,
+          "text_head": "根据患者的症状表现，经来先期、量多、色紫红、质黏稠，以及心烦、面红口干、小便黄、大便燥结，舌质红、苔黄、脉滑数，这些都指向了体内存在明显的实热症状。\n\n在中医治",
+          "text_sha256": "6334822e18417173623cb5c9d3eb908102b0898c671ec8461ea0f610edf5e260"
+        },
+        {
+          "completion_tokens": 117,
+          "finish_reason": "stop",
+          "prompt_tokens": 123,
+          "reasoning_chars": 0,
+          "seconds": 1.5439,
+          "text_head": "根据患者的症状和检查结果，最可能的诊断是C. 异位输尿管开口。患者长期出现持续性阴道漏尿，而尿常规显示有感染迹象，B超显示右肾重度积水且无功能，这些情况与异位输",
+          "text_sha256": "0ba6e874c110493dca6cf0aacbc3bcb0b94921aec5eb5e33bed2bd7b41b7aac5"
+        },
+        {
+          "completion_tokens": 237,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 5.0835,
+          "text_head": "对于这名3岁6个月的男孩，根据他的症状和体检结果，他可能存在严重的呼吸道问题，如哮喘急性发作或严重的下呼吸道感染。在急诊处理中，首要任务是确保他的气道通畅和缓解",
+          "text_sha256": "05f698abf96578a5148611b1cbb6e8d3d028ccfeafaec2787293a6d5d8060556"
+        },
+        {
+          "completion_tokens": 111,
+          "finish_reason": "stop",
+          "prompt_tokens": 62,
+          "reasoning_chars": 0,
+          "seconds": 2.1785,
+          "text_head": "根据描述，这位患者最可能的死亡原因是急性心肌梗死引发的恶性心律失常，比如心室颤动。患者在劳累时出现心前区疼痛并向左肩放射，心电图显示心肌缺血，这些都是急性心肌梗",
+          "text_sha256": "9301fb8a96fc57573f783d139d3f948b33658ae9635406ac52b4f36a97f416b8"
+        },
+        {
+          "completion_tokens": 179,
+          "finish_reason": "stop",
+          "prompt_tokens": 44,
+          "reasoning_chars": 0,
+          "seconds": 4.1452,
+          "text_head": "对于一名30岁的女性，怀孕50天且B超显示落雪图像，这通常提示葡萄胎的可能性较大。在这种情况下，随访是非常重要的，因为葡萄胎有发展为恶性病变的风险。\n\n通常建议",
+          "text_sha256": "8ed1896c244c79c8963eacdf846a6f3d7b9b995b8d49a0dd89113daf7bd439a1"
+        },
+        {
+          "completion_tokens": 161,
+          "finish_reason": "stop",
+          "prompt_tokens": 64,
+          "reasoning_chars": 0,
+          "seconds": 3.8778,
+          "text_head": "根据提供的信息，这位31岁女性婚后3年不孕，月经规则，基础体温呈双相变化，说明她有正常的排卵功能。然而，她出现了继发性的痛经，并且检查发现双附件增厚。这些症状和",
+          "text_sha256": "50b5afba945aab4e925eca4c1ff8f0061465c3ead406672c2267b2628e80736e"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 1.8747,
+          "text_head": "对于一名2岁半的男孩，病程为3到4天的瑞氏综合征，通过肝穿刺进行病理切片观察，在光学显微镜下可以观察到的主要特征性病理变化是肝细胞内的微泡性脂肪变性。瑞氏综合征",
+          "text_sha256": "37a05415655a247236540276b73ad1600aad1a8372405159f5956704dde4450d"
+        },
+        {
+          "completion_tokens": 50,
+          "finish_reason": "stop",
+          "prompt_tokens": 37,
+          "reasoning_chars": 0,
+          "seconds": 0.8249,
+          "text_head": "根据《放射诊疗管理规定》，如果医疗机构使用不具备相应资质的人员从事放射诊疗工作，县级以上卫生行政部门可以责令其限期改正，并处以1万元以下的罚款。这一规定旨在确保",
+          "text_sha256": "3e53cb08fb7c4abb7f09f654462299056595981e5cee0702a314f5f34d490ec0"
+        },
+        {
+          "completion_tokens": 54,
+          "finish_reason": "stop",
+          "prompt_tokens": 78,
+          "reasoning_chars": 0,
+          "seconds": 0.5058,
+          "text_head": "根据患者的症状和年龄，最可能的诊断是贲门癌。患者有吞咽梗阻感、消瘦、乏力以及中上腹痛，这些症状与贲门癌的表现相符。因此，最可能的诊断是C. 贲门癌。",
+          "text_sha256": "097b9872b0403fbd8235115821763f6606aaf26ec03f08c73aec15172208636f"
+        },
+        {
+          "completion_tokens": 49,
+          "finish_reason": "stop",
+          "prompt_tokens": 83,
+          "reasoning_chars": 0,
+          "seconds": 0.6742,
+          "text_head": "根据患者的症状和X线检查结果，他可能患有肺脓肿，这通常与厌氧菌感染有关。对于这种情况，首选的抗生素是克林霉素，因为它对厌氧菌有良好的疗效。因此，答案是D. 克林",
+          "text_sha256": "62b4edb54e8715a18805c71b4155f4cdb2badd66d86d4fb0336fd72961d07e60"
+        },
+        {
+          "completion_tokens": 107,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 2.3363,
+          "text_head": "对于70岁男性患者，其上颌牙列缺失，使用Co-Cr合金制作铸造支架时，建议选择磷酸盐包埋材料。这是因为Co-Cr合金的熔点较高，而磷酸盐包埋材料能够耐受高温，确",
+          "text_sha256": "f91d151644409b9e4555a59daad72d6e37ce65a88a70e786a209aba50472f54d"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 87,
+          "reasoning_chars": 0,
+          "seconds": 1.4264,
+          "text_head": "根据超声描述，结节位于脾门区，呈近圆形，内部回声与脾实质相同，且边缘清晰，这些特征都非常符合副脾的表现。副脾通常与脾脏组织具有相同的回声特征，并且边缘清晰，而脾",
+          "text_sha256": "d058b34abaf9f4facd5190365298e5807b740df12951c91ae49c1454945c6747"
+        },
+        {
+          "completion_tokens": 61,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 1.1723,
+          "text_head": "这项规定属于学校健康政策。学校健康政策是指学校为了保障学生的身心健康，制定的一系列规章制度和行为准则。禁止吸烟、喝酒和使用非法影响精神的物质的规定，正是学校健康",
+          "text_sha256": "510e8727c02c931600c84abf5ebaf0e51cfa1ab8fcf4da906fe6686c4c86075a"
+        },
+        {
+          "completion_tokens": 98,
+          "finish_reason": "stop",
+          "prompt_tokens": 56,
+          "reasoning_chars": 0,
+          "seconds": 1.5052,
+          "text_head": "在皮肤细胞学检查中，如果发现大量单个角化不良、棘层松解性鳞状角质形成细胞，细胞呈圆形且核周有晕轮的特点，这种表现符合天疱疮。天疱疮是一种自身免疫性大疱性皮肤病，",
+          "text_sha256": "1b6a0cb242e083b47e7bf4ed4022ab584ac11f0586c587f3a900feb4c5d18334"
+        },
+        {
+          "completion_tokens": 87,
+          "finish_reason": "stop",
+          "prompt_tokens": 90,
+          "reasoning_chars": 0,
+          "seconds": 1.5881,
+          "text_head": "根据患者的症状分析，低热、口干唇焦、手足心热、手指蠕动、心中憺憺大动、舌质干绛、脉虚大，这些都指向阴虚内热，并伴有虚风内动的表现。因此，治疗上应该以滋阴为主，同",
+          "text_sha256": "33a050468386e3bf9c5076e70fd08da0173b2a6acb50568d30aa64fe52d07689"
+        },
+        {
+          "completion_tokens": 123,
+          "finish_reason": "stop",
+          "prompt_tokens": 59,
+          "reasoning_chars": 0,
+          "seconds": 1.2842,
+          "text_head": "漏报率可以通过以下公式计算：漏报率 = (漏报病例数 / 实际感染病例总数) × 100%。\n\n在这个问题中，漏报的医院感染病例数为20例，上报的病例数为30例",
+          "text_sha256": "8747fd91de68b118ffa1af04e901b6a954775133646969bc5e25a3e04bbb2d7c"
+        },
+        {
+          "completion_tokens": 77,
+          "finish_reason": "stop",
+          "prompt_tokens": 44,
+          "reasoning_chars": 0,
+          "seconds": 1.7331,
+          "text_head": "根据中医理论，这种治疗方法属于“培土生金”的原则。六君子汤主要用于补益脾胃，而脾胃在五行中属土，肺属金。通过补益脾胃（土），可以间接增强肺（金）的功能，从而改善",
+          "text_sha256": "2d67a7a7ac983cf2a1b311e856f420234df795a927196befbc2e60d2495aa3ba"
+        },
+        {
+          "completion_tokens": 132,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 2.5169,
+          "text_head": "根据患者的症状和体征，尤其是剧烈胀痛、苍白水肿、棕色流出物和触诊时的捻发感，这些都非常符合气性坏疽的表现。气性坏疽通常由产气荚膜梭菌（Clostridium p",
+          "text_sha256": "e94695b60f38402263ce1f7e5e432aeab79dc00b8ac352aa85b849b16d61b9d8"
+        },
+        {
+          "completion_tokens": 125,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 2.2357,
+          "text_head": "根据患者的症状和检查结果，最可能的并发症是中毒性巨结肠。患者的剧烈腹痛、高热、肛门少排气排便，以及腹部膨隆、全腹压痛、鼓音、肠鸣音消失等表现，结合钡灌肠检查的结",
+          "text_sha256": "198a23344e0331b0238a17ede18e03bb684dc715f2c0f57d503c75daff1fea03"
+        },
+        {
+          "completion_tokens": 193,
+          "finish_reason": "stop",
+          "prompt_tokens": 76,
+          "reasoning_chars": 0,
+          "seconds": 3.1946,
+          "text_head": "根据您提供的信息，这个婴儿的情况符合ABO血型不合引起的溶血性黄疸。母亲是O型血，婴儿是A型血，这种情况下，母亲体内的抗A抗体可能通过胎盘进入婴儿体内，导致婴儿",
+          "text_sha256": "8439a205a35eb26d9c73ebc60d4d81ebfae271fd67b1ea4e452ed799025616a7"
+        },
+        {
+          "completion_tokens": 104,
+          "finish_reason": "stop",
+          "prompt_tokens": 122,
+          "reasoning_chars": 0,
+          "seconds": 1.3914,
+          "text_head": "根据患者的症状表现，包括咳逆、喘息气粗、胸满烦躁、痰黄黏稠难咯、汗出不多、口渴欲饮、溲赤便干、舌尖红、苔黄腻、脉滑数，这些都指向了痰热壅肺的证候。针对这种证候，",
+          "text_sha256": "cb154568202d8b9df88130b9c83f01ac8aee3055b088393aa9d5986f7a06c20b"
+        },
+        {
+          "completion_tokens": 83,
+          "finish_reason": "stop",
+          "prompt_tokens": 85,
+          "reasoning_chars": 0,
+          "seconds": 1.2125,
+          "text_head": "根据患者的症状分析，头晕目眩、神疲乏力、心悸健忘、眠差多梦，以及舌苔薄腻、脉细弱无力，这些表现都指向心血不足。心血不足会导致心神不宁，出现心悸、健忘、多梦等症状",
+          "text_sha256": "5e0a652ea83529eb6d61b7aab6fb323d478a4d4b237aa8bb10419c5bcb19a3c7"
+        },
+        {
+          "completion_tokens": 64,
+          "finish_reason": "stop",
+          "prompt_tokens": 92,
+          "reasoning_chars": 0,
+          "seconds": 1.5269,
+          "text_head": "对于这位55岁的女性，考虑到她的绝经状态和阴道黏膜菲薄的情况，使用生理盐水进行阴道冲洗是一个安全且合适的选择。生理盐水温和且不会刺激已经萎缩的阴道组织，能够有效",
+          "text_sha256": "34d107d8ffb9689395abb8a1e28e041b0d1879eddb642143874a5680d8802026"
+        },
+        {
+          "completion_tokens": 96,
+          "finish_reason": "stop",
+          "prompt_tokens": 101,
+          "reasoning_chars": 0,
+          "seconds": 1.4861,
+          "text_head": "根据患者的症状表现，包括下腹部胀痛、经血量多有块、排出痛减，以及伴随的经前情志抑郁和乳房胀痛，结合舌紫暗、脉弦涩，这些都提示有血瘀和肝气郁结的情况。\n\n在提供的",
+          "text_sha256": "ce827ab847987d80d3ac8de046f6bb0250215fe921a84b4fc2313fbbada10e62"
+        },
+        {
+          "completion_tokens": 160,
+          "finish_reason": "stop",
+          "prompt_tokens": 76,
+          "reasoning_chars": 0,
+          "seconds": 2.6498,
+          "text_head": "根据患者的症状和检查结果，他可能患有甲状腺功能亢进，并伴有低钾性周期性麻痹。在急诊处理中，首要任务是稳定患者的心律和纠正可能的低钾血症。\n\n首先，建议立即进行心",
+          "text_sha256": "9e792c5c61d9ed030461ab7eba361aad12f79762f2aa4d78d376f9c81f1a3f0a"
+        },
+        {
+          "completion_tokens": 56,
+          "finish_reason": "stop",
+          "prompt_tokens": 29,
+          "reasoning_chars": 0,
+          "seconds": 1.1454,
+          "text_head": "常发生在出生后或少年期且通常不影响视力的白内障最有可能是先天性白内障中的点状白内障。这种类型的白内障通常表现为晶状体中的小点状混浊，对视力影响较小，因此在儿童或",
+          "text_sha256": "3ab8429e3ec42da3ee943c5aa9805e64c4fd62216305c98f1befaf0b5562cce2"
+        },
+        {
+          "completion_tokens": 78,
+          "finish_reason": "stop",
+          "prompt_tokens": 83,
+          "reasoning_chars": 0,
+          "seconds": 1.1758,
+          "text_head": "根据患者的症状和声像图分析，最可能的诊断是C. 肝内胆管蛔虫。患者为34岁女性，出现反复发作的剧烈右上腹痛，这种症状与肝内胆管蛔虫感染相符。声像图中可能显示的细",
+          "text_sha256": "c2be02eaf2cb5e7180bb3859c74d43e454912ddfc203e413256cf390c48ea503"
+        },
+        {
+          "completion_tokens": 214,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 2.9508,
+          "text_head": "根据患者的情况，他是一位60岁的男性，左肺门区发现肿块已经5个月，最近一个月出现声嘶和吞咽困难，痰液细胞学检查显示为鳞癌细胞。这些症状和检查结果提示可能为中央型",
+          "text_sha256": "67c6a6707bace959c4eb35aaaa6ddb0b737f056bf9653f53a6560984668744ae"
+        },
+        {
+          "completion_tokens": 148,
+          "finish_reason": "stop",
+          "prompt_tokens": 85,
+          "reasoning_chars": 0,
+          "seconds": 1.8311,
+          "text_head": "根据患者的临床表现和实验室检查结果，首先考虑的疾病是原发性肝细胞癌（Hepatocellular Carcinoma, HCC）。患者有长期的肝炎病史，这是肝癌",
+          "text_sha256": "bbae2710e39ec51ff50f7b426d252e2fa2c1ff62edf12e8a70f3b8cf25e5f974"
+        },
+        {
+          "completion_tokens": 70,
+          "finish_reason": "stop",
+          "prompt_tokens": 115,
+          "reasoning_chars": 0,
+          "seconds": 1.2016,
+          "text_head": "根据患者的症状和体征，可以判断出血部位在左基底节。患者出现右侧肢体无力、言语不清和意识障碍，这些症状通常与左脑的病变有关。特别是左基底节区域的出血，可以解释这些",
+          "text_sha256": "6623b3a8b612c60c86ee98d6a9da236997dc6d55392d695e38484b97ed04001e"
+        },
+        {
+          "completion_tokens": 149,
+          "finish_reason": "stop",
+          "prompt_tokens": 50,
+          "reasoning_chars": 0,
+          "seconds": 2.4029,
+          "text_head": "根据中医理论，这位患者的症状和习惯性流产可能与肾虚有关。肾在中医中负责生殖和发育，因此肾虚可能导致流产。患者的症状如腰膝酸软、头晕耳鸣、小便频数，都是典型的肾虚",
+          "text_sha256": "08cda078c99a8e953248b061ab4c630d0605419cb45cf6c9d6e80fd27e6ab36c"
+        },
+        {
+          "completion_tokens": 107,
+          "finish_reason": "stop",
+          "prompt_tokens": 60,
+          "reasoning_chars": 0,
+          "seconds": 1.613,
+          "text_head": "针对这位16岁女性患者的情况，考虑到她的症状和病史，最关键的检查是进行X光片检查。X光片能够帮助我们查看牙齿内部和周围骨头的情况，明确龋坏的深度，判断是否已经影",
+          "text_sha256": "87dfa46099d5bcd95efbc9509cbd7a3b58fc5fd53e6664bfeeb13e76d39189da"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 707.44,
+      "wall_seconds": 6.83
+    }
+  ],
+  "max_tokens": 256,
+  "model": "Qwen/Qwen3.8-27B",
+  "num_prompts": 40,
+  "prompts": "eval_prompts.jsonl",
+  "skip": 120,
+  "thinking": false
+}

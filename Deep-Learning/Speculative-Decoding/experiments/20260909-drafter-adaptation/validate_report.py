@@ -91,7 +91,49 @@ def adaptation_table(summary, chinese):
         "吞吐列依次为不开推测 / 发布版 / 再训；接受长度列为发布版 / 再训。接受长度由日志累计 accepted/drafted 推导，含预热与两档并发，不是同一个测量分母。服务性能不作显著性声明；答案质量未评分。" if chinese else
         "Throughput cells list no speculation / released / adapted; acceptance cells list released / adapted. Acceptance is derived from cumulative logged accepted/drafted counts, including warmup and both concurrency levels, so its denominator differs. No serving-significance claim is made; answer quality was not graded.")
     sections.extend(round5_section(summary["round5"], chinese))
+    sections.extend(round6_section(summary["round6"], chinese))
     return "\n\n".join(sections)
+
+
+def round6_section(r6, chinese):
+    """Five disjoint prompt blocks at four concurrency levels; the gain is shown per block, never pooled."""
+    pc = r6["vllm"]["per_concurrency"]
+    ident = r6["text_identity"]
+    anchor = r6["block0_vs_round5_mean_pct"]
+    think = r6["thinking_attempt"]
+    sections = ["#### 提示集方差与高并发（Round 6）" if chinese else "#### Prompt-Set Variance and Higher Concurrency (Round 6)"]
+    sections.append(
+        "Round 5 的极差只覆盖计时抖动。为了看换一批提示后增益是否还在，2026-09-14 把同一 200 条中文留出提示按原顺序切成 5 块 × 40（block 0 即 Round 4/5 那 40 条），三条服务路线各启动一次 server，每块在并发 1/4/8/16 下各测一次。下表每格是该块上再训相对发布版 draft model 的吞吐增益；均值与最小值直接由五个数算出，不做分布假设。" if chinese else
+        "Round 5's ranges cover timing jitter only. To see whether the gain survives a different prompt sample, on 2026-09-14 the same 200 held-out Chinese prompts were split in file order into 5 blocks of 40 (block 0 is the Round 4/5 set), each serving route started one server, and every block was measured once at concurrency 1/4/8/16. Each cell below is the adapted-over-released throughput gain on that block; the mean and minimum are computed from the five numbers with no distributional assumption.")
+    headers = (["并发", "b0", "b1", "b2", "b3", "b4", "均值", "最小", "5 块全正"] if chinese else
+               ["Concurrency", "b0", "b1", "b2", "b3", "b4", "Mean", "Min", "All 5 positive"])
+    rows = []
+    for concurrency in sorted(pc, key=int):
+        entry = pc[concurrency]
+        cells = [f"{'+' if g >= 0 else ''}{g:.1f}%" for g in entry["adapted_over_released_pct_per_block"]]
+        rows.append([concurrency, *cells, f"{'+' if entry['gain_mean'] >= 0 else ''}{entry['gain_mean']:.1f}%",
+                     f"{'+' if entry['gain_min'] >= 0 else ''}{entry['gain_min']:.1f}%",
+                     ("是" if entry["all_blocks_positive"] else "否") if chinese else ("yes" if entry["all_blocks_positive"] else "no")])
+    sections.append(markdown_table(headers, rows))
+    trend_headers = ["路线" if chinese else "Route", "c1", "c4", "c8", "c16"]
+    trend_rows = [["发布版 / 不开推测" if chinese else "Released / no speculation", *[f"{pc[c]['released_speedup_mean']:.2f}×" for c in ("1", "4", "8", "16")]],
+                  ["再训 / 不开推测" if chinese else "Adapted / no speculation", *[f"{pc[c]['adapted_speedup_mean']:.2f}×" for c in ("1", "4", "8", "16")]]]
+    sections.append(markdown_table(trend_headers, trend_rows))
+    b0_dev = max(abs(v) for route in anchor.values() for v in route.values())
+    base_vs_rel = ident["1"]["baseline_vs_released_per_block"]
+    rel_vs_ours = ident["1"]["released_vs_adapted_per_block"]
+    sections.append(
+        (f"增益在 20 个块×并发格中全部为正，但幅度随提示块变化：Round 4/5 所用的 block 0 处于偏高一端，其余块的增益低至 {min(e['gain_min'] for e in pc.values()):.1f}%。引用时应写均值与逐块范围，不应单引 block 0。上表为五块均值的加速倍数：发布版从并发 1 到 16 衰减约 {(1 - pc['16']['released_speedup_mean'] / pc['1']['released_speedup_mean']) * 100:.0f}%，再训的相对增益在并发 16 仍为正。并发 16 等于引擎的 `max-num-seqs`。"
+         f"block 0 与 Round 5 四次运行均值的最大偏差为 {b0_dev:.2f}%。并发 1 下不开推测与发布版推测解码的逐字一致数逐块为 {'/'.join(map(str, base_vs_rel))}（每块 40 条），发布版与再训为 {'/'.join(map(str, rel_vs_ours))}。") if chinese else
+        (f"The gain is positive in all 20 block×concurrency cells, but its size depends on the prompt block: block 0, the Round 4/5 set, sits at the high end, and other blocks drop to {min(e['gain_min'] for e in pc.values()):.1f}%. Quote the mean and per-block range rather than block 0 alone. The second table shows five-block mean speedups: the released draft model loses about {(1 - pc['16']['released_speedup_mean'] / pc['1']['released_speedup_mean']) * 100:.0f}% of its speedup from concurrency 1 to 16, and the adapted model's relative gain stays positive at 16. Concurrency 16 equals the engine's `max-num-seqs`. "
+         f"Block 0 deviates from the Round 5 four-run means by at most {b0_dev:.2f}%. At concurrency 1 the byte-identical counts between no-speculation and released speculative decoding are {'/'.join(map(str, base_vs_rel))} per block (40 prompts each), and between released and adapted {'/'.join(map(str, rel_vs_ours))}."))
+    if think["valid"]:
+        sections.append("thinking 模式的 block 0 尝试有效，数字见汇总文件。" if chinese else "The block-0 thinking-mode attempt is valid; see the summary file.")
+    else:
+        sections.append(
+            "同日对 block 0 另做了一次 `enable_thinking=true`、`max_tokens=2048` 的尝试（并发 4/8）。服务端生成并计费了每条约 130 个 token，但客户端取回的 `content` 全为空且 `reasoning_content` 为零字符；模型实际运行的模式无法确认，逐字一致数也只是空串对空串。这次尝试的文件仍在 [results/round6/vllm/](experiments/20260909-drafter-adaptation/results/round6/vllm/) 中发布，但**不作为 thinking 模式的任何结论**；thinking 下的再适配收益仍未验证。" if chinese else
+            "A block-0 attempt with `enable_thinking=true` and `max_tokens=2048` (concurrency 4/8) was also made the same day. The server generated and billed roughly 130 tokens per response, but the client received empty `content` and zero `reasoning_content` characters for every response; the mode the model actually ran in cannot be confirmed, and any byte-identity count would compare empty strings. The files are published under [results/round6/vllm/](experiments/20260909-drafter-adaptation/results/round6/vllm/) but **support no conclusion about thinking mode**; the adaptation gain under thinking remains unverified.")
+    return sections
 
 
 def round5_section(r5, chinese):
@@ -203,7 +245,7 @@ def verify_manifest(root):
 
 def verify_provenance(root):
     provenance = read_json(root / "evidence/provenance.json")
-    for round_name in ("round3", "round4", "round5"):
+    for round_name in ("round3", "round4", "round5", "round6"):
         record = provenance[round_name]
         for public, entry in record["results"].items():
             require((root / "results" / round_name / public).is_file(), "PROVENANCE_RESULT_MISSING:" + public)
@@ -276,6 +318,7 @@ def validate(root=ROOT, *, refresh=False):
         ("published-prompts-hash-to-recorded-inputs", ["inputs/", "results/round4/acceptance/", "results/round3/acceptance/"]),
         ("training-history-and-readable-log-integrity", ["results/round3/training/", "results/round4/training/", "logs/"]),
         ("round5-repeated-serving-observations-and-text-identity", ["results/round5/vllm/", "logs/round5/"]),
+        ("round6-per-block-gain-concurrency-trend-and-thinking-validity", ["results/round6/vllm/", "logs/round6/", "source/round6/"]),
         ("provenance-hashes-and-private-marker-scan", ["evidence/provenance.json"]),
         ("generated-bilingual-adaptation-table", ["../../README.md", "../../README_CN.md"]),
         ("published-file-integrity", [MANIFEST]),

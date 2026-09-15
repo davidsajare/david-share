@@ -1,20 +1,20 @@
 {
   "files": {
     "analyze_results.py": {
-      "bytes": 28936,
-      "sha256": "b38dfe4cabca72df19160b3716dbe2c8abec47b639f5128c9397f0394a9c7e46"
+      "bytes": 36683,
+      "sha256": "e1d09ed3281832ea0bebfbcc5366cf28c8613d1b8dabfe201aba22fb9882597c"
     },
     "data/summary.json": {
-      "bytes": 41526,
-      "sha256": "15601e0071c8398470ee35835a30101f1dd779ee76ef9b4f36bd5afb32e59970"
+      "bytes": 51869,
+      "sha256": "65c228f987d5a5b433f24b86e1562353369f5bb394bd41d461349034d7ca0b8f"
     },
     "evidence/provenance.json": {
-      "bytes": 55836,
-      "sha256": "b29e3f17334d6bbf4fc7d126c83e37bc537a0137c0eecbf6e8150410a8665241"
+      "bytes": 67891,
+      "sha256": "d7fff3a32d4cf8dd643f31925efe76cdc20a32e597ee8c910e32c55e552924f3"
     },
     "export_evidence.py": {
-      "bytes": 25363,
-      "sha256": "4af22545c1af0fd49181ae7c5019344250d913e7f1917243f76f6fe1ed394fb9"
+      "bytes": 28361,
+      "sha256": "943675e61541cfe31607e36ef00342b3c829e8e89a04b59a960506d036bfddbf"
     },
     "images/loss-figures.json": {
       "bytes": 2245,
@@ -131,6 +131,18 @@
     "logs/round5/vllm_dflash_released_repB.log": {
       "bytes": 5330,
       "sha256": "672293da6a2d34b15faa22e1a69297cb3f8ce1267e8e30c0ee9b44021ad9e097"
+    },
+    "logs/round6/vllm_baseline.log": {
+      "bytes": 98,
+      "sha256": "8d183b26a520b423faae28ddb27e27e929a1e6ca0777568148682f37f3998d69"
+    },
+    "logs/round6/vllm_dflash_ours.log": {
+      "bytes": 13853,
+      "sha256": "e6dd62c254799b2590ab94e62e606bb1aa0a91f0b693e8e8b9a92b1ca3d287e7"
+    },
+    "logs/round6/vllm_dflash_released.log": {
+      "bytes": 14875,
+      "sha256": "0ae918bf7bb349586455d0f1ca9bdc313d364aae8b7c7ca286e63835bb8bc5e1"
     },
     "results/round3/acceptance/released_argmax.json": {
       "bytes": 29084,
@@ -328,6 +340,82 @@
       "bytes": 177,
       "sha256": "6ed84dbe9d2dbc8704399f4e8e21965aa30969fbb90684c028f0563aa4bcf8e7"
     },
+    "results/round6/vllm/baseline_b0.json": {
+      "bytes": 86740,
+      "sha256": "c1ad1e912682d7c38f668c84a01a9d3e629dc8fc90e62719c50e256d6f8ff123"
+    },
+    "results/round6/vllm/baseline_b1.json": {
+      "bytes": 87119,
+      "sha256": "414f70fbe1a4919a85664a32f51f366fe70965bc11965730f7edc55f11a484c2"
+    },
+    "results/round6/vllm/baseline_b2.json": {
+      "bytes": 86502,
+      "sha256": "35e278447e335691605f54e234e30441d2c4058c0226d8a7d88e2a859e1177d0"
+    },
+    "results/round6/vllm/baseline_b3.json": {
+      "bytes": 86909,
+      "sha256": "98eb855ce74a57078b2a4335d3df11011baf2986d06f773624d6758862441bd6"
+    },
+    "results/round6/vllm/baseline_b4.json": {
+      "bytes": 86643,
+      "sha256": "3799b151144856566d2811c7b1a416f081bbc2648a62bf5dd3ad735e7c0ddd98"
+    },
+    "results/round6/vllm/baseline_think_b0.json": {
+      "bytes": 25042,
+      "sha256": "bbd15b9b401721afef9e2f6bb1147f036553be1a9ae75de62e8e709c36ad53b8"
+    },
+    "results/round6/vllm/dflash_ours_b0.json": {
+      "bytes": 86783,
+      "sha256": "8566d56fe82587e36c4b48e515eac6a42cacfc1411c9d31d22a51b0b8ecc287b"
+    },
+    "results/round6/vllm/dflash_ours_b1.json": {
+      "bytes": 87127,
+      "sha256": "234bd1e0de39c9a0121d805947463e9b69b6efba67b737e7cf3c5d6cb6692252"
+    },
+    "results/round6/vllm/dflash_ours_b2.json": {
+      "bytes": 86495,
+      "sha256": "c14d37fbd7ca70d0df3b9bd5ea8533d3c0d1074a9ed13b0bf8bbbc2ac84ede5f"
+    },
+    "results/round6/vllm/dflash_ours_b3.json": {
+      "bytes": 86889,
+      "sha256": "d933bf343089807f12fdf9dec10716a484791677825a81d8e52a6d9cf65e1283"
+    },
+    "results/round6/vllm/dflash_ours_b4.json": {
+      "bytes": 86656,
+      "sha256": "b2f3c396d1ca7506b9cb76ca7099d4a42d16e678e4aa0d4871862da411b6e47a"
+    },
+    "results/round6/vllm/dflash_ours_think_b0.json": {
+      "bytes": 25051,
+      "sha256": "8e7d29dc6eafc3efd4007097a4d2c6619a4be1e1a35dc26b30c98fe76c7d66ab"
+    },
+    "results/round6/vllm/dflash_released_b0.json": {
+      "bytes": 86791,
+      "sha256": "a192c6300dccbe6903eb2d3f0dafc5cba7a0d5861e307b0bb68d0db3f3372294"
+    },
+    "results/round6/vllm/dflash_released_b1.json": {
+      "bytes": 87107,
+      "sha256": "f3ca1b635f6009bbdccc02292d7ec30ecf85a1858d4c33e5d6ddd8e02226f8a4"
+    },
+    "results/round6/vllm/dflash_released_b2.json": {
+      "bytes": 86499,
+      "sha256": "316d46dba9626417d312e5f26b57da2733b8a2957189f5eb4dbb68d53d2c309a"
+    },
+    "results/round6/vllm/dflash_released_b3.json": {
+      "bytes": 86953,
+      "sha256": "939f7214f07aa45f17f9bd537c7c295d7bc2928f1fc5be0c31de84fb5204e1a2"
+    },
+    "results/round6/vllm/dflash_released_b4.json": {
+      "bytes": 86663,
+      "sha256": "7a2da5a6584ffb425ef0006a6a223414d970559ccc5fab467483c13958464006"
+    },
+    "results/round6/vllm/dflash_released_think_b0.json": {
+      "bytes": 25052,
+      "sha256": "74a7ffc940ccba89eb2baf88aa2cd2503815e5744eb0f5858076d52345c81d08"
+    },
+    "results/round6/vllm/discovery.json": {
+      "bytes": 177,
+      "sha256": "6ed84dbe9d2dbc8704399f4e8e21965aa30969fbb90684c028f0563aa4bcf8e7"
+    },
     "source/round3/analyze_predictability.py": {
       "bytes": 11625,
       "sha256": "120f7e158f3bb9b21e1b7810644af495022db0798f000ce84be7b6fd2ae11f63"
@@ -416,13 +504,17 @@
       "bytes": 4572,
       "sha256": "0e43ba79eef993ff2df54ed595d87d95595dd8c4c1f1be3986319214e47c76cd"
     },
+    "source/round6/vllm_client_bench.py": {
+      "bytes": 5379,
+      "sha256": "9feeae26195753533c63549ccea481eaf7c8fdaf1df65a341fb141b802d1475a"
+    },
     "test_adaptation.py": {
-      "bytes": 15147,
-      "sha256": "45217bda7a64171d0fd413b16b8e939e03b5b3b4c6ca2706054e4b632b4d93e2"
+      "bytes": 18879,
+      "sha256": "d8deda19e16946115ec37a2f04d2d2e9291d0b9fdfa305aac1abd92212110801"
     },
     "validate_report.py": {
-      "bytes": 20022,
-      "sha256": "4a0cc57d556dabeb83864ff5c250218c064936ffa46f1934a9ff5dc58ed64b47"
+      "bytes": 26376,
+      "sha256": "a8daf1cb7985427f09cca688e0fa37e5a674c327738fb0bd62aace2ba31443c3"
     }
   },
   "scope": "Published experiment files; generated rule results and this manifest excluded."

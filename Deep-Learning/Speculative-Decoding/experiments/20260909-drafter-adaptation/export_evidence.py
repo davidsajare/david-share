@@ -136,6 +136,19 @@ ROUND5_RESULT_FILES = {
 ROUND5_RESULT_FILES["vllm/discovery.json"] = "state/discovery.json"
 ROUND5_LOG_FILES = {f"vllm_{route}_rep{rep}": f"logs/r5_server_{route}_rep{rep}.log"
                     for route in ROUND5_ROUTES for rep in "AB"}
+# Round 6 (2026-09-14) split the 200 held-out Chinese prompts into five blocks of 40 (block 0 is the
+# Round 4/5 set) and served each route once at concurrency 1/4/8/16. A thinking-mode pass on block 0
+# is published as well; the analyzer marks it invalid because the client retrieved no text.
+ROUND6_BLOCKS = (0, 1, 2, 3, 4)
+ROUND6_RESULT_FILES = {
+    f"vllm/{route}_b{block}.json": f"results/r6_vllm_{route}_b{block}.json"
+    for route in ROUND5_ROUTES for block in ROUND6_BLOCKS
+}
+ROUND6_RESULT_FILES.update({f"vllm/{route}_think_b0.json": f"results/r6_vllm_{route}_think_b0.json" for route in ROUND5_ROUTES})
+ROUND6_RESULT_FILES["vllm/discovery.json"] = "state/discovery.json"
+ROUND6_LOG_FILES = {f"vllm_{route}": f"logs/r6_server_{route}.log" for route in ROUND5_ROUTES}
+# The client gained --skip and --thinking for Round 6; that version is published, the shell is hashed only.
+ROUND6_SOURCE_FILES = {"vllm_client_bench.py": "src/vllm_client_bench.py"}
 ARTIFACT_FILES = {
     "adapter-v2/adapter_model.safetensors": "checkpoints/adapter-v2/adapter_model.safetensors",
     "adapter-v2/adapter_config.json": "checkpoints/adapter-v2/adapter_config.json",
@@ -410,6 +423,27 @@ def export_round5(round5_source, destination):
     print("ROUND5_EXPORT=PASS results=" + str(len(round5["results"])) + " logs=" + str(len(round5["logs"])))
 
 
+def export_round6(round6_source, destination):
+    """Append the Round 6 prompt-block and concurrency sweep to an existing export."""
+    provenance_path = destination / "evidence/provenance.json"
+    require(provenance_path.is_file(), "FULL_EXPORT_REQUIRED_FIRST")
+    provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+    markers = private_markers()
+    round6 = export_round("round6", round6_source.resolve(), destination.resolve(), ROUND6_RESULT_FILES, ROUND6_SOURCE_FILES,
+                          {}, {}, ROUND6_LOG_FILES, lambda name: "server", markers)
+    shell = round6_source / "src/round6.sh"
+    round6["source"]["round6.sh"] = {"published": False, "bytes": shell.stat().st_size, "sha256": digest_file(shell),
+                                     "reason": "orchestration shell with private host paths; engine flags identical to round4.sh"}
+    round6["source"]["vllm_client_bench.py"]["note"] = (
+        "Local copy the relay transmitted to the VM at launch; the remote copy was not re-hashed because the VM "
+        "was deallocated before export. Every published Round 6 record carries the skip/thinking fields only this version emits.")
+    provenance["round6"] = round6
+    dump_json(provenance_path, provenance)
+    for path in sorted((destination / "results" / "round6").rglob("*.json")):
+        require(find_private(path.read_text(encoding="utf-8"), markers) is None, "PRIVATE_MARKER_IN_PUBLIC_RESULT:" + path.name)
+    print("ROUND6_EXPORT=PASS results=" + str(len(round6["results"])) + " logs=" + str(len(round6["logs"])))
+
+
 def export(source, round4_source, destination):
     source = source.resolve()
     round4_source = round4_source.resolve()
@@ -459,12 +493,19 @@ def main():
     parser.add_argument("--source", type=Path, help="private archive root (gpu-run-20260908)")
     parser.add_argument("--round4-source", type=Path, help="Round 4 raw workspace copy")
     parser.add_argument("--round5-source", type=Path, help="Round 5 raw workspace copy (gpu-run-R5-20260913/raw-workspace)")
+    parser.add_argument("--round6-source", type=Path, help="Round 6 raw workspace copy (gpu-run-R6-20260914/raw-workspace)")
     parser.add_argument("--destination", type=Path, default=ROOT)
     parser.add_argument("--training-only", action="store_true",
                         help="Add training histories, source and readable logs to an existing export without rereading weights")
     parser.add_argument("--round5-only", action="store_true",
                         help="Add the Round 5 serving re-test to an existing export")
+    parser.add_argument("--round6-only", action="store_true",
+                        help="Add the Round 6 prompt-block and concurrency sweep to an existing export")
     args = parser.parse_args()
+    if args.round6_only:
+        require(args.round6_source is not None, "ROUND6_SOURCE_REQUIRED")
+        export_round6(args.round6_source, args.destination)
+        return
     if args.round5_only:
         require(args.round5_source is not None, "ROUND5_SOURCE_REQUIRED")
         export_round5(args.round5_source, args.destination)

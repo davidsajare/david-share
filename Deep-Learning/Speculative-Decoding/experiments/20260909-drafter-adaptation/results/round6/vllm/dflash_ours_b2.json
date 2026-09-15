@@ -1,0 +1,1496 @@
+{
+  "decoding": "temperature 0.0 via OpenAI chat completions, enable_thinking=false",
+  "label": "dflash_ours_b2",
+  "levels": [
+    {
+      "completion_tokens": 4656,
+      "concurrency": 1,
+      "finish_length": 2,
+      "median_request_seconds": 0.867,
+      "per_request": [
+        {
+          "completion_tokens": 93,
+          "finish_reason": "stop",
+          "prompt_tokens": 110,
+          "reasoning_chars": 0,
+          "seconds": 0.6863,
+          "text_head": "根据患者的症状和病史，首先考虑的诊断是颈深部化脓性蜂窝织炎。患者有牙痛和牙龈肿胀的病史，随后出现颈部肿胀、剧痛和高烧，这些症状与颈深部化脓性蜂窝织炎的表现相符。",
+          "text_sha256": "df5930360f6ececf203f862011a8a0ec609f9d951a660baf67b7783c135efcd2"
+        },
+        {
+          "completion_tokens": 200,
+          "finish_reason": "stop",
+          "prompt_tokens": 78,
+          "reasoning_chars": 0,
+          "seconds": 2.1696,
+          "text_head": "在这种情况下，这位孕妇和胎儿都面临一定的风险，需要迅速而谨慎地处理。\n\n首先，胎儿心率高达168次/分钟，这提示可能存在胎儿窘迫，需要立即关注。同时，产妇已经经",
+          "text_sha256": "937bb85b9d8ef33161b1fabf55db00d2ada690b600b12b3302287bcd489aeed8"
+        },
+        {
+          "completion_tokens": 72,
+          "finish_reason": "stop",
+          "prompt_tokens": 39,
+          "reasoning_chars": 0,
+          "seconds": 0.7467,
+          "text_head": "对于这位患有系统性红斑狼疮（SLE）的29岁女性患者，在使用化妆品后皮损加重的情况下，最主要的护理诊断是“皮肤完整性受损”。这是因为化妆品可能含有刺激成分，导致",
+          "text_sha256": "8658c2fc04587e95328c033347ed96be2fcfec3b777598d47dce6a2394844ae8"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 0.8415,
+          "text_head": "在临时出国(境)团(组)或者人员中的党员擅自延长在国(境)外期限或者擅自变更路线的情况下，根据《中国共产党纪律处分条例》，这种行为属于违反组织纪律的行为。对于直",
+          "text_sha256": "8964dae807b0ec1b1e6bf4264252265f321e12853817f60346432e5beb30cce3"
+        },
+        {
+          "completion_tokens": 121,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 1.4988,
+          "text_head": "对于这位72岁男性患者，由于他患有瘢痕性幽门梗阻，并且全身情况较差，首先需要采取保守治疗来改善他的身体状况。这包括通过静脉输液来纠正脱水和电解质失衡，以支持他的",
+          "text_sha256": "d9a04df780c4a3bdbcd647d285df217f9fc3ccf7a49ac3076e9e437172d87800"
+        },
+        {
+          "completion_tokens": 56,
+          "finish_reason": "stop",
+          "prompt_tokens": 47,
+          "reasoning_chars": 0,
+          "seconds": 0.5611,
+          "text_head": "该患者的热型属于稽留热。稽留热的特点是体温持续在较高水平，波动范围很小，通常不超过1℃。根据描述，该患者的体温在39℃到40℃之间，波动仅为1℃，符合稽留热的特",
+          "text_sha256": "3d867662cd2231a71cef2de3f194e5da872dad01f525d2984562e728c3c6ffe4"
+        },
+        {
+          "completion_tokens": 103,
+          "finish_reason": "stop",
+          "prompt_tokens": 73,
+          "reasoning_chars": 0,
+          "seconds": 1.1944,
+          "text_head": "根据Ann Arbor分期系统，这位47岁男性患者的外周T细胞性淋巴瘤（非特异型）的分期应为II期。分期依据如下：患者的颈部淋巴结和纵隔区域均受累，这两个区域位",
+          "text_sha256": "547e98b1abcee559006da16616e97f8b15f760ac9a81b59635d46fdaabcbe569"
+        },
+        {
+          "completion_tokens": 153,
+          "finish_reason": "stop",
+          "prompt_tokens": 161,
+          "reasoning_chars": 0,
+          "seconds": 1.2683,
+          "text_head": "根据患者的情况，他存在明显的骨性Ⅱ类错颌，ANB角高达10.0°，并且上前牙拥挤明显。对于这种情况，需要采取有效的矫治措施来改善上下颌骨的关系以及牙齿的排列。\n",
+          "text_sha256": "24e2999838a5a21d5a6c5f821100d429ff02950fbaa1793a0fe2f89d7779ab3b"
+        },
+        {
+          "completion_tokens": 79,
+          "finish_reason": "stop",
+          "prompt_tokens": 71,
+          "reasoning_chars": 0,
+          "seconds": 0.7957,
+          "text_head": "在这种情况下，这名35岁的男性患者很可能患有急性胰腺炎，并出现了休克症状。为了在24小时内显著降低他的死亡风险，最关键的措施是进行积极的液体复苏。通过静脉输液来",
+          "text_sha256": "ca3d6ec5b1256fbf5518c70f7b2afe560ca0d5fb00b3e4e05798e19d30554263"
+        },
+        {
+          "completion_tokens": 72,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 0.7016,
+          "text_head": "根据患者的年龄、症状以及治疗反应，最可能的诊断是C. ANUG（急性坏死性溃疡性龈炎）。ANUG在年轻人中较为常见，特别是在压力较大或免疫力下降的情况下。其症状",
+          "text_sha256": "42b74cb7b219966a93b3eafcd593e39a4f7fc0e1a16c84723987f8659e4c26d2"
+        },
+        {
+          "completion_tokens": 104,
+          "finish_reason": "stop",
+          "prompt_tokens": 98,
+          "reasoning_chars": 0,
+          "seconds": 1.056,
+          "text_head": "在这种情况下，考虑到患者的症状和体征，尤其是低热、腹胀、体重减轻以及腹水的存在，结核性腹膜炎是一个需要高度怀疑的可能性。在诊断不明确的情况下，采取试验性抗结核治",
+          "text_sha256": "0f6c9878426cccba37973d4814f54806b874fb7b702f533dcd2be152a559b719"
+        },
+        {
+          "completion_tokens": 213,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.9114,
+          "text_head": "根据小明的症状描述，可以诊断为腹股沟斜疝。腹股沟斜疝在儿童中较为常见，尤其是男孩。其特点包括：\n\n1. **疝内容物可达阴囊**：这是因为斜疝的疝囊通过腹股沟管",
+          "text_sha256": "77e83b443d314a6a95ef19d433cc5d5593107c9d3404d283f1c979607ec6c00b"
+        },
+        {
+          "completion_tokens": 60,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 0.4477,
+          "text_head": "根据描述，这种药材的特征与酸枣仁非常吻合。酸枣仁呈扁圆形或扁椭圆形，表面为紫红色或紫褐色，平滑有光泽，一端凹陷可见线形种脐，另一端有细小突起合点。因此，这种药材",
+          "text_sha256": "97b97b70491ebb597f60b273a755a49b0da97eaa997901a792d123f3e5ea27af"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 61,
+          "reasoning_chars": 0,
+          "seconds": 0.6113,
+          "text_head": "根据患者的症状表现，包括低热、午后发热、面色无华、倦怠无力、劳累后发热加剧、舌淡、脉细弱无力，这些均指向气虚的表现。对于气虚引起的发热，中医上常用补中益气汤进行",
+          "text_sha256": "a66e8ae6b8fa74e1dc3a085b7d57173974521db9b2387d75a2fd5e5aac7795d8"
+        },
+        {
+          "completion_tokens": 88,
+          "finish_reason": "stop",
+          "prompt_tokens": 103,
+          "reasoning_chars": 0,
+          "seconds": 0.7709,
+          "text_head": "根据描述的症状和病史，这个新生儿可能患有颅内出血或脑水肿，尤其是在产钳助产后出现这些症状。对于这种情况，早期处理的关键是降低颅内压。\n\n在选项中，甘露醇是一种常",
+          "text_sha256": "ef90ade9fb0e3901651962274974a7730eb4db8efb97eda07ac2933b0816cb87"
+        },
+        {
+          "completion_tokens": 94,
+          "finish_reason": "stop",
+          "prompt_tokens": 35,
+          "reasoning_chars": 0,
+          "seconds": 0.8207,
+          "text_head": "根据患者的病理检验结果和镜检照片，结合其他症状和检查，诊断此患者的肾脏疾病是IgA肾病（也称为IgA肾小球病或Berger病）。IgA肾病通常表现为血尿，尤其是",
+          "text_sha256": "8d24ece68c8891d984f440e4414d5a67d3995bc0dc9076b827e09d08e4872297"
+        },
+        {
+          "completion_tokens": 152,
+          "finish_reason": "stop",
+          "prompt_tokens": 89,
+          "reasoning_chars": 0,
+          "seconds": 1.2915,
+          "text_head": "根据患者的症状和表现，结合中医理论进行分析，可以得出以下结论：\n\n患者何某，54岁女性，因暴怒突然晕倒，不省人事，牙关紧闭，面赤唇紫，舌红，脉沉弦。这些症状提示",
+          "text_sha256": "7983601ca89b7558de384213832dc8557726d8e751792a796eef3c4f7e74320a"
+        },
+        {
+          "completion_tokens": 108,
+          "finish_reason": "stop",
+          "prompt_tokens": 89,
+          "reasoning_chars": 0,
+          "seconds": 1.1714,
+          "text_head": "根据描述的症状和体征，这个小女孩很可能患有先天性心脏病中的房间隔缺损（ASD）。房间隔缺损会导致左心房和右心房之间的异常血流，从而引起肺循环的负担加重，导致肺野",
+          "text_sha256": "bd2f1b2b30a2ea9be0a43148f343b61ebab216640d60bf792624eb2c7e72a97e"
+        },
+        {
+          "completion_tokens": 53,
+          "finish_reason": "stop",
+          "prompt_tokens": 34,
+          "reasoning_chars": 0,
+          "seconds": 0.5363,
+          "text_head": "在对患者进行免疫血清学诊断传染病时，Ag-Ab反应中常用的NaCl浓度是0.85%。这个浓度接近生理盐水的等渗浓度，能够维持细胞的正常形态，并保证抗原和抗体反应",
+          "text_sha256": "4ec852478db8475fd988053a7abadebcce78aae8a229bc212296028218360c86"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 28,
+          "reasoning_chars": 0,
+          "seconds": 1.077,
+          "text_head": "根据患者的症状表现和体征，该产后身痛的证型可能是“血虚证”。产后身痛在中医上常与气血不足、风寒湿邪入侵等因素有关。如果患者表现出面色苍白、乏力、心悸、舌淡、脉细",
+          "text_sha256": "80fde57226536891e04807723c94d7385ca5b6bbdacf1434c73d7b3da6642625"
+        },
+        {
+          "completion_tokens": 216,
+          "finish_reason": "stop",
+          "prompt_tokens": 46,
+          "reasoning_chars": 0,
+          "seconds": 2.077,
+          "text_head": "根据患者的症状表现，面黄肌瘦、气短懒言，以及舌暗红少苔、脉沉而涩，这些特征提示患者可能存在气阴两虚，并伴有血瘀的情况。因此，在选择中药方剂时，需要兼顾补气、养阴",
+          "text_sha256": "11d3270c2e0e1030253eb4e4e51a8e6ff5ce35b84f72ba392046ea14a29f1077"
+        },
+        {
+          "completion_tokens": 98,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 0.8631,
+          "text_head": "根据描述，6周大的婴儿头颅前后径较大，横径较小，并且体检和X线检查发现矢状缝闭合，这种情况最可能的诊断是舟状头（Scaphocephaly）。舟状头是由于矢状缝",
+          "text_sha256": "605571e36a229779f70c420674096b5be691dbc6d2366e4a58aee8285f3466c4"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 1.4247,
+          "text_head": "在使用双硫腙光度法测定Pb2+时，我们需要计算有色物质的摩尔吸光系数。根据题目提供的信息，50毫升溶液中含有0.1毫克的Pb2+，在520纳米波长下测得的透光度",
+          "text_sha256": "b182eff350e67b91459750837ea27985b75a531b1bcde8e0587fa7483efb6cf1"
+        },
+        {
+          "completion_tokens": 155,
+          "finish_reason": "stop",
+          "prompt_tokens": 58,
+          "reasoning_chars": 0,
+          "seconds": 1.6578,
+          "text_head": "根据患者的症状和体征，这位45岁的女性患者可能患有心脏瓣膜狭窄，尤其是二尖瓣狭窄。这种情况会导致心脏在舒张期血液流动受阻，从而引起心输出量减少，特别是在体位变化",
+          "text_sha256": "0925ea01907a90badd7d7520012263584ce4f9f4debfe75d6c15f5b25007b3f5"
+        },
+        {
+          "completion_tokens": 116,
+          "finish_reason": "stop",
+          "prompt_tokens": 60,
+          "reasoning_chars": 0,
+          "seconds": 1.4035,
+          "text_head": "强直性脊柱炎的特征性病理改变主要包括骶髂关节炎和脊柱的竹节样改变。骶髂关节炎是最早和最常见的表现，X线检查可见关节间隙变窄、骨质硬化，甚至关节融合。随着病情进展",
+          "text_sha256": "435ffc8558828d7da764c641c702c50843be25e192198692c0b749943a08a978"
+        },
+        {
+          "completion_tokens": 81,
+          "finish_reason": "stop",
+          "prompt_tokens": 138,
+          "reasoning_chars": 0,
+          "seconds": 0.4938,
+          "text_head": "根据患者的症状和检查结果，最可能的诊断是B. 急性化脓性胆囊炎。患者有右上腹绞痛、发热、巩膜黄染、白细胞计数增高等表现，这些都与急性化脓性胆囊炎相符。此外，血清",
+          "text_sha256": "e595bf7ff0ab4b12a155cbaadfb880c07ed8f3b2b4db139e65635fe230afea43"
+        },
+        {
+          "completion_tokens": 74,
+          "finish_reason": "stop",
+          "prompt_tokens": 65,
+          "reasoning_chars": 0,
+          "seconds": 0.7046,
+          "text_head": "根据患者的症状和体征，初步诊断可能是失血性休克。患者有双侧股骨干骨折，这可能导致大量内出血，从而引起血容量急剧减少。脉搏细弱、低血压、四肢冰冷和无尿都是休克的表",
+          "text_sha256": "d10aa285cbf0b5f0077150a52f46ff7a5510184cba99f3e3dd9ff44397a2fd4c"
+        },
+        {
+          "completion_tokens": 84,
+          "finish_reason": "stop",
+          "prompt_tokens": 40,
+          "reasoning_chars": 0,
+          "seconds": 1.007,
+          "text_head": "根据1天龄早产儿窒息史及新生儿缺血缺氧性脑病的初步诊断，该病例可能出现脑损伤的具体部位主要包括大脑皮层、基底节和脑白质。这些区域对缺氧缺血特别敏感，尤其是早产儿",
+          "text_sha256": "4832cb027c07639e6e7f9dfc14f8c761ad872df8cbc6e9f8b37a47a39d84c27d"
+        },
+        {
+          "completion_tokens": 111,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "reasoning_chars": 0,
+          "seconds": 1.0516,
+          "text_head": "根据患者的症状和病史，最可能的诊断是有机磷中毒。患者出现的头晕、呕吐、流涎、心率减慢、皮肤潮湿、瞳孔缩小以及双下肺湿啰音等症状，与有机磷中毒的典型表现非常一致。",
+          "text_sha256": "30398cbf29ea5cb728c2938bff80c4eab0b4f7b4a38a08896d564e1125298563"
+        },
+        {
+          "completion_tokens": 69,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 0.6981,
+          "text_head": "针对这位10岁女孩的症状和病史，首先应该进行尿常规检查。尿常规可以帮助确认是否存在蛋白尿和红细胞，从而支持急性肾小球肾炎的诊断。此外，考虑到她有头痛和视物不清的",
+          "text_sha256": "60709fcb43f7c05dfc6cfb09a9fe0a111e6a5b8ea08b6b4b8333966240c5d5b9"
+        },
+        {
+          "completion_tokens": 94,
+          "finish_reason": "stop",
+          "prompt_tokens": 150,
+          "reasoning_chars": 0,
+          "seconds": 0.8698,
+          "text_head": "根据患者的症状和检查结果，初步诊断为左侧脓胸。对于这种情况，首要任务是尽快排出胸腔内的脓液，以缓解症状并防止病情进一步恶化。虽然抗生素治疗是必要的，但单靠抗生素",
+          "text_sha256": "cd023a76a5f352b1e4b6bfb01a0a51e1fbf993b0e98b5a9aae569e3374254454"
+        },
+        {
+          "completion_tokens": 49,
+          "finish_reason": "stop",
+          "prompt_tokens": 50,
+          "reasoning_chars": 0,
+          "seconds": 0.4747,
+          "text_head": "在这种情况下，不容易发生的情况是“胎头入盆”。由于骨盆为男型，其入口较窄，这可能导致胎头不容易顺利入盆。因此，在临产后，胎头入盆这一情况可能不容易发生。",
+          "text_sha256": "87813843fdf3dcde9892ba9a4927dc3d329eecbb3739a81c8a25ce723d678b2d"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 119,
+          "reasoning_chars": 0,
+          "seconds": 1.7258,
+          "text_head": "要计算醋酸可的松片的标示百分含量，我们需要根据实验数据逐步推导。\n\n首先，计算20片醋酸可的松片的平均片重：\n\\[ \\text{平均片重} = \\frac{4.",
+          "text_sha256": "0f04f0e3b1b68da5b1d892e06e9a5c5775345d296e57877d8b53c0de4a6e66d0"
+        },
+        {
+          "completion_tokens": 230,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 2.5909,
+          "text_head": "在这种情况下，患者由于自行调整药物导致癫痫发作频繁且意识不清，需要立即采取以下措施：\n\n1. **确保患者安全**：首先，确保患者处于安全的环境中，防止在发作期",
+          "text_sha256": "4cc16fc542be93f3e9adf0d2165faab72a8742c861cb87b217cfd96cc691e80e"
+        },
+        {
+          "completion_tokens": 91,
+          "finish_reason": "stop",
+          "prompt_tokens": 47,
+          "reasoning_chars": 0,
+          "seconds": 0.8198,
+          "text_head": "根据患者的症状和体征，可以判断其证候为血虚。患者怀孕两个多月，出现小腹绵绵作痛、面色萎黄、头晕心悸等症状，结合舌淡、苔薄白、脉细滑弱，这些都指向血虚的表现。在怀",
+          "text_sha256": "8dadd513d6b5c306750a37da9e312a8bdd7d4c504448f4d30c55fd8d4033ccc5"
+        },
+        {
+          "completion_tokens": 72,
+          "finish_reason": "stop",
+          "prompt_tokens": 102,
+          "reasoning_chars": 0,
+          "seconds": 0.5426,
+          "text_head": "根据患者的临床表现和组织病理特征，该病最可能的诊断是疱疹样皮炎。患者的症状包括躯干和上肢的红斑、水疱和大疱，伴有瘙痒，尼氏征阴性，以及组织病理检查显示表皮内水疱",
+          "text_sha256": "e99c0050e232c9ad867bc0fcfbc83dad447c200af70a3be71971a99537654e54"
+        },
+        {
+          "completion_tokens": 214,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 2.1252,
+          "text_head": "针对这位25岁男性患者的情况，他因大面积烧伤住院，并出现上腹痛和排黑便的症状，结合体检和实验室检查结果，初步考虑可能存在应激性溃疡导致的上消化道出血。\n\n首先，",
+          "text_sha256": "795b2f00b49434d2bf85909902df7d1de79068f487edef0906ed9825e4093475"
+        },
+        {
+          "completion_tokens": 92,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 0.8639,
+          "text_head": "根据描述，这种细胞具有直径15～20μm，圆形，边缘有瘤状突起，圆形粒状核染色质，1～2个核仁，以及少量呈油墨蓝的胞浆。这些特征与浆细胞非常吻合。浆细胞通常具有",
+          "text_sha256": "1a27c886d69047131d86da2d2a25f59d601068d7fd1f9509148a497808ecca13"
+        },
+        {
+          "completion_tokens": 139,
+          "finish_reason": "stop",
+          "prompt_tokens": 68,
+          "reasoning_chars": 0,
+          "seconds": 1.2874,
+          "text_head": "根据描述，这个8个月大的婴儿表现出欠活泼、好哭、体重偏低、肌张力低下和肌肉松弛等症状，这些特征很可能与营养不良有关。特别是蛋白质-能量营养不良（PEM），这种情",
+          "text_sha256": "3ab184db1634704aa077ad2ab15f6fbe37390fa2b614fea563145981ba88db7e"
+        },
+        {
+          "completion_tokens": 65,
+          "finish_reason": "stop",
+          "prompt_tokens": 52,
+          "reasoning_chars": 0,
+          "seconds": 0.7708,
+          "text_head": "根据患者的症状和体征，首先考虑的是蛛网膜下腔出血（SAH）。为了快速确认这一诊断，最直接有效的检查是腰椎穿刺。腰椎穿刺可以检测脑脊液中是否存在红细胞或黄变，从而",
+          "text_sha256": "ffc0ffa6a893956d5d7aa73b524ccdf2199fbaca7ac9808dc24b85b491857055"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 106.75,
+      "wall_seconds": 43.62
+    },
+    {
+      "completion_tokens": 4629,
+      "concurrency": 4,
+      "finish_length": 2,
+      "median_request_seconds": 1.049,
+      "per_request": [
+        {
+          "completion_tokens": 93,
+          "finish_reason": "stop",
+          "prompt_tokens": 110,
+          "reasoning_chars": 0,
+          "seconds": 0.7234,
+          "text_head": "根据患者的症状和病史，首先考虑的诊断是颈深部化脓性蜂窝织炎。患者有牙痛和牙龈肿胀的病史，随后出现颈部肿胀、剧痛和高烧，这些症状与颈深部化脓性蜂窝织炎的表现相符。",
+          "text_sha256": "56544ba95e55ac7ad8cd3301b83c8fd1ce6d29237a80de850fa5e31e77e13028"
+        },
+        {
+          "completion_tokens": 184,
+          "finish_reason": "stop",
+          "prompt_tokens": 78,
+          "reasoning_chars": 0,
+          "seconds": 2.1867,
+          "text_head": "在这种情况下，这位孕妇和胎儿都面临一定的风险，需要迅速而谨慎地处理。\n\n首先，胎儿心率高达168次/分钟，这提示可能存在胎儿窘迫，需要立即关注。同时，产妇已经经",
+          "text_sha256": "c7a0b97bde5958a180abec768d222c332d2f8d658c36ca23be2c28b67b98970e"
+        },
+        {
+          "completion_tokens": 72,
+          "finish_reason": "stop",
+          "prompt_tokens": 39,
+          "reasoning_chars": 0,
+          "seconds": 0.8506,
+          "text_head": "对于这位患有系统性红斑狼疮（SLE）的29岁女性患者，在使用化妆品后皮损加重的情况下，最主要的护理诊断是“皮肤完整性受损”。这是因为化妆品可能含有刺激成分，导致",
+          "text_sha256": "8658c2fc04587e95328c033347ed96be2fcfec3b777598d47dce6a2394844ae8"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 0.9771,
+          "text_head": "在临时出国(境)团(组)或者人员中的党员擅自延长在国(境)外期限或者擅自变更路线的情况下，根据《中国共产党纪律处分条例》，这种行为属于违反组织纪律的行为。对于直",
+          "text_sha256": "8964dae807b0ec1b1e6bf4264252265f321e12853817f60346432e5beb30cce3"
+        },
+        {
+          "completion_tokens": 121,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 1.793,
+          "text_head": "对于这位72岁男性患者，由于他患有瘢痕性幽门梗阻，并且全身情况较差，首先需要采取保守治疗来改善他的身体状况。这包括通过静脉输液来纠正脱水和电解质失衡，以支持他的",
+          "text_sha256": "d9a04df780c4a3bdbcd647d285df217f9fc3ccf7a49ac3076e9e437172d87800"
+        },
+        {
+          "completion_tokens": 56,
+          "finish_reason": "stop",
+          "prompt_tokens": 47,
+          "reasoning_chars": 0,
+          "seconds": 0.6599,
+          "text_head": "该患者的热型属于稽留热。稽留热的特点是体温持续在较高水平，波动范围很小，通常不超过1℃。根据描述，该患者的体温在39℃到40℃之间，波动仅为1℃，符合稽留热的特",
+          "text_sha256": "3d867662cd2231a71cef2de3f194e5da872dad01f525d2984562e728c3c6ffe4"
+        },
+        {
+          "completion_tokens": 103,
+          "finish_reason": "stop",
+          "prompt_tokens": 73,
+          "reasoning_chars": 0,
+          "seconds": 1.3862,
+          "text_head": "根据Ann Arbor分期系统，这位47岁男性患者的外周T细胞性淋巴瘤（非特异型）的分期应为II期。分期依据如下：患者的颈部淋巴结和纵隔区域均受累，这两个区域位",
+          "text_sha256": "547e98b1abcee559006da16616e97f8b15f760ac9a81b59635d46fdaabcbe569"
+        },
+        {
+          "completion_tokens": 153,
+          "finish_reason": "stop",
+          "prompt_tokens": 161,
+          "reasoning_chars": 0,
+          "seconds": 1.5169,
+          "text_head": "根据患者的情况，他存在明显的骨性Ⅱ类错颌，ANB角高达10.0°，并且上前牙拥挤明显。对于这种情况，需要采取有效的矫治措施来改善上下颌骨的关系以及牙齿的排列。\n",
+          "text_sha256": "24e2999838a5a21d5a6c5f821100d429ff02950fbaa1793a0fe2f89d7779ab3b"
+        },
+        {
+          "completion_tokens": 79,
+          "finish_reason": "stop",
+          "prompt_tokens": 71,
+          "reasoning_chars": 0,
+          "seconds": 0.9701,
+          "text_head": "在这种情况下，这名35岁的男性患者很可能患有急性胰腺炎，并出现了休克症状。为了在24小时内显著降低他的死亡风险，最关键的措施是进行积极的液体复苏。通过静脉输液来",
+          "text_sha256": "ca3d6ec5b1256fbf5518c70f7b2afe560ca0d5fb00b3e4e05798e19d30554263"
+        },
+        {
+          "completion_tokens": 64,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 0.7932,
+          "text_head": "根据患者的年龄、症状以及治疗反应，最可能的诊断是C. ANUG（急性坏死性溃疡性龈炎）。ANUG在年轻人中较为常见，特别是在压力较大或免疫力下降的情况下。其症状",
+          "text_sha256": "193fc57e483a8c688a88eaee8ca79e6b0234eaf204d0f91bf89a4a23d8fcd823"
+        },
+        {
+          "completion_tokens": 104,
+          "finish_reason": "stop",
+          "prompt_tokens": 98,
+          "reasoning_chars": 0,
+          "seconds": 1.2649,
+          "text_head": "在这种情况下，考虑到患者的症状和体征，尤其是低热、腹胀、体重减轻以及腹水的存在，结核性腹膜炎是一个需要高度怀疑的可能性。在诊断不明确的情况下，采取试验性抗结核治",
+          "text_sha256": "0f6c9878426cccba37973d4814f54806b874fb7b702f533dcd2be152a559b719"
+        },
+        {
+          "completion_tokens": 213,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 2.2302,
+          "text_head": "根据小明的症状描述，可以诊断为腹股沟斜疝。腹股沟斜疝在儿童中较为常见，尤其是男孩。其特点包括：\n\n1. **疝内容物可达阴囊**：这是因为斜疝的疝囊通过腹股沟管",
+          "text_sha256": "77e83b443d314a6a95ef19d433cc5d5593107c9d3404d283f1c979607ec6c00b"
+        },
+        {
+          "completion_tokens": 60,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 0.4954,
+          "text_head": "根据描述，这种药材的特征与酸枣仁非常吻合。酸枣仁呈扁圆形或扁椭圆形，表面为紫红色或紫褐色，平滑有光泽，一端凹陷可见线形种脐，另一端有细小突起合点。因此，这种药材",
+          "text_sha256": "97b97b70491ebb597f60b273a755a49b0da97eaa997901a792d123f3e5ea27af"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 61,
+          "reasoning_chars": 0,
+          "seconds": 0.7247,
+          "text_head": "根据患者的症状表现，包括低热、午后发热、面色无华、倦怠无力、劳累后发热加剧、舌淡、脉细弱无力，这些均指向气虚的表现。对于气虚引起的发热，中医上常用补中益气汤进行",
+          "text_sha256": "a66e8ae6b8fa74e1dc3a085b7d57173974521db9b2387d75a2fd5e5aac7795d8"
+        },
+        {
+          "completion_tokens": 82,
+          "finish_reason": "stop",
+          "prompt_tokens": 103,
+          "reasoning_chars": 0,
+          "seconds": 0.9183,
+          "text_head": "根据描述的症状和病史，这个新生儿可能患有颅内出血或脑水肿，尤其是在产钳助产后出现这些症状。对于这种情况，早期处理的关键是降低颅内压。\n\n在选项中，甘露醇是一种常",
+          "text_sha256": "71300596a426541e23772f30a4c65fd46b3782c1eeafeed3a9546ac93663bc86"
+        },
+        {
+          "completion_tokens": 94,
+          "finish_reason": "stop",
+          "prompt_tokens": 35,
+          "reasoning_chars": 0,
+          "seconds": 0.9675,
+          "text_head": "根据患者的病理检验结果和镜检照片，结合其他症状和检查，诊断此患者的肾脏疾病是IgA肾病（也称为IgA肾小球病或Berger病）。IgA肾病通常表现为血尿，尤其是",
+          "text_sha256": "8d24ece68c8891d984f440e4414d5a67d3995bc0dc9076b827e09d08e4872297"
+        },
+        {
+          "completion_tokens": 152,
+          "finish_reason": "stop",
+          "prompt_tokens": 89,
+          "reasoning_chars": 0,
+          "seconds": 1.5047,
+          "text_head": "根据患者的症状和表现，结合中医理论进行分析，可以得出以下结论：\n\n患者何某，54岁女性，因暴怒突然晕倒，不省人事，牙关紧闭，面赤唇紫，舌红，脉沉弦。这些症状提示",
+          "text_sha256": "7983601ca89b7558de384213832dc8557726d8e751792a796eef3c4f7e74320a"
+        },
+        {
+          "completion_tokens": 108,
+          "finish_reason": "stop",
+          "prompt_tokens": 89,
+          "reasoning_chars": 0,
+          "seconds": 1.3672,
+          "text_head": "根据描述的症状和体征，这个小女孩很可能患有先天性心脏病中的房间隔缺损（ASD）。房间隔缺损会导致左心房和右心房之间的异常血流，从而引起肺循环的负担加重，导致肺野",
+          "text_sha256": "bd2f1b2b30a2ea9be0a43148f343b61ebab216640d60bf792624eb2c7e72a97e"
+        },
+        {
+          "completion_tokens": 53,
+          "finish_reason": "stop",
+          "prompt_tokens": 34,
+          "reasoning_chars": 0,
+          "seconds": 0.638,
+          "text_head": "在对患者进行免疫血清学诊断传染病时，Ag-Ab反应中常用的NaCl浓度是0.85%。这个浓度接近生理盐水的等渗浓度，能够维持细胞的正常形态，并保证抗原和抗体反应",
+          "text_sha256": "4ec852478db8475fd988053a7abadebcce78aae8a229bc212296028218360c86"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 28,
+          "reasoning_chars": 0,
+          "seconds": 1.267,
+          "text_head": "根据患者的症状表现和体征，该产后身痛的证型可能是“血虚证”。产后身痛在中医上常与气血不足、风寒湿邪入侵等因素有关。如果患者表现出面色苍白、乏力、心悸、舌淡、脉细",
+          "text_sha256": "80fde57226536891e04807723c94d7385ca5b6bbdacf1434c73d7b3da6642625"
+        },
+        {
+          "completion_tokens": 221,
+          "finish_reason": "stop",
+          "prompt_tokens": 46,
+          "reasoning_chars": 0,
+          "seconds": 2.4754,
+          "text_head": "根据患者的症状表现，面黄肌瘦、气短懒言，以及舌暗红少苔、脉沉而涩，这些特征提示患者可能存在气阴两虚，并伴有血瘀的情况。因此，在选择中药方剂时，需要兼顾补气、养阴",
+          "text_sha256": "65dd80296fa0570d6db3031b65d143f615450b8319dcca6027f0f59fd745b860"
+        },
+        {
+          "completion_tokens": 98,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 0.9608,
+          "text_head": "根据描述，6周大的婴儿头颅前后径较大，横径较小，并且体检及X线检查发现矢状缝闭合，这种情况最可能的诊断是舟状头（Scaphocephaly）。舟状头是由于矢状缝",
+          "text_sha256": "d4111a3540d57d92d92ae375e3f6ed86ef930eeaddd76938a210534a346a52ba"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 1.6426,
+          "text_head": "在使用双硫腙光度法测定Pb2+时，我们需要计算有色物质的摩尔吸光系数。根据题目提供的信息，50毫升溶液中含有0.1毫克的Pb2+，在520纳米波长下测得的透光度",
+          "text_sha256": "b182eff350e67b91459750837ea27985b75a531b1bcde8e0587fa7483efb6cf1"
+        },
+        {
+          "completion_tokens": 155,
+          "finish_reason": "stop",
+          "prompt_tokens": 58,
+          "reasoning_chars": 0,
+          "seconds": 1.9968,
+          "text_head": "根据患者的症状和体征，这位45岁的女性患者可能患有心脏瓣膜狭窄，尤其是二尖瓣狭窄。这种情况会导致心脏在舒张期血液流动受阻，从而引起心输出量减少，特别是在体位变化",
+          "text_sha256": "0925ea01907a90badd7d7520012263584ce4f9f4debfe75d6c15f5b25007b3f5"
+        },
+        {
+          "completion_tokens": 116,
+          "finish_reason": "stop",
+          "prompt_tokens": 60,
+          "reasoning_chars": 0,
+          "seconds": 1.6149,
+          "text_head": "强直性脊柱炎的特征性病理改变主要包括骶髂关节炎和脊柱的竹节样改变。骶髂关节炎是最早和最常见的表现，X线检查可见关节间隙变窄、骨质硬化，甚至关节融合。随着病情进展",
+          "text_sha256": "435ffc8558828d7da764c641c702c50843be25e192198692c0b749943a08a978"
+        },
+        {
+          "completion_tokens": 81,
+          "finish_reason": "stop",
+          "prompt_tokens": 138,
+          "reasoning_chars": 0,
+          "seconds": 0.5844,
+          "text_head": "根据患者的症状和检查结果，最可能的诊断是B. 急性化脓性胆囊炎。患者有右上腹绞痛、发热、巩膜黄染、白细胞计数增高等表现，这些都与急性化脓性胆囊炎相符。此外，血清",
+          "text_sha256": "e595bf7ff0ab4b12a155cbaadfb880c07ed8f3b2b4db139e65635fe230afea43"
+        },
+        {
+          "completion_tokens": 74,
+          "finish_reason": "stop",
+          "prompt_tokens": 65,
+          "reasoning_chars": 0,
+          "seconds": 0.8853,
+          "text_head": "根据患者的症状和体征，初步诊断可能是失血性休克。患者有双侧股骨干骨折，这可能导致大量内出血，从而引起血容量急剧减少。脉搏细弱、低血压、四肢冰冷和无尿都是休克的表",
+          "text_sha256": "d10aa285cbf0b5f0077150a52f46ff7a5510184cba99f3e3dd9ff44397a2fd4c"
+        },
+        {
+          "completion_tokens": 84,
+          "finish_reason": "stop",
+          "prompt_tokens": 40,
+          "reasoning_chars": 0,
+          "seconds": 1.2508,
+          "text_head": "根据1天龄早产儿窒息史及新生儿缺血缺氧性脑病的初步诊断，该病例可能出现脑损伤的具体部位主要包括大脑皮层、基底节和脑白质。这些区域对缺氧缺血特别敏感，尤其是早产儿",
+          "text_sha256": "4832cb027c07639e6e7f9dfc14f8c761ad872df8cbc6e9f8b37a47a39d84c27d"
+        },
+        {
+          "completion_tokens": 111,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "reasoning_chars": 0,
+          "seconds": 1.3346,
+          "text_head": "根据患者的症状和病史，最可能的诊断是有机磷中毒。患者出现的头晕、呕吐、流涎、心率减慢、皮肤潮湿、瞳孔缩小以及双下肺湿啰音等症状，与有机磷中毒的典型表现非常一致。",
+          "text_sha256": "30398cbf29ea5cb728c2938bff80c4eab0b4f7b4a38a08896d564e1125298563"
+        },
+        {
+          "completion_tokens": 69,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 0.811,
+          "text_head": "针对这位10岁女孩的症状和病史，首先应该进行尿常规检查。尿常规可以帮助确认是否存在蛋白尿和红细胞，从而支持急性肾小球肾炎的诊断。此外，考虑到她有头痛和视物不清的",
+          "text_sha256": "60709fcb43f7c05dfc6cfb09a9fe0a111e6a5b8ea08b6b4b8333966240c5d5b9"
+        },
+        {
+          "completion_tokens": 94,
+          "finish_reason": "stop",
+          "prompt_tokens": 150,
+          "reasoning_chars": 0,
+          "seconds": 1.1017,
+          "text_head": "根据患者的症状和检查结果，初步诊断为左侧脓胸。对于这种情况，首要任务是尽快排出胸腔内的脓液，以缓解症状并防止病情进一步恶化。虽然抗生素治疗是必要的，但单靠抗生素",
+          "text_sha256": "cd023a76a5f352b1e4b6bfb01a0a51e1fbf993b0e98b5a9aae569e3374254454"
+        },
+        {
+          "completion_tokens": 49,
+          "finish_reason": "stop",
+          "prompt_tokens": 50,
+          "reasoning_chars": 0,
+          "seconds": 0.5916,
+          "text_head": "在这种情况下，不容易发生的情况是“胎头入盆”。由于骨盆为男型，其入口较窄，这可能导致胎头不容易顺利入盆。因此，在临产后，胎头入盆这一情况可能不容易发生。",
+          "text_sha256": "87813843fdf3dcde9892ba9a4927dc3d329eecbb3739a81c8a25ce723d678b2d"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 119,
+          "reasoning_chars": 0,
+          "seconds": 2.0406,
+          "text_head": "要计算醋酸可的松片的标示百分含量，我们需要根据实验数据逐步推导。\n\n首先，计算20片醋酸可的松片的平均片重：\n\\[ \\text{平均片重} = \\frac{4.",
+          "text_sha256": "0f04f0e3b1b68da5b1d892e06e9a5c5775345d296e57877d8b53c0de4a6e66d0"
+        },
+        {
+          "completion_tokens": 228,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 2.8513,
+          "text_head": "在这种情况下，患者由于自行调整药物导致癫痫发作频繁且意识不清，需要立即采取以下措施：\n\n1. **确保患者安全**：首先，确保患者处于安全的环境中，防止在发作期",
+          "text_sha256": "57e0984c16e80c4e1cc02b954ca9944bb9eca1fde293615fec4a618f63abcec4"
+        },
+        {
+          "completion_tokens": 91,
+          "finish_reason": "stop",
+          "prompt_tokens": 47,
+          "reasoning_chars": 0,
+          "seconds": 0.9952,
+          "text_head": "根据患者的症状和体征，可以判断其证候为血虚。患者怀孕两个多月，出现小腹绵绵作痛、面色萎黄、头晕心悸等症状，结合舌淡、苔薄白、脉细滑弱，这些都指向血虚的表现。在怀",
+          "text_sha256": "cc79bd1c6cae73a1ad81cdb545e1ca83cf5aa94da78124ed6793877fd0b3e413"
+        },
+        {
+          "completion_tokens": 72,
+          "finish_reason": "stop",
+          "prompt_tokens": 102,
+          "reasoning_chars": 0,
+          "seconds": 0.6125,
+          "text_head": "根据患者的临床表现和组织病理特征，该病最可能的诊断是疱疹样皮炎。患者的症状包括躯干和上肢的红斑、水疱和大疱，伴有瘙痒，尼氏征阴性，以及组织病理检查显示表皮内水疱",
+          "text_sha256": "e99c0050e232c9ad867bc0fcfbc83dad447c200af70a3be71971a99537654e54"
+        },
+        {
+          "completion_tokens": 214,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 2.4125,
+          "text_head": "针对这位25岁男性患者的情况，他因大面积烧伤住院，并出现上腹痛和排黑便的症状，结合体检和实验室检查结果，初步考虑可能存在应激性溃疡导致的上消化道出血。\n\n首先，",
+          "text_sha256": "795b2f00b49434d2bf85909902df7d1de79068f487edef0906ed9825e4093475"
+        },
+        {
+          "completion_tokens": 92,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 0.9973,
+          "text_head": "根据描述，这种细胞具有直径15～20μm，圆形，边缘有瘤状突起，圆形粒状核染色质，1～2个核仁，以及少量呈油墨蓝的胞浆。这些特征与浆细胞非常吻合。浆细胞通常具有",
+          "text_sha256": "1a27c886d69047131d86da2d2a25f59d601068d7fd1f9509148a497808ecca13"
+        },
+        {
+          "completion_tokens": 139,
+          "finish_reason": "stop",
+          "prompt_tokens": 68,
+          "reasoning_chars": 0,
+          "seconds": 1.4425,
+          "text_head": "根据描述，这个8个月大的婴儿表现出欠活泼、好哭、体重偏低、肌张力低下和肌肉松弛等症状，这些特征很可能与营养不良有关。特别是蛋白质-能量营养不良（PEM），这种情",
+          "text_sha256": "3ab184db1634704aa077ad2ab15f6fbe37390fa2b614fea563145981ba88db7e"
+        },
+        {
+          "completion_tokens": 65,
+          "finish_reason": "stop",
+          "prompt_tokens": 52,
+          "reasoning_chars": 0,
+          "seconds": 0.8646,
+          "text_head": "根据患者的症状和体征，首先考虑的是蛛网膜下腔出血（SAH）。为了快速确认这一诊断，最直接有效的检查是腰椎穿刺。腰椎穿刺可以检测脑脊液中是否存在红细胞或黄变，从而",
+          "text_sha256": "ffc0ffa6a893956d5d7aa73b524ccdf2199fbaca7ac9808dc24b85b491857055"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 359.51,
+      "wall_seconds": 12.88
+    },
+    {
+      "completion_tokens": 4617,
+      "concurrency": 8,
+      "finish_length": 2,
+      "median_request_seconds": 1.206,
+      "per_request": [
+        {
+          "completion_tokens": 93,
+          "finish_reason": "stop",
+          "prompt_tokens": 110,
+          "reasoning_chars": 0,
+          "seconds": 0.8975,
+          "text_head": "根据患者的症状和病史，首先考虑的诊断是颈深部化脓性蜂窝织炎。患者有牙痛和牙龈肿胀的病史，随后出现颈部肿胀、剧痛和高烧，这些症状与颈深部化脓性蜂窝织炎的表现相符。",
+          "text_sha256": "56544ba95e55ac7ad8cd3301b83c8fd1ce6d29237a80de850fa5e31e77e13028"
+        },
+        {
+          "completion_tokens": 216,
+          "finish_reason": "stop",
+          "prompt_tokens": 78,
+          "reasoning_chars": 0,
+          "seconds": 3.1884,
+          "text_head": "在这种情况下，这位孕妇和胎儿都面临一定的风险，需要迅速而谨慎地处理。\n\n首先，胎儿心率高达168次/分钟，这提示可能存在胎儿窘迫，需要立即关注。同时，产妇已经经",
+          "text_sha256": "12348149284f29d3903107c4ba200cd25c85a4b6b9008596c9f5927fa92acbb3"
+        },
+        {
+          "completion_tokens": 72,
+          "finish_reason": "stop",
+          "prompt_tokens": 39,
+          "reasoning_chars": 0,
+          "seconds": 1.0094,
+          "text_head": "对于这位患有系统性红斑狼疮（SLE）的29岁女性患者，在使用化妆品后皮损加重的情况下，最主要的护理诊断是“皮肤完整性受损”。这是因为化妆品可能含有刺激成分，导致",
+          "text_sha256": "8658c2fc04587e95328c033347ed96be2fcfec3b777598d47dce6a2394844ae8"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 1.1709,
+          "text_head": "在临时出国(境)团(组)或者人员中的党员擅自延长在国(境)外期限或者擅自变更路线的情况下，根据《中国共产党纪律处分条例》，这种行为属于违反组织纪律的行为。对于直",
+          "text_sha256": "8964dae807b0ec1b1e6bf4264252265f321e12853817f60346432e5beb30cce3"
+        },
+        {
+          "completion_tokens": 121,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 2.0838,
+          "text_head": "对于这位72岁男性患者，由于他患有瘢痕性幽门梗阻，并且全身情况较差，首先需要采取保守治疗来改善他的身体状况。这包括通过静脉输液来纠正脱水和电解质失衡，以支持他的",
+          "text_sha256": "d9a04df780c4a3bdbcd647d285df217f9fc3ccf7a49ac3076e9e437172d87800"
+        },
+        {
+          "completion_tokens": 56,
+          "finish_reason": "stop",
+          "prompt_tokens": 47,
+          "reasoning_chars": 0,
+          "seconds": 0.7561,
+          "text_head": "该患者的热型属于稽留热。稽留热的特点是体温持续在较高水平，波动范围很小，通常不超过1℃。根据描述，该患者的体温在39℃到40℃之间，波动仅为1℃，符合稽留热的特",
+          "text_sha256": "3d867662cd2231a71cef2de3f194e5da872dad01f525d2984562e728c3c6ffe4"
+        },
+        {
+          "completion_tokens": 109,
+          "finish_reason": "stop",
+          "prompt_tokens": 73,
+          "reasoning_chars": 0,
+          "seconds": 1.5773,
+          "text_head": "根据Ann Arbor分期系统，这位47岁男性患者的外周T细胞性淋巴瘤（非特异型）的分期应为II期。该分期系统主要依据受累淋巴结区域的数量和位置进行判断。在这个",
+          "text_sha256": "f92687976d7666aedf63f441b94338f856a06de58cabd1beda641f3901cabe59"
+        },
+        {
+          "completion_tokens": 144,
+          "finish_reason": "stop",
+          "prompt_tokens": 161,
+          "reasoning_chars": 0,
+          "seconds": 1.9647,
+          "text_head": "根据患者的情况，他存在明显的骨性Ⅱ类关系，ANB角高达10.0°，并且上前牙拥挤明显。对于这样的病例，需要采取有效的矫治措施来改善上下颌骨的关系以及牙齿的排列。",
+          "text_sha256": "4e9d8cc7085fd9f6353f0940fb058fb9122d2863544aa0ce828501b84253eae8"
+        },
+        {
+          "completion_tokens": 68,
+          "finish_reason": "stop",
+          "prompt_tokens": 71,
+          "reasoning_chars": 0,
+          "seconds": 1.1125,
+          "text_head": "在这种情况下，这名患者很可能患有急性胰腺炎，并出现了休克症状。为了在24小时内显著降低患者的死亡风险，最关键的措施是进行积极的液体复苏。通过静脉输液，可以有效改",
+          "text_sha256": "8d60a70e6782a6c2a4c35fe541c3d1d5452c68c3a2b60077ffe91a61e2953e14"
+        },
+        {
+          "completion_tokens": 72,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 0.9729,
+          "text_head": "根据患者的年龄、症状以及治疗反应，最可能的诊断是C. ANUG（急性坏死性溃疡性龈炎）。ANUG在年轻人中较为常见，特别是在压力较大或免疫力下降的情况下。其症状",
+          "text_sha256": "42b74cb7b219966a93b3eafcd593e39a4f7fc0e1a16c84723987f8659e4c26d2"
+        },
+        {
+          "completion_tokens": 104,
+          "finish_reason": "stop",
+          "prompt_tokens": 98,
+          "reasoning_chars": 0,
+          "seconds": 1.469,
+          "text_head": "在这种情况下，考虑到患者的症状和体征，尤其是低热、腹胀、体重减轻以及腹水的存在，结核性腹膜炎是一个需要高度怀疑的可能性。在诊断不明确的情况下，采取试验性抗结核治",
+          "text_sha256": "0f6c9878426cccba37973d4814f54806b874fb7b702f533dcd2be152a559b719"
+        },
+        {
+          "completion_tokens": 213,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 2.6759,
+          "text_head": "根据小明的症状描述，可以诊断为腹股沟斜疝。腹股沟斜疝在儿童中较为常见，尤其是男孩。其特点包括：\n\n1. **疝内容物可达阴囊**：这是因为斜疝的疝囊通过腹股沟管",
+          "text_sha256": "77e83b443d314a6a95ef19d433cc5d5593107c9d3404d283f1c979607ec6c00b"
+        },
+        {
+          "completion_tokens": 60,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 0.6424,
+          "text_head": "根据描述，这种药材的特征与酸枣仁非常吻合。酸枣仁呈扁圆形或扁椭圆形，表面为紫红色或紫褐色，平滑有光泽，一端凹陷可见线形种脐，另一端有细小突起合点。因此，这种药材",
+          "text_sha256": "97b97b70491ebb597f60b273a755a49b0da97eaa997901a792d123f3e5ea27af"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 61,
+          "reasoning_chars": 0,
+          "seconds": 1.2209,
+          "text_head": "根据患者的症状表现，包括低热、午后发热、面色无华、倦怠无力、劳累后发热加剧、舌淡、脉细弱无力，这些均指向中医上的气虚证。对于气虚证的治疗，补中益气汤是一个经典的",
+          "text_sha256": "6fa5d306ac5cd757de865398413a80d10244cb78c43077b8ef65a708a76a3f60"
+        },
+        {
+          "completion_tokens": 82,
+          "finish_reason": "stop",
+          "prompt_tokens": 103,
+          "reasoning_chars": 0,
+          "seconds": 1.0815,
+          "text_head": "根据描述的症状和病史，这个新生儿可能患有颅内出血或脑水肿，尤其是在产钳助产后出现这些症状。对于这种情况，早期处理的关键是降低颅内压。\n\n在选项中，甘露醇是一种常",
+          "text_sha256": "71300596a426541e23772f30a4c65fd46b3782c1eeafeed3a9546ac93663bc86"
+        },
+        {
+          "completion_tokens": 94,
+          "finish_reason": "stop",
+          "prompt_tokens": 35,
+          "reasoning_chars": 0,
+          "seconds": 1.1243,
+          "text_head": "根据患者的病理检验结果和镜检照片，结合其他症状和检查，诊断此患者的肾脏疾病是IgA肾病（也称为IgA肾小球病或Berger病）。IgA肾病通常表现为血尿，尤其是",
+          "text_sha256": "8d24ece68c8891d984f440e4414d5a67d3995bc0dc9076b827e09d08e4872297"
+        },
+        {
+          "completion_tokens": 152,
+          "finish_reason": "stop",
+          "prompt_tokens": 89,
+          "reasoning_chars": 0,
+          "seconds": 1.8579,
+          "text_head": "根据患者的症状和表现，结合中医理论进行分析，可以得出以下结论：\n\n患者何某，54岁女性，因暴怒突然晕倒，不省人事，牙关紧闭，面赤唇紫，舌红，脉沉弦。这些症状提示",
+          "text_sha256": "7983601ca89b7558de384213832dc8557726d8e751792a796eef3c4f7e74320a"
+        },
+        {
+          "completion_tokens": 108,
+          "finish_reason": "stop",
+          "prompt_tokens": 89,
+          "reasoning_chars": 0,
+          "seconds": 1.6262,
+          "text_head": "根据描述的症状和体征，这个小女孩很可能患有先天性心脏病中的房间隔缺损（ASD）。房间隔缺损会导致左心房和右心房之间的异常血流，从而引起肺循环的负担加重，导致肺野",
+          "text_sha256": "bd2f1b2b30a2ea9be0a43148f343b61ebab216640d60bf792624eb2c7e72a97e"
+        },
+        {
+          "completion_tokens": 53,
+          "finish_reason": "stop",
+          "prompt_tokens": 34,
+          "reasoning_chars": 0,
+          "seconds": 0.7386,
+          "text_head": "在对患者进行免疫血清学诊断传染病时，Ag-Ab反应中常用的NaCl浓度是0.85%。这个浓度接近生理盐水的等渗浓度，能够维持细胞的正常形态，并保证抗原和抗体反应",
+          "text_sha256": "4ec852478db8475fd988053a7abadebcce78aae8a229bc212296028218360c86"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 28,
+          "reasoning_chars": 0,
+          "seconds": 1.5298,
+          "text_head": "根据患者的症状表现和体征，该产后身痛的证型可能是“血虚证”。产后身痛在中医上常与气血不足、风寒湿邪入侵等因素有关。如果患者表现出面色苍白、乏力、心悸、舌淡、脉细",
+          "text_sha256": "80fde57226536891e04807723c94d7385ca5b6bbdacf1434c73d7b3da6642625"
+        },
+        {
+          "completion_tokens": 214,
+          "finish_reason": "stop",
+          "prompt_tokens": 46,
+          "reasoning_chars": 0,
+          "seconds": 3.1523,
+          "text_head": "根据患者的症状表现，面黄肌瘦、气短懒言，以及舌暗红少苔、脉沉而涩，这些特征提示患者可能存在气阴两虚，并伴有血瘀的情况。因此，在选择中药方剂时，需要兼顾补气、养阴",
+          "text_sha256": "f5654f34e58818a636fd4dd3a4f8d3454bdaf5c8ec86a6fd1840dab58e4bb8fa"
+        },
+        {
+          "completion_tokens": 98,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 1.1921,
+          "text_head": "根据描述，6周大的婴儿头颅前后径较大，横径较小，并且体检及X线检查发现矢状缝闭合，这种情况最可能的诊断是舟状头（Scaphocephaly）。舟状头是由于矢状缝",
+          "text_sha256": "d4111a3540d57d92d92ae375e3f6ed86ef930eeaddd76938a210534a346a52ba"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 2.0151,
+          "text_head": "在使用双硫腙光度法测定Pb2+时，我们需要计算有色物质的摩尔吸光系数。根据题目提供的信息，50毫升溶液中含有0.1毫克的Pb2+，在520纳米波长下测得的透光度",
+          "text_sha256": "b182eff350e67b91459750837ea27985b75a531b1bcde8e0587fa7483efb6cf1"
+        },
+        {
+          "completion_tokens": 167,
+          "finish_reason": "stop",
+          "prompt_tokens": 58,
+          "reasoning_chars": 0,
+          "seconds": 2.4057,
+          "text_head": "根据患者的症状和体征，这位45岁的女性患者可能患有心脏瓣膜狭窄，尤其是二尖瓣狭窄。这种情况会导致心脏在舒张期血液流动受阻，从而引起心输出量减少，尤其是在体位变化",
+          "text_sha256": "236ea26dd4d6a54555b85a9006e0ee46f0dcae76fb55ea92a28f0c94abce70a0"
+        },
+        {
+          "completion_tokens": 116,
+          "finish_reason": "stop",
+          "prompt_tokens": 60,
+          "reasoning_chars": 0,
+          "seconds": 2.0464,
+          "text_head": "强直性脊柱炎的特征性病理改变主要包括骶髂关节炎和脊柱的竹节样改变。骶髂关节炎是最早和最常见的表现，X线检查可见关节间隙变窄、骨质硬化，甚至关节融合。随着病情进展",
+          "text_sha256": "435ffc8558828d7da764c641c702c50843be25e192198692c0b749943a08a978"
+        },
+        {
+          "completion_tokens": 81,
+          "finish_reason": "stop",
+          "prompt_tokens": 138,
+          "reasoning_chars": 0,
+          "seconds": 0.7412,
+          "text_head": "根据患者的症状和检查结果，最可能的诊断是B. 急性化脓性胆囊炎。患者有右上腹绞痛、发热、巩膜黄染、白细胞计数增高等表现，这些都与急性化脓性胆囊炎相符。此外，血清",
+          "text_sha256": "e595bf7ff0ab4b12a155cbaadfb880c07ed8f3b2b4db139e65635fe230afea43"
+        },
+        {
+          "completion_tokens": 88,
+          "finish_reason": "stop",
+          "prompt_tokens": 65,
+          "reasoning_chars": 0,
+          "seconds": 1.1453,
+          "text_head": "根据患者的症状和体征，初步诊断可能是失血性休克。患者有双侧股骨干骨折，这可能导致大量内出血，从而引起血容量不足。脉搏细弱、低血压、四肢冰冷和无尿都是休克的表现，",
+          "text_sha256": "69d9cd5cf81964ad377a57e002063992a7da4dec3aed72c6ece7eeb6f11a1523"
+        },
+        {
+          "completion_tokens": 66,
+          "finish_reason": "stop",
+          "prompt_tokens": 40,
+          "reasoning_chars": 0,
+          "seconds": 0.9475,
+          "text_head": "根据1天龄早产儿窒息史及新生儿缺血缺氧性脑病的初步诊断，该病例可能出现脑损伤的具体部位主要包括大脑皮层、基底节和脑白质。这些区域由于对缺氧缺血特别敏感，容易受到",
+          "text_sha256": "d07c7125a9ffe9d82c17e728be7f7f3a5052b7af4801e42ed54c1dc852630bf3"
+        },
+        {
+          "completion_tokens": 112,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "reasoning_chars": 0,
+          "seconds": 1.6262,
+          "text_head": "根据患者的症状和病史，最可能的诊断是有机磷中毒。患者出现的头晕、呕吐、流涎、心率减慢、皮肤潮湿、瞳孔缩小以及双下肺湿啰音等症状，与有机磷中毒的典型表现非常一致。",
+          "text_sha256": "c89e5e5443e19505b3a3998e567d78effa1c68fcc3f217e5ad26126157e310e8"
+        },
+        {
+          "completion_tokens": 69,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 1.0039,
+          "text_head": "针对这位10岁女孩的症状和病史，首先应该进行尿常规检查。尿常规可以帮助确认是否存在蛋白尿和红细胞，从而支持急性肾小球肾炎的诊断。此外，考虑到她有头痛和视物不清的",
+          "text_sha256": "60709fcb43f7c05dfc6cfb09a9fe0a111e6a5b8ea08b6b4b8333966240c5d5b9"
+        },
+        {
+          "completion_tokens": 90,
+          "finish_reason": "stop",
+          "prompt_tokens": 150,
+          "reasoning_chars": 0,
+          "seconds": 1.38,
+          "text_head": "根据患者的症状和检查结果，初步诊断为左侧脓胸。对于这种情况，首要任务是尽快排出胸腔内的脓液，以缓解症状并防止病情进一步恶化。虽然应用抗生素是治疗感染的重要环节，",
+          "text_sha256": "53ea88634f5ca63b6f69deb5c857d4fabf0dda86d31ad025ce4ad7d20b146a85"
+        },
+        {
+          "completion_tokens": 49,
+          "finish_reason": "stop",
+          "prompt_tokens": 50,
+          "reasoning_chars": 0,
+          "seconds": 0.7199,
+          "text_head": "在这种情况下，不容易发生的情况是“胎头入盆”。由于骨盆为男型，其入口较窄，这可能导致胎头不容易顺利入盆。因此，在临产后，胎头入盆这一情况可能不容易发生。",
+          "text_sha256": "87813843fdf3dcde9892ba9a4927dc3d329eecbb3739a81c8a25ce723d678b2d"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 119,
+          "reasoning_chars": 0,
+          "seconds": 2.4066,
+          "text_head": "要计算醋酸可的松片的标示百分含量，我们需要根据实验数据逐步推导。\n\n首先，计算20片醋酸可的松片的平均片重：\n\\[ \\text{平均片重} = \\frac{4.",
+          "text_sha256": "07863168466c10da24274398ffbd1633b762b67028a0433ca06a0b052953a2bf"
+        },
+        {
+          "completion_tokens": 219,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 2.9139,
+          "text_head": "在这种情况下，患者由于自行调整药物导致癫痫发作频繁且意识不清，需要立即采取以下措施：\n\n1. **确保患者安全**：首先，确保患者处于安全的环境中，防止在发作期",
+          "text_sha256": "0038ceff20a6a159723c912eb74ea4c59a5ebb5aece42c385e87f13f5764c386"
+        },
+        {
+          "completion_tokens": 94,
+          "finish_reason": "stop",
+          "prompt_tokens": 47,
+          "reasoning_chars": 0,
+          "seconds": 1.2194,
+          "text_head": "根据患者的症状和体征，可以判断其证候为血虚。患者怀孕两个多月，出现小腹绵绵作痛、面色萎黄、头晕心悸等症状，结合舌淡、苔薄白、脉细滑弱，这些都指向血虚的表现。在怀",
+          "text_sha256": "2ef8517253801bb2ac505d4d1ae401af748d20f445c592b17cae0eaf647801af"
+        },
+        {
+          "completion_tokens": 72,
+          "finish_reason": "stop",
+          "prompt_tokens": 102,
+          "reasoning_chars": 0,
+          "seconds": 0.8014,
+          "text_head": "根据患者的临床表现和组织病理特征，该病最可能的诊断是疱疹样皮炎。患者的症状包括躯干和上肢的红斑、水疱和大疱，伴有瘙痒，尼氏征阴性，以及组织病理检查显示表皮内水疱",
+          "text_sha256": "e99c0050e232c9ad867bc0fcfbc83dad447c200af70a3be71971a99537654e54"
+        },
+        {
+          "completion_tokens": 214,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 2.5603,
+          "text_head": "针对这位25岁男性患者的情况，他因大面积烧伤住院，并出现上腹痛和排黑便的症状，结合体检和实验室检查结果，初步考虑可能存在应激性溃疡导致的上消化道出血。\n\n首先，",
+          "text_sha256": "795b2f00b49434d2bf85909902df7d1de79068f487edef0906ed9825e4093475"
+        },
+        {
+          "completion_tokens": 92,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 1.1104,
+          "text_head": "根据描述，这种细胞具有直径15～20μm，圆形，边缘有瘤状突起，圆形粒状核染色质，1～2个核仁，以及少量呈油墨蓝的胞浆。这些特征与浆细胞非常吻合。浆细胞通常具有",
+          "text_sha256": "1a27c886d69047131d86da2d2a25f59d601068d7fd1f9509148a497808ecca13"
+        },
+        {
+          "completion_tokens": 103,
+          "finish_reason": "stop",
+          "prompt_tokens": 68,
+          "reasoning_chars": 0,
+          "seconds": 1.1678,
+          "text_head": "根据描述，这个8个月大的婴儿表现出欠活泼、好哭、体重偏低、肌张力低下和肌肉松弛等症状，这些特征很可能指向营养不良。特别是蛋白质-能量营养不良（PEM），这种情况",
+          "text_sha256": "e3df4a82748b85bd1b4d8c3e0413f5bf9d6aaebfc4d3c50d167274bd10c475a8"
+        },
+        {
+          "completion_tokens": 65,
+          "finish_reason": "stop",
+          "prompt_tokens": 52,
+          "reasoning_chars": 0,
+          "seconds": 0.9693,
+          "text_head": "根据患者的症状和体征，首先考虑的是蛛网膜下腔出血（SAH）。为了快速确认这一诊断，最直接有效的检查是腰椎穿刺。腰椎穿刺可以检测脑脊液中是否存在红细胞或黄变，从而",
+          "text_sha256": "ffc0ffa6a893956d5d7aa73b524ccdf2199fbaca7ac9808dc24b85b491857055"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 542.63,
+      "wall_seconds": 8.51
+    },
+    {
+      "completion_tokens": 4656,
+      "concurrency": 16,
+      "finish_length": 2,
+      "median_request_seconds": 1.68,
+      "per_request": [
+        {
+          "completion_tokens": 93,
+          "finish_reason": "stop",
+          "prompt_tokens": 110,
+          "reasoning_chars": 0,
+          "seconds": 1.3089,
+          "text_head": "根据患者的症状和病史，首先考虑的诊断是颈深部化脓性蜂窝织炎。患者有牙痛和牙龈肿胀的病史，随后出现颈部肿胀、剧痛和高烧，这些症状与颈深部化脓性蜂窝织炎的表现相符。",
+          "text_sha256": "df5930360f6ececf203f862011a8a0ec609f9d951a660baf67b7783c135efcd2"
+        },
+        {
+          "completion_tokens": 183,
+          "finish_reason": "stop",
+          "prompt_tokens": 78,
+          "reasoning_chars": 0,
+          "seconds": 3.5604,
+          "text_head": "在这种情况下，这位孕妇和胎儿都面临一定的风险，需要迅速而谨慎地处理。\n\n首先，胎儿心率高达168次/分钟，这提示可能存在胎儿窘迫，需要立即关注。同时，产妇已经经",
+          "text_sha256": "15825eb5a309de11ee1c1d78bebb19346cb18b70a9c60f55fbab0306da2a1524"
+        },
+        {
+          "completion_tokens": 73,
+          "finish_reason": "stop",
+          "prompt_tokens": 39,
+          "reasoning_chars": 0,
+          "seconds": 1.4783,
+          "text_head": "对于这位患有系统性红斑狼疮（SLE）的29岁女性患者，在使用化妆品后皮损加重的情况下，最主要的护理诊断是“皮肤完整性受损”。这是因为化妆品可能含有刺激成分，导致",
+          "text_sha256": "8e632b8215f452e879b203d87b5f66ba389838183d1e624484134196b5871ec5"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 1.6723,
+          "text_head": "在临时出国(境)团(组)或者人员中的党员擅自延长在国(境)外期限或者擅自变更路线的情况下，根据《中国共产党纪律处分条例》，这种行为属于违反组织纪律的行为。对于直",
+          "text_sha256": "8964dae807b0ec1b1e6bf4264252265f321e12853817f60346432e5beb30cce3"
+        },
+        {
+          "completion_tokens": 120,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 2.8478,
+          "text_head": "对于这位72岁男性患者，由于他患有瘢痕性幽门梗阻，并且全身情况较差，首先需要采取保守治疗来改善他的身体状况。这包括通过静脉输液来纠正脱水和电解质失衡，以支持他的",
+          "text_sha256": "da170376a4348fc3312d694e5cfe800df31a4f00598176f64334ec733b41ed16"
+        },
+        {
+          "completion_tokens": 56,
+          "finish_reason": "stop",
+          "prompt_tokens": 47,
+          "reasoning_chars": 0,
+          "seconds": 1.0763,
+          "text_head": "该患者的热型属于稽留热。稽留热的特点是体温持续在较高水平，波动范围很小，通常不超过1℃。根据描述，该患者的体温在39℃到40℃之间，波动仅为1℃，符合稽留热的特",
+          "text_sha256": "3d867662cd2231a71cef2de3f194e5da872dad01f525d2984562e728c3c6ffe4"
+        },
+        {
+          "completion_tokens": 113,
+          "finish_reason": "stop",
+          "prompt_tokens": 73,
+          "reasoning_chars": 0,
+          "seconds": 2.3687,
+          "text_head": "根据Ann Arbor分期系统，这位47岁男性患者的外周T细胞性淋巴瘤（非特异型）的分期应为II期。该分期系统主要依据受累淋巴结区域的数量和位置进行判断。在这个",
+          "text_sha256": "fbac1da7e6e9dca60a80414470145c2595c061f432eb279e99f665da822369d6"
+        },
+        {
+          "completion_tokens": 154,
+          "finish_reason": "stop",
+          "prompt_tokens": 161,
+          "reasoning_chars": 0,
+          "seconds": 2.5055,
+          "text_head": "根据患者的情况，他存在明显的骨性Ⅱ类错颌，ANB角高达10.0°，并且上前牙拥挤明显。对于这样的病例，需要采取有效的矫治措施来改善上下颌骨的关系以及牙齿的排列。",
+          "text_sha256": "6d03503a124ba70841ffc79439a1f741ebc5086c16fef10cb403bebf3c17eb52"
+        },
+        {
+          "completion_tokens": 75,
+          "finish_reason": "stop",
+          "prompt_tokens": 71,
+          "reasoning_chars": 0,
+          "seconds": 1.5186,
+          "text_head": "在这种情况下，这名患者很可能患有急性胰腺炎，并出现了休克症状。为了在24小时内显著降低患者的死亡风险，最关键的措施是进行积极的液体复苏。通过静脉输液来恢复血容量",
+          "text_sha256": "b7942821a353f31b8637d09d511084b006d8432d1586dc0617d7fe1d6022fd1f"
+        },
+        {
+          "completion_tokens": 64,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 1.3002,
+          "text_head": "根据患者的年龄、症状以及治疗反应，最可能的诊断是C. ANUG（急性坏死性溃疡性龈炎）。ANUG在年轻人中较为常见，特别是在压力较大或免疫力下降的情况下。其症状",
+          "text_sha256": "193fc57e483a8c688a88eaee8ca79e6b0234eaf204d0f91bf89a4a23d8fcd823"
+        },
+        {
+          "completion_tokens": 105,
+          "finish_reason": "stop",
+          "prompt_tokens": 98,
+          "reasoning_chars": 0,
+          "seconds": 1.9758,
+          "text_head": "在这种情况下，考虑到患者的症状和体征，尤其是低热、腹胀、体重减轻以及腹水的存在，结核性腹膜炎是一个需要高度怀疑的可能性。在诊断不明确的情况下，采取试验性抗结核治",
+          "text_sha256": "5cfd11e154fc94aac23cd5a3a04df6d18e5926975d540ea998b0bdd240ee5d45"
+        },
+        {
+          "completion_tokens": 225,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 4.0353,
+          "text_head": "根据描述的症状，小明很可能是腹股沟斜疝。腹股沟斜疝在儿童中较为常见，尤其是男孩。其特点包括：\n\n1. **疝内容物可达阴囊**：由于腹股沟斜疝的疝囊通过腹股沟管",
+          "text_sha256": "f4ebefba5f74bbab85bf6a3e148d34a6636677d87b4aace4c23d52f3fa2af4d1"
+        },
+        {
+          "completion_tokens": 60,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 0.8552,
+          "text_head": "根据描述，这种药材的特征与酸枣仁非常吻合。酸枣仁呈扁圆形或扁椭圆形，表面为紫红色或紫褐色，平滑有光泽，一端凹陷可见线形种脐，另一端有细小突起合点。因此，这种药材",
+          "text_sha256": "97b97b70491ebb597f60b273a755a49b0da97eaa997901a792d123f3e5ea27af"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 61,
+          "reasoning_chars": 0,
+          "seconds": 1.2049,
+          "text_head": "根据患者的症状表现，包括低热、午后发热、面色无华、倦怠无力、劳累后发热加剧、舌淡、脉细弱无力，这些均指向气虚的表现。对于气虚引起的发热，中医上常用补中益气汤进行",
+          "text_sha256": "a66e8ae6b8fa74e1dc3a085b7d57173974521db9b2387d75a2fd5e5aac7795d8"
+        },
+        {
+          "completion_tokens": 82,
+          "finish_reason": "stop",
+          "prompt_tokens": 103,
+          "reasoning_chars": 0,
+          "seconds": 1.5164,
+          "text_head": "根据描述的症状和病史，这个新生儿可能患有颅内出血或脑水肿，尤其是在产钳助产后出现这些症状。对于这种情况，早期处理的关键是降低颅内压。\n\n在选项中，甘露醇是一种常",
+          "text_sha256": "71300596a426541e23772f30a4c65fd46b3782c1eeafeed3a9546ac93663bc86"
+        },
+        {
+          "completion_tokens": 94,
+          "finish_reason": "stop",
+          "prompt_tokens": 35,
+          "reasoning_chars": 0,
+          "seconds": 1.6732,
+          "text_head": "根据患者的病理检验结果和镜检照片，结合其他症状和检查，诊断此患者的肾脏疾病是IgA肾病（也称为IgA肾小球病或Berger病）。IgA肾病通常表现为血尿，尤其是",
+          "text_sha256": "8d24ece68c8891d984f440e4414d5a67d3995bc0dc9076b827e09d08e4872297"
+        },
+        {
+          "completion_tokens": 152,
+          "finish_reason": "stop",
+          "prompt_tokens": 89,
+          "reasoning_chars": 0,
+          "seconds": 2.3845,
+          "text_head": "根据患者的症状和表现，结合中医理论进行分析，可以得出以下结论：\n\n患者何某，54岁女性，因暴怒突然晕倒，不省人事，牙关紧闭，面赤唇紫，舌红，脉沉弦。这些症状提示",
+          "text_sha256": "7983601ca89b7558de384213832dc8557726d8e751792a796eef3c4f7e74320a"
+        },
+        {
+          "completion_tokens": 109,
+          "finish_reason": "stop",
+          "prompt_tokens": 89,
+          "reasoning_chars": 0,
+          "seconds": 2.3418,
+          "text_head": "根据描述的症状和体征，这个小女孩很可能患有先天性心脏病中的房间隔缺损（ASD）。房间隔缺损会导致左心房和右心房之间的异常血流，从而引起肺循环的负担加重，导致肺野",
+          "text_sha256": "07608e92e1c9f12e952a7c2597f00a44365bdcb5b667bf80fdbd71fa1dce8323"
+        },
+        {
+          "completion_tokens": 53,
+          "finish_reason": "stop",
+          "prompt_tokens": 34,
+          "reasoning_chars": 0,
+          "seconds": 0.9882,
+          "text_head": "在对患者进行免疫血清学诊断传染病时，Ag-Ab反应中常用的NaCl浓度是0.85%。这个浓度接近生理盐水的等渗浓度，能够维持细胞的正常形态，并保证抗原和抗体反应",
+          "text_sha256": "4ec852478db8475fd988053a7abadebcce78aae8a229bc212296028218360c86"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 28,
+          "reasoning_chars": 0,
+          "seconds": 2.1166,
+          "text_head": "根据患者的症状表现和体征，该产后身痛的证型可能是“血虚证”。产后身痛在中医上常与气血不足、风寒湿邪入侵等因素有关。如果患者表现出面色苍白、乏力、心悸、舌淡、脉细",
+          "text_sha256": "80fde57226536891e04807723c94d7385ca5b6bbdacf1434c73d7b3da6642625"
+        },
+        {
+          "completion_tokens": 221,
+          "finish_reason": "stop",
+          "prompt_tokens": 46,
+          "reasoning_chars": 0,
+          "seconds": 3.7517,
+          "text_head": "根据患者的症状表现，面黄肌瘦、气短懒言，以及舌暗红少苔、脉沉而涩，这些特征提示患者可能存在气阴两虚，并伴有血瘀的情况。因此，在选择中药方剂时，需要兼顾补气、养阴",
+          "text_sha256": "65dd80296fa0570d6db3031b65d143f615450b8319dcca6027f0f59fd745b860"
+        },
+        {
+          "completion_tokens": 98,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 1.5839,
+          "text_head": "根据描述，6周大的婴儿头颅前后径较大，横径较小，并且体检及X线检查发现矢状缝闭合，这种情况最可能的诊断是舟状头（Scaphocephaly）。舟状头是由于矢状缝",
+          "text_sha256": "d4111a3540d57d92d92ae375e3f6ed86ef930eeaddd76938a210534a346a52ba"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 2.6385,
+          "text_head": "在使用双硫腙光度法测定Pb2+时，我们需要计算有色物质的摩尔吸光系数。根据题目提供的信息，50毫升溶液中含有0.1毫克的Pb2+，在520纳米波长下测得的透光度",
+          "text_sha256": "ce86eb06f989216971a7678aa69a9daf9fab7138782146f9ee114d73b5c71d8f"
+        },
+        {
+          "completion_tokens": 168,
+          "finish_reason": "stop",
+          "prompt_tokens": 58,
+          "reasoning_chars": 0,
+          "seconds": 3.148,
+          "text_head": "根据患者的症状和体征，这位45岁的女性患者可能患有心脏瓣膜狭窄，尤其是二尖瓣狭窄。在坐位时听到的舒张期杂音提示了这一点，因为二尖瓣狭窄的杂音通常在患者左侧卧位时",
+          "text_sha256": "8d782d2d4b435f783e6427433b0c191b3c60771bfcaa82b21b3e1787b120b63e"
+        },
+        {
+          "completion_tokens": 116,
+          "finish_reason": "stop",
+          "prompt_tokens": 60,
+          "reasoning_chars": 0,
+          "seconds": 2.6679,
+          "text_head": "强直性脊柱炎的特征性病理改变主要包括骶髂关节炎和脊柱的竹节样改变。骶髂关节炎是最早和最常见的表现，X线检查可见关节间隙变窄、骨质硬化，甚至关节融合。随着病情进展",
+          "text_sha256": "435ffc8558828d7da764c641c702c50843be25e192198692c0b749943a08a978"
+        },
+        {
+          "completion_tokens": 80,
+          "finish_reason": "stop",
+          "prompt_tokens": 138,
+          "reasoning_chars": 0,
+          "seconds": 0.8696,
+          "text_head": "根据患者的症状和检查结果，最可能的诊断是B. 急性化脓性胆囊炎。患者有右上腹绞痛、发热、巩膜黄染、白细胞增高等表现，这些都与急性化脓性胆囊炎相符。此外，血清淀粉",
+          "text_sha256": "1e442ccd0e3baf1242cfaf7378388daaa0978e380a3862d33e2ad3b38842089a"
+        },
+        {
+          "completion_tokens": 88,
+          "finish_reason": "stop",
+          "prompt_tokens": 65,
+          "reasoning_chars": 0,
+          "seconds": 1.6254,
+          "text_head": "根据患者的症状和体征，初步诊断可能是失血性休克。患者有双侧股骨干骨折，这可能导致大量内出血，从而引起血容量不足。脉搏细弱、低血压、四肢冰冷和无尿都是休克的表现，",
+          "text_sha256": "69d9cd5cf81964ad377a57e002063992a7da4dec3aed72c6ece7eeb6f11a1523"
+        },
+        {
+          "completion_tokens": 84,
+          "finish_reason": "stop",
+          "prompt_tokens": 40,
+          "reasoning_chars": 0,
+          "seconds": 1.9618,
+          "text_head": "根据1天龄早产儿窒息史及新生儿缺血缺氧性脑病的初步诊断，该病例可能出现脑损伤的具体部位主要包括大脑皮层、基底节和脑白质。这些区域对缺氧缺血特别敏感，尤其是早产儿",
+          "text_sha256": "4832cb027c07639e6e7f9dfc14f8c761ad872df8cbc6e9f8b37a47a39d84c27d"
+        },
+        {
+          "completion_tokens": 112,
+          "finish_reason": "stop",
+          "prompt_tokens": 66,
+          "reasoning_chars": 0,
+          "seconds": 2.0047,
+          "text_head": "根据患者的症状和病史，最可能的诊断是有机磷中毒。患者出现的头晕、呕吐、流涎、心率减慢、皮肤潮湿、瞳孔缩小以及双下肺湿啰音等症状，与有机磷中毒的典型表现非常一致。",
+          "text_sha256": "c89e5e5443e19505b3a3998e567d78effa1c68fcc3f217e5ad26126157e310e8"
+        },
+        {
+          "completion_tokens": 69,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 1.3934,
+          "text_head": "针对这位10岁女孩的症状和病史，首先应该进行尿常规检查。尿常规可以帮助确认是否存在蛋白尿和红细胞，从而支持急性肾小球肾炎的诊断。此外，考虑到她有头痛和视物不清的",
+          "text_sha256": "1667d06d64b4aaaa999c59f764340b63449407fe5f1b87006a1b6bad1e146910"
+        },
+        {
+          "completion_tokens": 94,
+          "finish_reason": "stop",
+          "prompt_tokens": 150,
+          "reasoning_chars": 0,
+          "seconds": 1.6871,
+          "text_head": "根据患者的症状和检查结果，初步诊断为左侧脓胸。对于这种情况，首要任务是尽快排出胸腔内的脓液，以缓解症状并防止病情进一步恶化。虽然抗生素治疗是必要的，但单靠抗生素",
+          "text_sha256": "cd023a76a5f352b1e4b6bfb01a0a51e1fbf993b0e98b5a9aae569e3374254454"
+        },
+        {
+          "completion_tokens": 49,
+          "finish_reason": "stop",
+          "prompt_tokens": 50,
+          "reasoning_chars": 0,
+          "seconds": 0.9337,
+          "text_head": "在这种情况下，不容易发生的情况是“胎头入盆”。由于骨盆为男型，其入口较窄，这可能导致胎头不容易顺利入盆。因此，在临产后，胎头入盆这一情况可能不容易发生。",
+          "text_sha256": "87813843fdf3dcde9892ba9a4927dc3d329eecbb3739a81c8a25ce723d678b2d"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 119,
+          "reasoning_chars": 0,
+          "seconds": 2.3815,
+          "text_head": "要计算醋酸可的松片的标示百分含量，我们需要根据实验数据逐步推导。\n\n首先，计算20片药片的平均重量：\n\\[ \\text{平均片重} = \\frac{4.3686",
+          "text_sha256": "e2a94043ac67644c945acaaf7c04e82fbd1aa22b3300b1466f4c7e4b22348aeb"
+        },
+        {
+          "completion_tokens": 208,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 3.0729,
+          "text_head": "在这种情况下，患者由于自行调整药物导致癫痫发作频繁且意识不清，需要立即采取以下措施：\n\n1. **确保患者安全**：首先，确保患者处于安全的环境中，防止在发作期",
+          "text_sha256": "57fab6d28e66e0a48a452052a9461ac14ea718a97a1bfae65b6767aedda16643"
+        },
+        {
+          "completion_tokens": 92,
+          "finish_reason": "stop",
+          "prompt_tokens": 47,
+          "reasoning_chars": 0,
+          "seconds": 1.3755,
+          "text_head": "根据患者的症状和体征，可以判断其证候为血虚证。患者怀孕两个多月，出现小腹绵绵作痛、面色萎黄、头晕心悸等症状，结合舌淡、苔薄白、脉细滑弱等表现，这些都指向血虚。在",
+          "text_sha256": "7334cb99e5c42196df1f914a25215367e40d45f6cb00f52f7e6cd2885d1aeb9d"
+        },
+        {
+          "completion_tokens": 72,
+          "finish_reason": "stop",
+          "prompt_tokens": 102,
+          "reasoning_chars": 0,
+          "seconds": 0.9894,
+          "text_head": "根据患者的临床表现和组织病理特征，该病最可能的诊断是疱疹样皮炎。患者的症状包括躯干和上肢的红斑、水疱和大疱，伴有瘙痒，尼氏征阴性，以及组织病理检查显示表皮内水疱",
+          "text_sha256": "e99c0050e232c9ad867bc0fcfbc83dad447c200af70a3be71971a99537654e54"
+        },
+        {
+          "completion_tokens": 213,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 2.7328,
+          "text_head": "针对这位25岁男性患者的情况，他因大面积烧伤住院，并出现上腹痛和排黑便的症状，结合体检和实验室检查结果，初步考虑可能存在应激性溃疡导致的上消化道出血。\n\n首先，",
+          "text_sha256": "ae37c554ea2d095a5501ed21c638ac19c922776ff5cd34059b33d8c9ba019406"
+        },
+        {
+          "completion_tokens": 92,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 1.3698,
+          "text_head": "根据描述，这种细胞具有直径15～20μm，圆形，边缘有瘤状突起，圆形粒状核染色质，1～2个核仁，以及少量呈油墨蓝的胞浆。这些特征与浆细胞非常吻合。浆细胞通常具有",
+          "text_sha256": "1a27c886d69047131d86da2d2a25f59d601068d7fd1f9509148a497808ecca13"
+        },
+        {
+          "completion_tokens": 139,
+          "finish_reason": "stop",
+          "prompt_tokens": 68,
+          "reasoning_chars": 0,
+          "seconds": 1.738,
+          "text_head": "根据描述，这个8个月大的婴儿表现出欠活泼、好哭、体重偏低、肌张力低下和肌肉松弛等症状，这些特征很可能与营养不良有关。特别是蛋白质-能量营养不良（PEM），这种情",
+          "text_sha256": "3ab184db1634704aa077ad2ab15f6fbe37390fa2b614fea563145981ba88db7e"
+        },
+        {
+          "completion_tokens": 65,
+          "finish_reason": "stop",
+          "prompt_tokens": 52,
+          "reasoning_chars": 0,
+          "seconds": 1.102,
+          "text_head": "根据患者的症状和体征，首先考虑的是蛛网膜下腔出血（SAH）。为了快速确认这一诊断，最直接有效的检查是腰椎穿刺。腰椎穿刺可以检测脑脊液中是否存在红细胞或黄变，从而",
+          "text_sha256": "ffc0ffa6a893956d5d7aa73b524ccdf2199fbaca7ac9808dc24b85b491857055"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 736.91,
+      "wall_seconds": 6.32
+    }
+  ],
+  "max_tokens": 256,
+  "model": "Qwen/Qwen3.8-27B",
+  "num_prompts": 40,
+  "prompts": "eval_prompts.jsonl",
+  "skip": 80,
+  "thinking": false
+}

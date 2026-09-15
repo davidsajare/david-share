@@ -475,14 +475,133 @@ def summarize(root):
     results = root / "results"
     provenance = read_json(root / "evidence" / "provenance.json")
     round4 = summarize_round4(results / "round4", root, provenance)
+    round5 = summarize_round5(results / "round5", root, provenance, round4["eval_prompts_sha256"]["zh200"])
     return {
-        "scope": "Continuation training of the released DFlash 2 drafter against LoRA-fine-tuned Qwen3.8-27B targets. Not training from scratch. Two drift regimes; the Chinese serving comparison was repeated in a later session.",
+        "scope": "Continuation training of the released DFlash 2 drafter against LoRA-fine-tuned Qwen3.8-27B targets. Not training from scratch. Two drift regimes; the Chinese serving comparison was repeated in a later session and then swept across five prompt blocks and four concurrency levels.",
         "round3": summarize_round3(results / "round3", root, provenance),
         "round4": round4,
-        "round5": summarize_round5(results / "round5", root, provenance, round4["eval_prompts_sha256"]["zh200"]),
+        "round5": round5,
+        "round6": summarize_round6(results / "round6", root, provenance, round4["eval_prompts_sha256"]["zh200"], round5["vllm"]["routes"]),
         "training": training_summary(root, provenance),
         "answer_quality": "NOT_MEASURED: no grader was run on these medical prompt sets; agreement and acceptance describe drafting, not answer correctness.",
-        "statistics_boundary": "PAIRED agreement comparisons share byte-identical target text and use a prompt-level bootstrap. Round 3/4 acceptance and vLLM figures are single executions on different generated texts. Round 5 repeats the Round 4 serving runs four times per cell and reports raw ranges; no significance claim.",
+        "statistics_boundary": "PAIRED agreement comparisons share byte-identical target text and use a prompt-level bootstrap. Round 3/4 acceptance and vLLM figures are single executions on different generated texts. Round 5 repeats the Round 4 serving runs four times per cell and reports raw ranges. Round 6 serves five disjoint 40-prompt blocks once each and reports the per-block gain; no significance claim.",
+    }
+
+
+ROUND6_BLOCKS = (0, 1, 2, 3, 4)
+ROUND6_CONCURRENCIES = ("1", "4", "8", "16")
+
+
+def block_gain_summary(records, routes, blocks, concurrencies):
+    """One serving run per route and prompt block; the gain is recomputed per block, never pooled.
+
+    Five disjoint 40-prompt blocks give five independent estimates of the adapted-over-released
+    throughput ratio at each concurrency. ``all_blocks_positive`` is the only aggregate claim the
+    README is allowed to make; means and ranges are reported as raw numbers.
+    """
+    def tps(route, block):
+        record = records[(route, block)]
+        table = {}
+        for level in record["levels"]:
+            rows = level["per_request"]
+            tokens = sum(row["completion_tokens"] for row in rows)
+            require(tokens == level["completion_tokens"], f"VLLM_TOKEN_MISMATCH:{route}:b{block}")
+            rounding_error = tokens * 0.005 / level["wall_seconds"] ** 2 + 0.005
+            require(abs(tokens / level["wall_seconds"] - level["tokens_per_second"]) <= rounding_error,
+                    f"VLLM_THROUGHPUT_MISMATCH:{route}:b{block}")
+            table[str(level["concurrency"])] = level["tokens_per_second"]
+        require(set(table) == set(concurrencies), f"ROUND6_CONCURRENCY_SET_MISMATCH:{route}:b{block}")
+        return table
+
+    throughput = {route: {block: tps(route, block) for block in blocks} for route in routes}
+    base, released, adapted = (throughput[route] for route in routes)
+    per_concurrency = {}
+    for concurrency in concurrencies:
+        gains = [round((adapted[b][concurrency] / released[b][concurrency] - 1) * 100, 2) for b in blocks]
+        per_concurrency[concurrency] = {
+            "adapted_over_released_pct_per_block": gains,
+            "gain_mean": round(statistics.mean(gains), 2), "gain_min": min(gains), "gain_max": max(gains),
+            "all_blocks_positive": all(g > 0 for g in gains),
+            "released_speedup_per_block": [round(released[b][concurrency] / base[b][concurrency], 3) for b in blocks],
+            "adapted_speedup_per_block": [round(adapted[b][concurrency] / base[b][concurrency], 3) for b in blocks],
+        }
+        per_concurrency[concurrency]["released_speedup_mean"] = round(statistics.mean(per_concurrency[concurrency]["released_speedup_per_block"]), 3)
+        per_concurrency[concurrency]["adapted_speedup_mean"] = round(statistics.mean(per_concurrency[concurrency]["adapted_speedup_per_block"]), 3)
+    return {"tokens_per_second": {route: {f"b{b}": table for b, table in blocks_table.items()} for route, blocks_table in throughput.items()},
+            "per_concurrency": per_concurrency}
+
+
+def block_text_identity(records, routes, blocks, concurrencies):
+    def hashes(route, block, concurrency):
+        level = next(level for level in records[(route, block)]["levels"] if str(level["concurrency"]) == concurrency)
+        return [row["text_sha256"] for row in level["per_request"]]
+    result = {}
+    for concurrency in concurrencies:
+        result[concurrency] = {
+            "released_vs_adapted_per_block": [sum(a == b for a, b in zip(hashes(routes[1], b, concurrency), hashes(routes[2], b, concurrency))) for b in blocks],
+            "baseline_vs_released_per_block": [sum(a == b for a, b in zip(hashes(routes[0], b, concurrency), hashes(routes[1], b, concurrency))) for b in blocks],
+        }
+    return result
+
+
+def thinking_attempt(records, routes):
+    """The block-0 thinking pass is published but judged on what the client actually retrieved.
+
+    A valid thinking run must return reasoning text; here every response came back with empty
+    ``content`` and zero ``reasoning_chars`` while the server still billed ~130 tokens, so the
+    mode the model ran in is unknown and any byte-identity count would compare empty strings.
+    """
+    per_route = {}
+    empty_everywhere = True
+    for route in routes:
+        record = records[route]
+        require(record.get("thinking") is True, "THINKING_FLAG_MISSING:" + route)
+        levels = {}
+        for level in record["levels"]:
+            rows = level["per_request"]
+            reasoning = sum(row.get("reasoning_chars", 0) for row in rows)
+            content_chars = sum(len(row.get("text_head", "")) for row in rows)
+            if reasoning or content_chars:
+                empty_everywhere = False
+            levels[str(level["concurrency"])] = {
+                "tokens_per_second": level["tokens_per_second"], "completion_tokens": level["completion_tokens"],
+                "reasoning_chars_total": reasoning, "content_head_chars_total": content_chars,
+                "length_stops": level["finish_length"], "median_completion_tokens": statistics.median(row["completion_tokens"] for row in rows),
+            }
+        per_route[route] = {"max_tokens": record["max_tokens"], "levels": levels}
+    return {
+        "valid": not empty_everywhere,
+        "reason": None if not empty_everywhere else "CLIENT_RETRIEVED_NO_TEXT: every response had empty content and zero reasoning_chars; the model's decoding mode is unverified and throughput/identity numbers are not interpretable",
+        "routes": per_route,
+    }
+
+
+def summarize_round6(results, root, provenance, round4_prompts_sha256, round5_routes):
+    routes = ("baseline", "dflash_released", "dflash_ours")
+    discovery = read_json(results / "vllm" / "discovery.json")
+    require(discovery["prompts_sha256"] == round4_prompts_sha256, "ROUND6_PROMPTS_DIFFER_FROM_ROUND4")
+    records = {(route, block): read_json(results / "vllm" / f"{route}_b{block}.json") for route in routes for block in ROUND6_BLOCKS}
+    for (route, block), record in records.items():
+        require(record["label"] == f"{route}_b{block}", f"ROUND6_LABEL_MISMATCH:{route}:b{block}")
+        require(record["skip"] == block * 40 and record["num_prompts"] == 40 and record["max_tokens"] == 256 and record["thinking"] is False,
+                f"ROUND6_CONTRACT_MISMATCH:{route}:b{block}")
+    thinking = {route: read_json(results / "vllm" / f"{route}_think_b0.json") for route in routes}
+    gains = block_gain_summary(records, routes, ROUND6_BLOCKS, ROUND6_CONCURRENCIES)
+    # Block 0 is the Round 4/5 prompt set; its deviation from the Round 5 four-run means is the regression anchor.
+    anchor = {}
+    for route in routes:
+        anchor[route] = {c: round((gains["tokens_per_second"][route]["b0"][c] / round5_routes[route]["levels"][c]["mean"] - 1) * 100, 2)
+                         for c in ("1", "4", "8")}
+    return {
+        "scope": "Setting B target and both draft models served once per route on 2026-09-14 across five disjoint 40-prompt blocks of the same 200 held-out Chinese prompts (block 0 = Round 4/5 set) at concurrency 1/4/8/16; plus one block-0 thinking-mode attempt.",
+        "eval_prompts_sha256": discovery["prompts_sha256"],
+        "blocks": {f"b{b}": {"skip": b * 40, "prompts": 40} for b in ROUND6_BLOCKS},
+        "vllm": gains,
+        "text_identity": block_text_identity(records, routes, ROUND6_BLOCKS, ROUND6_CONCURRENCIES),
+        "block0_vs_round5_mean_pct": anchor,
+        "thinking_attempt": thinking_attempt(thinking, routes),
+        "vllm_server_acceptance": vllm_server_acceptance(provenance["round6"], routes[1:]),
+        "boundary": "One run per block; the five blocks are independent prompt samples but a single timing observation each. Concurrency 16 equals the engine's max-num-seqs. No answer grading.",
     }
 
 

@@ -1,0 +1,1496 @@
+{
+  "decoding": "temperature 0.0 via OpenAI chat completions, enable_thinking=false",
+  "label": "baseline_b4",
+  "levels": [
+    {
+      "completion_tokens": 4742,
+      "concurrency": 1,
+      "finish_length": 1,
+      "median_request_seconds": 1.968,
+      "per_request": [
+        {
+          "completion_tokens": 178,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 3.3172,
+          "text_head": "在用亚甲基蓝比色法测定空气中的硫化氢时，加入混合显色液后需要放置30分钟再加磷酸氢二钠溶液，主要是为了确保反应的充分进行和结果的准确性。\n\n首先，硫化氢与显色液",
+          "text_sha256": "56f344b0870852fac606dc22c4a9918c502d351047afcbdf5784e12db429a699"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 132,
+          "reasoning_chars": 0,
+          "seconds": 1.8054,
+          "text_head": "根据患者的症状和实验室检查结果，她患有急性化脓性扁桃体炎，并且尿蛋白电泳显示以清蛋白增高为主。清蛋白是一种大分子蛋白，通常通过肾小球滤过。当尿中出现大量清蛋白时",
+          "text_sha256": "55c4553bef6a6ddd46fbc41e9acbd1926d5a76cd3fdf98885663e20e1f71f7a5"
+        },
+        {
+          "completion_tokens": 162,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 3.0332,
+          "text_head": "针对这位65岁男性患者的情况，他突发呼吸困难并伴有哮鸣音，同时有哮喘和冠心病的病史，因此在选择药物时需要谨慎。\n\n首先，沙丁胺醇是一种短效β2受体激动剂，常用于",
+          "text_sha256": "19fa72211c8333595bd62c0aca3d8b35925db580ccf79e6916d2c6abfc27cefd"
+        },
+        {
+          "completion_tokens": 85,
+          "finish_reason": "stop",
+          "prompt_tokens": 32,
+          "reasoning_chars": 0,
+          "seconds": 1.6044,
+          "text_head": "在麻醉状态下的实验中，如果刺激兔的主动脉神经中枢端，血压通常会下降。这是因为刺激主动脉神经会激活压力感受器，这些感受器向中枢神经系统发送信号，导致副交感神经活动",
+          "text_sha256": "a6508cd1ec2d1a0164879e532adf809e4642fe733eed20f5c94173eb7e5dc022"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "reasoning_chars": 0,
+          "seconds": 1.6926,
+          "text_head": "针对这名24岁男性患者，考虑到他有剧烈上腹痛、暴饮暴食和饮酒史，怀疑急性胰腺炎时，最应该进行的实验室检查是血清淀粉酶和脂肪酶检测。这两项指标在急性胰腺炎时会显著",
+          "text_sha256": "384de2ab722d95f74e6e2da7e07c8e200a1f1fe63eba28ac0390b0fac105a347"
+        },
+        {
+          "completion_tokens": 56,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 1.0909,
+          "text_head": "在5名患者眼底上分别能看到以下中的一项，最怀疑有糖尿病视网膜病变的是A. 微血管瘤。微血管瘤是糖尿病视网膜病变的早期和特征性表现，因此当在眼底观察到微血管瘤时，",
+          "text_sha256": "5dee5f91932b6e0a54521f0b57abfd9427f43602aa026172667ce7305b8481a2"
+        },
+        {
+          "completion_tokens": 139,
+          "finish_reason": "stop",
+          "prompt_tokens": 64,
+          "reasoning_chars": 0,
+          "seconds": 2.6088,
+          "text_head": "对于这位58岁的女性患者，由于她过去使用华法林时出现了INR值波动和牙出血的问题，并且不愿意继续使用华法林，因此选择一种新型口服抗凝药（NOAC）是合理的。\n\n",
+          "text_sha256": "83c7503a79f622008b4f997e3265d8009e2d703c17b996a2bed798c1717220b9"
+        },
+        {
+          "completion_tokens": 114,
+          "finish_reason": "stop",
+          "prompt_tokens": 100,
+          "reasoning_chars": 0,
+          "seconds": 2.1544,
+          "text_head": "根据提供的实验结果和细菌特征，该细菌最有可能是草绿色链球菌（viridans group streptococci）。草绿色链球菌是一组常见的口腔正常菌群，也是",
+          "text_sha256": "d2c0760d45a676cdbfd696c7cad626c491c198f488a9fb8de3d9266f360b2098"
+        },
+        {
+          "completion_tokens": 82,
+          "finish_reason": "stop",
+          "prompt_tokens": 47,
+          "reasoning_chars": 0,
+          "seconds": 1.5623,
+          "text_head": "对于这位55岁女性患者，她出现了右上腹痛、寒战和黄疸，这些症状提示可能存在胆道系统的问题，比如胆结石或胆管炎。在这种情况下，首选的影像学检查是腹部超声。超声检查",
+          "text_sha256": "6368b4edce797a759c3f1ae549f7baf1c1463ba5ba1f1ad4dacdd8a2bc2d5937"
+        },
+        {
+          "completion_tokens": 123,
+          "finish_reason": "stop",
+          "prompt_tokens": 133,
+          "reasoning_chars": 0,
+          "seconds": 2.3192,
+          "text_head": "根据提供的临床表现和实验室检查结果，这位14岁男孩的症状和体征与格林-巴利综合征（Guillain-Barré综合征，GBS）非常一致。GBS的典型特征包括进行",
+          "text_sha256": "54059fe3cd5ffeb2ed37ec3590da71573144c8d414b354e19a8444ae06388394"
+        },
+        {
+          "completion_tokens": 70,
+          "finish_reason": "stop",
+          "prompt_tokens": 54,
+          "reasoning_chars": 0,
+          "seconds": 1.343,
+          "text_head": "根据描述的症状，这名7岁男孩的头皮状况很可能是黄癣。黄癣是一种由真菌感染引起的皮肤病，其特征包括红色丘疹、脓疱、黄色厚痂以及毛发贯穿痂皮，并伴有特殊的臭味。这些",
+          "text_sha256": "59bfa66ef3debc444102ab3209ef8c8415ca9b757d50907a5f0c119fdf8f2924"
+        },
+        {
+          "completion_tokens": 184,
+          "finish_reason": "stop",
+          "prompt_tokens": 56,
+          "reasoning_chars": 0,
+          "seconds": 3.4357,
+          "text_head": "对于这位患有类风湿性关节炎并长期使用糖皮质激素的56岁男性患者，其免疫系统可能较为脆弱，因此出现感染时需要特别注意选择合适的抗生素。根据痰培养结果显示为铜绿假单",
+          "text_sha256": "ffb7ab964153340af9356e6dcbeec3cbec9f98509c5f91ac082f048e246d397e"
+        },
+        {
+          "completion_tokens": 59,
+          "finish_reason": "stop",
+          "prompt_tokens": 50,
+          "reasoning_chars": 0,
+          "seconds": 1.1447,
+          "text_head": "在2003年非典期间，刘某作为医疗机构的工作人员，如果发现一例发热、干咳的非典型性肺炎的疑似病例，他应该在24小时内向当地的卫生防疫部门报告。这一要求是基于当时",
+          "text_sha256": "8cffadc822c2e5d905201d7f111ca31a862bd2aec576168c6eb4910eafb6f57c"
+        },
+        {
+          "completion_tokens": 135,
+          "finish_reason": "stop",
+          "prompt_tokens": 63,
+          "reasoning_chars": 0,
+          "seconds": 2.5364,
+          "text_head": "对于这位被诊断为类风湿关节炎的患儿，根据所描述的症状，如关节疼痛反复发作、关节漫肿、僵硬变形、痛有定处，以及舌质紫暗、苔白腻、脉涩等，这些都提示了瘀血和湿邪的存",
+          "text_sha256": "408152379b68046cd4e4917c6d6cbc6dae32c31f28d62be8a29dd4868f9cc29d"
+        },
+        {
+          "completion_tokens": 150,
+          "finish_reason": "stop",
+          "prompt_tokens": 80,
+          "reasoning_chars": 0,
+          "seconds": 2.812,
+          "text_head": "对于这位30岁的女性，在清宫术后被诊断为葡萄胎，选择合适的避孕方法非常重要。考虑到葡萄胎患者需要避免再次怀孕，以防止可能的复发或并发症，因此需要选择一种高效且可",
+          "text_sha256": "8a452ebe18bf970eec08da26c7bd023f74372787e0927c387690747f3a2d1fc4"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.8001,
+          "text_head": "在这种情况下，不适合进行溶栓治疗。溶栓治疗通常用于急性心肌梗死，尤其是在心电图显示ST段抬高的情况下。然而，这位患者的心电图并未显示ST段抬高，而是显示Ⅲ导联有",
+          "text_sha256": "dcc2c74f98784dc6f3dd6089ce5d49bafc12888e0dc7ada2fb1ffe578622764a"
+        },
+        {
+          "completion_tokens": 175,
+          "finish_reason": "stop",
+          "prompt_tokens": 37,
+          "reasoning_chars": 0,
+          "seconds": 3.2709,
+          "text_head": "在潮湿环境中，某些药物可能会吸收水分并形成水合物，从而影响其药效。你提到的现象确实可能发生，尤其是在片剂中。\n\n一个典型的例子是某些抗生素，如四环素类，它们在潮",
+          "text_sha256": "a3078fa472a1306e59dc9570701c86ca3c39baaf440bcbffa81a98e63c3134e1"
+        },
+        {
+          "completion_tokens": 87,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 1.654,
+          "text_head": "针对这个6岁男孩的情况，由于他在屈膝时马蹄足畸形消失，说明他的跟腱可能并没有严重的结构性缩短，而更可能是功能性问题。因此，跟腱延长术可能并不适宜，因为这种手术主",
+          "text_sha256": "34cf19b2e555cd179c1dbb1203adf2ef643c2044f4926df266d403d313e1fd69"
+        },
+        {
+          "completion_tokens": 119,
+          "finish_reason": "stop",
+          "prompt_tokens": 121,
+          "reasoning_chars": 0,
+          "seconds": 2.248,
+          "text_head": "根据患者的症状和化验结果，她最可能患有系统性红斑狼疮（SLE）。患者表现出持续发热、关节痛、乏力、头痛，以及面颊部的红斑，这些都是SLE的常见症状。此外，化验结",
+          "text_sha256": "d14d56503156475c6de830e5148287775b9ada1b42b30ae7c1c93603b653122c"
+        },
+        {
+          "completion_tokens": 70,
+          "finish_reason": "stop",
+          "prompt_tokens": 83,
+          "reasoning_chars": 0,
+          "seconds": 1.346,
+          "text_head": "根据描述，患儿上腭的白色乳凝状物不易擦去且不影响吃奶，这种情况首先考虑为鹅口疮。鹅口疮是由念珠菌感染引起的，常见于新生儿，表现为口腔内白色斑块，不易擦去，且通常",
+          "text_sha256": "d8dad9ae14da3370206453cf1d5fbfd5722fb9f76bd72d48759eb12f986b8042"
+        },
+        {
+          "completion_tokens": 217,
+          "finish_reason": "stop",
+          "prompt_tokens": 92,
+          "reasoning_chars": 0,
+          "seconds": 4.0445,
+          "text_head": "根据您描述的症状，这名3岁患儿可能患有水痘，并且表现出明显的热毒症状。对于这种情况，治疗上需要清热解毒、凉血，同时兼顾患儿的年龄和身体状况。\n\n首先，可以考虑使",
+          "text_sha256": "ad78e922a89b1c42f0a0f2f09d562dc049efe19f4f211db2d6bbcc87af9213e7"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 58,
+          "reasoning_chars": 0,
+          "seconds": 4.7535,
+          "text_head": "对于一名44岁男性患者，因发热、畏寒、全身酸痛入院，并确诊为急性白血病，为了寻找发热原因，以下检查需要立即进行：\n\n1. **血常规**：了解白细胞、红细胞和血",
+          "text_sha256": "6cf9c98a29443272c254930c62321bec776ebce6770cc660dd962938f2065a01"
+        },
+        {
+          "completion_tokens": 156,
+          "finish_reason": "stop",
+          "prompt_tokens": 39,
+          "reasoning_chars": 0,
+          "seconds": 2.9051,
+          "text_head": "在医疗事故赔偿中，当患者的收入高于医疗事故发生地上一年度职工年平均工资的3倍以上时，误工费的计算通常会受到一些限制。根据《最高人民法院关于审理人身损害赔偿案件适",
+          "text_sha256": "479586cf95dec1f9430bd65e9c91028248bda5299e40165d7d727cac48ee7cf4"
+        },
+        {
+          "completion_tokens": 87,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.653,
+          "text_head": "在术前半小时内，为了达到镇静和减少分泌的效果，通常可以给予地西泮和阿托品。地西泮是一种苯二氮䓬类药物，能够有效缓解患者的紧张和焦虑，提供镇静效果。而阿托品作为抗",
+          "text_sha256": "976d891deffdf425955b761b686f5dc70971f165b47b9a0a12f02f9f3d6a8b10"
+        },
+        {
+          "completion_tokens": 116,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "reasoning_chars": 0,
+          "seconds": 2.1887,
+          "text_head": "在患儿经过5天治疗后症状好转，但出现前囟再次隆起、头围增大、惊厥频繁，而脑脊液复查正常的情况下，这种临床表现最可能的并发症是硬膜下积液。硬膜下积液可以导致颅内压",
+          "text_sha256": "9dc28e31d68bd50539cdb5151218efb9a0ac1839e0912e48e326c3791f13ebfb"
+        },
+        {
+          "completion_tokens": 62,
+          "finish_reason": "stop",
+          "prompt_tokens": 73,
+          "reasoning_chars": 0,
+          "seconds": 1.1985,
+          "text_head": "根据患者的症状表现，他可能患有双相情感障碍，目前处于躁狂发作阶段。对于这种情况，首选的治疗药物通常是锂盐。锂盐在控制躁狂症状和预防复发方面具有良好的疗效，是治疗",
+          "text_sha256": "b8996ef66c04a70d861c07614a4145b2c651bbf9300f1ffce32730a08420cb01"
+        },
+        {
+          "completion_tokens": 107,
+          "finish_reason": "stop",
+          "prompt_tokens": 58,
+          "reasoning_chars": 0,
+          "seconds": 2.0229,
+          "text_head": "根据患者的症状表现，包括大便艰涩、四肢不温、腹中冷痛、腰膝痠冷、舌淡苔白、脉沉迟等，这些症状指向了阳虚，尤其是脾肾阳虚的情况。针对这些症状，右归丸是一个较为合适",
+          "text_sha256": "9276d9f03f0810effd8283ade9528461606dc05ac91f68f230ad5e5343826694"
+        },
+        {
+          "completion_tokens": 163,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 3.0491,
+          "text_head": "根据患者的症状表现，如局部疮形平塌、根盘散漫、疮面紫滞、不易化脓、腐肉难脱、溃出的脓水少或带血水，伴有剧烈疼痛及高热，舌红苔黄，脉细数，这些症状提示体内存在热毒",
+          "text_sha256": "6a1e4244d582cafeb53e2e902981c023ae0a3b614dcaff16a95b9a9b044dbb4b"
+        },
+        {
+          "completion_tokens": 30,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 0.6039,
+          "text_head": "根据《医疗事故处理条例》，患者一方向卫生行政部门提出医疗事故争议处理申请的期限是自知道或应当知道发生人身损害之日起1年内。",
+          "text_sha256": "6eeeab39840636adb48b9f205be3ca6191030ff15be5e326205f3fd2e18a57b1"
+        },
+        {
+          "completion_tokens": 74,
+          "finish_reason": "stop",
+          "prompt_tokens": 95,
+          "reasoning_chars": 0,
+          "seconds": 1.4242,
+          "text_head": "根据提供的信息，患者的FⅧ∶C和FⅧ∶Ag水平都非常低，分别为0.5%和3%，远低于正常水平。这种情况符合重型血友病甲的诊断标准，因为重型血友病甲通常表现为FⅧ",
+          "text_sha256": "a9499978a5021f98133b59b9baf3d9d0d92d4f660861353da76e10852f364f8c"
+        },
+        {
+          "completion_tokens": 76,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 1.4514,
+          "text_head": "根据描述，这位病人的症状和心电图表现与变异型心绞痛（也称为Prinzmetal心绞痛）非常符合。变异型心绞痛通常是由于冠状动脉痉挛引起的，常在夜间或休息时发作，",
+          "text_sha256": "c31d8fca1786d050cbe7f14cea1e96742fb0614e78b516103229cb49090b22f2"
+        },
+        {
+          "completion_tokens": 178,
+          "finish_reason": "stop",
+          "prompt_tokens": 76,
+          "reasoning_chars": 0,
+          "seconds": 3.3237,
+          "text_head": "对于这位48岁女性患者，根据她的症状和体检结果，甲状腺功能亢进是一个高度怀疑的诊断。为了明确诊断并评估疾病的严重程度，最有意义的血清学检查是测定血清中的TSH（",
+          "text_sha256": "1912145cd075855e45b4698f1e36d23826e551ce05a16c606bd646158e2d9c73"
+        },
+        {
+          "completion_tokens": 87,
+          "finish_reason": "stop",
+          "prompt_tokens": 83,
+          "reasoning_chars": 0,
+          "seconds": 1.654,
+          "text_head": "患者的症状和病史提示，最可能的诊断是D. 脑栓塞。风心病导致的二尖瓣狭窄和心房颤动容易在心脏内形成血栓，这些血栓可能脱落并随血流进入脑动脉，导致脑栓塞。患者突然",
+          "text_sha256": "137fa767c6d68043ec0ae02bf06e128952d9da7dd10551a0ee65540bee29594c"
+        },
+        {
+          "completion_tokens": 105,
+          "finish_reason": "stop",
+          "prompt_tokens": 105,
+          "reasoning_chars": 0,
+          "seconds": 1.9867,
+          "text_head": "根据患者的症状表现，包括少腹部胀痛、经行加重、经血量多有块、排出痛减，以及伴随的情志抑郁和乳房胀痛，结合舌紫黯、脉弦涩，这些都提示有血瘀和肝气郁结的情况。\n\n在",
+          "text_sha256": "ae500900a0c28cabe9654d7b46ec1622571eaec1f99859fd9ed282c60e2612f6"
+        },
+        {
+          "completion_tokens": 82,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 1.5616,
+          "text_head": "根据病例描述，这位20岁女性左眼睑外侧的肿块最可能的诊断是皮脂腺囊肿。皮脂腺囊肿通常表现为圆形、皮下、囊性感的包块，生长缓慢，且与表皮无粘连，界限清楚。这些特征",
+          "text_sha256": "f9c5059a6984372ab6d1d9594d66bd0590158bbeb377d55e0c8ee93dbd81aebc"
+        },
+        {
+          "completion_tokens": 74,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.419,
+          "text_head": "根据张某的症状表现，她在感冒后出现了咳喘加重，并且体检发现双肺有哮鸣音和细啰音，这些症状提示可能存在气道痉挛和炎症。因此，治疗上应该首先考虑使用支气管扩张剂来缓",
+          "text_sha256": "58230d5ab2d93a32d047dcd39427289c53edfd1bb174ed2123660b7bfabc33b6"
+        },
+        {
+          "completion_tokens": 102,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.9317,
+          "text_head": "患者在牙齿拔除后进行烤瓷修复，戴修复体1个月后出现食物嵌塞且牙龈易出血，经过检查发现修复体无松动且边缘密合。导致此问题的最可能原因是修复体的邻接关系不正确。邻接",
+          "text_sha256": "61c7f44272249a70deea2c11aff92016e09af5f50eb6edbe1f82e5a2001d2cec"
+        },
+        {
+          "completion_tokens": 216,
+          "finish_reason": "stop",
+          "prompt_tokens": 90,
+          "reasoning_chars": 0,
+          "seconds": 4.0214,
+          "text_head": "根据王某的症状表现，他的病情涉及多个方面，包括痰湿内盛、阳虚水泛以及气滞血瘀等。结合他的症状变化，从最初的咳逆喘满、痰白量多、畏寒脚肿，到后来的喘满胸闷、心下痞",
+          "text_sha256": "d51847f04f3e03bd859ee00b30c0e6dcdc1ae6250df15e47a520c60d1a708922"
+        },
+        {
+          "completion_tokens": 184,
+          "finish_reason": "stop",
+          "prompt_tokens": 130,
+          "reasoning_chars": 0,
+          "seconds": 3.4326,
+          "text_head": "对于这位42岁的女性患者，她的心电图显示典型的心房扑动特征。在考虑终止心房扑动的方法时，我们需要选择一种既快速又安全的方式。\n\n选项A，食管电极超速抑制，虽然有",
+          "text_sha256": "ae279301de29ff6378d4a05ffa7ba3153586a6c7b3cfd0a556972b9fbb4d5b5d"
+        },
+        {
+          "completion_tokens": 103,
+          "finish_reason": "stop",
+          "prompt_tokens": 69,
+          "reasoning_chars": 0,
+          "seconds": 1.9492,
+          "text_head": "根据您提供的临床特征，这位42岁的女性最可能的诊断是子宫平滑肌瘤，也就是通常所说的子宫肌瘤。子宫肌瘤是一种常见的良性子宫肿瘤，尤其在生育年龄的女性中较为常见。其",
+          "text_sha256": "4dd793d1bfedbcee63de4c429d796a9a864a69d4cc21411fcc148a8aa7e9d87e"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 53.07,
+      "wall_seconds": 89.36
+    },
+    {
+      "completion_tokens": 4803,
+      "concurrency": 4,
+      "finish_length": 1,
+      "median_request_seconds": 2.182,
+      "per_request": [
+        {
+          "completion_tokens": 178,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 3.602,
+          "text_head": "在用亚甲基蓝比色法测定空气中的硫化氢时，加入混合显色液后需要放置30分钟再加磷酸氢二钠溶液，主要是为了确保反应的充分进行和结果的准确性。\n\n首先，硫化氢与显色液",
+          "text_sha256": "56f344b0870852fac606dc22c4a9918c502d351047afcbdf5784e12db429a699"
+        },
+        {
+          "completion_tokens": 77,
+          "finish_reason": "stop",
+          "prompt_tokens": 132,
+          "reasoning_chars": 0,
+          "seconds": 1.5168,
+          "text_head": "根据患者的症状和实验室检查结果，她患有急性化脓性扁桃体炎，并且尿蛋白电泳显示以清蛋白增高为主。清蛋白是一种大分子蛋白，通常通过肾小球滤过屏障的损伤才会大量出现在",
+          "text_sha256": "6b428893426a2c43f08906a8c227441caffa4c79927bfdeedc8de1140e951650"
+        },
+        {
+          "completion_tokens": 162,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 3.2301,
+          "text_head": "针对这位65岁男性患者的情况，他突发呼吸困难并伴有哮鸣音，同时有哮喘和冠心病的病史，因此在选择药物时需要谨慎。\n\n首先，沙丁胺醇是一种短效β2受体激动剂，常用于",
+          "text_sha256": "19fa72211c8333595bd62c0aca3d8b35925db580ccf79e6916d2c6abfc27cefd"
+        },
+        {
+          "completion_tokens": 85,
+          "finish_reason": "stop",
+          "prompt_tokens": 32,
+          "reasoning_chars": 0,
+          "seconds": 1.7019,
+          "text_head": "在麻醉状态下的实验中，如果刺激兔的主动脉神经中枢端，血压通常会下降。这是因为刺激主动脉神经会激活压力感受器，这些感受器向中枢神经系统发送信号，导致副交感神经活动",
+          "text_sha256": "a6508cd1ec2d1a0164879e532adf809e4642fe733eed20f5c94173eb7e5dc022"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "reasoning_chars": 0,
+          "seconds": 1.862,
+          "text_head": "针对这名24岁男性患者，考虑到他有剧烈上腹痛、暴饮暴食和饮酒史，怀疑急性胰腺炎时，最应该进行的实验室检查是血清淀粉酶和脂肪酶检测。这两项指标在急性胰腺炎时会显著",
+          "text_sha256": "384de2ab722d95f74e6e2da7e07c8e200a1f1fe63eba28ac0390b0fac105a347"
+        },
+        {
+          "completion_tokens": 56,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 1.1371,
+          "text_head": "在5名患者眼底上分别能看到以下中的一项，最怀疑有糖尿病视网膜病变的是A. 微血管瘤。微血管瘤是糖尿病视网膜病变的早期和特征性表现，因此当在眼底观察到微血管瘤时，",
+          "text_sha256": "5dee5f91932b6e0a54521f0b57abfd9427f43602aa026172667ce7305b8481a2"
+        },
+        {
+          "completion_tokens": 139,
+          "finish_reason": "stop",
+          "prompt_tokens": 64,
+          "reasoning_chars": 0,
+          "seconds": 2.8821,
+          "text_head": "对于这位58岁的女性患者，由于她过去使用华法林时出现了INR值波动和牙出血的问题，并且不愿意继续使用华法林，因此选择一种新型口服抗凝药（NOAC）是合理的。\n\n",
+          "text_sha256": "83c7503a79f622008b4f997e3265d8009e2d703c17b996a2bed798c1717220b9"
+        },
+        {
+          "completion_tokens": 114,
+          "finish_reason": "stop",
+          "prompt_tokens": 100,
+          "reasoning_chars": 0,
+          "seconds": 2.3423,
+          "text_head": "根据提供的实验结果和细菌特征，该细菌最有可能是草绿色链球菌（viridans group streptococci）。草绿色链球菌是一组常见的口腔正常菌群，也是",
+          "text_sha256": "d2c0760d45a676cdbfd696c7cad626c491c198f488a9fb8de3d9266f360b2098"
+        },
+        {
+          "completion_tokens": 82,
+          "finish_reason": "stop",
+          "prompt_tokens": 47,
+          "reasoning_chars": 0,
+          "seconds": 1.6664,
+          "text_head": "对于这位55岁女性患者，她出现了右上腹痛、寒战和黄疸，这些症状提示可能存在胆道系统的问题，比如胆结石或胆管炎。在这种情况下，首选的影像学检查是腹部超声。超声检查",
+          "text_sha256": "6368b4edce797a759c3f1ae549f7baf1c1463ba5ba1f1ad4dacdd8a2bc2d5937"
+        },
+        {
+          "completion_tokens": 123,
+          "finish_reason": "stop",
+          "prompt_tokens": 133,
+          "reasoning_chars": 0,
+          "seconds": 2.5113,
+          "text_head": "根据提供的临床表现和实验室检查结果，这位14岁男孩的症状和体征与格林-巴利综合征（Guillain-Barré综合征，GBS）非常一致。GBS的典型特征包括进行",
+          "text_sha256": "54059fe3cd5ffeb2ed37ec3590da71573144c8d414b354e19a8444ae06388394"
+        },
+        {
+          "completion_tokens": 70,
+          "finish_reason": "stop",
+          "prompt_tokens": 54,
+          "reasoning_chars": 0,
+          "seconds": 1.497,
+          "text_head": "根据描述的症状，这名7岁男孩的头皮状况很可能是黄癣。黄癣是一种由真菌感染引起的皮肤病，其特征包括红色丘疹、脓疱、黄色厚痂以及毛发贯穿痂皮，并伴有特殊的臭味。这些",
+          "text_sha256": "59bfa66ef3debc444102ab3209ef8c8415ca9b757d50907a5f0c119fdf8f2924"
+        },
+        {
+          "completion_tokens": 185,
+          "finish_reason": "stop",
+          "prompt_tokens": 56,
+          "reasoning_chars": 0,
+          "seconds": 3.7908,
+          "text_head": "对于这位患有类风湿性关节炎并长期使用糖皮质激素的56岁男性患者，其免疫系统可能较为脆弱，因此出现感染时需要特别注意选择合适的抗生素。根据痰培养结果显示为铜绿假单",
+          "text_sha256": "28c83506323047c20e662fdd0f74b344fb9b0d7d825aece923419d1869441a41"
+        },
+        {
+          "completion_tokens": 67,
+          "finish_reason": "stop",
+          "prompt_tokens": 50,
+          "reasoning_chars": 0,
+          "seconds": 1.4078,
+          "text_head": "在2003年非典期间，刘某作为医疗机构的工作人员，如果发现一例发热、干咳的非典型性肺炎的疑似病例，他应该在24小时内向当地的卫生防疫部门报告。这一要求是为了确保",
+          "text_sha256": "66c4d664bd32a517c5294c4b1bf0df66191826ce1709fe61f08d776ed37e50cb"
+        },
+        {
+          "completion_tokens": 179,
+          "finish_reason": "stop",
+          "prompt_tokens": 63,
+          "reasoning_chars": 0,
+          "seconds": 3.6392,
+          "text_head": "对于这位被诊断为类风湿关节炎的患儿，根据所描述的症状，如关节疼痛反复发作、关节漫肿、僵硬变形、痛有定处，以及舌质紫暗、苔白腻、脉涩等，这些症状提示存在血瘀和湿邪",
+          "text_sha256": "56a152050b70619bbfddb52f69be1d028badc2bab6cc7baa6bd1849202916e22"
+        },
+        {
+          "completion_tokens": 136,
+          "finish_reason": "stop",
+          "prompt_tokens": 80,
+          "reasoning_chars": 0,
+          "seconds": 2.7267,
+          "text_head": "对于这位30岁的女性，在清宫术后被诊断为葡萄胎，选择合适的避孕方法非常重要。考虑到葡萄胎患者需要避免再次怀孕，以防止可能的复发或并发症，因此需要选择一种高效且可",
+          "text_sha256": "28a8bfd85de8ce458097a5576cd1a849f8793bf142fa85d3684c26db202f2c1c"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.878,
+          "text_head": "在这种情况下，不适合进行溶栓治疗。溶栓治疗通常用于急性心肌梗死，尤其是在心电图显示ST段抬高的情况下。然而，这位患者的心电图并未显示ST段抬高，而是显示Ⅲ导联有",
+          "text_sha256": "dcc2c74f98784dc6f3dd6089ce5d49bafc12888e0dc7ada2fb1ffe578622764a"
+        },
+        {
+          "completion_tokens": 175,
+          "finish_reason": "stop",
+          "prompt_tokens": 37,
+          "reasoning_chars": 0,
+          "seconds": 3.599,
+          "text_head": "在潮湿环境中，某些药物可能会吸收水分并形成水合物，从而影响其药效。你提到的现象确实可能发生，尤其是在片剂中。\n\n一个典型的例子是某些抗生素，如四环素类，它们在潮",
+          "text_sha256": "a3078fa472a1306e59dc9570701c86ca3c39baaf440bcbffa81a98e63c3134e1"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 1.8328,
+          "text_head": "针对这个6岁男孩的情况，由于他在屈膝时马蹄足畸形消失，说明他的跟腱可能并没有严重的结构性缩短，而更可能是功能性问题。因此，跟腱延长术可能并不适宜，因为这种手术主",
+          "text_sha256": "acd693d8329f522499feb95fa74f8bc7d29256a5a5be20d26c91d8857dff773a"
+        },
+        {
+          "completion_tokens": 110,
+          "finish_reason": "stop",
+          "prompt_tokens": 121,
+          "reasoning_chars": 0,
+          "seconds": 2.258,
+          "text_head": "根据患者的症状和化验结果，她最可能患有系统性红斑狼疮（SLE）。患者表现出持续发热、关节痛、乏力、头痛，以及双侧面颊部红斑，这些都是SLE的常见症状。此外，化验",
+          "text_sha256": "53895226b90660d4fd9e3ea1a4ca481fe18182acd2092771516b68995cb4b4a1"
+        },
+        {
+          "completion_tokens": 70,
+          "finish_reason": "stop",
+          "prompt_tokens": 83,
+          "reasoning_chars": 0,
+          "seconds": 1.4431,
+          "text_head": "根据描述，患儿上腭的白色乳凝状物不易擦去且不影响吃奶，这种情况首先考虑为鹅口疮。鹅口疮是由念珠菌感染引起的，常见于新生儿，表现为口腔内白色斑块，不易擦去，且通常",
+          "text_sha256": "d8dad9ae14da3370206453cf1d5fbfd5722fb9f76bd72d48759eb12f986b8042"
+        },
+        {
+          "completion_tokens": 221,
+          "finish_reason": "stop",
+          "prompt_tokens": 92,
+          "reasoning_chars": 0,
+          "seconds": 4.4387,
+          "text_head": "根据您描述的症状，这名3岁患儿可能患有水痘，并且表现出明显的热毒症状。对于这种情况，治疗上需要兼顾清热解毒、凉血和抗病毒。\n\n首先，可以考虑使用中药方剂如清瘟败",
+          "text_sha256": "82cbec80f9cbd5ba3365520fa6e5e93319dadbc0e3c8d5bab7761acd152b051d"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 58,
+          "reasoning_chars": 0,
+          "seconds": 5.1294,
+          "text_head": "对于一名44岁男性患者，因发热、畏寒、全身酸痛入院，并确诊为急性白血病，为了寻找发热原因，以下检查需要立即进行：\n\n1. **血常规**：了解白细胞、红细胞和血",
+          "text_sha256": "a0decf57ae887bcc70c0d00de1d87504e7ef0b7356d00fbad5674057a446a505"
+        },
+        {
+          "completion_tokens": 156,
+          "finish_reason": "stop",
+          "prompt_tokens": 39,
+          "reasoning_chars": 0,
+          "seconds": 3.1051,
+          "text_head": "在医疗事故赔偿中，当患者的收入高于医疗事故发生地上一年度职工年平均工资的3倍以上时，误工费的计算通常会受到一些限制。根据《最高人民法院关于审理人身损害赔偿案件适",
+          "text_sha256": "479586cf95dec1f9430bd65e9c91028248bda5299e40165d7d727cac48ee7cf4"
+        },
+        {
+          "completion_tokens": 87,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.7259,
+          "text_head": "在术前半小时内，为了达到镇静和减少分泌的效果，通常可以给予地西泮和阿托品。地西泮是一种苯二氮䓬类药物，能够有效缓解患者的紧张和焦虑，提供镇静效果。而阿托品作为抗",
+          "text_sha256": "976d891deffdf425955b761b686f5dc70971f165b47b9a0a12f02f9f3d6a8b10"
+        },
+        {
+          "completion_tokens": 116,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "reasoning_chars": 0,
+          "seconds": 2.4056,
+          "text_head": "在患儿经过5天治疗后症状好转，但出现前囟再次隆起、头围增大、惊厥频繁，而脑脊液复查正常的情况下，这种临床表现最可能的并发症是硬膜下积液。硬膜下积液可以导致颅内压",
+          "text_sha256": "9dc28e31d68bd50539cdb5151218efb9a0ac1839e0912e48e326c3791f13ebfb"
+        },
+        {
+          "completion_tokens": 66,
+          "finish_reason": "stop",
+          "prompt_tokens": 73,
+          "reasoning_chars": 0,
+          "seconds": 1.3557,
+          "text_head": "根据患者的症状表现，他可能患有双相情感障碍，目前处于躁狂发作阶段。对于这种情况，首选的治疗药物通常是锂盐。锂盐在控制躁狂症状和预防复发方面具有良好的疗效，是治疗",
+          "text_sha256": "f1cd60a8f714dca7620c30a1f9d6637116bae59f9411be62b4d95d31b2d134d6"
+        },
+        {
+          "completion_tokens": 107,
+          "finish_reason": "stop",
+          "prompt_tokens": 58,
+          "reasoning_chars": 0,
+          "seconds": 2.2325,
+          "text_head": "根据患者的症状表现，包括大便艰涩、四肢不温、腹中冷痛、腰膝痠冷、舌淡苔白、脉沉迟等，这些症状指向了阳虚，尤其是脾肾阳虚的情况。针对这些症状，右归丸是一个较为合适",
+          "text_sha256": "9276d9f03f0810effd8283ade9528461606dc05ac91f68f230ad5e5343826694"
+        },
+        {
+          "completion_tokens": 163,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 3.3653,
+          "text_head": "根据患者的症状表现，如局部疮形平塌、根盘散漫、疮面紫滞、不易化脓、腐肉难脱、溃出的脓水少或带血水，伴有剧烈疼痛及高热，舌红苔黄，脉细数，这些症状提示体内存在热毒",
+          "text_sha256": "6a1e4244d582cafeb53e2e902981c023ae0a3b614dcaff16a95b9a9b044dbb4b"
+        },
+        {
+          "completion_tokens": 30,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 0.6728,
+          "text_head": "根据《医疗事故处理条例》，患者一方向卫生行政部门提出医疗事故争议处理申请的期限是自知道或应当知道发生人身损害之日起1年内。",
+          "text_sha256": "6eeeab39840636adb48b9f205be3ca6191030ff15be5e326205f3fd2e18a57b1"
+        },
+        {
+          "completion_tokens": 76,
+          "finish_reason": "stop",
+          "prompt_tokens": 95,
+          "reasoning_chars": 0,
+          "seconds": 1.5794,
+          "text_head": "根据提供的信息，患者的FⅧ∶C和FⅧ∶Ag水平都非常低，分别为0.5%和3%，远低于正常水平。这种情况符合重型血友病甲的诊断标准，因为重型血友病甲患者的FⅧ活性",
+          "text_sha256": "5c106db07b645192ef33518f56b2f39498a5267e45704e0cbfdbddb120f2b035"
+        },
+        {
+          "completion_tokens": 76,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 1.5797,
+          "text_head": "根据描述，这位病人的症状和心电图表现与变异型心绞痛（也称为Prinzmetal心绞痛）非常符合。变异型心绞痛通常是由于冠状动脉痉挛引起的，常在夜间或休息时发作，",
+          "text_sha256": "c31d8fca1786d050cbe7f14cea1e96742fb0614e78b516103229cb49090b22f2"
+        },
+        {
+          "completion_tokens": 178,
+          "finish_reason": "stop",
+          "prompt_tokens": 76,
+          "reasoning_chars": 0,
+          "seconds": 3.6512,
+          "text_head": "对于这位48岁女性患者，根据她的症状和体检结果，甲状腺功能亢进是一个高度怀疑的诊断。为了明确诊断并评估疾病的严重程度，最有意义的血清学检查是测定血清中的TSH（",
+          "text_sha256": "1912145cd075855e45b4698f1e36d23826e551ce05a16c606bd646158e2d9c73"
+        },
+        {
+          "completion_tokens": 87,
+          "finish_reason": "stop",
+          "prompt_tokens": 83,
+          "reasoning_chars": 0,
+          "seconds": 1.7872,
+          "text_head": "患者的症状和病史提示，最可能的诊断是D. 脑栓塞。风心病导致的二尖瓣狭窄和心房颤动容易在心脏内形成血栓，这些血栓可能脱落并随血流进入脑动脉，导致脑栓塞。患者突然",
+          "text_sha256": "137fa767c6d68043ec0ae02bf06e128952d9da7dd10551a0ee65540bee29594c"
+        },
+        {
+          "completion_tokens": 105,
+          "finish_reason": "stop",
+          "prompt_tokens": 105,
+          "reasoning_chars": 0,
+          "seconds": 2.1323,
+          "text_head": "根据患者的症状表现，包括少腹部胀痛、经行加重、经血量多有块、排出痛减，以及伴随的情志抑郁和乳房胀痛，结合舌紫黯、脉弦涩，这些都提示有血瘀和肝气郁结的情况。\n\n在",
+          "text_sha256": "ae500900a0c28cabe9654d7b46ec1622571eaec1f99859fd9ed282c60e2612f6"
+        },
+        {
+          "completion_tokens": 91,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 1.8643,
+          "text_head": "根据病例描述，这位20岁女性左眼睑外侧的肿块最可能的诊断是皮脂腺囊肿。皮脂腺囊肿通常表现为圆形、皮下、囊性感的包块，生长缓慢，且与表皮无粘连，界限清楚。这些特征",
+          "text_sha256": "e6759031937479b822a856fa1d1d6e6f402990372b2f466cae9f9d6970a65125"
+        },
+        {
+          "completion_tokens": 74,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.5782,
+          "text_head": "根据张某的症状表现，她在感冒后出现了咳喘加重，并且体检发现双肺有哮鸣音和细啰音，这些症状提示可能存在气道痉挛和炎症。因此，治疗上应该首先考虑使用支气管扩张剂来缓",
+          "text_sha256": "58230d5ab2d93a32d047dcd39427289c53edfd1bb174ed2123660b7bfabc33b6"
+        },
+        {
+          "completion_tokens": 143,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 2.8929,
+          "text_head": "患者在牙齿拔除后进行烤瓷修复，戴修复体1个月后出现食物嵌塞且牙龈易出血，经过检查发现修复体无松动且边缘密合。导致此问题的最可能原因是修复体的邻接关系不正确。\n\n",
+          "text_sha256": "275c447c1f34553a70c298eabf5f4951afbd2bc916bfdb708b0a9fc1c3c3e2da"
+        },
+        {
+          "completion_tokens": 203,
+          "finish_reason": "stop",
+          "prompt_tokens": 90,
+          "reasoning_chars": 0,
+          "seconds": 3.9713,
+          "text_head": "根据王某的症状表现，他的病情涉及多个方面，包括痰湿内盛、阳虚水泛以及气滞血瘀等。结合他的症状变化，从最初的咳逆喘满、痰白量多、畏寒脚肿，到后来的喘满胸闷、心下痞",
+          "text_sha256": "af9f4ffe7363498f3fc8498b2f08d140ff8875849f8f9fd25ab6889de82627e6"
+        },
+        {
+          "completion_tokens": 184,
+          "finish_reason": "stop",
+          "prompt_tokens": 130,
+          "reasoning_chars": 0,
+          "seconds": 3.5845,
+          "text_head": "对于这位42岁的女性患者，她的心电图显示典型的心房扑动特征。在考虑终止心房扑动的方法时，我们需要选择一种既快速又安全的方式。\n\n选项A，食管电极超速抑制，虽然有",
+          "text_sha256": "ae279301de29ff6378d4a05ffa7ba3153586a6c7b3cfd0a556972b9fbb4d5b5d"
+        },
+        {
+          "completion_tokens": 103,
+          "finish_reason": "stop",
+          "prompt_tokens": 69,
+          "reasoning_chars": 0,
+          "seconds": 2.0343,
+          "text_head": "根据您提供的临床特征，这位42岁的女性最可能的诊断是子宫平滑肌瘤，也就是通常所说的子宫肌瘤。子宫肌瘤是一种常见的良性子宫肿瘤，尤其在生育年龄的女性中较为常见。其",
+          "text_sha256": "4dd793d1bfedbcee63de4c429d796a9a864a69d4cc21411fcc148a8aa7e9d87e"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 189.95,
+      "wall_seconds": 25.29
+    },
+    {
+      "completion_tokens": 4760,
+      "concurrency": 8,
+      "finish_length": 1,
+      "median_request_seconds": 2.257,
+      "per_request": [
+        {
+          "completion_tokens": 178,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 3.8448,
+          "text_head": "在用亚甲基蓝比色法测定空气中的硫化氢时，加入混合显色液后需要放置30分钟再加磷酸氢二钠溶液，主要是为了确保反应的充分进行和结果的准确性。\n\n首先，硫化氢与显色液",
+          "text_sha256": "56f344b0870852fac606dc22c4a9918c502d351047afcbdf5784e12db429a699"
+        },
+        {
+          "completion_tokens": 77,
+          "finish_reason": "stop",
+          "prompt_tokens": 132,
+          "reasoning_chars": 0,
+          "seconds": 1.6388,
+          "text_head": "根据患者的症状和实验室检查结果，她患有急性化脓性扁桃体炎，并且尿蛋白电泳显示以清蛋白增高为主。清蛋白是一种大分子蛋白，通常通过肾小球滤过屏障的损伤才会大量出现在",
+          "text_sha256": "6b428893426a2c43f08906a8c227441caffa4c79927bfdeedc8de1140e951650"
+        },
+        {
+          "completion_tokens": 162,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 3.5129,
+          "text_head": "针对这位65岁男性患者的情况，他突发呼吸困难并伴有哮鸣音，同时有哮喘和冠心病的病史，因此在选择药物时需要谨慎。\n\n首先，沙丁胺醇是一种短效β2受体激动剂，常用于",
+          "text_sha256": "19fa72211c8333595bd62c0aca3d8b35925db580ccf79e6916d2c6abfc27cefd"
+        },
+        {
+          "completion_tokens": 85,
+          "finish_reason": "stop",
+          "prompt_tokens": 32,
+          "reasoning_chars": 0,
+          "seconds": 1.829,
+          "text_head": "在麻醉状态下的实验中，如果刺激兔的主动脉神经中枢端，血压通常会下降。这是因为刺激主动脉神经会激活压力感受器，这些感受器向中枢神经系统发送信号，导致副交感神经活动",
+          "text_sha256": "a6508cd1ec2d1a0164879e532adf809e4642fe733eed20f5c94173eb7e5dc022"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "reasoning_chars": 0,
+          "seconds": 1.9422,
+          "text_head": "针对这名24岁男性患者，考虑到他有剧烈上腹痛、暴饮暴食和饮酒史，怀疑急性胰腺炎时，最应该进行的实验室检查是血清淀粉酶和脂肪酶检测。这两项指标在急性胰腺炎时会显著",
+          "text_sha256": "384de2ab722d95f74e6e2da7e07c8e200a1f1fe63eba28ac0390b0fac105a347"
+        },
+        {
+          "completion_tokens": 56,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 1.1915,
+          "text_head": "在5名患者眼底上分别能看到以下中的一项，最怀疑有糖尿病视网膜病变的是A. 微血管瘤。微血管瘤是糖尿病视网膜病变的早期和特征性表现，因此当在眼底观察到微血管瘤时，",
+          "text_sha256": "5dee5f91932b6e0a54521f0b57abfd9427f43602aa026172667ce7305b8481a2"
+        },
+        {
+          "completion_tokens": 162,
+          "finish_reason": "stop",
+          "prompt_tokens": 64,
+          "reasoning_chars": 0,
+          "seconds": 3.5115,
+          "text_head": "在这种情况下，对于一名58岁女性患者，她有多年心房颤动病史，并且对华法林不耐受，选择一种新型口服抗凝药（NOAC）是合理的。根据患者的具体情况，利伐沙班（Riv",
+          "text_sha256": "6ecf11fb954e5838c4c5adb6a8fe345d3bc16fbe3c2305b6ebbeef2a377835e9"
+        },
+        {
+          "completion_tokens": 114,
+          "finish_reason": "stop",
+          "prompt_tokens": 100,
+          "reasoning_chars": 0,
+          "seconds": 2.463,
+          "text_head": "根据提供的实验结果和细菌特征，该细菌最有可能是草绿色链球菌（viridans group streptococci）。草绿色链球菌是一组常见的口腔正常菌群，也是",
+          "text_sha256": "d2c0760d45a676cdbfd696c7cad626c491c198f488a9fb8de3d9266f360b2098"
+        },
+        {
+          "completion_tokens": 82,
+          "finish_reason": "stop",
+          "prompt_tokens": 47,
+          "reasoning_chars": 0,
+          "seconds": 1.8221,
+          "text_head": "对于这位55岁女性患者，她出现了右上腹痛、寒战和黄疸，这些症状提示可能存在胆道系统的问题，比如胆结石或胆管炎。在这种情况下，首选的影像学检查是腹部超声。超声检查",
+          "text_sha256": "6368b4edce797a759c3f1ae549f7baf1c1463ba5ba1f1ad4dacdd8a2bc2d5937"
+        },
+        {
+          "completion_tokens": 123,
+          "finish_reason": "stop",
+          "prompt_tokens": 133,
+          "reasoning_chars": 0,
+          "seconds": 2.7431,
+          "text_head": "根据提供的临床表现和实验室检查结果，这位14岁男孩的症状和体征与格林-巴利综合征（Guillain-Barré综合征，GBS）非常一致。GBS的典型特征包括进行",
+          "text_sha256": "54059fe3cd5ffeb2ed37ec3590da71573144c8d414b354e19a8444ae06388394"
+        },
+        {
+          "completion_tokens": 70,
+          "finish_reason": "stop",
+          "prompt_tokens": 54,
+          "reasoning_chars": 0,
+          "seconds": 1.5498,
+          "text_head": "根据描述的症状，这名7岁男孩的头皮状况很可能是黄癣。黄癣是一种由真菌感染引起的皮肤病，其特征包括红色丘疹、脓疱、黄色厚痂以及毛发贯穿痂皮，并伴有特殊的臭味。这些",
+          "text_sha256": "59bfa66ef3debc444102ab3209ef8c8415ca9b757d50907a5f0c119fdf8f2924"
+        },
+        {
+          "completion_tokens": 184,
+          "finish_reason": "stop",
+          "prompt_tokens": 56,
+          "reasoning_chars": 0,
+          "seconds": 4.0097,
+          "text_head": "对于这位患有类风湿性关节炎并长期使用糖皮质激素的56岁男性患者，其免疫系统可能较为脆弱，因此出现感染时需要特别注意选择合适的抗生素。根据痰培养结果显示为铜绿假单",
+          "text_sha256": "ffb7ab964153340af9356e6dcbeec3cbec9f98509c5f91ac082f048e246d397e"
+        },
+        {
+          "completion_tokens": 67,
+          "finish_reason": "stop",
+          "prompt_tokens": 50,
+          "reasoning_chars": 0,
+          "seconds": 1.5113,
+          "text_head": "在2003年非典期间，刘某作为医疗机构的工作人员，如果发现一例发热、干咳的非典型性肺炎的疑似病例，他应该在24小时内向当地的卫生防疫部门报告。这一要求是为了确保",
+          "text_sha256": "66c4d664bd32a517c5294c4b1bf0df66191826ce1709fe61f08d776ed37e50cb"
+        },
+        {
+          "completion_tokens": 199,
+          "finish_reason": "stop",
+          "prompt_tokens": 63,
+          "reasoning_chars": 0,
+          "seconds": 4.3942,
+          "text_head": "对于这位被诊断为类风湿关节炎的患儿，根据所描述的症状，如关节疼痛反复发作、关节漫肿、僵硬变形、痛有定处，以及舌质紫暗、苔白腻、脉涩等，这些都提示了瘀血和湿邪的存",
+          "text_sha256": "a506cf5eafbe9204f16441f1e529da9379d86bcc130bd1118439fd6fb109dc16"
+        },
+        {
+          "completion_tokens": 65,
+          "finish_reason": "stop",
+          "prompt_tokens": 80,
+          "reasoning_chars": 0,
+          "seconds": 1.468,
+          "text_head": "对于这位30岁的女性，在清宫术后被诊断为葡萄胎，选择合适的避孕方法非常重要。根据她的情况，口服避孕药是一个不错的选择。口服避孕药不仅避孕效果可靠，而且可以帮助调",
+          "text_sha256": "1d8da98a3ccc6b6a17aa966ba173a3b85f9f50328e35ce37f94ada04322fb54c"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 2.0606,
+          "text_head": "在这种情况下，不适合进行溶栓治疗。溶栓治疗通常用于急性心肌梗死，尤其是在心电图显示ST段抬高的情况下。然而，这位患者的心电图并未显示ST段抬高，而是显示Ⅲ导联有",
+          "text_sha256": "dcc2c74f98784dc6f3dd6089ce5d49bafc12888e0dc7ada2fb1ffe578622764a"
+        },
+        {
+          "completion_tokens": 174,
+          "finish_reason": "stop",
+          "prompt_tokens": 37,
+          "reasoning_chars": 0,
+          "seconds": 3.8012,
+          "text_head": "在潮湿环境中，某些药物可能会因为吸湿而形成水合物，从而影响其药效。你提到的这种情况，确实有一些药物在潮湿条件下会生成二水合物，导致片剂变硬，进而影响其溶解和吸收",
+          "text_sha256": "ea238f904ec92e0e403559c3ad161a444fdc57e1dc741bc9c4e303f623e09bd1"
+        },
+        {
+          "completion_tokens": 87,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 1.9187,
+          "text_head": "针对这个6岁男孩的情况，由于他在屈膝时马蹄足畸形消失，说明他的跟腱可能并没有严重的结构性缩短，而更可能是功能性问题。因此，跟腱延长术可能并不适宜，因为这种手术主",
+          "text_sha256": "34cf19b2e555cd179c1dbb1203adf2ef643c2044f4926df266d403d313e1fd69"
+        },
+        {
+          "completion_tokens": 119,
+          "finish_reason": "stop",
+          "prompt_tokens": 121,
+          "reasoning_chars": 0,
+          "seconds": 2.6272,
+          "text_head": "根据患者的症状和化验结果，她最可能患有系统性红斑狼疮（SLE）。患者表现出持续发热、关节痛、乏力、头痛，以及面颊部红斑，这些都是SLE的常见症状。此外，化验结果",
+          "text_sha256": "d74c30bf5cc80d81fa03ec4e85e040afa1056a5169ff2ad90aa4b30035b157f6"
+        },
+        {
+          "completion_tokens": 70,
+          "finish_reason": "stop",
+          "prompt_tokens": 83,
+          "reasoning_chars": 0,
+          "seconds": 1.5514,
+          "text_head": "根据描述，患儿上腭的白色乳凝状物不易擦去且不影响吃奶，这种情况首先考虑为鹅口疮。鹅口疮是由念珠菌感染引起的，常见于新生儿，表现为口腔内白色斑块，不易擦去，且通常",
+          "text_sha256": "d8dad9ae14da3370206453cf1d5fbfd5722fb9f76bd72d48759eb12f986b8042"
+        },
+        {
+          "completion_tokens": 201,
+          "finish_reason": "stop",
+          "prompt_tokens": 92,
+          "reasoning_chars": 0,
+          "seconds": 4.4272,
+          "text_head": "根据您描述的症状，这名3岁患儿可能患有水痘，并且表现出明显的热毒症状。对于这种情况，治疗上需要清热解毒、凉血，同时兼顾患儿的年龄和身体状况。\n\n首先，可以考虑使",
+          "text_sha256": "df71df34075d8b7811cf983b4f7604992880d89ca8328b16242ced71d80317a5"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 58,
+          "reasoning_chars": 0,
+          "seconds": 5.6657,
+          "text_head": "对于一名44岁男性患者，因发热、畏寒、全身酸痛入院，并确诊为急性白血病，为了寻找发热原因，以下检查需要立即进行：\n\n1. **血常规**：了解白细胞、红细胞和血",
+          "text_sha256": "6cf9c98a29443272c254930c62321bec776ebce6770cc660dd962938f2065a01"
+        },
+        {
+          "completion_tokens": 156,
+          "finish_reason": "stop",
+          "prompt_tokens": 39,
+          "reasoning_chars": 0,
+          "seconds": 3.4181,
+          "text_head": "在医疗事故赔偿中，当患者的收入高于医疗事故发生地上一年度职工年平均工资的3倍以上时，误工费的计算通常会受到一些限制。根据《最高人民法院关于审理人身损害赔偿案件适",
+          "text_sha256": "479586cf95dec1f9430bd65e9c91028248bda5299e40165d7d727cac48ee7cf4"
+        },
+        {
+          "completion_tokens": 85,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.8956,
+          "text_head": "在术前半小时内，为了达到镇静和减少分泌的效果，通常可以给予地西泮和阿托品。地西泮是一种苯二氮䓬类药物，能够有效缓解患者的紧张和焦虑，提供镇静效果。而阿托品作为抗",
+          "text_sha256": "c59cf4b450e4033756a9390dfedf934a0e2a1c833f1df2a5b145a415a568fa50"
+        },
+        {
+          "completion_tokens": 116,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "reasoning_chars": 0,
+          "seconds": 2.5775,
+          "text_head": "在患儿经过5天治疗后症状好转，但出现前囟再次隆起、头围增大、惊厥频繁，而脑脊液复查正常的情况下，这种临床表现最可能的并发症是硬膜下积液。硬膜下积液可以导致颅内压",
+          "text_sha256": "9dc28e31d68bd50539cdb5151218efb9a0ac1839e0912e48e326c3791f13ebfb"
+        },
+        {
+          "completion_tokens": 62,
+          "finish_reason": "stop",
+          "prompt_tokens": 73,
+          "reasoning_chars": 0,
+          "seconds": 1.3955,
+          "text_head": "根据患者的症状表现，他可能患有双相情感障碍，目前处于躁狂发作阶段。对于这种情况，首选的治疗药物通常是锂盐。锂盐在控制躁狂症状和预防复发方面具有良好的疗效，是治疗",
+          "text_sha256": "b8996ef66c04a70d861c07614a4145b2c651bbf9300f1ffce32730a08420cb01"
+        },
+        {
+          "completion_tokens": 107,
+          "finish_reason": "stop",
+          "prompt_tokens": 58,
+          "reasoning_chars": 0,
+          "seconds": 2.3629,
+          "text_head": "根据患者的症状表现，包括大便艰涩、四肢不温、腹中冷痛、腰膝痠冷、舌淡苔白、脉沉迟等，这些症状指向了阳虚，尤其是脾肾阳虚的情况。针对这些症状，右归丸是一个较为合适",
+          "text_sha256": "9276d9f03f0810effd8283ade9528461606dc05ac91f68f230ad5e5343826694"
+        },
+        {
+          "completion_tokens": 153,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 3.3497,
+          "text_head": "根据患者的症状表现，如局部疮形平塌、根盘散漫、疮面紫滞、不易化脓、腐肉难脱、溃出的脓水少或带血水，伴有剧烈疼痛及高热，舌红苔黄，脉细数，这些症状提示体内存在热毒",
+          "text_sha256": "04381f5711027a52819e20f93eeb323e8d59de5f98c93dafe7abcc262f0e5a26"
+        },
+        {
+          "completion_tokens": 30,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 0.7014,
+          "text_head": "根据《医疗事故处理条例》，患者一方向卫生行政部门提出医疗事故争议处理申请的期限是自知道或应当知道发生人身损害之日起1年内。",
+          "text_sha256": "6eeeab39840636adb48b9f205be3ca6191030ff15be5e326205f3fd2e18a57b1"
+        },
+        {
+          "completion_tokens": 76,
+          "finish_reason": "stop",
+          "prompt_tokens": 95,
+          "reasoning_chars": 0,
+          "seconds": 1.6596,
+          "text_head": "根据提供的信息，患者的FⅧ∶C和FⅧ∶Ag水平都非常低，分别为0.5%和3%，远低于正常水平。这种情况符合重型血友病甲的诊断标准，因为重型血友病甲患者的FⅧ活性",
+          "text_sha256": "5c106db07b645192ef33518f56b2f39498a5267e45704e0cbfdbddb120f2b035"
+        },
+        {
+          "completion_tokens": 76,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 1.7013,
+          "text_head": "根据描述，这位病人的症状和心电图表现与变异型心绞痛（也称为Prinzmetal心绞痛）非常符合。变异型心绞痛通常是由于冠状动脉痉挛引起的，常在夜间或休息时发作，",
+          "text_sha256": "c31d8fca1786d050cbe7f14cea1e96742fb0614e78b516103229cb49090b22f2"
+        },
+        {
+          "completion_tokens": 189,
+          "finish_reason": "stop",
+          "prompt_tokens": 76,
+          "reasoning_chars": 0,
+          "seconds": 4.0376,
+          "text_head": "对于这位48岁女性患者，根据她的症状和体检结果，甲状腺功能亢进是一个高度怀疑的诊断。为了明确诊断并评估疾病的严重程度，最有意义的血清学检查是测定血清中的TSH（",
+          "text_sha256": "8ab827a355ca44ec6d5f4b789e8af4728c86cbb57e55b19738bf825ff2c9975e"
+        },
+        {
+          "completion_tokens": 87,
+          "finish_reason": "stop",
+          "prompt_tokens": 83,
+          "reasoning_chars": 0,
+          "seconds": 1.9634,
+          "text_head": "患者的症状和病史提示，最可能的诊断是D. 脑栓塞。风心病导致的二尖瓣狭窄和心房颤动容易在心脏内形成血栓，这些血栓可能脱落并随血流进入脑动脉，导致脑栓塞。患者突然",
+          "text_sha256": "137fa767c6d68043ec0ae02bf06e128952d9da7dd10551a0ee65540bee29594c"
+        },
+        {
+          "completion_tokens": 105,
+          "finish_reason": "stop",
+          "prompt_tokens": 105,
+          "reasoning_chars": 0,
+          "seconds": 2.3457,
+          "text_head": "根据患者的症状表现，包括少腹部胀痛、经行加重、经血量多有块、排出痛减，以及伴随的情志抑郁和乳房胀痛，结合舌紫黯、脉弦涩，这些都提示有血瘀和肝气郁结的情况。\n\n在",
+          "text_sha256": "ae500900a0c28cabe9654d7b46ec1622571eaec1f99859fd9ed282c60e2612f6"
+        },
+        {
+          "completion_tokens": 82,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 1.8651,
+          "text_head": "根据病例描述，这位20岁女性左眼睑外侧的肿块最可能的诊断是皮脂腺囊肿。皮脂腺囊肿通常表现为圆形、皮下、囊性感的包块，生长缓慢，且与表皮无粘连，界限清楚。这些特征",
+          "text_sha256": "f9c5059a6984372ab6d1d9594d66bd0590158bbeb377d55e0c8ee93dbd81aebc"
+        },
+        {
+          "completion_tokens": 74,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.7124,
+          "text_head": "根据张某的症状表现，她在感冒后出现了咳喘加重，并且体检时发现双肺有哮鸣音和细啰音，这些症状提示可能存在气道痉挛和炎症。因此，治疗上应该首先考虑使用支气管扩张剂来",
+          "text_sha256": "49580b43092a0165ecd4a827225847f2ccb52630155b205a5521894ff8b2aa8f"
+        },
+        {
+          "completion_tokens": 102,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 2.1674,
+          "text_head": "患者在牙齿拔除后进行烤瓷修复，戴修复体1个月后出现食物嵌塞且牙龈易出血，经过检查发现修复体无松动且边缘密合。导致此问题的最可能原因是修复体的邻接关系不正确。邻接",
+          "text_sha256": "61c7f44272249a70deea2c11aff92016e09af5f50eb6edbe1f82e5a2001d2cec"
+        },
+        {
+          "completion_tokens": 203,
+          "finish_reason": "stop",
+          "prompt_tokens": 90,
+          "reasoning_chars": 0,
+          "seconds": 4.0148,
+          "text_head": "根据王某的症状表现，他的病情涉及多个方面，包括痰湿内盛、阳虚水泛以及气滞血瘀等。结合他的症状变化，从最初的咳逆喘满、痰白量多、畏寒脚肿，到后来的喘满胸闷、心下痞",
+          "text_sha256": "af9f4ffe7363498f3fc8498b2f08d140ff8875849f8f9fd25ab6889de82627e6"
+        },
+        {
+          "completion_tokens": 184,
+          "finish_reason": "stop",
+          "prompt_tokens": 130,
+          "reasoning_chars": 0,
+          "seconds": 3.611,
+          "text_head": "对于这位42岁的女性患者，她的心电图显示典型的心房扑动特征。在考虑终止心房扑动的方法时，我们需要选择一种既快速又安全的方式。\n\n选项A，食管电极超速抑制，虽然有",
+          "text_sha256": "ae279301de29ff6378d4a05ffa7ba3153586a6c7b3cfd0a556972b9fbb4d5b5d"
+        },
+        {
+          "completion_tokens": 158,
+          "finish_reason": "stop",
+          "prompt_tokens": 69,
+          "reasoning_chars": 0,
+          "seconds": 3.0873,
+          "text_head": "根据您提供的临床特征，这位42岁的女性最可能的诊断是子宫平滑肌瘤，也就是通常所说的子宫肌瘤。子宫肌瘤是一种常见的良性子宫肿瘤，尤其在生育年龄的女性中较为常见。其",
+          "text_sha256": "f7144242eb7860b3c052fdab7a260c8b51309d72c7366217fd8694b0d36c1f4a"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 322.15,
+      "wall_seconds": 14.78
+    },
+    {
+      "completion_tokens": 4814,
+      "concurrency": 16,
+      "finish_length": 1,
+      "median_request_seconds": 2.812,
+      "per_request": [
+        {
+          "completion_tokens": 178,
+          "finish_reason": "stop",
+          "prompt_tokens": 45,
+          "reasoning_chars": 0,
+          "seconds": 4.3444,
+          "text_head": "在用亚甲基蓝比色法测定空气中的硫化氢时，加入混合显色液后需要放置30分钟再加磷酸氢二钠溶液，主要是为了确保反应的充分进行和结果的准确性。\n\n首先，硫化氢与显色液",
+          "text_sha256": "56f344b0870852fac606dc22c4a9918c502d351047afcbdf5784e12db429a699"
+        },
+        {
+          "completion_tokens": 77,
+          "finish_reason": "stop",
+          "prompt_tokens": 132,
+          "reasoning_chars": 0,
+          "seconds": 1.8478,
+          "text_head": "根据患者的症状和实验室检查结果，她患有急性化脓性扁桃体炎，并且尿蛋白电泳显示以清蛋白增高为主。清蛋白是一种大分子蛋白，通常通过肾小球滤过屏障的损伤才会大量出现在",
+          "text_sha256": "6b428893426a2c43f08906a8c227441caffa4c79927bfdeedc8de1140e951650"
+        },
+        {
+          "completion_tokens": 162,
+          "finish_reason": "stop",
+          "prompt_tokens": 49,
+          "reasoning_chars": 0,
+          "seconds": 3.9834,
+          "text_head": "针对这位65岁男性患者的情况，他突发呼吸困难并伴有哮鸣音，同时有哮喘和冠心病的病史，因此在选择药物时需要谨慎。\n\n首先，沙丁胺醇是一种短效β2受体激动剂，常用于",
+          "text_sha256": "19fa72211c8333595bd62c0aca3d8b35925db580ccf79e6916d2c6abfc27cefd"
+        },
+        {
+          "completion_tokens": 85,
+          "finish_reason": "stop",
+          "prompt_tokens": 32,
+          "reasoning_chars": 0,
+          "seconds": 2.0968,
+          "text_head": "在麻醉状态下的实验中，如果刺激兔的主动脉神经中枢端，血压通常会下降。这是因为刺激主动脉神经会激活压力感受器，这些感受器向中枢神经系统发送信号，导致副交感神经活动",
+          "text_sha256": "a6508cd1ec2d1a0164879e532adf809e4642fe733eed20f5c94173eb7e5dc022"
+        },
+        {
+          "completion_tokens": 89,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "reasoning_chars": 0,
+          "seconds": 2.2107,
+          "text_head": "针对这名24岁男性患者，考虑到他有剧烈上腹痛、暴饮暴食和饮酒史，怀疑急性胰腺炎时，最应该进行的实验室检查是血清淀粉酶和脂肪酶检测。这两项指标在急性胰腺炎时会显著",
+          "text_sha256": "384de2ab722d95f74e6e2da7e07c8e200a1f1fe63eba28ac0390b0fac105a347"
+        },
+        {
+          "completion_tokens": 56,
+          "finish_reason": "stop",
+          "prompt_tokens": 67,
+          "reasoning_chars": 0,
+          "seconds": 1.3382,
+          "text_head": "在5名患者眼底上分别能看到以下中的一项，最怀疑有糖尿病视网膜病变的是A. 微血管瘤。微血管瘤是糖尿病视网膜病变的早期和特征性表现，因此当在眼底观察到微血管瘤时，",
+          "text_sha256": "5dee5f91932b6e0a54521f0b57abfd9427f43602aa026172667ce7305b8481a2"
+        },
+        {
+          "completion_tokens": 139,
+          "finish_reason": "stop",
+          "prompt_tokens": 64,
+          "reasoning_chars": 0,
+          "seconds": 3.4028,
+          "text_head": "对于这位58岁的女性患者，由于她过去使用华法林时出现了INR值波动和牙出血的问题，并且不愿意继续使用华法林，因此选择一种新型口服抗凝药（NOAC）是合理的。\n\n",
+          "text_sha256": "83c7503a79f622008b4f997e3265d8009e2d703c17b996a2bed798c1717220b9"
+        },
+        {
+          "completion_tokens": 114,
+          "finish_reason": "stop",
+          "prompt_tokens": 100,
+          "reasoning_chars": 0,
+          "seconds": 2.7852,
+          "text_head": "根据提供的实验结果和细菌特征，该细菌最有可能是草绿色链球菌（viridans group streptococci）。草绿色链球菌是一组常见的口腔正常菌群，也是",
+          "text_sha256": "d2c0760d45a676cdbfd696c7cad626c491c198f488a9fb8de3d9266f360b2098"
+        },
+        {
+          "completion_tokens": 82,
+          "finish_reason": "stop",
+          "prompt_tokens": 47,
+          "reasoning_chars": 0,
+          "seconds": 1.9999,
+          "text_head": "对于这位55岁女性患者，她出现了右上腹痛、寒战和黄疸，这些症状提示可能存在胆道系统的问题，比如胆结石或胆管炎。在这种情况下，首选的影像学检查是腹部超声。超声检查",
+          "text_sha256": "6368b4edce797a759c3f1ae549f7baf1c1463ba5ba1f1ad4dacdd8a2bc2d5937"
+        },
+        {
+          "completion_tokens": 123,
+          "finish_reason": "stop",
+          "prompt_tokens": 133,
+          "reasoning_chars": 0,
+          "seconds": 3.002,
+          "text_head": "根据提供的临床表现和实验室检查结果，这位14岁男孩的症状和体征与格林-巴利综合征（Guillain-Barré综合征，GBS）非常一致。GBS的典型特征包括进行",
+          "text_sha256": "54059fe3cd5ffeb2ed37ec3590da71573144c8d414b354e19a8444ae06388394"
+        },
+        {
+          "completion_tokens": 70,
+          "finish_reason": "stop",
+          "prompt_tokens": 54,
+          "reasoning_chars": 0,
+          "seconds": 1.6909,
+          "text_head": "根据描述的症状，这名7岁男孩的头皮状况很可能是黄癣。黄癣是一种由真菌感染引起的皮肤病，其特征包括红色丘疹、脓疱、黄色厚痂以及毛发贯穿痂皮，并伴有特殊的臭味。这些",
+          "text_sha256": "59bfa66ef3debc444102ab3209ef8c8415ca9b757d50907a5f0c119fdf8f2924"
+        },
+        {
+          "completion_tokens": 184,
+          "finish_reason": "stop",
+          "prompt_tokens": 56,
+          "reasoning_chars": 0,
+          "seconds": 4.6229,
+          "text_head": "对于这位患有类风湿性关节炎并长期使用糖皮质激素的56岁男性患者，其免疫系统可能较为脆弱，因此出现感染时需要特别注意选择合适的抗生素。根据痰培养结果显示为铜绿假单",
+          "text_sha256": "ffb7ab964153340af9356e6dcbeec3cbec9f98509c5f91ac082f048e246d397e"
+        },
+        {
+          "completion_tokens": 67,
+          "finish_reason": "stop",
+          "prompt_tokens": 50,
+          "reasoning_chars": 0,
+          "seconds": 1.5945,
+          "text_head": "在2003年非典期间，刘某作为医疗机构的工作人员，如果发现一例发热、干咳的非典型性肺炎的疑似病例，他应该在24小时内向当地的卫生防疫部门报告。这一要求是为了确保",
+          "text_sha256": "66c4d664bd32a517c5294c4b1bf0df66191826ce1709fe61f08d776ed37e50cb"
+        },
+        {
+          "completion_tokens": 136,
+          "finish_reason": "stop",
+          "prompt_tokens": 63,
+          "reasoning_chars": 0,
+          "seconds": 3.3041,
+          "text_head": "对于这位被诊断为类风湿关节炎的患儿，根据所描述的症状，如关节疼痛反复发作、关节漫肿、僵硬变形、痛有定处，以及舌质紫暗、苔白腻、脉涩等，这些都提示了瘀血和湿邪的存",
+          "text_sha256": "1bcb7613796c20b05daaa17b1f7056586440b6baca72432001cf0963d2960029"
+        },
+        {
+          "completion_tokens": 146,
+          "finish_reason": "stop",
+          "prompt_tokens": 80,
+          "reasoning_chars": 0,
+          "seconds": 3.5744,
+          "text_head": "对于这位30岁的女性，她在清宫术后被诊断为葡萄胎，选择合适的避孕方法非常重要。考虑到葡萄胎患者需要避免再次怀孕，以防止可能的复发或并发症，因此需要选择一种高效且",
+          "text_sha256": "6bc18458b99c2027aa54f6f194a065453fd52655bab9c4bfcf6fcd49f67d6d33"
+        },
+        {
+          "completion_tokens": 95,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 2.361,
+          "text_head": "在这种情况下，不适合进行溶栓治疗。溶栓治疗通常用于急性心肌梗死，尤其是在心电图显示ST段抬高的情况下。然而，这位患者的心电图并未显示ST段抬高，而是显示Ⅲ导联有",
+          "text_sha256": "dcc2c74f98784dc6f3dd6089ce5d49bafc12888e0dc7ada2fb1ffe578622764a"
+        },
+        {
+          "completion_tokens": 175,
+          "finish_reason": "stop",
+          "prompt_tokens": 37,
+          "reasoning_chars": 0,
+          "seconds": 4.4258,
+          "text_head": "在潮湿环境中，某些药物可能会吸收水分并形成水合物，从而影响其药效。你提到的现象确实可能发生，尤其是在片剂中。\n\n一个典型的例子是某些抗生素，如四环素类，它们在潮",
+          "text_sha256": "a3078fa472a1306e59dc9570701c86ca3c39baaf440bcbffa81a98e63c3134e1"
+        },
+        {
+          "completion_tokens": 87,
+          "finish_reason": "stop",
+          "prompt_tokens": 57,
+          "reasoning_chars": 0,
+          "seconds": 2.2497,
+          "text_head": "针对这个6岁男孩的情况，由于他在屈膝时马蹄足畸形消失，说明他的跟腱可能并没有严重的结构性缩短，而更可能是功能性问题。因此，跟腱延长术可能并不适宜，因为这种手术主",
+          "text_sha256": "357a0ca30ae29d033d42b71e7607a47b4d6dc065d14379c2c3f9a7e05aa041d2"
+        },
+        {
+          "completion_tokens": 119,
+          "finish_reason": "stop",
+          "prompt_tokens": 121,
+          "reasoning_chars": 0,
+          "seconds": 3.0867,
+          "text_head": "根据患者的症状和化验结果，她最可能患有系统性红斑狼疮（SLE）。患者表现出持续发热、关节痛、乏力、头痛，以及面颊部的红斑，这些都是SLE的常见症状。此外，化验结",
+          "text_sha256": "d14d56503156475c6de830e5148287775b9ada1b42b30ae7c1c93603b653122c"
+        },
+        {
+          "completion_tokens": 70,
+          "finish_reason": "stop",
+          "prompt_tokens": 83,
+          "reasoning_chars": 0,
+          "seconds": 1.8258,
+          "text_head": "根据描述，患儿上腭的白色乳凝状物不易擦去且不影响吃奶，这种情况首先考虑为鹅口疮。鹅口疮是由念珠菌感染引起的，常见于新生儿，表现为口腔内白色斑块，不易擦去，且通常",
+          "text_sha256": "d8dad9ae14da3370206453cf1d5fbfd5722fb9f76bd72d48759eb12f986b8042"
+        },
+        {
+          "completion_tokens": 235,
+          "finish_reason": "stop",
+          "prompt_tokens": 92,
+          "reasoning_chars": 0,
+          "seconds": 5.5266,
+          "text_head": "根据您描述的症状，这名3岁患儿可能患有水痘，并且表现出明显的热毒症状。对于这种情况，治疗上需要清热解毒、凉血，同时兼顾患儿的年龄和身体状况。\n\n首先，可以考虑使",
+          "text_sha256": "8f9e944104de770dc324534b616453a7368eedd96daaafa2ca91d418bf394854"
+        },
+        {
+          "completion_tokens": 256,
+          "finish_reason": "length",
+          "prompt_tokens": 58,
+          "reasoning_chars": 0,
+          "seconds": 5.9035,
+          "text_head": "对于一名44岁男性患者，因发热、畏寒、全身酸痛入院，并确诊为急性白血病，为了寻找发热原因，以下检查需要立即进行：\n\n1. **血常规**：了解白细胞、红细胞和血",
+          "text_sha256": "9d0bb14d29dda9cd9eba9700b5bed5acc8539f0b0d04113e84499a630fcdcee9"
+        },
+        {
+          "completion_tokens": 156,
+          "finish_reason": "stop",
+          "prompt_tokens": 39,
+          "reasoning_chars": 0,
+          "seconds": 3.8759,
+          "text_head": "在医疗事故赔偿中，当患者的收入高于医疗事故发生地上一年度职工年平均工资的3倍以上时，误工费的计算通常会受到一些限制。根据《最高人民法院关于审理人身损害赔偿案件适",
+          "text_sha256": "479586cf95dec1f9430bd65e9c91028248bda5299e40165d7d727cac48ee7cf4"
+        },
+        {
+          "completion_tokens": 85,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 2.1666,
+          "text_head": "在术前半小时内，为了达到镇静和减少分泌的效果，通常可以给予地西泮和阿托品。地西泮是一种苯二氮䓬类药物，能够有效缓解患者的紧张和焦虑，提供镇静效果。而阿托品作为抗",
+          "text_sha256": "c59cf4b450e4033756a9390dfedf934a0e2a1c833f1df2a5b145a415a568fa50"
+        },
+        {
+          "completion_tokens": 116,
+          "finish_reason": "stop",
+          "prompt_tokens": 51,
+          "reasoning_chars": 0,
+          "seconds": 2.957,
+          "text_head": "在患儿经过5天治疗后症状好转，但出现前囟再次隆起、头围增大、惊厥频繁，而脑脊液复查正常的情况下，这种临床表现最可能的并发症是硬膜下积液。硬膜下积液可以导致颅内压",
+          "text_sha256": "9dc28e31d68bd50539cdb5151218efb9a0ac1839e0912e48e326c3791f13ebfb"
+        },
+        {
+          "completion_tokens": 65,
+          "finish_reason": "stop",
+          "prompt_tokens": 73,
+          "reasoning_chars": 0,
+          "seconds": 1.7559,
+          "text_head": "根据患者的症状表现，他可能患有双相情感障碍，目前处于躁狂发作阶段。对于这种情况，首选的治疗药物通常是锂盐。锂盐在控制躁狂症状和预防复发方面具有良好的疗效，是治疗",
+          "text_sha256": "dfcfe2f9d5356f9b185f8a346596436ff571a4732b2721b87f1ffe333d665344"
+        },
+        {
+          "completion_tokens": 112,
+          "finish_reason": "stop",
+          "prompt_tokens": 58,
+          "reasoning_chars": 0,
+          "seconds": 2.8397,
+          "text_head": "根据患者的症状表现，包括大便艰涩、四肢不温、腹中冷痛、腰膝痠冷、舌淡苔白、脉沉迟等，这些症状指向了阳虚，尤其是脾肾阳虚的情况。针对这些症状，右归丸是一个较为合适",
+          "text_sha256": "cde86b9b283f3ae40660911b419bfdaccc86c06b9ed835c0be03a115f6f6d064"
+        },
+        {
+          "completion_tokens": 143,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 3.4394,
+          "text_head": "根据患者的症状表现，如局部疮形平塌、根盘散漫、疮面紫滞、不易化脓、腐肉难脱、溃出的脓水少或带血水，伴有剧烈疼痛及高热，舌红苔黄，脉细数，这些症状提示体内存在热毒",
+          "text_sha256": "c0962c560026eeeeb238c475a800390515e5e660a102b68d77344eed5d85acfd"
+        },
+        {
+          "completion_tokens": 30,
+          "finish_reason": "stop",
+          "prompt_tokens": 41,
+          "reasoning_chars": 0,
+          "seconds": 0.7852,
+          "text_head": "根据《医疗事故处理条例》，患者一方向卫生行政部门提出医疗事故争议处理申请的期限是自知道或应当知道发生人身损害之日起1年内。",
+          "text_sha256": "6eeeab39840636adb48b9f205be3ca6191030ff15be5e326205f3fd2e18a57b1"
+        },
+        {
+          "completion_tokens": 74,
+          "finish_reason": "stop",
+          "prompt_tokens": 95,
+          "reasoning_chars": 0,
+          "seconds": 1.892,
+          "text_head": "根据提供的信息，患者的FⅧ∶C和FⅧ∶Ag水平都非常低，分别为0.5%和3%，远低于正常水平。这种情况符合重型血友病甲的诊断标准，因为重型血友病甲通常表现为FⅧ",
+          "text_sha256": "a9499978a5021f98133b59b9baf3d9d0d92d4f660861353da76e10852f364f8c"
+        },
+        {
+          "completion_tokens": 76,
+          "finish_reason": "stop",
+          "prompt_tokens": 53,
+          "reasoning_chars": 0,
+          "seconds": 1.9911,
+          "text_head": "根据描述，这位病人的症状和心电图表现与变异型心绞痛（也称为Prinzmetal心绞痛）非常符合。变异型心绞痛通常是由于冠状动脉痉挛引起的，常在夜间或休息时发作，",
+          "text_sha256": "c31d8fca1786d050cbe7f14cea1e96742fb0614e78b516103229cb49090b22f2"
+        },
+        {
+          "completion_tokens": 178,
+          "finish_reason": "stop",
+          "prompt_tokens": 76,
+          "reasoning_chars": 0,
+          "seconds": 3.9798,
+          "text_head": "对于这位48岁女性患者，根据她的症状和体检结果，甲状腺功能亢进是一个高度怀疑的诊断。为了明确诊断并评估疾病的严重程度，最有意义的血清学检查是测定血清中的TSH（",
+          "text_sha256": "1912145cd075855e45b4698f1e36d23826e551ce05a16c606bd646158e2d9c73"
+        },
+        {
+          "completion_tokens": 87,
+          "finish_reason": "stop",
+          "prompt_tokens": 83,
+          "reasoning_chars": 0,
+          "seconds": 2.1275,
+          "text_head": "患者的症状和病史提示，最可能的诊断是D. 脑栓塞。风心病导致的二尖瓣狭窄和心房颤动容易在心脏内形成血栓，这些血栓可能脱落并随血流进入脑动脉，导致脑栓塞。患者突然",
+          "text_sha256": "137fa767c6d68043ec0ae02bf06e128952d9da7dd10551a0ee65540bee29594c"
+        },
+        {
+          "completion_tokens": 105,
+          "finish_reason": "stop",
+          "prompt_tokens": 105,
+          "reasoning_chars": 0,
+          "seconds": 2.4999,
+          "text_head": "根据患者的症状表现，包括少腹部胀痛、经行加重、经血量多有块、排出痛减，以及伴随的情志抑郁和乳房胀痛，结合舌紫黯、脉弦涩，这些都提示有血瘀和肝气郁结的情况。\n\n在",
+          "text_sha256": "ae500900a0c28cabe9654d7b46ec1622571eaec1f99859fd9ed282c60e2612f6"
+        },
+        {
+          "completion_tokens": 82,
+          "finish_reason": "stop",
+          "prompt_tokens": 72,
+          "reasoning_chars": 0,
+          "seconds": 1.9391,
+          "text_head": "根据病例描述，这位20岁女性左眼睑外侧的肿块最可能的诊断是皮脂腺囊肿。皮脂腺囊肿通常表现为圆形、皮下、囊性感的包块，生长缓慢，且与表皮无粘连，界限清楚。这些特征",
+          "text_sha256": "f9c5059a6984372ab6d1d9594d66bd0590158bbeb377d55e0c8ee93dbd81aebc"
+        },
+        {
+          "completion_tokens": 74,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 1.7431,
+          "text_head": "根据张某的症状表现，她在感冒后出现了咳喘加重，并且体检发现双肺有哮鸣音和细啰音，这些症状提示可能存在气道痉挛和炎症。因此，治疗上应该首先考虑使用支气管扩张剂来缓",
+          "text_sha256": "58230d5ab2d93a32d047dcd39427289c53edfd1bb174ed2123660b7bfabc33b6"
+        },
+        {
+          "completion_tokens": 143,
+          "finish_reason": "stop",
+          "prompt_tokens": 55,
+          "reasoning_chars": 0,
+          "seconds": 3.0853,
+          "text_head": "患者在牙齿拔除后进行烤瓷修复，戴修复体1个月后出现食物嵌塞且牙龈易出血，经过检查发现修复体无松动且边缘密合。导致此问题的最可能原因是修复体的邻接关系不正确。\n\n",
+          "text_sha256": "275c447c1f34553a70c298eabf5f4951afbd2bc916bfdb708b0a9fc1c3c3e2da"
+        },
+        {
+          "completion_tokens": 201,
+          "finish_reason": "stop",
+          "prompt_tokens": 90,
+          "reasoning_chars": 0,
+          "seconds": 4.1821,
+          "text_head": "根据王某的症状表现，他的病情涉及多个方面，包括痰湿内盛、阳虚水泛以及气滞血瘀等。结合他的症状变化，从最初的咳逆喘满、痰白量多、畏寒脚肿，到后来的喘满胸闷、心下痞",
+          "text_sha256": "427c094f54f4f4f6ff11bb6b3bbfca9a8c1b435ed5fbcebf565532242c483505"
+        },
+        {
+          "completion_tokens": 184,
+          "finish_reason": "stop",
+          "prompt_tokens": 130,
+          "reasoning_chars": 0,
+          "seconds": 3.7059,
+          "text_head": "对于这位42岁的女性患者，她的心电图显示典型的心房扑动特征。在考虑终止心房扑动的方法时，我们需要选择一种既快速又安全的方式。\n\n选项A，食管电极超速抑制，虽然有",
+          "text_sha256": "ae279301de29ff6378d4a05ffa7ba3153586a6c7b3cfd0a556972b9fbb4d5b5d"
+        },
+        {
+          "completion_tokens": 158,
+          "finish_reason": "stop",
+          "prompt_tokens": 69,
+          "reasoning_chars": 0,
+          "seconds": 3.1809,
+          "text_head": "根据您提供的临床特征，这位42岁的女性最可能的诊断是子宫平滑肌瘤，也就是通常所说的子宫肌瘤。子宫肌瘤是一种常见的良性子宫肿瘤，尤其在生育年龄的女性中较为常见。其",
+          "text_sha256": "f7144242eb7860b3c052fdab7a260c8b51309d72c7366217fd8694b0d36c1f4a"
+        }
+      ],
+      "requests": 40,
+      "tokens_per_second": 519.13,
+      "wall_seconds": 9.27
+    }
+  ],
+  "max_tokens": 256,
+  "model": "Qwen/Qwen3.8-27B",
+  "num_prompts": 40,
+  "prompts": "eval_prompts.jsonl",
+  "skip": 160,
+  "thinking": false
+}
