@@ -1,0 +1,27 @@
+[Unit]
+Description=Live benchmark portal
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=benchmark
+Group=benchmark
+WorkingDirectory=/opt/benchmark
+EnvironmentFile=/etc/benchmark/portal.env
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=BENCH_HISTORY_DIR=/var/lib/benchmark/history
+Environment=BENCH_MAX_ACTIVE_RUNS=2
+ExecStart=/opt/benchmark/venv/bin/python server.py --host 127.0.0.1 --port 8513
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+StateDirectory=benchmark
+StateDirectoryMode=0750
+ReadWritePaths=/var/lib/benchmark
+
+[Install]
+WantedBy=multi-user.target

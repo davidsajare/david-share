@@ -8,16 +8,16 @@
       "assertion": "ACTUAL_INPUT_VISIBLE",
       "checks": [
         {
-          "id": "complete-request-trace",
+          "id": "published-prompt-count",
           "passed": true,
-          "actual": "NM01 -> completed output",
-          "expected": "NM01 -> completed output"
+          "actual": 17,
+          "expected": 17
         }
       ],
       "evidence": [
         "README.md",
-        "qira-scenario-model-benchmark/datasets/qira_scenarios.jsonl",
-        "qira-scenario-model-benchmark/outputs/raw_fulltext/direct_20260909_120534.jsonl"
+        "scenario-model-benchmark/datasets/assistant_scenarios.jsonl",
+        "scenario-model-benchmark/outputs/raw_fulltext/direct_20260909_120534.jsonl"
       ]
     },
     {
@@ -34,9 +34,9 @@
         }
       ],
       "evidence": [
-        "qira-scenario-model-benchmark/harness.py",
-        "qira-scenario-model-benchmark/datasets/qira_scenarios.jsonl",
-        "qira-scenario-model-benchmark/outputs/raw_fulltext/direct_20260909_120534.jsonl"
+        "scenario-model-benchmark/harness.py",
+        "scenario-model-benchmark/datasets/assistant_scenarios.jsonl",
+        "scenario-model-benchmark/outputs/raw_fulltext/direct_20260909_120534.jsonl"
       ]
     },
     {
@@ -46,21 +46,21 @@
       "assertion": "WIRING_SOURCE_SYNC",
       "checks": [
         {
-          "id": "scientific-byte-identity",
+          "id": "numeric-identity-verified",
           "passed": true,
           "actual": true,
           "expected": true
         },
         {
-          "id": "destination-file-count",
+          "id": "numeric-mismatches",
           "passed": true,
-          "actual": 198,
-          "expected": 198
+          "actual": 0,
+          "expected": 0
         }
       ],
       "evidence": [
-        "evidence/split-manifest.json",
-        "qira-live-benchmark-console/bench_core.py"
+        "evidence/deidentification-manifest.json",
+        "live-benchmark-console/bench_core.py"
       ]
     },
     {
@@ -83,8 +83,8 @@
         }
       ],
       "evidence": [
-        "qira-production-readiness/outputs/resilience_20260911_024156.summary.json",
-        "qira-production-readiness/outputs/raw_fulltext/resilience_20260911_024156.jsonl"
+        "production-readiness/outputs/resilience_20260911_024156.summary.json",
+        "production-readiness/outputs/raw_fulltext/resilience_20260911_024156.jsonl"
       ]
     },
     {
@@ -94,7 +94,7 @@
       "assertion": "TAKEOVER_IDENTITY",
       "checks": [],
       "evidence": [],
-      "reason": "No process/container takeover is claimed. Browser reconnect is an observer reattach to the same Runner-owned run."
+      "reason": "No process or container takeover is claimed by this benchmark."
     },
     {
       "id": "RUN-006",
@@ -103,7 +103,7 @@
       "assertion": "CHECKPOINT_CONTINUITY",
       "checks": [],
       "evidence": [],
-      "reason": "The benchmark does not claim checkpoint-based process recovery."
+      "reason": "No checkpoint-based process recovery is claimed."
     },
     {
       "id": "RUN-007",
@@ -119,8 +119,8 @@
         }
       ],
       "evidence": [
-        "qira-scenario-model-benchmark/outputs/raw_fulltext/direct_20260909_120534.jsonl",
-        "qira-scenario-model-benchmark/scripts/verify_fulltext.py"
+        "scenario-model-benchmark/outputs/raw_fulltext/direct_20260909_120534.jsonl",
+        "scenario-model-benchmark/scripts/verify_fulltext.py"
       ]
     },
     {
@@ -130,7 +130,7 @@
       "assertion": "READER_LOG_SOURCE_SYNC",
       "checks": [],
       "evidence": [],
-      "reason": "The primary benchmark claim is a request matrix, not a crash/recovery temporal story."
+      "reason": "The primary claim is a request matrix, not a temporal recovery story."
     },
     {
       "id": "RUN-009",
@@ -139,7 +139,7 @@
       "assertion": "TEMPORAL_STORYBOARD",
       "checks": [],
       "evidence": [],
-      "reason": "No process replacement or checkpoint handoff is claimed; the live console screenshot is covered by RUN-011."
+      "reason": "No crash, replacement or handoff timeline is claimed."
     },
     {
       "id": "RUN-010",
@@ -148,7 +148,7 @@
       "assertion": "MEASUREMENT_BOUNDARY",
       "checks": [
         {
-          "id": "protocol-boundary-row-count",
+          "id": "methodology-boundary-rows",
           "passed": true,
           "actual": 6,
           "expected": 6
@@ -156,40 +156,17 @@
       ],
       "evidence": [
         "README.md",
-        "qira-scenario-model-benchmark/analyze.py"
+        "scenario-model-benchmark/analyze.py"
       ]
     },
     {
       "id": "RUN-011",
-      "applicable": true,
-      "status": "PASS",
+      "applicable": false,
+      "status": "N/A",
       "assertion": "UI_BEHAVIOR_DUAL_PROOF",
-      "checks": [
-        {
-          "id": "live-mode",
-          "passed": true,
-          "actual": "LIVE",
-          "expected": "LIVE"
-        },
-        {
-          "id": "same-region-runner-label",
-          "passed": true,
-          "actual": "Sweden Central runner",
-          "expected": "Sweden Central runner"
-        },
-        {
-          "id": "desktop-mobile-captures",
-          "passed": true,
-          "actual": 2,
-          "expected": 2
-        }
-      ],
-      "evidence": [
-        "evidence/ui-evidence.json",
-        "images/qira-live-console-desktop.png",
-        "images/qira-live-console-mobile.png",
-        "qira-live-benchmark-console/tests/test_console.py"
-      ]
+      "checks": [],
+      "evidence": [],
+      "reason": "This repository publishes no hosted instance, so there is no deployed object to prove. The console is covered by its own test suite instead of by screenshots of a private deployment."
     },
     {
       "id": "RUN-012",
@@ -198,7 +175,7 @@
       "assertion": "SCENARIO_TRUTH_MATRIX",
       "checks": [
         {
-          "id": "retained-study-run-count",
+          "id": "retained-study-runs",
           "passed": true,
           "actual": 4,
           "expected": 4
@@ -206,9 +183,9 @@
       ],
       "evidence": [
         "README.md",
-        "qira-scenario-model-benchmark/outputs/provenance_20260909_120534.json",
-        "qira-model-router-validation/outputs/provenance_router_20260909_223737.json",
-        "qira-production-readiness/outputs/provenance_readiness.json"
+        "scenario-model-benchmark/outputs/provenance_20260909_120534.json",
+        "model-router-validation/outputs/provenance_router_20260909_223737.json",
+        "production-readiness/outputs/provenance_readiness.json"
       ]
     },
     {
@@ -218,7 +195,7 @@
       "assertion": "SAFE_POST_TEST_STATE",
       "checks": [],
       "evidence": [],
-      "reason": "No destructive or fault-enabled deployment was created by this benchmark. The current LIVE health is recorded under RUN-011."
+      "reason": "No destructive or fault-enabled deployment was created by this benchmark."
     },
     {
       "id": "RUN-014",
@@ -261,8 +238,8 @@
       ],
       "evidence": [
         "tests/test_repository_gate.py",
-        "qira-model-router-validation/scripts/validate_router_readme.py",
-        "qira-live-benchmark-console/tests/test_console.py"
+        "scripts/build_deid_manifest.py",
+        "live-benchmark-console/tests/test_console.py"
       ]
     }
   ]

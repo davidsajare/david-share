@@ -4,16 +4,12 @@ on:
   pull_request:
     paths:
       - "Agents/Model-And-Router-Benchmark/**"
-      - "Agents/AOAI-Model-Migration-Benchmark/README*.md"
-      - "Agents/README.md"
       - ".github/workflows/model-and-router-benchmark-ci.yml"
   push:
     branches:
       - master
     paths:
       - "Agents/Model-And-Router-Benchmark/**"
-      - "Agents/AOAI-Model-Migration-Benchmark/README*.md"
-      - "Agents/README.md"
       - ".github/workflows/model-and-router-benchmark-ci.yml"
 
 permissions:
