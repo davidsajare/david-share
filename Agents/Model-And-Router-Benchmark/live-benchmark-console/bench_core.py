@@ -98,6 +98,16 @@ def arm_order_key(arm: str) -> tuple[int, str, int, str]:
     return model_rank, fallback_name, effort_rank, effort
 
 
+def visible_catalog(data: dict) -> dict:
+    """Hide inherited registry entries that were neither tested nor verified."""
+    result = {**data}
+    result["arms"] = [
+        arm for arm in data.get("arms", [])
+        if arm.get("is_study_model") or arm.get("verified")
+    ]
+    return result
+
+
 # --------------------------------------------------------------------------
 # Loading the study assets
 # --------------------------------------------------------------------------
@@ -294,7 +304,7 @@ def billing_key(deployment: str, registry: dict) -> str | None:
     return (entry.get("model_name") or deployment).strip().lower()
 
 
-def catalog() -> dict:
+def catalog(*, include_unverified: bool = False) -> dict:
     """Everything the UI needs to render its setup panel."""
     registry = load_registry()
     pricing = load_pricing()
@@ -306,7 +316,7 @@ def catalog() -> dict:
         price = pricing.get(key) if key else None
         fact = facts["deployments"].get(name, {})
         is_study_model = name in STUDY_MODELS
-        if not is_study_model and not fact:
+        if not include_unverified and not is_study_model and not fact:
             continue
         arms.append({
             "deployment": name,

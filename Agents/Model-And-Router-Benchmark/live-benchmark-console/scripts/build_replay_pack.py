@@ -92,10 +92,7 @@ def build_run(source: dict) -> dict | None:
     for record in measured:
         by_arm.setdefault(record.get("arm") or record.get("deployment") or "unknown", []).append(record)
 
-    summaries = [
-        bench_core.summarize_arm(arm, rows)
-        for arm, rows in sorted(by_arm.items(), key=lambda item: bench_core.arm_order_key(item[0]))
-    ]
+    summaries = [bench_core.summarize_arm(arm, rows) for arm, rows in sorted(by_arm.items())]
     priced = [s["cost_per_1k_requests"] for s in summaries if s.get("cost_per_1k_requests")]
     baseline = max(priced) if priced else None
     for summary in summaries:
@@ -128,7 +125,9 @@ def main() -> int:
                     "Replayed measurements, not a live test.",
         # Kept in the non-LFS pack so a clone without git-lfs can still open
         # replay mode. Live mode continues to read the sibling study assets.
-        "catalog": bench_core.catalog(),
+        # Preserve the original evidence-pack shape. The server filters
+        # unverified registry-only entries at read time.
+        "catalog": bench_core.catalog(include_unverified=True),
         "runs": runs,
     }
     rendered = json.dumps(pack, ensure_ascii=False, indent=2) + "\n"

@@ -1043,6 +1043,31 @@ class Replay(unittest.TestCase):
                             "output_tokens_mean", "ok"):
                     self.assertIn(key, summary)
 
+    def test_scenario_replay_uses_model_then_effort_order(self):
+        pack = server.load_replay()
+        run = next(r for r in pack["runs"] if r["id"] == "scenario-matrix")
+        self.assertEqual([summary["arm"] for summary in run["summaries"]], [
+            "gpt-4o-mini-bench",
+            "gpt-5-mini@minimal",
+            "gpt-5-mini@low",
+            "gpt-5-mini@medium",
+            "gpt-5-mini@high",
+            "gpt-5.6-luna@none",
+            "gpt-5.6-luna@low",
+            "gpt-5.6-luna@medium",
+            "gpt-5.6-luna@high",
+            "gpt-5.6-luna@xhigh",
+            "gpt-5.6-luna@max",
+        ])
+
+    def test_replay_catalog_hides_unverified_registry_only_entries(self):
+        offered = {
+            arm["deployment"] for arm in server.load_replay()["catalog"]["arms"]
+        }
+        self.assertTrue({
+            "gpt-5-nano", "gpt-5.4-mini", "gpt-5.4-nano",
+        }.isdisjoint(offered))
+
     def test_pack_embeds_catalog_for_a_clone_without_git_lfs(self):
         pack = server.load_replay()
         self.assertTrue(pack["catalog"]["arms"])
